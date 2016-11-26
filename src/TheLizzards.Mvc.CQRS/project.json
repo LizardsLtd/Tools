@@ -7,8 +7,8 @@
 
 	"dependencies": {
 		"NETStandard.Library": "1.6.1",
-		"TheLizzards.CQRS": "0.1.*",
-		"TheLizzards.Mvc": "0.1.*"
+		"TheLizzards.CQRS": "0.1.0-*",
+		"TheLizzards.Mvc": "0.1.0-*"
 	},
 
 	"frameworks": {
