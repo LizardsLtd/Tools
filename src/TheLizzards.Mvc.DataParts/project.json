@@ -10,7 +10,7 @@
 		"Microsoft.AspNetCore.Mvc.Core": "1.1.0",
 		"NETStandard.Library": "1.6.1",
 		"System.Runtime": "4.3.0",
-		"TheLizzards.Mvc": "0.1.*"
+		"TheLizzards.Mvc": "0.1.0-*"
 	},
 
 	"frameworks": {
