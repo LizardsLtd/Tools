@@ -8,7 +8,7 @@
 	"dependencies": {
 		"NETStandard.Library": "1.6.1",
 		"Microsoft.Azure.DocumentDB.Core": "0.1.0-preview",
-		"TheLizzards.CQRS": "0.1.*",
+		"TheLizzards.CQRS": "0.1.0-*",
 		"Microsoft.Extensions.Options": "1.1.0",
 		"Microsoft.Extensions.Logging.Abstractions": "1.1.0"
 	},
