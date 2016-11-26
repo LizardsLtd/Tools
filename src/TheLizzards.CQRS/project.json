@@ -1,0 +1,15 @@
+{
+	"version": "0.1.0-*",
+	"name": "TheLizzards.CQRS",
+	"description": "Implementation of Command and Query Responsibility Separation pattern.",
+	"copyright": "TheLizzards 2016 - 2017",
+	"title": "CQRS",
+
+	"frameworks": {
+		"netstandard1.6": {}
+	},
+	"dependencies": {
+		"NETStandard.Library": "1.6.1",
+		"TheLizzards.Common": "0.1.0-*"
+	}
+}

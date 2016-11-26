@@ -1,0 +1,29 @@
+{
+	"version": "0.1.0-*",
+	"name": "TheLizzards.Mvc",
+	"description": "ASP.NET Core MVC implementation.",
+	"copyright": "TheLizzards 2016 - 2017",
+	"title": "MVC",
+
+	"frameworks": {
+		"netstandard1.6": {}
+	},
+
+  "dependencies": {
+    "Microsoft.AspNetCore.Antiforgery": "1.1.0",
+    "Microsoft.AspNetCore.Diagnostics": "1.1.0",
+    "Microsoft.AspNetCore.Identity": "1.1.0",
+    "Microsoft.AspNetCore.Mvc": "1.1.0",
+    "Microsoft.AspNetCore.Mvc.Localization": "1.1.0",
+    "Microsoft.AspNetCore.StaticFiles": "1.1.0",
+    "Microsoft.Extensions.Configuration": "1.1.0",
+    "Microsoft.Extensions.Configuration.Abstractions": "1.1.0",
+    "Microsoft.Extensions.Configuration.EnvironmentVariables": "1.1.0",
+    "Microsoft.Extensions.Configuration.Json": "1.1.0",
+    "Microsoft.Extensions.DependencyInjection.Abstractions": "1.1.0",
+    "Microsoft.Extensions.Options": "1.1.0",
+    "Microsoft.VisualStudio.Web.BrowserLink.Loader": "14.1.0",
+    "NETStandard.Library": "1.6.1",
+    "TheLizzards.Data": "0.1.0-*"
+  }
+}
