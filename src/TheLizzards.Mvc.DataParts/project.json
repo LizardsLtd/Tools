@@ -1,5 +1,5 @@
 {
-	"version": "0.1.0-*",
+	"version": "0.2.0-*",
 	"name": "TheLizzards.Mvc.DataParts",
 	"description": "ASP.NET Core MVC specialized classes to ease the use of Core Data common entires.",
 	"copyright": "TheLizzards 2016 - 2017",
@@ -10,7 +10,7 @@
 		"Microsoft.AspNetCore.Mvc.Core": "1.1.0",
 		"NETStandard.Library": "1.6.1",
 		"System.Runtime": "4.3.0",
-		"TheLizzards.Mvc": "0.1.0-*"
+		"TheLizzards.Mvc": "0.2.0-*"
 	},
 
 	"frameworks": {
