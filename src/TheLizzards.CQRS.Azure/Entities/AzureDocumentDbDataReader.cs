@@ -53,7 +53,9 @@ namespace TheLizzards.CQRS.Azure.Entities
 		{
 			var item = this.client
 				.CreateDocumentQuery<T>(collectionUri)
-				.SingleOrDefault(predicate);
+				.Where(predicate)
+		                .ToArray()
+				.SingleOrDefault();
 
 			return (Maybe<T>)item;
 		}
