@@ -4,80 +4,57 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 using Microsoft.Azure.Documents.Client;
+using Microsoft.Extensions.Logging;
 using TheLizzards.Common.Data;
 
 namespace TheLizzards.CQRS.Azure.Entities
 {
-	internal sealed class AzureDocumentDbDataReader<T> : IDataReader<T> where T : IAggregateRoot
+	internal sealed class AzureDocumentDbDataReader<T>
+		: AzureDocumentDbHandler, IDataReader<T>
+			where T : IAggregateRoot
 	{
 		private readonly DocumentClient client;
 		private readonly Uri collectionUri;
+		private readonly ILogger<T> logger;
 
-		public AzureDocumentDbDataReader(DocumentClient client, Uri collectionUri)
+		public AzureDocumentDbDataReader(
+						DocumentClient client
+				, Uri collectionUri
+				, LoggerFactory loggingFactory) :
+			base(client, collectionUri, loggingFactory.CreateLogger<T>())
 		{
-			this.client = client;
-			this.collectionUri = collectionUri;
 		}
 
 		public Task<IEnumerable<T>> GetAll(Expression<Func<T, bool>> predicate)
-		{
-			var items = this
-				.QueryDocumentDb(predicate)
-				.Materialize();
-
-			return Task.FromResult(items);
-		}
+			=> this.ExecuteCollectionResultQuery<T>(
+				predicate
+				, items => items);
 
 		public Task<IEnumerable<T>> GetPage(Expression<Func<T, bool>> predicate, Page page)
-		{
-			var items = this
-					.QueryDocumentDb(predicate)
+			=> this.ExecuteCollectionResultQuery<T>(
+				predicate
+				, items => items
 					.Skip(page.CountOfItemsToSkip)
-					.Take(page.ItemsOnPage)
-					.Materialize();
-
-			return Task.FromResult(items);
-		}
+					.Take(page.ItemsOnPage));
 
 		public Task<T> First(Expression<Func<T, bool>> predicate)
-		{
-			var item = this.client
-			.CreateDocumentQuery<T>(collectionUri)
-			.First(predicate);
+			=> this.ExecuteSingleResultQuery<T>(
+				predicate
+				, items => items.First());
 
-			return Task.FromResult(item);
-		}
-
-		public Task<T> FirstOrDefault(Expression<Func<T, bool>> predicate)
-		{
-			var item = this.client
-				.CreateDocumentQuery<T>(collectionUri)
-				.FirstOrDefault(predicate);
-
-			return Task.FromResult(item);
-		}
+		public Task<Maybe<T>> FirstOrDefault(Expression<Func<T, bool>> predicate)
+			=> this.ExecutePossibleSingleResultQuery<T>(
+				predicate
+				, items => items.FirstOrDefault());
 
 		public Task<T> Single(Expression<Func<T, bool>> predicate)
-		{
-			var item = this.client
-				.CreateDocumentQuery<T>(collectionUri)
-				.Single(predicate);
-
-			return Task.FromResult(item);
-		}
+			=> this.ExecuteSingleResultQuery<T>(
+				predicate
+				, items => items.Single());
 
 		public Task<Maybe<T>> SingleOrDefault(Expression<Func<T, bool>> predicate)
-		{
-			var item = this
-				.QueryDocumentDb(predicate)
-				.SingleOrDefault();
-
-			return Task.FromResult<Maybe<T>>(item);
-		}
-
-		private IQueryable<T> QueryDocumentDb(Expression<Func<T, bool>> predicate)
-			=> client
-				.CreateDocumentQuery<T>(collectionUri)
-				.Where(predicate);
+			=> this.ExecutePossibleSingleResultQuery<T>(
+				predicate
+				, items => items.SingleOrDefault());
 	}
 }

@@ -15,7 +15,7 @@ namespace TheLizzards.CQRS
 
 		Task<T> First(Expression<Func<T, bool>> predicate);
 
-		Task<T> FirstOrDefault(Expression<Func<T, bool>> predicate);
+		Task<Maybe<T>> FirstOrDefault(Expression<Func<T, bool>> predicate);
 
 		Task<T> Single(Expression<Func<T, bool>> predicate);
 
