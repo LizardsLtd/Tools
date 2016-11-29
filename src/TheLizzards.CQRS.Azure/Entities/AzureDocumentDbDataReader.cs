@@ -14,8 +14,6 @@ namespace TheLizzards.CQRS.Azure.Entities
 		: AzureDocumentDbHandler, IDataReader<T>
 			where T : IAggregateRoot
 	{
-		private readonly ILogger<T> logger;
-
 		public AzureDocumentDbDataReader(
 				DocumentClient client
 				, Uri collectionUri
