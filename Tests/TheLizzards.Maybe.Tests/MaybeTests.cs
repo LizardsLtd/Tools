@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using TheLizzards.Maybe;
 using Xunit;
 
 namespace TheLizzards.Maybe.Tests
