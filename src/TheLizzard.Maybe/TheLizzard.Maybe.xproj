@@ -7,8 +7,8 @@
 
   <Import Project="$(VSToolsPath)\DotNet\Microsoft.DotNet.Props" Condition="'$(VSToolsPath)' != ''" />
   <PropertyGroup Label="Globals">
-    <ProjectGuid>fec9cc9d-1c3c-4367-81e1-a59cdd767c54</ProjectGuid>
-    <RootNamespace>TheLizzards.Common.Tests</RootNamespace>
+    <ProjectGuid>cf23eeb6-24c7-42e8-af26-da7c387485eb</ProjectGuid>
+    <RootNamespace>TheLizzard.Maybe</RootNamespace>
     <BaseIntermediateOutputPath Condition="'$(BaseIntermediateOutputPath)'=='' ">.\obj</BaseIntermediateOutputPath>
     <OutputPath Condition="'$(OutputPath)'=='' ">.\bin\</OutputPath>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>

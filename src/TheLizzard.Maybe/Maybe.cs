@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace TheLizzards.Common.Data
+namespace TheLizzards.Maybe
 {
 	public struct Maybe<T> : IEquatable<Maybe<T>>
 	{
