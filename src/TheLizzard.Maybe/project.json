@@ -1,5 +1,19 @@
 ﻿{
 	"version": "0.1.0-*",
+	"name": "TheLizzards.Maybe",
+	"description": "Implementation of Maybe/Optional pattern using structure and some nice extensions.",
+	"copyright": "TheLizzards 2016 - 2017",
+	"title": "Maybe/Optional",
+
+	"packOptions": {
+		"owners": [ "TheLizzards" ],
+		"tags": [ "maybe", "thelizzards" ],
+		"summary": "Implementation of Maybe/Optional pattern using structure and some nice extensions",
+		"repository": {
+			"type": "git",
+			"url": "https://github.com/TheLizzards/Mvc"
+		}
+	},
 
 	"dependencies": {
 		"NETStandard.Library": "1.6.0"
