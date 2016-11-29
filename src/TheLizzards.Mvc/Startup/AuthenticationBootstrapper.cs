@@ -21,15 +21,15 @@ namespace TheLizzards.Mvc.Startup
 			return startup;
 		}
 
-		public static IConfiguration ConfigureIdentityOptions(this IConfiguration startup
-			, string loginPath = "/Login"
-			, string logoutPath = "/Logout"
-			, string accessDeniedPath = "/Error/RestrictedAccess"
-			, int requiredLenght = 8
-			, bool slidingExpiration = true
-			, bool autmationChallange = true)
-		{
-			startup.ConfigureOption<IdentityOptions>(
+		public static IConfiguration ConfigureIdentityOptions(
+				this IConfiguration startup
+				, string loginPath = "/Login"
+				, string logoutPath = "/Logout"
+				, string accessDeniedPath = "/Error/RestrictedAccess"
+				, int requiredLenght = 8
+				, bool slidingExpiration = true
+				, bool autmationChallange = true)
+			=> startup.ConfigureOption<IdentityOptions>(
 				SetIdentityOptions(
 					loginPath
 					, logoutPath
@@ -37,16 +37,21 @@ namespace TheLizzards.Mvc.Startup
 					, requiredLenght
 					, slidingExpiration
 					, autmationChallange));
-			return startup;
-		}
+
+		public static IConfiguration ConfigurePasswordHasher(this IConfiguration startup)
+			=> startup.ConfigureOption<PasswordHasherOptions>(options =>
+			{
+				options.CompatibilityMode = PasswordHasherCompatibilityMode.IdentityV3;
+				options.IterationCount = 10000;
+			});
 
 		private static Action<IdentityOptions> SetIdentityOptions(
-		   string loginPath = "/Login"
-		   , string logoutPath = "/Logout"
-		   , string accessDeniedPath = "/Error/RestrictedAccess"
-		   , int requiredLenght = 8
-		   , bool slidingExpiration = true
-		   , bool autmationChallange = true)
+			   string loginPath = "/Login"
+			   , string logoutPath = "/Logout"
+			   , string accessDeniedPath = "/Error/RestrictedAccess"
+			   , int requiredLenght = 8
+			   , bool slidingExpiration = true
+			   , bool autmationChallange = true)
 			=> new Action<IdentityOptions>(options =>
 			   {
 				   options.Password.RequiredLength = requiredLenght;
