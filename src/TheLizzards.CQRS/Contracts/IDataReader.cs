@@ -13,6 +13,10 @@ namespace TheLizzards.CQRS
 
 		Task<IEnumerable<T>> GetPage(Expression<Func<T, bool>> predicate, Page page);
 
+		Task<T> First(Expression<Func<T, bool>> predicate);
+
+		Task<T> FirstOrDefault(Expression<Func<T, bool>> predicate);
+
 		Task<T> Single(Expression<Func<T, bool>> predicate);
 
 		Task<Maybe<T>> SingleOrDefault(Expression<Func<T, bool>> predicate);

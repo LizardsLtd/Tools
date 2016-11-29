@@ -20,44 +20,64 @@ namespace TheLizzards.CQRS.Azure.Entities
 		}
 
 		public Task<IEnumerable<T>> GetAll(Expression<Func<T, bool>> predicate)
-			=> Task.Run(() => client
-					.CreateDocumentQuery<T>(collectionUri)
-					.Where(predicate)
-					.ToList()
-					.AsEnumerable());
+		{
+			var items = this
+				.QueryDocumentDb(predicate)
+				.Materialize();
+
+			return Task.FromResult(items);
+		}
 
 		public Task<IEnumerable<T>> GetPage(Expression<Func<T, bool>> predicate, Page page)
 		{
-			throw new NotImplementedException();
-		}
-
-		public Task<IEnumerable<T>> GetPage(Func<T, bool> predicate, Page page)
-			=> Task.Run(() => client
-					.CreateDocumentQuery<T>(collectionUri)
-					.Where(predicate)
+			var items = this
+					.QueryDocumentDb(predicate)
 					.Skip(page.CountOfItemsToSkip)
 					.Take(page.ItemsOnPage)
-					.ToList()
-					.AsEnumerable());
+					.Materialize();
 
-		public Task<T> Single(Expression<Func<T, bool>> predicate)
-			=> Task.Run(()
-				=> this.client
-					.CreateDocumentQuery<T>(collectionUri)
-					.Single(predicate));
+			return Task.FromResult(items);
+		}
 
-		public Task<Maybe<T>> SingleOrDefault(Expression<Func<T, bool>> predicate)
-			=> Task.Run(() => SingleOrDefaultNonAsync(predicate.Compile()));
+		public Task<T> First(Expression<Func<T, bool>> predicate)
+		{
+			var item = this.client
+			.CreateDocumentQuery<T>(collectionUri)
+			.First(predicate);
 
-		private Maybe<T> SingleOrDefaultNonAsync(Func<T, bool> predicate)
+			return Task.FromResult(item);
+		}
+
+		public Task<T> FirstOrDefault(Expression<Func<T, bool>> predicate)
 		{
 			var item = this.client
 				.CreateDocumentQuery<T>(collectionUri)
-				.Where(predicate)
-		                .ToArray()
+				.FirstOrDefault(predicate);
+
+			return Task.FromResult(item);
+		}
+
+		public Task<T> Single(Expression<Func<T, bool>> predicate)
+		{
+			var item = this.client
+				.CreateDocumentQuery<T>(collectionUri)
+				.Single(predicate);
+
+			return Task.FromResult(item);
+		}
+
+		public Task<Maybe<T>> SingleOrDefault(Expression<Func<T, bool>> predicate)
+		{
+			var item = this
+				.QueryDocumentDb(predicate)
 				.SingleOrDefault();
 
-			return (Maybe<T>)item;
+			return Task.FromResult<Maybe<T>>(item);
 		}
+
+		private IQueryable<T> QueryDocumentDb(Expression<Func<T, bool>> predicate)
+			=> client
+				.CreateDocumentQuery<T>(collectionUri)
+				.Where(predicate);
 	}
 }

@@ -1,5 +1,5 @@
 {
-	"version": "0.2.0-*",
+	"version": "0.3.0-*",
 	"name": "TheLizzards.CQRS",
 	"description": "Implementation of Command and Query Responsibility Separation pattern.",
 	"copyright": "TheLizzards 2016 - 2017",
