@@ -6,7 +6,7 @@
 	"title": "MVC CommonMark",
 
 	"dependencies": {
-		"Markdig": "0.10.2",
+		"Markdig": "0.10.3",
 		"Microsoft.AspNetCore.Mvc.Localization": "1.1.0",
 		"NETStandard.Library": "1.6.1"
 	},
