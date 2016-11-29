@@ -10,7 +10,7 @@ namespace TheLizzards.Maybe
 		{
 			var takeOne = source.Take(1).ToArray();
 
-			return takeOne.Any() ? Maybe<T>.From(takeOne.First()) : Maybe<T>.Nothing;
+			return takeOne.Any() ? Maybe.From(takeOne.First()) : Maybe<T>.Nothing;
 		}
 
 		public static Maybe<T> FirstOrNothing<T>(this IEnumerable<T> source, Func<T, bool> predicate)
@@ -23,7 +23,7 @@ namespace TheLizzards.Maybe
 			var enumerable = source as T[] ?? source.ToArray();
 			var lastOne = enumerable.Skip(Math.Max(0, enumerable.Length - 1)).ToList();
 
-			return lastOne.Any() ? Maybe<T>.From(lastOne.First()) : Maybe<T>.Nothing;
+			return lastOne.Any() ? Maybe.From(lastOne.First()) : Maybe<T>.Nothing;
 		}
 
 		public static Maybe<T> LastOrNothing<T>(this IEnumerable<T> source, Func<T, bool> predicate)
@@ -35,7 +35,7 @@ namespace TheLizzards.Maybe
 		{
 			var takeTwo = source.Take(2).ToArray();
 
-			return takeTwo.Length == 1 ? Maybe<T>.From(takeTwo.First()) : Maybe<T>.Nothing;
+			return takeTwo.Length == 1 ? Maybe.From(takeTwo.First()) : Maybe<T>.Nothing;
 		}
 
 		public static Maybe<T> SingleOrNothing<T>(this IEnumerable<T> source, Func<T, bool> predicate)
@@ -44,6 +44,6 @@ namespace TheLizzards.Maybe
 		}
 
 		public static IEnumerable<Maybe<T>> ToMaybeList<T>(this IEnumerable<T> source)
-			=> source.Select(Maybe<T>.From);
+			=> source.Select(Maybe.From);
 	}
 }

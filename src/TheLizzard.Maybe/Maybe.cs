@@ -1,8 +1,13 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace TheLizzards.Maybe
 {
-	public struct Maybe<T> : IEquatable<Maybe<T>>
+	public struct Maybe<T> :
+		IComparable<Maybe<T>>
+		, IComparable<T>
+		, IEquatable<Maybe<T>>
+		, IEquatable<T>
 	{
 		/// <summary>
 		/// Nothing value.
@@ -13,7 +18,7 @@ namespace TheLizzards.Maybe
 		{
 			if (value == null)
 			{
-				throw new InvalidOperationException("value is not present");
+				throw new NullReferenceException("Value provided for Maybe could not be null");
 			}
 
 			this.Value = value;
@@ -21,34 +26,52 @@ namespace TheLizzards.Maybe
 
 		public T Value { get; }
 
-		public bool HasValue => Value != null;
+		public bool IsSome => Value != null;
 
-		public bool HasNoValue => !this.HasValue;
+		public bool IsNone => !this.IsSome;
 
 		public static implicit operator Maybe<T>(T value)
 			=> value == null
 				? Nothing
 				: new Maybe<T>(value);
 
-		public static bool operator ==(Maybe<T> left, T right) => left.Equals(right);
+		public int CompareTo(Maybe<T> other)
+			=> other.IsSome
+				? CompareTo(other.Value)
+				: 1;
 
-		public static bool operator !=(Maybe<T> left, T right) => !(left == right);
+		public int CompareTo(T other)
+		{
+			return IsNone
+				? -1
+				: Comparer<T>.Default.Compare(this.Value, other);
+		}
 
-		public static bool operator ==(Maybe<T> left, Maybe<T> right) => left.Equals(right);
+		public bool Equals(Maybe<T> other)
+			=> this.CompareTo(other) == 0;
 
-		public static bool operator !=(Maybe<T> left, Maybe<T> right) => !(left == right);
+		public bool Equals(T other)
+			=> this.CompareTo(other) == 0;
 
-		public static Maybe<T> From(T value) => value;
+		//public static bool operator ==(Maybe<T> left, T right) => left.Equals(right);
 
-		public T GetValueOrDefault()
-			=> HasValue
-				? Value
-				: default(T);
+		//public static bool operator !=(Maybe<T> left, T right) => !(left == right);
 
-		bool IEquatable<Maybe<T>>.Equals(Maybe<T> other) => this.Equals(other.Value);
+		//public static bool operator ==(Maybe<T> left, Maybe<T> right) => left.Equals(right);
 
-		public override bool Equals(object obj) => GetHashCode().Equals(obj?.GetHashCode());
+		//public static bool operator !=(Maybe<T> left, Maybe<T> right) => !(left == right);
 
-		public override int GetHashCode() => this.Value?.GetHashCode() ?? 0;
+		//public static Maybe<T> From(T value) => value;
+
+		//public T GetValueOrDefault()
+		//	=> IsSome
+		//		? Value
+		//		: default(T);
+
+		//bool IEquatable<Maybe<T>>.Equals(Maybe<T> other) => this.Equals(other.Value);
+
+		//public override bool Equals(object obj) => GetHashCode().Equals(obj?.GetHashCode());
+
+		//public override int GetHashCode() => this.Value?.GetHashCode() ?? 0;
 	}
 }
