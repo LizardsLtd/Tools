@@ -5,9 +5,18 @@
 	"copyright": "TheLizzards 2016 - 2017",
 	"title": "MVC CQRS",
 
+	"packOptions": {
+		"owners": [ "TheLizzards" ],
+		"tags": [ "mvc", "cqrs", "thelizzards" ],
+		"repository": {
+			"type": "git",
+			"url": "https://github.com/TheLizzards/Mvc"
+		}
+	},
+
 	"dependencies": {
 		"NETStandard.Library": "1.6.1",
-		"TheLizzards.CQRS": "0.2.0-*",
+		"TheLizzards.CQRS": "0.3.0-*",
 		"TheLizzards.Mvc": "0.3.0-*"
 	},
 
