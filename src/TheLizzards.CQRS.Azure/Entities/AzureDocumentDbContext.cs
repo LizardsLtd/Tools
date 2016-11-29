@@ -10,6 +10,7 @@ namespace TheLizzards.CQRS.Azure.Entities
 	{
 		private readonly Lazy<DocumentClient> client;
 		private readonly ILogger logger;
+		private readonly ILoggerFactory loggerFactory;
 		private bool disposedValue;
 
 		public AzureDocumentDbContext(
@@ -19,6 +20,7 @@ namespace TheLizzards.CQRS.Azure.Entities
 			this.client = new Lazy<DocumentClient>(
 				() => new DocumentClient(new Uri(options.Value.Endpoint), options.Value.AuthKey));
 			this.logger = loggerFactory.CreateLogger<AzureDocumentDbContext>();
+			this.loggerFactory = loggerFactory;
 		}
 
 		private bool IsClientCreated => this.client?.IsValueCreated ?? false;
@@ -30,7 +32,10 @@ namespace TheLizzards.CQRS.Azure.Entities
 			this.logger.LogInformation(
 				$"AzureDocumentDb: Reader for {typeof(T).Name} and collection {collectionUri}");
 
-			return new AzureDocumentDbDataReader<T>(this.client.Value, collectionUri);
+			return new AzureDocumentDbDataReader<T>(
+				this.client.Value
+				, collectionUri
+				, this.loggerFactory);
 		}
 
 		public IDataWriter<T> Write<T>(params object[] attributes) where T : IAggregateRoot

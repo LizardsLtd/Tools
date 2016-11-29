@@ -65,7 +65,7 @@ namespace TheLizzards.CQRS.Azure.Entities
 
 				var result = resultsExtractor(items);
 
-				return Task.FromResult<TResult>(result);
+				return Task.FromResult(result);
 			}
 			catch (Exception exp)
 			{
@@ -74,7 +74,7 @@ namespace TheLizzards.CQRS.Azure.Entities
 					, exp
 					, exp.Message);
 
-				return Task.FromException<T>(exp);
+				return Task.FromException<TResult>(exp);
 			}
 		}
 

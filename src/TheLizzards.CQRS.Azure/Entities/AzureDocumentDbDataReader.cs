@@ -18,9 +18,9 @@ namespace TheLizzards.CQRS.Azure.Entities
 		private readonly ILogger<T> logger;
 
 		public AzureDocumentDbDataReader(
-						DocumentClient client
+				DocumentClient client
 				, Uri collectionUri
-				, LoggerFactory loggingFactory) :
+				, ILoggerFactory loggingFactory) :
 			base(client, collectionUri, loggingFactory.CreateLogger<T>())
 		{
 		}
