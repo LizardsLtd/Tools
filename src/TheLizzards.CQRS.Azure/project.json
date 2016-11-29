@@ -20,8 +20,8 @@
 		"Microsoft.Extensions.Logging.Abstractions": "1.1.0",
 		"Microsoft.Extensions.Options": "1.1.0",
 		"NETStandard.Library": "1.6.1",
-		"TheLizzard.Maybe": "0.1.0-*",
-		"TheLizzards.CQRS": "0.3.0-*"
+		"TheLizzards.CQRS": "0.3.1-*",
+		"TheLizzards.Maybe": "0.1.0-*"
 	},
 
 	"frameworks": {
