@@ -39,7 +39,7 @@ namespace TheLizzards.Common.Data
 		public static bool operator !=(Maybe<T> left, Maybe<T> right) => !(left == right);
 
 		public T GetValueOrDefault()
-																	=> HasValue
+			=> HasValue
 				? Value
 				: default(T);
 
