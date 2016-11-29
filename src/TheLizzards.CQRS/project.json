@@ -5,6 +5,15 @@
 	"copyright": "TheLizzards 2016 - 2017",
 	"title": "CQRS",
 
+	"packOptions": {
+		"owners": [ "TheLizzards" ],
+		"tags": [ "cqrs", "thelizzards" ],
+		"repository": {
+			"type": "git",
+			"url": "https://github.com/TheLizzards/Mvc"
+		}
+	},
+
 	"frameworks": {
 		"netstandard1.6": {}
 	},
