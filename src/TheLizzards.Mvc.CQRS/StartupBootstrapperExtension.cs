@@ -15,30 +15,30 @@ namespace TheLizzards.Mvc.Startup
 		}
 
 		public static IConfiguration AddAutmaticDetectionCQRS(
-			this IConfiguration startup
-			, Assembly assembly)
+				this IConfiguration startup
+				, Assembly assembly)
 			=> startup.AddServices(services
-					=> services.AutomaticDetectCQRSElements(assembly));
+				=> services.AutomaticDetectCQRSElements(assembly));
 
 		public static IConfiguration AddCommandBus(
-			this IConfiguration startup)
+				this IConfiguration startup)
 			=> startup.AddServices(services
 					=> services.AddDefaultCQRSItems());
 
 		public static IConfiguration AddDataContext(
-			this IConfiguration startup)
+				this IConfiguration startup)
 			=> startup.AddConfiguration((app, e, lf)
-					=> app
-						.ApplicationServices
-						.GetService<IDataContextInitialiser>()
-						?.Initialise());
+				=> app
+					.ApplicationServices
+					.GetService<IDataContextInitialiser>()
+					?.Initialise());
 
 		private static void AddDefaultCQRSItems(this IServiceCollection services)
 			=> services.AddSingleton<ICommandBus, CommandBus>();
 
 		private static void AutomaticDetectCQRSElements(
-			this IServiceCollection services
-			, Assembly assembly)
+				this IServiceCollection services
+				, Assembly assembly)
 			=> services
 				.DiscoverImplementation()
 					.ForAssembly(assembly)
