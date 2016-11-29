@@ -1,5 +1,5 @@
 {
-	"version": "0.3.1-*",
+	"version": "0.3.2-*",
 	"name": "TheLizzards.CQRS.Azure",
 	"description": "Azure DocumentDb data provider.",
 	"copyright": "TheLizzards 2016 - 2017",
@@ -15,12 +15,13 @@
 	},
 
 	"dependencies": {
-		"NETStandard.Library": "1.6.1",
 		"Microsoft.Azure.DocumentDB.Core": "0.1.0-preview",
-		"TheLizzards.CQRS": "0.3.0-*",
-		"Microsoft.Extensions.Options": "1.1.0",
+		"Microsoft.Extensions.Logging": "1.1.0",
 		"Microsoft.Extensions.Logging.Abstractions": "1.1.0",
-		"Microsoft.Extensions.Logging": "1.1.0"
+		"Microsoft.Extensions.Options": "1.1.0",
+		"NETStandard.Library": "1.6.1",
+		"TheLizzard.Maybe": "0.1.0-*",
+		"TheLizzards.CQRS": "0.3.0-*"
 	},
 
 	"frameworks": {

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 using TheLizzards.Common.Data;
+using TheLizzards.Maybe;
 
 namespace TheLizzards.CQRS
 {

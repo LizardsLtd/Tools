@@ -19,6 +19,6 @@
 	},
 	"dependencies": {
 		"NETStandard.Library": "1.6.1",
-		"TheLizzards.Common": "0.3.0-*"
+		"TheLizzard.Maybe": "0.1.0-*"
 	}
 }

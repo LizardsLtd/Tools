@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.Azure.Documents.Client;
 using Microsoft.Extensions.Logging;
 using TheLizzards.Common.Data;
+using TheLizzards.Maybe;
 
 namespace TheLizzards.CQRS.Azure.Entities
 {
@@ -33,9 +34,9 @@ namespace TheLizzards.CQRS.Azure.Entities
 				predicate
 				, items => resultsExtractor(items.Materialize()));
 
-		protected Task<Maybe<TPayload>> ExecutePossibleSingleResultQuery<TPayload>(
+		protected Task<TResult> ExecuteSingleResultQuery<TPayload, TResult>(
 				Expression<Func<TPayload, bool>> predicate
-				, Func<IEnumerable<TPayload>, Maybe<TPayload>> resultsExtractor)
+				, Func<IEnumerable<TPayload>, TResult> resultsExtractor)
 					where TPayload : IAggregateRoot
 			=> ExecuteQuery(
 				predicate

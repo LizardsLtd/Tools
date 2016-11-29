@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
-using TheLizzards.Common.Data;
 using Xunit;
 
 namespace TheLizzards.Maybe.Tests

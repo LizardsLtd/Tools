@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.Azure.Documents.Client;
 using Microsoft.Extensions.Logging;
 using TheLizzards.Common.Data;
+using TheLizzards.Maybe;
 
 namespace TheLizzards.CQRS.Azure.Entities
 {
@@ -43,9 +44,9 @@ namespace TheLizzards.CQRS.Azure.Entities
 				, items => items.First());
 
 		public Task<Maybe<T>> FirstOrDefault(Expression<Func<T, bool>> predicate)
-			=> this.ExecutePossibleSingleResultQuery<T>(
+			=> this.ExecuteSingleResultQuery<T, Maybe<T>>(
 				predicate
-				, items => items.FirstOrDefault());
+				, items => items.FirstOrNothing());
 
 		public Task<T> Single(Expression<Func<T, bool>> predicate)
 			=> this.ExecuteSingleResultQuery<T>(
@@ -53,8 +54,8 @@ namespace TheLizzards.CQRS.Azure.Entities
 				, items => items.Single());
 
 		public Task<Maybe<T>> SingleOrDefault(Expression<Func<T, bool>> predicate)
-			=> this.ExecutePossibleSingleResultQuery<T>(
+			=> this.ExecuteSingleResultQuery<T, Maybe<T>>(
 				predicate
-				, items => items.SingleOrDefault());
+				, items => items.SingleOrNothing());
 	}
 }

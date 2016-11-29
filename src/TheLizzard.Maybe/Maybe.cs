@@ -38,6 +38,8 @@ namespace TheLizzards.Maybe
 
 		public static bool operator !=(Maybe<T> left, Maybe<T> right) => !(left == right);
 
+		public static Maybe<T> From(T value) => value;
+
 		public T GetValueOrDefault()
 			=> HasValue
 				? Value

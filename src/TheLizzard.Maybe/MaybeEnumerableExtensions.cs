@@ -1,50 +1,49 @@
+using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace TheLizzards.Maybe
 {
 	public static class MaybeEnumerableExtensions
 	{
-		public static Optional<T> FirstOrNone<T>(this IEnumerable<T> source)
+		public static Maybe<T> FirstOrNothing<T>(this IEnumerable<T> source)
 		{
 			var takeOne = source.Take(1).ToArray();
 
-			return takeOne.Any() ? Optional.From(takeOne.First()) : Optional.None<T>();
+			return takeOne.Any() ? Maybe<T>.From(takeOne.First()) : Maybe<T>.Nothing;
 		}
 
-		public static Optional<T> FirstOrNone<T>(this IEnumerable<T> source, Func<T, bool> predicate)
+		public static Maybe<T> FirstOrNothing<T>(this IEnumerable<T> source, Func<T, bool> predicate)
 		{
-			return source.Where(predicate).FirstOrNone();
+			return source.Where(predicate).FirstOrNothing();
 		}
 
-		public static Optional<T> LastOrNone<T>(this IEnumerable<T> source)
+		public static Maybe<T> LastOrNothing<T>(this IEnumerable<T> source)
 		{
 			var enumerable = source as T[] ?? source.ToArray();
 			var lastOne = enumerable.Skip(Math.Max(0, enumerable.Length - 1)).ToList();
 
-			return lastOne.Any() ? Optional.From(lastOne.First()) : Optional.None<T>();
+			return lastOne.Any() ? Maybe<T>.From(lastOne.First()) : Maybe<T>.Nothing;
 		}
 
-		public static Optional<T> LastOrNone<T>(this IEnumerable<T> source, Func<T, bool> predicate)
+		public static Maybe<T> LastOrNothing<T>(this IEnumerable<T> source, Func<T, bool> predicate)
 		{
-			return source.Where(predicate).LastOrNone();
+			return source.Where(predicate).LastOrNothing();
 		}
 
-		public static Optional<T> SingleOrNone<T>(this IEnumerable<T> source)
+		public static Maybe<T> SingleOrNothing<T>(this IEnumerable<T> source)
 		{
 			var takeTwo = source.Take(2).ToArray();
 
-			return takeTwo.Length == 1 ? Optional.From(takeTwo.First()) : Optional.None<T>();
+			return takeTwo.Length == 1 ? Maybe<T>.From(takeTwo.First()) : Maybe<T>.Nothing;
 		}
 
-		public static Optional<T> SingleOrNone<T>(this IEnumerable<T> source, Func<T, bool> predicate)
+		public static Maybe<T> SingleOrNothing<T>(this IEnumerable<T> source, Func<T, bool> predicate)
 		{
-			return source.Where(predicate).SingleOrNone();
+			return source.Where(predicate).SingleOrNothing();
 		}
 
-		public static IEnumerable<Optional<T>> ToOptionalList<T>(this IEnumerable<T> source)
-			=> source.Select(Optional.From);
-
-		public static IEnumerable<Optional<T>> ToOptionalList<T>(this IEnumerable<T> source, Func<T, bool> condition)
-			=> source.Select(s => Optional.From(s, condition));
+		public static IEnumerable<Maybe<T>> ToMaybeList<T>(this IEnumerable<T> source)
+			=> source.Select(Maybe<T>.From);
 	}
 }
