@@ -1,4 +1,6 @@
-﻿namespace TheLizzards.CQRS
+﻿using TheLizzards.CQRS.Contracts;
+
+namespace TheLizzards.CQRS.Entities
 {
 	public abstract class SingleQueryBase<TPayload> : IQuery<TPayload>
 	{

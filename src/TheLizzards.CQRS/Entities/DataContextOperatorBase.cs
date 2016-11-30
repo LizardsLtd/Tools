@@ -1,6 +1,7 @@
 ﻿using System;
+using TheLizzards.CQRS.Contracts.Data;
 
-namespace TheLizzards.CQRS
+namespace TheLizzards.CQRS.Entities
 {
 	public abstract class DataContextOperatorBase : IDisposable
 	{

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 
-namespace TheLizzards.CQRS
+namespace TheLizzards.CQRS.Contracts.Data
 {
 	public interface IDataContextInitialiser : IDisposable
 	{

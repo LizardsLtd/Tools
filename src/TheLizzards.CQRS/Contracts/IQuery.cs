@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace TheLizzards.CQRS
+namespace TheLizzards.CQRS.Contracts
 {
 	public interface IsQuery : IDisposable
 	{

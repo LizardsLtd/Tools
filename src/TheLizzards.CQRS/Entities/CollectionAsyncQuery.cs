@@ -1,7 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using TheLizzards.CQRS.Contracts;
 
-namespace TheLizzards.CQRS
+namespace TheLizzards.CQRS.Entities
 {
 	public abstract class CollectionAsyncQuery<TPayload> : IAsyncQuery<IEnumerable<TPayload>>
 	{

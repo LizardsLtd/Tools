@@ -2,8 +2,9 @@
 using System.Linq;
 using System.Threading.Tasks;
 using TheLizzards.Common.Data;
+using TheLizzards.CQRS.Contracts;
 
-namespace TheLizzards.CQRS
+namespace TheLizzards.CQRS.Entities
 {
 	public sealed class CommandBus : ICommandBus
 	{

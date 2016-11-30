@@ -1,6 +1,7 @@
 using System.Threading.Tasks;
+using TheLizzards.CQRS.Contracts;
 
-namespace TheLizzards.CQRS
+namespace TheLizzards.CQRS.Entities
 {
 	public abstract class SingleAsyncQueryBase<TPayload> : IAsyncQuery<TPayload>
 	{
@@ -20,12 +21,8 @@ namespace TheLizzards.CQRS
 			{
 				if (disposing)
 				{
-					// TODO: dispose managed state (managed objects).
 					DisposeResources();
 				}
-
-				// TODO: free unmanaged resources (unmanaged objects) and override a finalizer below.
-				// TODO: set large fields to null.
 
 				disposedValue = true;
 			}

@@ -1,7 +1,8 @@
 ﻿using System.Threading.Tasks;
 using TheLizzards.Common.Data;
+using TheLizzards.CQRS.Contracts;
 
-namespace TheLizzards.CQRS
+namespace TheLizzards.CQRS.Entities
 {
 	public abstract class CommandHandlerBase<TCommand> : ICommandHandler
 		where TCommand : ICommand

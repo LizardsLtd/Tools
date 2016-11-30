@@ -1,4 +1,4 @@
-﻿namespace TheLizzards.CQRS
+﻿namespace TheLizzards.CQRS.Entities
 {
 	public sealed class Page
 	{

@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 using TheLizzards.Common.Data;
+using TheLizzards.CQRS.Entities;
 using TheLizzards.Maybe;
 
-namespace TheLizzards.CQRS
+namespace TheLizzards.CQRS.Contracts.Data
 {
 	public interface IDataReader<T>
 		where T : IAggregateRoot

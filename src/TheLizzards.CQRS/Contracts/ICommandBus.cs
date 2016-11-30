@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
 using TheLizzards.Common.Data;
 
-namespace TheLizzards.CQRS
+namespace TheLizzards.CQRS.Contracts
 {
 	public interface ICommandBus
 	{

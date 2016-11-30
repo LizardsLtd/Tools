@@ -1,6 +1,7 @@
 ﻿using System;
+using TheLizzards.CQRS.Contracts;
 
-namespace TheLizzards.CQRS
+namespace TheLizzards.CQRS.Entities
 {
 	public abstract class CommandBase : ICommand
 	{

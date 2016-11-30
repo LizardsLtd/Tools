@@ -1,7 +1,7 @@
 ﻿using System;
 using TheLizzards.Common.Data;
 
-namespace TheLizzards.CQRS
+namespace TheLizzards.CQRS.Contracts.Data
 {
 	public interface IDataContext : IDisposable
 	{
