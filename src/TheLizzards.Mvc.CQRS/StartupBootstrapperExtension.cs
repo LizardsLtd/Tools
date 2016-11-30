@@ -1,6 +1,8 @@
 ﻿using System.Reflection;
 using Microsoft.Extensions.DependencyInjection;
-using TheLizzards.CQRS;
+using TheLizzards.CQRS.Contracts;
+using TheLizzards.CQRS.Contracts.Data;
+using TheLizzards.CQRS.Entities;
 
 namespace TheLizzards.Mvc.Startup
 {

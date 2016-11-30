@@ -1,5 +1,5 @@
 {
-	"version": "0.2.1-*",
+	"version": "0.2.2-*",
 	"name": "TheLizzards.Mvc.CQRS",
 	"description": "ASP.NET Core MVC specialized classes to ease the use of CQRS patter.",
 	"copyright": "TheLizzards 2016 - 2017",
