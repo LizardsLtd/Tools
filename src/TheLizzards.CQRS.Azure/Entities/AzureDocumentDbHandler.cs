@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using Microsoft.Azure.Documents.Client;
 using Microsoft.Extensions.Logging;
 using TheLizzards.Common.Data;
-using TheLizzards.Maybe;
 
 namespace TheLizzards.CQRS.Azure.Entities
 {

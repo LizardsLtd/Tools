@@ -3,10 +3,13 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.Azure.Documents.Client;
 using TheLizzards.Common.Data;
+using TheLizzards.CQRS.Contracts.Data;
 
 namespace TheLizzards.CQRS.Azure.Entities
 {
-	internal class AzureDocumentDbDataWriter<T> : IDataWriter<T> where T : IAggregateRoot
+	internal class AzureDocumentDbDataWriter<T> 
+		: IDataWriter<T>
+			 where T : IAggregateRoot
 	{
 		private readonly DocumentClient client;
 		private readonly string collectionUri;

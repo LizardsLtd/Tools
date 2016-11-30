@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using Microsoft.Azure.Documents.Client;
 using Microsoft.Extensions.Logging;
 using TheLizzards.Common.Data;
+using TheLizzards.CQRS.Contracts.Data;
+using TheLizzards.CQRS.Entities;
 using TheLizzards.Maybe;
 
 namespace TheLizzards.CQRS.Azure.Entities
@@ -22,12 +24,12 @@ namespace TheLizzards.CQRS.Azure.Entities
 		{
 		}
 
-		public Task<IEnumerable<T>> GetAll(Expression<Func<T, bool>> predicate)
-			=> this.ExecuteCollectionResultQuery<T>(
-				predicate
-				, items => items);
+        public Task<IEnumerable<T>> GetAll(Expression<Func<T, bool>> predicate)
+            => this.ExecuteCollectionResultQuery<T>(
+                predicate
+                , items => items);
 
-		public Task<IEnumerable<T>> GetPage(Expression<Func<T, bool>> predicate, Page page)
+        public Task<IEnumerable<T>> GetPage(Expression<Func<T, bool>> predicate, Page page)
 			=> this.ExecuteCollectionResultQuery<T>(
 				predicate
 				, items => items

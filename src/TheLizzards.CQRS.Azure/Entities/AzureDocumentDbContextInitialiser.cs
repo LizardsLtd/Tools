@@ -5,6 +5,7 @@ using Microsoft.Azure.Documents;
 using Microsoft.Azure.Documents.Client;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using TheLizzards.CQRS.Contracts.Data;
 
 namespace TheLizzards.CQRS.Azure.Entities
 {
