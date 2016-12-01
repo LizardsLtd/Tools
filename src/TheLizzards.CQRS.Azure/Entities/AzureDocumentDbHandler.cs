@@ -61,7 +61,7 @@ namespace TheLizzards.CQRS.Azure.Entities
 
 				var items = this.QueryDocumentDb(predicate);
 
-				this.logger.LogInformation($"Items count: {items.Count()}");
+				this.logger.LogInformation($"Items count: {items}");
 
 				var result = resultsExtractor(items);
 
