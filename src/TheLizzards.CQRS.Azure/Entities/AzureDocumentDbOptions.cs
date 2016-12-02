@@ -10,7 +10,7 @@ namespace TheLizzards.CQRS.Azure.Entities
 
 		public string AuthKey { get; set; }
 
-		public string Database { get; set; }
+		public IEnumerable<AzureDatabase> Databases { get; set; }
 
 		public Uri EndpointUri => new Uri(this.Endpoint);
 
