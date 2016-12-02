@@ -35,28 +35,6 @@ namespace TheLizzards.CQRS.Azure.Entities
 		public Task Initialise()
 			=> Task.Run((Action)CreateDatabases);
 
-		public void CreateDatabases()
-			=> this.databases
-				.Select(this.CreateDatabase)
-				.Where(DoesDatabaseHasToBeCreated)
-				.ToList()
-				.ForEach(async db => await this.client.CreateDatabaseAsync(db));
-
-		private bool DoesDatabaseHasToBeCreated(Database database)
-			=> !DoesDatabseExist(database);
-
-		private bool DoesDatabseExist(Database database)
-			=> client.CreateDatabaseQuery()
-				.Where(db => db.Id == database.Id)
-				.ToArray()
-				.Any();
-
-		private Database CreateDatabase(string databaseId)
-			=> new Database
-			{
-				Id = databaseId,
-			};
-
 		private void Dispose(bool disposing)
 		{
 			if (!disposedValue)
