@@ -1,5 +1,5 @@
 {
-	"version": "0.4.0-*",
+	"version": "0.5.0-*",
 	"name": "TheLizzards.CQRS.Azure",
 	"description": "Azure DocumentDb data provider.",
 	"copyright": "TheLizzards 2016 - 2017",
@@ -22,7 +22,7 @@
 		"NETStandard.Library": "1.6.1",
 		"TheLizzards.CQRS": "0.4.0-*",
 		"TheLizzards.Common": "0.3.0-*",
-		"TheLizzards.Maybe": "0.1.0-*"
+		"TheLizzards.Maybe": "0.1.1-CI40"
 	},
 
 	"frameworks": {

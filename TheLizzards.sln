@@ -7,6 +7,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{ED1E5032
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{A6878F19-D808-40A3-AEB5-DEC78FA47D5C}"
 	ProjectSection(SolutionItems) = preProject
+		CodeCoverage.ps1 = CodeCoverage.ps1
 		global.json = global.json
 		NuGet.config = NuGet.config
 		Nuget\pack.ps1 = Nuget\pack.ps1
