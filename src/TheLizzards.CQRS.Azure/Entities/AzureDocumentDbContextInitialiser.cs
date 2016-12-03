@@ -1,7 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.Azure.Documents;
 using Microsoft.Azure.Documents.Client;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
@@ -13,7 +13,7 @@ namespace TheLizzards.CQRS.Azure.Entities
 	{
 		private readonly DocumentClient client;
 		private readonly ILogger<AzureDocumentDbContextInitialiser> logger;
-		private readonly string[] databases;
+		private readonly IEnumerable<AzureDatabase> databases;
 		private bool disposedValue;
 
 		public AzureDocumentDbContextInitialiser(
@@ -21,7 +21,7 @@ namespace TheLizzards.CQRS.Azure.Entities
 			, ILoggerFactory loggerFactory)
 		{
 			this.client = new DocumentClient(new Uri(options.Value.Endpoint), options.Value.AuthKey);
-			this.databases = options.Value.Database.Split(',');
+			this.databases = options.Value.Databases;
 			this.logger = loggerFactory.CreateLogger<AzureDocumentDbContextInitialiser>();
 		}
 
@@ -33,7 +33,11 @@ namespace TheLizzards.CQRS.Azure.Entities
 		}
 
 		public Task Initialise()
-			=> Task.Run((Action)CreateDatabases);
+			=> Task.Run(()
+				=> this.databases
+					.ToList()
+					.ForEach(azureDb
+						=> azureDb.CreateDatabaseWithCollection(client)));
 
 		private void Dispose(bool disposing)
 		{
