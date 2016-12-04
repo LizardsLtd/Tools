@@ -40,7 +40,10 @@ namespace TheLizzards.CQRS.Azure.Entities
 					Id = collection
 				};
 
-				this.CreateCollection(databaseLink, documentCollection).Wait();
+				if (this.DoesCollectionHasToBeCreated(databaseLink, documentCollection))
+				{
+					this.CreateCollection(databaseLink, documentCollection).Wait();
+				}
 			}
 		}
 
@@ -62,6 +65,16 @@ namespace TheLizzards.CQRS.Azure.Entities
 			=> this.client
 				.CreateDatabaseQuery()
 				.Where(db => db.Id == database.Id)
+				.ToArray()
+				.Any();
+
+		private bool DoesCollectionHasToBeCreated(Uri databaseLink, DocumentCollection documentCollection)
+			=> !this.DoesCollectionExist(databaseLink, documentCollection);
+
+		private bool DoesCollectionExist(Uri databaseLink, DocumentCollection documentCollection)
+			=> this.client
+				.CreateDocumentCollectionQuery(databaseLink)
+				.Where(col => col.Id == documentCollection.Id)
 				.ToArray()
 				.Any();
 	}
