@@ -1,5 +1,3 @@
-nuget install OpenCover -version 4.6.519
-
 $projects = get-item ".\Tests\*\project.json" |
     foreach { $_.FullName }
 
