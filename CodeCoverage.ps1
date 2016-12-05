@@ -10,6 +10,6 @@ $command = $projects -join " "
     "-target:C:\Program Files\dotnet\dotnet.exe" `
     "-targetargs:test $($command)" `
     -register:user `
-    "-filter:+[*]* -[xunit*]*" `
+    "-filter:+[TheLizzards*]* -[Microsoft*]* -[xunit*]*" `
     -oldStyle `
     -output:$outputPath
