@@ -1,3 +1,6 @@
+param(
+    [string] $outputPath  
+)
 $projects = get-item ".\Tests\*\project.json" |
     foreach { $_.FullName }
 
@@ -9,4 +12,4 @@ $command = $projects -join " "
     -register:user `
     "-filter:+[*]* -[xunit*]*" `
     -oldStyle `
-    -output:coverage.xml
+    -output:$outputPath
