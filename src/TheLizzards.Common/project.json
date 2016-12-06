@@ -1,5 +1,5 @@
 {
-	"version": "0.3.0-*",
+	"version": "1.0.0",
 	"name": "TheLizzards.Common",
 	"description": "Common interfaces and other usage classes.",
 	"copyright": "TheLizzards 2016 - 2017",
