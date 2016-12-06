@@ -1,6 +1,6 @@
 {
 	"version": "1.0.0",
-	"name": "TheLizzards.Data.Tpyes",
+	"name": "TheLizzards.Data.Types",
 	"description": "Common data types and some support functinality",
 	"copyright": "TheLizzards 2016 - 2017",
 	"title": "Lizzards Data Types",
@@ -16,7 +16,7 @@
 	},
 
 	"frameworks": {
-		"netstandard1.6": { }
+		"netstandard1.6": {}
 	},
 
 	"dependencies": {

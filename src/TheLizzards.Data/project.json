@@ -1,6 +1,6 @@
 {
 	"version": "1.0.0",
-	"name": "TheLizzards.CQRS",
+	"name": "TheLizzards.Data",
 	"description": "Implementation of common data access patterns.",
 	"copyright": "TheLizzards 2016 - 2017",
 	"title": "Lizzards Data",
