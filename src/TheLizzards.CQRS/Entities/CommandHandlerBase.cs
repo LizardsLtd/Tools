@@ -1,5 +1,4 @@
 ﻿using System.Threading.Tasks;
-using TheLizzards.Common.Data;
 using TheLizzards.CQRS.Contracts;
 
 namespace TheLizzards.CQRS.Entities
@@ -18,11 +17,11 @@ namespace TheLizzards.CQRS.Entities
 			return command is TCommand;
 		}
 
-		public async Task<IResult> Execute(ICommand command)
+		public async Task Execute(ICommand command)
 		{
 			var castedCommand = (TCommand)command;
 
-			return await this.Execute(castedCommand);
+			await this.Execute(castedCommand);
 		}
 
 		public void Dispose() => Dispose(true);
@@ -31,7 +30,7 @@ namespace TheLizzards.CQRS.Entities
 		{
 		}
 
-		protected abstract Task<IResult> Execute(TCommand command);
+		protected abstract Task Execute(TCommand command);
 
 		private void Dispose(bool disposing)
 		{

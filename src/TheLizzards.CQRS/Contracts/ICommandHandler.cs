@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Threading.Tasks;
-using TheLizzards.Common.Data;
 
 namespace TheLizzards.CQRS.Contracts
 {
@@ -8,6 +7,6 @@ namespace TheLizzards.CQRS.Contracts
 	{
 		bool CanHandle(ICommand command);
 
-		Task<IResult> Execute(ICommand command);
+		Task Execute(ICommand command);
 	}
 }
