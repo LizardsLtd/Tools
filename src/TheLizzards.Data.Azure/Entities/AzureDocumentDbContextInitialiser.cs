@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 using Microsoft.Azure.Documents.Client;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using TheLizzards.Data.CQRS.Contracts.Data;
+using TheLizzards.Data.CQRS.Contracts.DataAccess;
 
-namespace TheLizzards.CQRS.Azure.Entities
+namespace TheLizzards.Data.Azure.Entities
 {
 	public sealed class AzureDocumentDbContextInitialiser : IDataContextInitialiser
 	{

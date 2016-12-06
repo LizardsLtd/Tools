@@ -4,7 +4,7 @@ using System.Linq;
 using System.Security;
 using Microsoft.Extensions.Configuration;
 
-namespace TheLizzards.CQRS.Azure.Entities
+namespace TheLizzards.Data.Azure.Entities
 {
 	public sealed class AzureDocumentDbOptions
 	{

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace TheLizzards.CQRS.Azure.Entities
+namespace TheLizzards.Data.Azure.Entities
 {
 	public static class Materializer
 	{

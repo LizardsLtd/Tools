@@ -2,10 +2,10 @@
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.Azure.Documents.Client;
-using TheLizzards.Common.Data;
-using TheLizzards.Data.CQRS.Contracts.Data;
+using TheLizzards.Data.CQRS.Contracts.DataAccess;
+using TheLizzards.Data.DDD.Contracts;
 
-namespace TheLizzards.CQRS.Azure.Entities
+namespace TheLizzards.Data.Azure.Entities
 {
 	internal class AzureDocumentDbDataWriter<T> 
 		: IDataWriter<T>

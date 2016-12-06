@@ -5,12 +5,12 @@ using System.Linq.Expressions;
 using System.Threading.Tasks;
 using Microsoft.Azure.Documents.Client;
 using Microsoft.Extensions.Logging;
-using TheLizzards.Common.Data;
-using TheLizzards.Data.CQRS.Contracts.Data;
+using TheLizzards.Data.CQRS.Contracts.DataAccess;
+using TheLizzards.Data.DDD.Contracts;
 using TheLizzards.CQRS.Entities;
 using TheLizzards.Maybe;
 
-namespace TheLizzards.CQRS.Azure.Entities
+namespace TheLizzards.Data.Azure.Entities
 {
 	internal sealed class AzureDocumentDbDataReader<T>
 		: AzureDocumentDbHandler, IDataReader<T>

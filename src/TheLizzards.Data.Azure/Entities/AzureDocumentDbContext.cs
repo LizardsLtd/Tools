@@ -2,9 +2,10 @@
 using Microsoft.Azure.Documents.Client;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using TheLizzards.Data.CQRS.Contracts.Data;
+using TheLizzards.Data.CQRS.Contracts.DataAccess;
+using TheLizzards.Data.DDD.Contracts;
 
-namespace TheLizzards.CQRS.Azure.Entities
+namespace TheLizzards.Data.Azure.Entities
 {
 	public sealed class AzureDocumentDbContext : IDataContext
 	{
@@ -25,7 +26,8 @@ namespace TheLizzards.CQRS.Azure.Entities
 
 		private bool IsClientCreated => this.client?.IsValueCreated ?? false;
 
-		public IDataReader<T> Read<T>(params object[] attributes) where T : IAggregateRoot
+		public IDataReader<T> Read<T>(params object[] attributes) 
+			where T : IAggregateRoot
 		{
 			var collectionUri = GetCollectionUri(attributes);
 
@@ -38,7 +40,8 @@ namespace TheLizzards.CQRS.Azure.Entities
 				, this.loggerFactory);
 		}
 
-		public IDataWriter<T> Write<T>(params object[] attributes) where T : IAggregateRoot
+		public IDataWriter<T> Write<T>(params object[] attributes) 
+			where T : IAggregateRoot
 		{
 			var databaseId = attributes[0].ToString();
 			var collectionId = attributes[1].ToString();
