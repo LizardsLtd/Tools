@@ -6,7 +6,7 @@
   </PropertyGroup>
   <Import Project="$(VSToolsPath)\DNX\Microsoft.DNX.Props" Condition="'$(VSToolsPath)' != ''" />
   <PropertyGroup Label="Globals">
-    <ProjectGuid>832d495d-9938-40c4-8f9e-a3789e8abfa6</ProjectGuid>
+    <ProjectGuid>5b9a32ec-3601-445e-a5b9-f6df8ba29ad0</ProjectGuid>
     <RootNamespace>TheLizzards.CQRS</RootNamespace>
     <BaseIntermediateOutputPath Condition="'$(BaseIntermediateOutputPath)'=='' ">.\obj</BaseIntermediateOutputPath>
     <OutputPath Condition="'$(OutputPath)'=='' ">.\bin</OutputPath>

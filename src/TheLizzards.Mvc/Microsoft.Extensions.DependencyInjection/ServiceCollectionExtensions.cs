@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
-using TheLizzards.DataParts.Contracts;
+using TheLizzards.Data.Types.Contracts;
 using TheLizzards.Mvc.Claims.Entities;
 
 namespace Microsoft.Extensions.DependencyInjection

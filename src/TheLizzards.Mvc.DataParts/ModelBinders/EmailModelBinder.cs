@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc.Internal;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
-using TheLizzards.Common.DataParts.Entites;
+using TheLizzards.Data.Types.Entites;
 
 namespace TheLizzards.Mvc.DataParts.ApplicationServices
 {

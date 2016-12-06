@@ -1,5 +1,4 @@
-﻿using TheLizzards.Common.DataParts.Entites;
-using TheLizzards.DataParts.Entites;
+﻿using TheLizzards.Data.Types.Entites;
 using TheLizzards.Mvc.DataParts.ApplicationServices;
 using TheLizzards.Mvc.DataParts.ModelValidators;
 using TheLizzards.Mvc.Startup;
