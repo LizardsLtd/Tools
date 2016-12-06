@@ -1,24 +1,20 @@
 {
 	"version": "1.0.0",
-	"name": "TheLizzards.CQRS",
-	"description": "Implementation of common data access patterns.",
+	"name": "TheLizzards.Data.Tpyes",
+	"description": "Common data types and some support functinality",
 	"copyright": "TheLizzards 2016 - 2017",
-	"title": "Lizzards Data",
+	"title": "Lizzards Data Types",
 
 	"packOptions": {
 		"owners": [ "TheLizzards" ],
-		"tags": [ "data", "thelizzards" ],
+		"tags": [ "data", "data types", "thelizzards" ],
+		"summary": "Common data types and some support functinality",
 		"repository": {
 			"type": "git",
 			"url": "https://github.com/TheLizzards/Mvc"
 		}
 	},
-
 	"frameworks": {
 		"netstandard1.6": {}
-	},
-	"dependencies": {
-		"NETStandard.Library": "1.6.1",
-		"TheLizzards.Maybe": "1.0.0"
 	}
 }
