@@ -1,9 +1,9 @@
 {
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"name": "TheLizzards.Common",
 	"description": "Common interfaces and other usage classes.",
 	"copyright": "TheLizzards 2016 - 2017",
-	"title": "Common",
+	"title": "Lizzards Common",
 
 	"frameworks": {
 		"netstandard1.6": {}
