@@ -14,7 +14,20 @@
 			"url": "https://github.com/TheLizzards/Mvc"
 		}
 	},
+
 	"frameworks": {
-		"netstandard1.6": {}
-	}
+		"netstandard1.6": {
+			"imports": [
+				"dnxcore50",
+				"portable-net451+win8"
+			]
+		}
+	},
+
+  "dependencies": {
+    "NETStandard.Library": "1.6.1",
+    "System.ComponentModel.Annotations": "4.3.0",
+    "System.Security.Claims": "4.3.0",
+    "VerbalExpressions-netstandard16": "0.2.0"
+  }
 }

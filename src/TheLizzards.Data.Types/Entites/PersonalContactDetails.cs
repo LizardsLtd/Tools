@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace TheLizzards.DataParts.Entites
+namespace TheLizzards.Data.Types.Entites
 {
 	public sealed class PersonalContactDetails
 	{

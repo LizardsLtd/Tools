@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 
-namespace TheLizzards.DataParts.Contracts
+namespace TheLizzards.Data.Types.Contracts
 {
 	public interface INameProvider
 	{

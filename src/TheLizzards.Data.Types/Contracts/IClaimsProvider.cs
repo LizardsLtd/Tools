@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Security.Claims;
 
-namespace TheLizzards.DataParts.Contracts
+namespace TheLizzards.Data.Types.Contracts
 {
 	public interface IClaimsProvider
 	{

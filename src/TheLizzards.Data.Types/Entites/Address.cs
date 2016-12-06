@@ -1,4 +1,4 @@
-﻿namespace TheLizzards.Common.DataParts.Entites
+﻿namespace TheLizzards.Data.Types.Entites
 {
 	public sealed class Address
 	{

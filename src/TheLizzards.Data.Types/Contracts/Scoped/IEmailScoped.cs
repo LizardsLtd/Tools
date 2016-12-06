@@ -1,7 +1,7 @@
 ﻿using System;
-using TheLizzards.Common.DataParts.Entites;
+using TheLizzards.Data.Types.Entites;
 
-namespace TheLizzards.Common.Services.Scoped
+namespace TheLizzards.Data.Types.Contracts.Scoped
 {
 	public interface IEmailScoped<T> : IDisposable
 	{

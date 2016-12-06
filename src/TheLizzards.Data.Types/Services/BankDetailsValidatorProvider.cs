@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
-using TheLizzards.DataParts.Services.Poland;
+using TheLizzards.Data.Types.Services.Poland;
+using TheLizzards.Data.Types.Entites;
 
-namespace TheLizzards.DataParts.Services
+namespace TheLizzards.Data.Types.Services
 {
 	public sealed class BankDetailsValidatorProvider
 	{

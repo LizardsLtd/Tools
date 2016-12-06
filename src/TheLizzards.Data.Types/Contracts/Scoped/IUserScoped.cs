@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace TheLizzards.CQRS.Scoped
+namespace TheLizzards.Data.Types.Contracts.Scoped
 {
 	public interface IIdScoped<T> : IDisposable
 	{

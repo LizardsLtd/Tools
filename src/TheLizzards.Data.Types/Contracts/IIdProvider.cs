@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace TheLizzards.DataParts.Contracts
+namespace TheLizzards.Data.Types.Contracts
 {
 	public interface IIdProvider
 	{
