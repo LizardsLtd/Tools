@@ -2,8 +2,8 @@
 using System.Globalization;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
-using TheLizzards.DataParts.Entites;
-using TheLizzards.DataParts.Services;
+using TheLizzards.Data.Types.Entites;
+using TheLizzards.Data.Types.Services;
 
 namespace TheLizzards.Mvc.Data.Types.ModelValidators
 {
@@ -20,10 +20,18 @@ namespace TheLizzards.Mvc.Data.Types.ModelValidators
 			=> validationProvider
 				.GetProvider(CultureInfo.CurrentCulture)
 				.Validate(context.Model as BankDetails)
-				.ErrorMessages
+				.SelectMany(validationError 
+					=> validationError
+						.MemberNames
+						.Select(member
+							=> new  {
+								Member = member,
+								Message = validationError.ErrorMessage
+							})
+				)
 				.Select(message
 					=> new ModelValidationResult(
-						context.ModelMetadata.PropertyName
-						, message));
+							message.Member
+							, message.Message));
 	}
 }

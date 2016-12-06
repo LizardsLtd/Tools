@@ -1,4 +1,5 @@
-﻿using CSharpVerbalExpressions;
+﻿using System.Collections.Generic;
+using CSharpVerbalExpressions;
 using System.ComponentModel.DataAnnotations;
 using TheLizzards.Data.Types.Entites;
 
@@ -6,8 +7,10 @@ namespace TheLizzards.Data.Types.Services.Poland {
 
 	public sealed class PolishBankDetailsValidator : IBankDetailsValidator {
 
-		public ValidationResult Validate(BankDetails bankDetails)
-			=> IsValidAccountNumber(bankDetails.AccountNumber.ToString());
+		public IEnumerable<ValidationResult> Validate(BankDetails bankDetails)
+			=> new[] {
+				IsValidAccountNumber(bankDetails.AccountNumber.ToString())
+			};
 
 		private ValidationResult IsValidAccountNumber(string accountNumber)
 			=> new VerbalExpressions()

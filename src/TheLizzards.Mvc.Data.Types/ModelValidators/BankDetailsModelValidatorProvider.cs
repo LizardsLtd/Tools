@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
-using TheLizzards.DataParts.Entites;
-using TheLizzards.DataParts.Services;
+using TheLizzards.Data.Types.Entites;
+using TheLizzards.Data.Types.Services;
 
 namespace TheLizzards.Mvc.Data.Types.ModelValidators
 {
@@ -36,8 +36,7 @@ namespace TheLizzards.Mvc.Data.Types.ModelValidators
 
 					validatorItem.Validator = validator;
 					validatorItem.IsReusable = true;
-					// Inserts validators based on whether or not they are 'required'. We want to run
-					// 'required' validators first so that we get the best possible error message.
+					
 					if (attribute is RequiredAttribute)
 					{
 						context.Results.Remove(validatorItem);

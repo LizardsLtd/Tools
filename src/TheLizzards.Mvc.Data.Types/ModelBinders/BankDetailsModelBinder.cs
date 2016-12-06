@@ -3,7 +3,7 @@ using System.Globalization;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc.Internal;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
-using TheLizzards.DataParts.Entites;
+using TheLizzards.Data.Types.Entites;
 
 namespace TheLizzards.Mvc.Data.Types.ApplicationServices
 {
