@@ -3,7 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using TheLizzards.Data.CQRS.Contracts;
 
-namespace TheLizzards.CQRS.Entities
+namespace TheLizzards.Data.CQRS.Entities
 {
 	public sealed class CommandBus : ICommandBus
 	{

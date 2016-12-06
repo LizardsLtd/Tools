@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
-using TheLizzards.CQRS.Entities;
+using TheLizzards.Data.CQRS.Entities;
 using TheLizzards.Data.DDD.Contracts;
 using TheLizzards.Maybe;
 

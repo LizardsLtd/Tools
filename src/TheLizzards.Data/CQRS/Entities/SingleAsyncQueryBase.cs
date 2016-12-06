@@ -1,7 +1,7 @@
 using System.Threading.Tasks;
 using TheLizzards.Data.CQRS.Contracts;
 
-namespace TheLizzards.CQRS.Entities
+namespace TheLizzards.Data.CQRS.Entities
 {
 	public abstract class SingleAsyncQueryBase<TPayload> : IAsyncQuery<TPayload>
 	{

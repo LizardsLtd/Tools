@@ -1,6 +1,6 @@
 ﻿using TheLizzards.Data.CQRS.Contracts;
 
-namespace TheLizzards.CQRS.Entities
+namespace TheLizzards.Data.CQRS.Entities
 {
 	public abstract class SingleQueryBase<TPayload> : IQuery<TPayload>
 	{

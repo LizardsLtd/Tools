@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using TheLizzards.Data.CQRS.Contracts;
 
-namespace TheLizzards.CQRS.Entities
+namespace TheLizzards.Data.CQRS.Entities
 {
 	public abstract class CollectionAsyncQuery<TPayload> : IAsyncQuery<IEnumerable<TPayload>>
 	{

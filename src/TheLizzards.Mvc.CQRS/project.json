@@ -16,7 +16,7 @@
 
 	"dependencies": {
 		"NETStandard.Library": "1.6.1",
-		"TheLizzards.CQRS": "1.0.0",
+		"TheLizzards.Data": "1.0.0",
 		"TheLizzards.Mvc": "1.0.0"
 	},
 

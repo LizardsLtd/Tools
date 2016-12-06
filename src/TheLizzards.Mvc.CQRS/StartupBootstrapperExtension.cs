@@ -2,7 +2,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using TheLizzards.Data.CQRS.Contracts;
 using TheLizzards.Data.CQRS.Contracts.DataAccess;
-using TheLizzards.CQRS.Entities;
+using TheLizzards.Data.CQRS.Entities;
 
 namespace TheLizzards.Mvc.Startup
 {
