@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc.Internal;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using TheLizzards.Data.Types.Entites;
 
-namespace TheLizzards.Mvc.DataParts.ApplicationServices
+namespace TheLizzards.Mvc.Data.Types.ApplicationServices
 {
 	public sealed class AddressModelBinder : IModelBinder
 	{

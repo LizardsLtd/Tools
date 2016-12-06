@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 using TheLizzards.DataParts.Entites;
 using TheLizzards.DataParts.Services;
 
-namespace TheLizzards.Mvc.DataParts.ModelValidators
+namespace TheLizzards.Mvc.Data.Types.ModelValidators
 {
 	public sealed class BankDetailsModelValidatorProvider : IModelValidatorProvider
 	{

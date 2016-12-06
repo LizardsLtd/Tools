@@ -1,6 +1,6 @@
 ﻿using TheLizzards.Data.Types.Entites;
-using TheLizzards.Mvc.DataParts.ApplicationServices;
-using TheLizzards.Mvc.DataParts.ModelValidators;
+using TheLizzards.Mvc.Data.Types.ApplicationServices;
+using TheLizzards.Mvc.Data.Types.ModelValidators;
 using TheLizzards.Mvc.Startup;
 
 namespace TheLizzards.Mvc

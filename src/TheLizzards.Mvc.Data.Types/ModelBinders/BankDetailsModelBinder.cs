@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc.Internal;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using TheLizzards.DataParts.Entites;
 
-namespace TheLizzards.Mvc.DataParts.ApplicationServices
+namespace TheLizzards.Mvc.Data.Types.ApplicationServices
 {
 	public sealed class BankDetailsModelBinder : IModelBinder
 	{
@@ -20,7 +20,7 @@ namespace TheLizzards.Mvc.DataParts.ApplicationServices
 		}
 
 		private static Tuple<CultureInfo, BankDetails, string> GetBankDetails(
-					ModelBindingContext bindingContext
+			ModelBindingContext bindingContext
 			, string key)
 		{
 			var accountNumberField = bindingContext
