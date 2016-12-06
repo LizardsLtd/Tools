@@ -1,9 +1,9 @@
 {
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"name": "TheLizzards.Mvc.CommonMark",
 	"description": "ASP.NET Core MVC implementation of CommonMark extension.",
 	"copyright": "TheLizzards 2016 - 2017",
-	"title": "MVC CommonMark",
+	"title": "Lizzards MVC for CommonMark",
 
 	"dependencies": {
 		"Markdig": "0.10.3",

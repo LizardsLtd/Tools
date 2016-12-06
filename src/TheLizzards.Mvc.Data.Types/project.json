@@ -1,9 +1,9 @@
 {
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"name": "TheLizzards.Mvc.Data.Types",
 	"description": "ASP.NET Core MVC specialized classes to ease the use of Core Data common entities.",
 	"copyright": "TheLizzards 2016 - 2017",
-	"title": "MVC Data Types",
+	"title": "Lizzards MVC for Data Types",
 
 	"packOptions": {
 		"owners": [ "TheLizzards" ],
@@ -13,7 +13,7 @@
 			"url": "https://github.com/TheLizzards/Mvc"
 		}
 	},
-	
+
 	"dependencies": {
 		"Microsoft.AspNetCore.Mvc.Abstractions": "1.1.0",
 		"Microsoft.AspNetCore.Mvc.Core": "1.1.0",

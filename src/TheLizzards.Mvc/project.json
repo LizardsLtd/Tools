@@ -1,9 +1,9 @@
 {
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"name": "TheLizzards.Mvc",
 	"description": "ASP.NET Core MVC implementation.",
 	"copyright": "TheLizzards 2016 - 2017",
-	"title": "The Lizzards MVC",
+	"title": "Lizzards MVC",
 
 	"frameworks": {
 		"netstandard1.6": {}

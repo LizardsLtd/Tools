@@ -1,9 +1,9 @@
 {
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"name": "TheLizzards.Mvc.CQRS",
 	"description": "ASP.NET Core MVC specialized classes to ease the use of CQRS patter.",
 	"copyright": "TheLizzards 2016 - 2017",
-	"title": "MVC CQRS",
+	"title": "Lizzards Mvc for Data",
 
 	"packOptions": {
 		"owners": [ "TheLizzards" ],
