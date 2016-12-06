@@ -3,10 +3,10 @@
 	"name": "TheLizzards.Mvc",
 	"description": "ASP.NET Core MVC implementation.",
 	"copyright": "TheLizzards 2016 - 2017",
-	"title": "MVC",
+	"title": "The Lizzards MVC",
 
 	"frameworks": {
-		"netstandard1.6": { }
+		"netstandard1.6": {}
 	},
 
 	"dependencies": {
