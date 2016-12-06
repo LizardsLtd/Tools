@@ -7,7 +7,7 @@
 
 	"packOptions": {
 		"owners": [ "TheLizzards" ],
-		"tags": [ "azure", "cqrs", "thelizzards" ],
+		"tags": [ "azure", "data", "thelizzards" ],
 		"repository": {
 			"type": "git",
 			"url": "https://github.com/TheLizzards/Mvc"
