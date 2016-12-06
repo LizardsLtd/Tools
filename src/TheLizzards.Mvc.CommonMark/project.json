@@ -1,5 +1,5 @@
 {
-	"version": "0.2.0-*",
+	"version": "1.0.0",
 	"name": "TheLizzards.Mvc.CommonMark",
 	"description": "ASP.NET Core MVC implementation of CommonMark extension.",
 	"copyright": "TheLizzards 2016 - 2017",
