@@ -1,13 +1,13 @@
 {
-	"version": "1.0.1",
-	"name": "TheLizzards.Mvc.CQRS",
+	"version": "1.0.0",
+	"name": "TheLizzards.Mvc.Data",
 	"description": "ASP.NET Core MVC specialized classes to ease the use of CQRS patter.",
 	"copyright": "TheLizzards 2016 - 2017",
 	"title": "Lizzards Mvc for Data",
 
 	"packOptions": {
 		"owners": [ "TheLizzards" ],
-		"tags": [ "mvc", "cqrs", "thelizzards" ],
+		"tags": [ "mvc", "data", "thelizzards" ],
 		"repository": {
 			"type": "git",
 			"url": "https://github.com/TheLizzards/Mvc"
