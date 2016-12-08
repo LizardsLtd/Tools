@@ -21,16 +21,11 @@
 		"Microsoft.Extensions.Logging.Abstractions": "1.1.0",
 		"Microsoft.Extensions.Options": "1.1.0",
 		"NETStandard.Library": "1.6.1",
-		"TheLizzards.Data": "1.0.0",
-		"TheLizzards.Maybe": "1.0.0"
+		"TheLizzards.Data": "1.0.1",
+		"TheLizzards.Maybe": "1.0.1"
 	},
 
-	"frameworks": {
-		"netstandard1.6": {
-			"imports": [
-				"dnxcore50",
-				"portable-net451+win8"
-			]
-		}
+	"frameworks": {		
+		"netstandard1.4": {}
 	}
 }

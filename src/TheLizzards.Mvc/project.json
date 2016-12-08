@@ -6,7 +6,7 @@
 	"title": "Lizzards MVC",
 
 	"frameworks": {
-		"netstandard1.6": {}
+		"netstandard1.4": {}
 	},
 
 	"dependencies": {
@@ -24,7 +24,7 @@
 		"Microsoft.Extensions.Options": "1.1.0",
 		"Microsoft.VisualStudio.Web.BrowserLink.Loader": "14.1.0",
 		"NETStandard.Library": "1.6.1",
-		"TheLizzards.Data": "1.0.0",
-		"TheLizzards.Data.Types": "1.0.0"
+		"TheLizzards.Data": "1.0.1",
+		"TheLizzards.Data.Types": "1.0.1"
 	}
 }
