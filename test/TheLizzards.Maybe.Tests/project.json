@@ -2,16 +2,19 @@
   "version": "0.3.0-*",
 
   "dependencies": {
-    "System.Runtime.Serialization.Primitives": "4.3.0",
-    "xunit": "2.1.0",
     "dotnet-test-xunit": "1.0.0-rc2-build10015",
     "FluentAssertions": "4.18.0",
-    "TheLizzards.Maybe": "1.0.1"
+    "System.Runtime.Serialization.Primitives": "4.3.0",
+    "TheLizzards.Maybe": "1.0.1",
+    "xunit": "2.1.0"
   },
+
   "buildOptions": {
     "	debugType": "portable"
   },
+
   "testRunner": "xunit",
+
   "frameworks": {
     "netcoreapp1.1": {
       "dependencies": {
@@ -25,5 +28,9 @@
         "portable-net451+win8"
       ]
     }
+  },
+  "runtimes": {
+    "win7-x64": {},
+    "win10-x64": {}
   }
 }
