@@ -1,5 +1,5 @@
 {
-	"version": "1.0.2",
+	"version": "1.0.3",
 	"name": "TheLizzards.Mvc.Data",
 	"description": "ASP.NET Core MVC specialized classes to ease the use of CQRS patter.",
 	"copyright": "TheLizzards 2016 - 2017",
@@ -17,7 +17,7 @@
 	"dependencies": {
 		"NETStandard.Library": "1.6.1",
 		"TheLizzards.Data": "1.1.0",
-		"TheLizzards.Mvc": "1.0.1"
+		"TheLizzards.Mvc": "1.0.2"
 	},
 
 	"frameworks": {

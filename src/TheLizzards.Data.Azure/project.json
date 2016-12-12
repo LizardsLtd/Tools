@@ -1,5 +1,5 @@
 {
-	"version": "1.0.3",
+	"version": "1.0.4",
 	"name": "TheLizzards.Data.Azure",
 	"description": "Azure DocumentDb data provider.",
 	"copyright": "TheLizzards 2016 - 2017",
