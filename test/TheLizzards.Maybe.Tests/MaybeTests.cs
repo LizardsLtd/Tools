@@ -16,6 +16,46 @@ namespace TheLizzards.Maybe.Tests
 			Assert.NotNull(possibleMaybe);
 		}
 
+		[Fact]
+		public void NullCastedMaybeIsNone()
+		{
+			Maybe<string> maybe = null;
+
+			maybe.IsNone.Should().BeTrue();
+		}
+
+		[Fact]
+		public void NullCastedMaybeIsNotSome()
+		{
+			Maybe<string> maybe = null;
+
+			maybe.IsSome.Should().BeFalse();
+		}
+
+		[Fact]
+		public void ValueCastedMaybeIsNotNone()
+		{
+			var maybe = Maybe.From("test");
+
+			maybe.IsNone.Should().BeFalse();
+		}
+
+		[Fact]
+		public void ValueCastedMaybeIsSome()
+		{
+			var maybe = Maybe.From("test");
+
+			maybe.IsSome.Should().BeTrue();
+		}
+
+		[Fact]
+		public void CreateMaybeUsingFrom()
+		{
+			var maybe = Maybe.From("test");
+
+			maybe.IsSome.Should().BeTrue();
+		}
+
 		[Theory]
 		[InlineData(5, 3, 1)]
 		[InlineData(5, 8, -1)]

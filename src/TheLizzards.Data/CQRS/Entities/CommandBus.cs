@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 using TheLizzards.Data.CQRS.Contracts;
@@ -17,17 +19,18 @@ namespace TheLizzards.Data.CQRS.Entities
 		}
 
 		public async Task Execute(ICommand command)
-		{
-			var applicableCommandHandlers = this.commandHandlers.Where(x => x.CanHandle(command));
+			=> await GetCommandsHandlers(command)
+				.ToList()
+				.ForEach(async handler => await handler.Execute(command));
 
-			foreach (var handler in applicableCommandHandlers)
-			{
-				await handler.Execute(command);
-			}
-		}
+		public IEnumerable<ValidationResult> Validate(ICommand command)
+			=> GetCommandsHandlers(command)
+				.SelectMany(handler => handler.Validate(command));
 
-		public void Dispose()
-			=> Dispose(true);
+		public void Dispose() => Dispose(true);
+
+		private IEnumerable<ICommandHandler> GetCommandsHandlers(ICommand command)
+			=> this.commandHandlers.Where(x => x.CanHandle(command));
 
 		private void Dispose(bool disposing)
 		{

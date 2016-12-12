@@ -1,4 +1,7 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Threading.Tasks;
 using TheLizzards.Data.CQRS.Contracts;
 
 namespace TheLizzards.Data.CQRS.Entities
@@ -13,16 +16,13 @@ namespace TheLizzards.Data.CQRS.Entities
 		}
 
 		public bool CanHandle(ICommand command)
-		{
-			return command is TCommand;
-		}
+			=> command is TCommand;
 
 		public async Task Execute(ICommand command)
-		{
-			var castedCommand = (TCommand)command;
+			=> await this.Execute((TCommand)command);
 
-			await this.Execute(castedCommand);
-		}
+		public IEnumerable<ValidationResult> Validate(ICommand command)
+			=> this.Validate((TCommand)command);
 
 		public void Dispose() => Dispose(true);
 
@@ -31,6 +31,8 @@ namespace TheLizzards.Data.CQRS.Entities
 		}
 
 		protected abstract Task Execute(TCommand command);
+
+		protected abstract IEnumerable<ValidationResult> Validate(TCommand commmand);
 
 		private void Dispose(bool disposing)
 		{

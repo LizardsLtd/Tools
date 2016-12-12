@@ -1,24 +1,25 @@
 {
-	"version": "1.0.1",
-	"name": "TheLizzards.Data",
-	"description": "Implementation of common data access patterns.",
-	"copyright": "TheLizzards 2016 - 2017",
-	"title": "Lizzards Data",
+  "version": "1.1.0",
+  "name": "TheLizzards.Data",
+  "description": "Implementation of common data access patterns.",
+  "copyright": "TheLizzards 2016 - 2017",
+  "title": "Lizzards Data",
 
-	"packOptions": {
-		"owners": [ "TheLizzards" ],
-		"tags": [ "data", "thelizzards" ],
-		"repository": {
-			"type": "git",
-			"url": "https://github.com/TheLizzards/Mvc"
-		}
-	},
+  "packOptions": {
+    "owners": [ "TheLizzards" ],
+    "tags": [ "data", "thelizzards" ],
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/TheLizzards/Mvc"
+    }
+  },
 
-	"frameworks": {
-		"netstandard1.4": {}
-	},
-	"dependencies": {
-		"NETStandard.Library": "1.6.1",
-		"TheLizzards.Maybe": "1.0.1"
-	}
+  "frameworks": {
+    "netstandard1.4": {}
+  },
+  "dependencies": {
+    "NETStandard.Library": "1.6.1",
+    "System.ComponentModel.Annotations": "4.3.0",
+    "TheLizzards.Maybe": "1.0.1"
+  }
 }
