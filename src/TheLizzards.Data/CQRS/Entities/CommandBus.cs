@@ -18,10 +18,12 @@ namespace TheLizzards.Data.CQRS.Entities
 			this.commandHandlers = commandHandlers;
 		}
 
-		public async Task Execute(ICommand command)
-			=> await GetCommandsHandlers(command)
-				.ToList()
-				.ForEach(async handler => await handler.Execute(command));
+		public Task Execute(ICommand command)
+			=> Task.Run(() 
+				=> GetCommandsHandlers(command)
+					.ToList()
+					.ForEach(async handler => await handler.Execute(command)));
+
 
 		public IEnumerable<ValidationResult> Validate(ICommand command)
 			=> GetCommandsHandlers(command)
