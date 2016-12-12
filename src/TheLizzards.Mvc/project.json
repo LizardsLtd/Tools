@@ -9,6 +9,10 @@
 		"netstandard1.6": {}
 	},
 
+	"buildOptions": {
+		"warningsAsErrors": true
+	},
+
 	"dependencies": {
 		"Microsoft.AspNetCore.Antiforgery": "1.1.0",
 		"Microsoft.AspNetCore.Diagnostics": "1.1.0",
@@ -24,7 +28,7 @@
 		"Microsoft.Extensions.Options": "1.1.0",
 		"Microsoft.VisualStudio.Web.BrowserLink.Loader": "14.1.0",
 		"NETStandard.Library": "1.6.1",
-		"TheLizzards.Data": "1.0.1",
+		"TheLizzards.Data": "1.1.0",
 		"TheLizzards.Data.Types": "1.0.1"
 	}
 }

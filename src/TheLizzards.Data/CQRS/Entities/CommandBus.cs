@@ -24,7 +24,6 @@ namespace TheLizzards.Data.CQRS.Entities
 					.ToList()
 					.ForEach(async handler => await handler.Execute(command)));
 
-
 		public IEnumerable<ValidationResult> Validate(ICommand command)
 			=> GetCommandsHandlers(command)
 				.SelectMany(handler => handler.Validate(command));
