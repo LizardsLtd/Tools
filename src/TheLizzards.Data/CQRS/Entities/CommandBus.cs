@@ -19,7 +19,7 @@ namespace TheLizzards.Data.CQRS.Entities
 		}
 
 		public async Task Execute(ICommand command)
-			=> GetCommandsHandlers(command)
+			=> await GetCommandsHandlers(command)
 				.ToList()
 				.ForEach(async handler => await handler.Execute(command));
 
