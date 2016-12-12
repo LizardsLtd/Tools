@@ -1,5 +1,5 @@
 {
-	"version": "1.0.2",
+	"version": "1.0.3",
 	"name": "TheLizzards.Mvc",
 	"description": "ASP.NET Core MVC implementation.",
 	"copyright": "TheLizzards 2016 - 2017",
@@ -28,7 +28,7 @@
 		"Microsoft.Extensions.Options": "1.1.0",
 		"Microsoft.VisualStudio.Web.BrowserLink.Loader": "14.1.0",
 		"NETStandard.Library": "1.6.1",
-		"TheLizzards.Data": "1.1.0",
+		"TheLizzards.Data": "1.2.0",
 		"TheLizzards.Data.Types": "1.0.1"
 	}
 }

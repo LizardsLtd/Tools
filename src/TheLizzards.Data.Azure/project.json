@@ -1,5 +1,5 @@
 {
-	"version": "1.0.4",
+	"version": "1.0.5",
 	"name": "TheLizzards.Data.Azure",
 	"description": "Azure DocumentDb data provider.",
 	"copyright": "TheLizzards 2016 - 2017",
@@ -21,7 +21,7 @@
 		"Microsoft.Extensions.Logging.Abstractions": "1.1.0",
 		"Microsoft.Extensions.Options": "1.1.0",
 		"NETStandard.Library": "1.6.1",
-		"TheLizzards.Data": "1.1.0",
+		"TheLizzards.Data": "1.2.0",
 		"TheLizzards.Maybe": "1.0.1"
 	},
 
