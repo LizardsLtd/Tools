@@ -17,8 +17,9 @@
 	"frameworks": {
 		"netstandard1.4": {}
 	},
-	"dependencies": {
-		"NETStandard.Library": "1.6.1",
-		"TheLizzards.Maybe": "1.0.1"
-	}
+  "dependencies": {
+    "NETStandard.Library": "1.6.1",
+    "System.ComponentModel.Annotations": "4.3.0",
+    "TheLizzards.Maybe": "1.0.1"
+  }
 }
