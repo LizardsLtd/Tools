@@ -22,7 +22,7 @@ namespace TheLizzards.Data.CQRS.Entities
 		{
 			foreach(var handler in GetCommandsHandlers(command))
 			{
-				await handler.Execute(command));
+				await handler.Execute(command);
 			}
 		}
 
