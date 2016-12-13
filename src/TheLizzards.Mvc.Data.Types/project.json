@@ -19,7 +19,7 @@
 		"Microsoft.AspNetCore.Mvc.Core": "1.1.0",
 		"NETStandard.Library": "1.6.1",
 		"System.Runtime": "4.3.0",
-		"TheLizzards.Mvc": "1.0.5",
+		"TheLizzards.Mvc": "1.0.6",
 		"TheLizzards.Data.Types": "1.0.1"
 	},
 
