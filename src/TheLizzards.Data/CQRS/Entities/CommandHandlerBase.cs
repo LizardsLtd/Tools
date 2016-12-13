@@ -22,7 +22,7 @@ namespace TheLizzards.Data.CQRS.Entities
 			=> await this.Execute((TCommand)command);
 
 		public Task<IEnumerable<ValidationResult>> Validate(ICommand command)
-			=> this.Validate((TCommand)command);
+			=>   this.Validate((TCommand)command);
 
 		public void Dispose() => Dispose(true);
 
