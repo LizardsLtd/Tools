@@ -18,7 +18,7 @@ namespace TheLizzards.Data.CQRS.Entities
 			this.commandHandlers = commandHandlers;
 		}
 
-		public Task Execute(ICommand command)
+		public async Task Execute(ICommand command)
 		{
 			foreach(var handler in GetCommandsHandlers(command))
 			{
