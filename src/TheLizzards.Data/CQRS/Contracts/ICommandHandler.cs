@@ -9,7 +9,7 @@ namespace TheLizzards.Data.CQRS.Contracts
 	{
 		bool CanHandle(ICommand command);
 
-		IEnumerable<ValidationResult> Validate(ICommand command);
+		Task<IEnumerable<ValidationResult>> Validate(ICommand command);
 
 		Task Execute(ICommand command);
 	}
