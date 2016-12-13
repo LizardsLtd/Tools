@@ -19,14 +19,24 @@ namespace TheLizzards.Data.CQRS.Entities
 		}
 
 		public Task Execute(ICommand command)
-			=> Task.Run(() 
-				=> GetCommandsHandlers(command)
-					.ToList()
-					.ForEach(async handler => await handler.Execute(command)));
+		{
+			foreach(var handler in GetCommandsHandlers(command))
+			{
+				await handler.Execute(command));
+			}
+		}
 
-		public IEnumerable<ValidationResult> Validate(ICommand command)
-			=> GetCommandsHandlers(command)
-				.SelectMany(handler => handler.Validate(command));
+		public async Task<IEnumerable<ValidationResult>> Validate(ICommand command)
+		{
+			var results = new List<ValidationResult>(10);
+			
+			foreach(var handler in GetCommandsHandlers(command))
+			{
+				results.AddRange(await handler.Validate(command));
+			}
+			
+			return results;
+		}
 
 		public void Dispose() => Dispose(true);
 
