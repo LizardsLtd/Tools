@@ -8,7 +8,7 @@ namespace TheLizzards.Data.CQRS.Contracts
 	{
 		void Dispose();
 
-		IEnumerable<ValidationResult> Validate(ICommand command);
+		Task<IEnumerable<ValidationResult>> Validate(ICommand command);
 
 		Task Execute(ICommand command);
 	}
