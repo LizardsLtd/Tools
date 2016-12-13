@@ -21,8 +21,8 @@ namespace TheLizzards.Data.CQRS.Entities
 		public async Task Execute(ICommand command)
 			=> await this.Execute((TCommand)command);
 
-		public async Task<IEnumerable<ValidationResult>> Validate(ICommand command)
-			=> await this.Validate((TCommand)command);
+		public Task<IEnumerable<ValidationResult>> Validate(ICommand command)
+			=>   this.Validate((TCommand)command);
 
 		public void Dispose() => Dispose(true);
 
@@ -33,7 +33,7 @@ namespace TheLizzards.Data.CQRS.Entities
 		protected abstract Task Execute(TCommand command);
 
 		protected virtual Task<IEnumerable<ValidationResult>> Validate(TCommand commmand)
-			=> Task.Run<IEnumerable<ValidationResult>(() => new ValidationResult[0]);
+			=> Task.FromResult<IEnumerable<ValidationResult>>(new ValidationResult[0]);
 
 		private void Dispose(bool disposing)
 		{

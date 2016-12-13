@@ -20,7 +20,7 @@ namespace TheLizzards.Data.CQRS.Entities
 
 		public async Task Execute(ICommand command)
 		{
-			foreach(var handler in GetCommandsHandlers(command))
+			foreach (var handler in GetCommandsHandlers(command))
 			{
 				await handler.Execute(command);
 			}
@@ -29,12 +29,12 @@ namespace TheLizzards.Data.CQRS.Entities
 		public async Task<IEnumerable<ValidationResult>> Validate(ICommand command)
 		{
 			var results = new List<ValidationResult>(10);
-			
-			foreach(var handler in GetCommandsHandlers(command))
+
+			foreach (var handler in GetCommandsHandlers(command))
 			{
 				results.AddRange(await handler.Validate(command));
 			}
-			
+
 			return results;
 		}
 
