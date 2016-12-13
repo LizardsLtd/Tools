@@ -1,5 +1,5 @@
 {
-	"version": "1.0.3",
+	"version": "1.0.4",
 	"name": "TheLizzards.Mvc.Data.Types",
 	"description": "ASP.NET Core MVC specialized classes to ease the use of Core Data common entities.",
 	"copyright": "TheLizzards 2016 - 2017",
@@ -19,7 +19,8 @@
 		"Microsoft.AspNetCore.Mvc.Core": "1.1.0",
 		"NETStandard.Library": "1.6.1",
 		"System.Runtime": "4.3.0",
-		"TheLizzards.Mvc": "1.0.3"
+		"TheLizzards.Mvc": "1.0.4",
+		"TheLizzards.Data.Types": "1.0.1"
 	},
 
 	"frameworks": {

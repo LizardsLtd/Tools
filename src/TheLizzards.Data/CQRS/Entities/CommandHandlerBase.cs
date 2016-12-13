@@ -32,7 +32,8 @@ namespace TheLizzards.Data.CQRS.Entities
 
 		protected abstract Task Execute(TCommand command);
 
-		protected abstract IEnumerable<ValidationResult> Validate(TCommand commmand);
+		protected virtual IEnumerable<ValidationResult> Validate(TCommand commmand)
+			=> new ValidationResult[0];
 
 		private void Dispose(bool disposing)
 		{
