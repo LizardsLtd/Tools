@@ -1,5 +1,4 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk" ToolsVersion="15.0">
-
   <PropertyGroup>
     <Description>Implementation of common data access patterns.</Description>
     <Copyright>TheLizzards 2016 - 2017</Copyright>
@@ -17,17 +16,17 @@
     <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
     <GenerateAssemblyCopyrightAttribute>false</GenerateAssemblyCopyrightAttribute>
   </PropertyGroup>
-
   <ItemGroup>
     <Compile Include="**\*.cs" />
     <EmbeddedResource Include="**\*.resx" />
     <EmbeddedResource Include="compiler\resources\**\*" />
   </ItemGroup>
-
+  <ItemGroup>
+    <None Include="TheLizzards.Data.nuspec" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\TheLizzards.Maybe\TheLizzards.Maybe.csproj" />
   </ItemGroup>
-
   <ItemGroup>
     <PackageReference Include="NETStandard.Library">
       <Version>1.6.1</Version>
@@ -36,9 +35,7 @@
       <Version>4.3.0</Version>
     </PackageReference>
   </ItemGroup>
-
   <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
     <DefineConstants>$(DefineConstants);RELEASE</DefineConstants>
   </PropertyGroup>
-
 </Project>
