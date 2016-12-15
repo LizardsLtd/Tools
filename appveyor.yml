@@ -12,8 +12,23 @@ before_build:
 - appveyor-retry dotnet restore -v Minimal
 build_script:
 - dotnet build "src\TheLizzards.Maybe" -c %CONFIGURATION% --no-dependencies 
+- dotnet build "src\TheLizzards.Data" -c %CONFIGURATION% --no-dependencies 
+- dotnet build "src\TheLizzards.Data.Types" -c %CONFIGURATION% --no-dependencies 
+- dotnet build "src\TheLizzards.Data.Azure" -c %CONFIGURATION% --no-dependencies 
+- dotnet build "src\TheLizzards.Mvc" -c %CONFIGURATION% --no-dependencies 
+- dotnet build "src\TheLizzards.Mvc.CommonMark" -c %CONFIGURATION% --no-dependencies 
+- dotnet build "src\TheLizzards.Mvc.Data" -c %CONFIGURATION% --no-dependencies 
+- dotnet build "src\TheLizzards.Mvc.Data.Types" -c %CONFIGURATION% --no-dependencies 
 after_build:
 - dotnet pack "src\TheLizzards.Maybe" -c %CONFIGURATION% --no-build --version-suffix %LABEL% -o artifacts
+- dotnet pack "src\TheLizzards.Maybe" -c %CONFIGURATION% --no-build --version-suffix %LABEL% -o artifacts 
+- dotnet pack "src\TheLizzards.Data" -c %CONFIGURATION% --no-build --version-suffix %LABEL% -o artifacts 
+- dotnet pack "src\TheLizzards.Data.Types" -c %CONFIGURATION% --no-build --version-suffix %LABEL% -o artifacts 
+- dotnet pack "src\TheLizzards.Data.Azure" -c %CONFIGURATION% --no-build --version-suffix %LABEL% -o artifacts 
+- dotnet pack "src\TheLizzards.Mvc" -c %CONFIGURATION% --no-build --version-suffix %LABEL% -o artifacts 
+- dotnet pack "src\TheLizzards.Mvc.CommonMark" -c %CONFIGURATION% --no-build --version-suffix %LABEL% -o artifacts 
+- dotnet pack "src\TheLizzards.Mvc.Data" -c %CONFIGURATION% --no-build --version-suffix %LABEL% -o artifacts 
+- dotnet pack "src\TheLizzards.Mvc.Data.Types" -c %CONFIGURATION% --no-build --version-suffix %LABEL% -o artifacts 
 test_script:
 - dotnet test "test\TheLizzards.Maybe.Tests" -c %CONFIGURATION%
 artifacts:
