@@ -1,5 +1,4 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk" ToolsVersion="15.0">
-
   <PropertyGroup>
     <Description>ASP.NET Core MVC implementation of CommonMark extension.</Description>
     <Copyright>TheLizzards 2016 - 2017</Copyright>
@@ -11,16 +10,14 @@
     <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
     <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
   </PropertyGroup>
-
   <ItemGroup>
     <Compile Include="**\*.cs" />
     <EmbeddedResource Include="**\*.resx" />
     <EmbeddedResource Include="compiler\resources\**\*" />
   </ItemGroup>
-
   <ItemGroup>
     <PackageReference Include="Markdig">
-      <Version>0.10.3</Version>
+      <Version>0.10.4</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Localization">
       <Version>1.1.0</Version>
@@ -29,9 +26,7 @@
       <Version>1.6.1</Version>
     </PackageReference>
   </ItemGroup>
-
   <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
     <DefineConstants>$(DefineConstants);RELEASE</DefineConstants>
   </PropertyGroup>
-
 </Project>
