@@ -5,6 +5,7 @@
     <Copyright>TheLizzards 2016 - 2017</Copyright>
     <AssemblyTitle>Lizzards Data in Azure</AssemblyTitle>
     <VersionPrefix>1.0.8</VersionPrefix>
+    <Version>1.0.8</Version>
     <TargetFramework>netstandard1.6</TargetFramework>
     <AssemblyName>TheLizzards.Data.Azure</AssemblyName>
     <PackageTags>azure;data;thelizzards</PackageTags>
