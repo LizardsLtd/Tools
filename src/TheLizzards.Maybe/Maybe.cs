@@ -9,9 +9,6 @@ namespace TheLizzards.Maybe
 		, IEquatable<Maybe<T>>
 		, IEquatable<T>
 	{
-		/// <summary>
-		/// Nothing value.
-		/// </summary>
 		public static readonly Maybe<T> Nothing = new Maybe<T>();
 
 		private Maybe(T value)
