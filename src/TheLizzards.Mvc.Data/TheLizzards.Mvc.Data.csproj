@@ -1,5 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk" ToolsVersion="15.0">
-
+<Project Sdk="Microsoft.NET.Sdk" ToolsVersion="15.0">
   <PropertyGroup>
     <Description>ASP.NET Core MVC specialized classes to ease the use of CQRS patter.</Description>
     <Copyright>TheLizzards 2016 - 2017</Copyright>
@@ -14,32 +13,23 @@
     <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
     <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
   </PropertyGroup>
-
   <ItemGroup>
     <Compile Include="**\*.cs" />
     <EmbeddedResource Include="**\*.resx" />
     <EmbeddedResource Include="compiler\resources\**\*" />
   </ItemGroup>
-
   <ItemGroup>
     <ProjectReference Include="..\TheLizzards.Data\TheLizzards.Data.csproj" />
     <ProjectReference Include="..\TheLizzards.Mvc\TheLizzards.Mvc.csproj" />
-    <ProjectReference Include="..\TheLizzards.Maybe\TheLizzards.Maybe.csproj">
-      <FromP2P>true</FromP2P>
-    </ProjectReference>
-    <ProjectReference Include="..\TheLizzards.Data.Types\TheLizzards.Data.Types.csproj">
-      <FromP2P>true</FromP2P>
-    </ProjectReference>
+    <ProjectReference Include="..\TheLizzards.Maybe\TheLizzards.Maybe.csproj" />
+    <ProjectReference Include="..\TheLizzards.Data.Types\TheLizzards.Data.Types.csproj" />
   </ItemGroup>
-
   <ItemGroup>
     <PackageReference Include="NETStandard.Library">
       <Version>1.6.1</Version>
     </PackageReference>
   </ItemGroup>
-
   <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
     <DefineConstants>$(DefineConstants);RELEASE</DefineConstants>
   </PropertyGroup>
-
 </Project>

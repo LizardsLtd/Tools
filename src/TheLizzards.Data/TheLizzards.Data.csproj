@@ -22,9 +22,6 @@
     <EmbeddedResource Include="compiler\resources\**\*" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="TheLizzards.Data.nuspec" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\TheLizzards.Maybe\TheLizzards.Maybe.csproj" />
   </ItemGroup>
   <ItemGroup>
