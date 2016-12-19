@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Linq;
-using FluentAssertions;
 using TheLizzards.Maybe;
 using Xunit;
 
@@ -21,7 +20,7 @@ namespace TheLizzards.Maybe.Tests
 		{
 			Maybe<string> maybe = null;
 
-			maybe.IsNone.Should().BeTrue();
+			Assert.True(maybe.IsNone);
 		}
 
 		[Fact]
@@ -29,7 +28,7 @@ namespace TheLizzards.Maybe.Tests
 		{
 			Maybe<string> maybe = null;
 
-			maybe.IsSome.Should().BeFalse();
+			Assert.False(maybe.IsSome);
 		}
 
 		[Fact]
@@ -37,7 +36,7 @@ namespace TheLizzards.Maybe.Tests
 		{
 			var maybe = Maybe.From("test");
 
-			maybe.IsNone.Should().BeFalse();
+			Assert.False(maybe.IsNone);
 		}
 
 		[Fact]
@@ -45,7 +44,7 @@ namespace TheLizzards.Maybe.Tests
 		{
 			var maybe = Maybe.From("test");
 
-			maybe.IsSome.Should().BeTrue();
+			Assert.True(maybe.IsSome);
 		}
 
 		[Fact]
@@ -53,7 +52,7 @@ namespace TheLizzards.Maybe.Tests
 		{
 			var maybe = Maybe.From("test");
 
-			maybe.IsSome.Should().BeTrue();
+			Assert.True(maybe.IsSome);
 		}
 
 		[Theory]
@@ -66,7 +65,7 @@ namespace TheLizzards.Maybe.Tests
 
 			var comparisionValue = maybe.CompareTo(compareTo);
 
-			comparisionValue.Should().Be(result);
+			Assert.Equal(result , comparisionValue);
 		}
 
 		[Theory]
@@ -80,7 +79,7 @@ namespace TheLizzards.Maybe.Tests
 
 			var comparisionValue = maybe.CompareTo(other);
 
-			comparisionValue.Should().Be(result);
+			Assert.Equal(result, comparisionValue);
 		}
 
 		[Theory]
@@ -92,7 +91,7 @@ namespace TheLizzards.Maybe.Tests
 
 			var comparisionValue = maybe.Equals(compareTo);
 
-			comparisionValue.Should().Be(result);
+			Assert.Equal(result, comparisionValue);
 		}
 
 		[Theory]
@@ -104,7 +103,7 @@ namespace TheLizzards.Maybe.Tests
 
 			var comparisionValue = maybe.Equals(compareTo);
 
-			comparisionValue.Should().Be(result);
+			Assert.Equal(result, comparisionValue);
 		}
 	}
 }
