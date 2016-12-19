@@ -1,12 +1,13 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk" ToolsVersion="15.0">
+
   <PropertyGroup>
     <Description>Implementation of common data access patterns.</Description>
     <Copyright>TheLizzards 2016 - 2017</Copyright>
-    <AssemblyTitle>Lizzards Data</AssemblyTitle>
-    <VersionPrefix>1.3.1</VersionPrefix>
-    <Version>1.3.1</Version>
-    <TargetFramework>netstandard1.4</TargetFramework>
-    <AssemblyName>TheLizzards.Data</AssemblyName>
+    <AssemblyTitle>Lizzards Data for Mvc</AssemblyTitle>
+    <VersionPrefix>1.0.0</VersionPrefix>
+    <Version>1.0.0</Version>
+    <TargetFramework>netstandard1.6</TargetFramework>
+    <AssemblyName>TheLizzards.Mvc.Data</AssemblyName>
     <PackageTags>data;thelizzards</PackageTags>
     <RepositoryType>git</RepositoryType>
     <RepositoryUrl>https://github.com/TheLizzards/Mvc</RepositoryUrl>
@@ -17,18 +18,20 @@
     <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
     <GenerateAssemblyCopyrightAttribute>false</GenerateAssemblyCopyrightAttribute>
   </PropertyGroup>
+
   <ItemGroup>
-    <Compile Include="**\*.cs" />
-    <EmbeddedResource Include="**\*.resx" />
-    <EmbeddedResource Include="compiler\resources\**\*" />
-  </ItemGroup>
-  <ItemGroup>
+    <ProjectReference Include="..\TheLizzards.Data.Types\TheLizzards.Data.Types.csproj" />
+    <ProjectReference Include="..\TheLizzards.Data\TheLizzards.Data.csproj" />
     <ProjectReference Include="..\TheLizzards.Maybe\TheLizzards.Maybe.csproj" />
+    <ProjectReference Include="..\TheLizzards.Mvc\TheLizzards.Mvc.csproj" />
   </ItemGroup>
+  
   <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="1.1.0" />
     <PackageReference Include="NETStandard.Library" Version="1.6.1" />
     <PackageReference Include="System.ComponentModel.Annotations" Version="4.3.0" />
   </ItemGroup>
+
   <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
     <DefineConstants>$(DefineConstants);RELEASE</DefineConstants>
   </PropertyGroup>

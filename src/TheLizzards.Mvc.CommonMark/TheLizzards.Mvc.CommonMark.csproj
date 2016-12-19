@@ -3,7 +3,8 @@
     <Description>ASP.NET Core MVC implementation of CommonMark extension.</Description>
     <Copyright>TheLizzards 2016 - 2017</Copyright>
     <AssemblyTitle>Lizzards MVC for CommonMark</AssemblyTitle>
-    <VersionPrefix>1.0.1</VersionPrefix>
+    <VersionPrefix>1.0.2</VersionPrefix>
+    <Version>1.0.2</Version>
     <TargetFramework>netstandard1.6</TargetFramework>
     <AssemblyName>TheLizzards.Mvc.CommonMark</AssemblyName>
     <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
@@ -16,15 +17,9 @@
     <EmbeddedResource Include="compiler\resources\**\*" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Markdig">
-      <Version>0.10.4</Version>
-    </PackageReference>
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.Localization">
-      <Version>1.1.0</Version>
-    </PackageReference>
-    <PackageReference Include="NETStandard.Library">
-      <Version>1.6.1</Version>
-    </PackageReference>
+    <PackageReference Include="Markdig" Version="0.10.4" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Localization"  Version="1.1.0" />
+    <PackageReference Include="NETStandard.Library" Version="1.6.1" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
     <DefineConstants>$(DefineConstants);RELEASE</DefineConstants>

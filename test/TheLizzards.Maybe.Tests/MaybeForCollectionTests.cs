@@ -28,7 +28,7 @@ namespace TheLizzards.Common.Tests
 		{
 			var collection = this.exampleCollection.ToMaybeList();
 
-			collection.All(x => x.IsSome);
+            Assert.True(collection.All(x => x.IsSome));
 		}
 	}
 }
