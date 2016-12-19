@@ -1,13 +1,13 @@
 using System;
-using System.Linq;
 using Xunit;
 
-namespace TheLizzards.FileSystem.Tests
+namespace Tests
 {
     public class Tests
     {
         [Fact]
-        public void PassingTest(){
+        public void Test1()
+        {
             Assert.True(true);
         }
     }
