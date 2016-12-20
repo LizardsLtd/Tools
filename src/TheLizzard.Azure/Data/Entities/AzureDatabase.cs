@@ -3,7 +3,7 @@ using System.Linq;
 using Microsoft.Azure.Documents;
 using Microsoft.Azure.Documents.Client;
 
-namespace TheLizzards.Data.Azure.Entities
+namespace TheLizzards.Azure.Data.Entities
 {
 	public sealed class AzureDatabase
 	{

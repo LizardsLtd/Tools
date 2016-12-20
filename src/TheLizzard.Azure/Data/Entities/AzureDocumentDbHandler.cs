@@ -7,7 +7,7 @@ using Microsoft.Azure.Documents.Client;
 using Microsoft.Extensions.Logging;
 using TheLizzards.Data.DDD.Contracts;
 
-namespace TheLizzards.Data.Azure.Entities
+namespace TheLizzards.Azure.Data.Entities
 {
 	internal abstract class AzureDocumentDbHandler
 	{
