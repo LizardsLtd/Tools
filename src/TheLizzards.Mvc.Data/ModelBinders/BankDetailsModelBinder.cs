@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc.Internal;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using TheLizzards.Data.Types.Entites;
 
-namespace TheLizzards.Mvc.Data.Types.ApplicationServices
+namespace TheLizzards.Mvc.Data.ApplicationServices
 {
 	public sealed class BankDetailsModelBinder : IModelBinder
 	{

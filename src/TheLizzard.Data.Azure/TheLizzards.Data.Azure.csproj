@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk" ToolsVersion="15.0">
+﻿<Project Sdk="Microsoft.NET.Sdk" ToolsVersion="15.0">
   <PropertyGroup>
     <Description>Default implementatin of differenet services in Azure.</Description>
     <Copyright>TheLizzards 2016 - 2017</Copyright>
@@ -25,7 +25,6 @@
   <ItemGroup>
     <ProjectReference Include="..\TheLizzards.Data\TheLizzards.Data.csproj" />
     <ProjectReference Include="..\TheLizzards.Maybe\TheLizzards.Maybe.csproj" />
-    <ProjectReference Include="..\TheLizzards.Data.Types\TheLizzards.Data.Types.csproj" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.Azure.DocumentDB.Core" Version="0.1.0-preview" />
@@ -34,9 +33,6 @@
     <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="1.1.0" />
     <PackageReference Include="Microsoft.Extensions.Options" Version="1.1.0" />
     <PackageReference Include="NETStandard.Library" Version="1.6.1" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Search\NewFolder\" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
     <DefineConstants>$(DefineConstants);RELEASE</DefineConstants>
