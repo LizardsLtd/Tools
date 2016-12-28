@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 
-namespace TheLizzards.Data.Azure.Entities
+namespace TheLizzards.Azure.Data.Entities
 {
 	public sealed class AzureAttributes
 	{

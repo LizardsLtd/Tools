@@ -5,7 +5,7 @@ using Microsoft.Extensions.Options;
 using TheLizzards.Data.CQRS.Contracts.DataAccess;
 using TheLizzards.Data.DDD.Contracts;
 
-namespace TheLizzards.Data.Azure.Entities
+namespace TheLizzards.Azure.Data.Entities
 {
 	public sealed class AzureDocumentDbContext : IDataContext
 	{

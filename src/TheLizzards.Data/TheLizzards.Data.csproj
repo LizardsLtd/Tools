@@ -3,9 +3,8 @@
     <Description>Implementation of common data access patterns.</Description>
     <Copyright>TheLizzards 2016 - 2017</Copyright>
     <AssemblyTitle>Lizzards Data</AssemblyTitle>
-    <VersionPrefix>1.3.1</VersionPrefix>
-    <Version>1.3.1</Version>
-    <TargetFramework>netstandard1.4</TargetFramework>
+    <VersionPrefix>1.4.0</VersionPrefix>
+    <Version>1.4.0</Version>
     <AssemblyName>TheLizzards.Data</AssemblyName>
     <PackageTags>data;thelizzards</PackageTags>
     <RepositoryType>git</RepositoryType>
@@ -17,6 +16,9 @@
     <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
     <GenerateAssemblyCopyrightAttribute>false</GenerateAssemblyCopyrightAttribute>
   </PropertyGroup>
+  <PropertyGroup>
+    <TargetFramework>netstandard1.4</TargetFramework>
+  </PropertyGroup>
   <ItemGroup>
     <Compile Include="**\*.cs" />
     <EmbeddedResource Include="**\*.resx" />
@@ -27,6 +29,9 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="NETStandard.Library" Version="1.6.1" />
+    <PackageReference Include="System.ComponentModel.Annotations" Version="4.3.0" />
+    <PackageReference Include="System.Security.Claims" Version="4.3.0" />
+    <PackageReference Include="VerbalExpressions-netstandard" Version="0.3.0" />
     <PackageReference Include="System.ComponentModel.Annotations" Version="4.3.0" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">

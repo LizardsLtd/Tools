@@ -1,9 +1,8 @@
 ﻿using TheLizzards.Data.Types.Entites;
-using TheLizzards.Mvc.Data.Types.ApplicationServices;
-using TheLizzards.Mvc.Data.Types.ModelValidators;
-using TheLizzards.Mvc.Startup;
+using TheLizzards.Mvc.Data.ApplicationServices;
+using TheLizzards.Mvc.Data.ModelValidators;
 
-namespace TheLizzards.Mvc
+namespace TheLizzards.Mvc.Startup
 {
 	public static class DataPartsBootstrapperExtension
 	{

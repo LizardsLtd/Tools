@@ -1,41 +1,39 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk" ToolsVersion="15.0">
   <PropertyGroup>
-    <Description>ASP.NET Core MVC specialized classes to ease the use of CQRS patter.</Description>
+    <Description>Default implementatin of differenet services in Azure.</Description>
     <Copyright>TheLizzards 2016 - 2017</Copyright>
-    <AssemblyTitle>Lizzards.Data.Azure</AssemblyTitle>
-    <VersionPrefix>1.0.8</VersionPrefix>
-    <Version>1.0.8</Version>
-    <AssemblyName>Lizzards.Data.Azure</AssemblyName>
-    <PackageTags>mvc;data;thelizzards</PackageTags>
+    <AssemblyTitle>TheLizzards.Azure</AssemblyTitle>
+    <VersionPrefix>1.1.0</VersionPrefix>
+    <Version>1.1.0</Version>
+    <AssemblyName>TheLizzards.Azure</AssemblyName>
+    <PackageTags>azure;thelizzards</PackageTags>
     <RepositoryType>git</RepositoryType>
     <RepositoryUrl>https://github.com/TheLizzards/Mvc</RepositoryUrl>
     <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
     <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
     <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
   </PropertyGroup>
-
   <PropertyGroup>
     <TargetFramework>netstandard1.6</TargetFramework>
+    <PackageTargetFallback Condition=" '$(TargetFramework)' == 'netstandard1.6' ">$(PackageTargetFallback);portable-net40+sl5+win8+wp8+wpa81</PackageTargetFallback>
   </PropertyGroup>
-
   <ItemGroup>
     <Compile Include="**\*.cs" />
     <EmbeddedResource Include="**\*.resx" />
     <EmbeddedResource Include="compiler\resources\**\*" />
   </ItemGroup>
-
   <ItemGroup>
     <ProjectReference Include="..\TheLizzards.Data\TheLizzards.Data.csproj" />
-    <ProjectReference Include="..\TheLizzards.Mvc\TheLizzards.Mvc.csproj" />
     <ProjectReference Include="..\TheLizzards.Maybe\TheLizzards.Maybe.csproj" />
-    <ProjectReference Include="..\TheLizzards.Data.Types\TheLizzards.Data.Types.csproj" />
   </ItemGroup>
-
   <ItemGroup>
     <PackageReference Include="Microsoft.Azure.DocumentDB.Core" Version="0.1.0-preview" />
+    <PackageReference Include="Microsoft.Azure.Search" Version="3.0.1" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="1.1.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="1.1.0" />
+    <PackageReference Include="Microsoft.Extensions.Options" Version="1.1.0" />
     <PackageReference Include="NETStandard.Library" Version="1.6.1" />
   </ItemGroup>
-
   <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
     <DefineConstants>$(DefineConstants);RELEASE</DefineConstants>
   </PropertyGroup>
