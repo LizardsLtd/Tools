@@ -10,7 +10,7 @@ using TheLizzards.Data.DDD.Contracts;
 using TheLizzards.Data.CQRS.Entities;
 using TheLizzards.Maybe;
 
-namespace TheLizzards.Azure.Data.Entities
+namespace TheLizzards.Data.Azure.Entities
 {
 	internal sealed class AzureDocumentDbDataReader<T>
 		: AzureDocumentDbHandler, IDataReader<T>
