@@ -1,10 +1,10 @@
-﻿<Project Sdk="Microsoft.NET.Sdk" ToolsVersion="15.0">
+<Project Sdk="Microsoft.NET.Sdk" ToolsVersion="15.0">
   <PropertyGroup>
     <Description>Default implementatin of differenet services in Azure.</Description>
     <Copyright>TheLizzards 2016 - 2017</Copyright>
     <AssemblyTitle>TheLizzards.Azure</AssemblyTitle>
-    <VersionPrefix>1.1.0</VersionPrefix>
-    <Version>1.1.0</Version>
+    <VersionPrefix>1.1.1</VersionPrefix>
+    <Version>1.1.1</Version>
     <AssemblyName>TheLizzards.Azure</AssemblyName>
     <PackageTags>azure;thelizzards</PackageTags>
     <RepositoryType>git</RepositoryType>
@@ -27,7 +27,7 @@
     <ProjectReference Include="..\TheLizzards.Maybe\TheLizzards.Maybe.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.Azure.DocumentDB.Core" Version="0.1.0-preview" />
+    <PackageReference Include="Microsoft.Azure.DocumentDB.Core" Version="1.0.0" />
     <PackageReference Include="Microsoft.Azure.Search" Version="3.0.1" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="1.1.0" />
     <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="1.1.0" />
