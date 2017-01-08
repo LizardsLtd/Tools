@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TheLizzards.Search.Entities;
 using TheLizzards.Search.Services;
+using Microsoft.Extensions.Logging;
 
 namespace TheLizzards.Search.Azure.Services
 {
@@ -15,7 +16,12 @@ namespace TheLizzards.Search.Azure.Services
 	{
 		private const string ServiceName = "picums";
 		private readonly SearchCredentials ApiKey = new SearchCredentials("0FB97B382F5032BF05EA684B4A694983");
+		private readonly ILogger<ISearchService<T>> logger;
 
+		public AzureSearchService(ILoggerFactory loggerFactory)
+		{
+			this.logger = loggerFactory.CreateLogger<ISearchService<T>>();
+		}
 		public async Task<SearchResults<T>> SearchFor(IKeyWord keyword)
 		{
 			var results = new SearchResults<T>();
@@ -36,7 +42,7 @@ namespace TheLizzards.Search.Azure.Services
 			}
 			catch (Exception exp)
 			{
-				return new SearchResults<T>();
+				this.logger.LogError(new EventId(exp.GetHashCode()), exp, "SearchService has failed.");
 			}
 
 			return results;
