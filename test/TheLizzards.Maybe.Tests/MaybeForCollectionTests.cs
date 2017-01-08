@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
-using TheLizzards.Maybe;
 using Xunit;
 
-namespace TheLizzards.Common.Tests
+namespace TheLizzards.Maybe.Tests
 {
 	public sealed class MaybeForCollectionTests
 	{
