@@ -29,6 +29,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheLizzards.Search", "src\T
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheLizzards.Search.Azure", "src\TheLizzards.Search.Azure\TheLizzards.Search.Azure.csproj", "{B2294EB9-E8E1-4A70-86CA-E1E8597AD790}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheLizzards.Search.Tests", "test\TheLizzards.Search.Tests\TheLizzards.Search.Tests.csproj", "{075DA28E-1349-46DC-849F-215ABB8A602E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -135,6 +137,18 @@ Global
 		{B2294EB9-E8E1-4A70-86CA-E1E8597AD790}.Release|x64.Build.0 = Release|x64
 		{B2294EB9-E8E1-4A70-86CA-E1E8597AD790}.Release|x86.ActiveCfg = Release|x86
 		{B2294EB9-E8E1-4A70-86CA-E1E8597AD790}.Release|x86.Build.0 = Release|x86
+		{075DA28E-1349-46DC-849F-215ABB8A602E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{075DA28E-1349-46DC-849F-215ABB8A602E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{075DA28E-1349-46DC-849F-215ABB8A602E}.Debug|x64.ActiveCfg = Debug|x64
+		{075DA28E-1349-46DC-849F-215ABB8A602E}.Debug|x64.Build.0 = Debug|x64
+		{075DA28E-1349-46DC-849F-215ABB8A602E}.Debug|x86.ActiveCfg = Debug|x86
+		{075DA28E-1349-46DC-849F-215ABB8A602E}.Debug|x86.Build.0 = Debug|x86
+		{075DA28E-1349-46DC-849F-215ABB8A602E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{075DA28E-1349-46DC-849F-215ABB8A602E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{075DA28E-1349-46DC-849F-215ABB8A602E}.Release|x64.ActiveCfg = Release|x64
+		{075DA28E-1349-46DC-849F-215ABB8A602E}.Release|x64.Build.0 = Release|x64
+		{075DA28E-1349-46DC-849F-215ABB8A602E}.Release|x86.ActiveCfg = Release|x86
+		{075DA28E-1349-46DC-849F-215ABB8A602E}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -148,5 +162,6 @@ Global
 		{B1DC2963-5CB0-4461-9471-CE58A711574E} = {ED1E5032-AA42-45AC-96C3-F21666FD4245}
 		{B8515272-86FE-46F9-90ED-136E87EAFE11} = {893DD448-96BF-4115-94D6-E85E6466F614}
 		{B2294EB9-E8E1-4A70-86CA-E1E8597AD790} = {893DD448-96BF-4115-94D6-E85E6466F614}
+		{075DA28E-1349-46DC-849F-215ABB8A602E} = {ED1E5032-AA42-45AC-96C3-F21666FD4245}
 	EndGlobalSection
 EndGlobal
