@@ -23,7 +23,7 @@ namespace TheLizzards.Mvc.Startup
 
 		public IConfiguration AddServices(Action<IServiceCollection> action)
 			=> Startup.AddServices(action);
-
+		
 		public IConfiguration ConfigureOption<TOption>(Action<TOption> action) where TOption : class
 			=> Startup.ConfigureOption(action);
 	}
