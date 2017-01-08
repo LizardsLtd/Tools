@@ -4,7 +4,7 @@ using System.Text;
 
 namespace TheLizzards.Localisation.Services
 {
-    class WithoutAddressServiceExtension
-    {
-    }
+	public static class WithoutAddressServiceExtension
+	{
+	}
 }
