@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using TheLizzards.Localisation.Entities;
 
 namespace TheLizzards.Localisation.Services
 {
-    interface ILocalisationService
+	public interface ILocalisationService
     {
-    }
+		LocationPoint Convert(Address address);
+	}
 }

@@ -1,4 +1,7 @@
-﻿namespace TheLizzards.Localisation.Entites
+﻿using System.Collections.Generic;
+using System.Linq;
+
+namespace TheLizzards.Localisation.Entities
 {
 	public sealed class Address
 	{
@@ -33,5 +36,23 @@
 		public string Country { get; }
 
 		public string PostCode { get; }
+
+		private IEnumerable<string> AsEnumerable()
+			=> new[]
+			{
+				HouseNumber,
+				StreetName,
+				District,
+				City,
+				Province,
+				Country,
+				PostCode,
+			};
+		private IEnumerable<string> FilterEmptyValues()
+			=> this.AsEnumerable().Where(x => !string.IsNullOrEmpty(x));
+
+
+		public override string ToString()
+			=> string.Join(" ", FilterEmptyValues());
 	}
 }
