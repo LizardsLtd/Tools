@@ -11,18 +11,18 @@ using Microsoft.Extensions.Logging;
 
 namespace TheLizzards.Search.Azure.Services
 {
-	public abstract class AzureSearchService<T> : ISearchService<T>
+	public abstract class TextAzureSearchService<T> : ISearchService<TextSearchKeyWord, T>
 		where T : ISearchResult
 	{
 		private const string ServiceName = "picums";
 		private readonly SearchCredentials ApiKey = new SearchCredentials("0FB97B382F5032BF05EA684B4A694983");
-		private readonly ILogger<ISearchService<T>> logger;
+		private readonly ILogger<ISearchService<TextSearchKeyWord, T>> logger;
 
-		public AzureSearchService(ILoggerFactory loggerFactory)
+		public TextAzureSearchService(ILoggerFactory loggerFactory)
 		{
-			this.logger = loggerFactory.CreateLogger<ISearchService<T>>();
+			this.logger = loggerFactory.CreateLogger<ISearchService<TextSearchKeyWord, T>>();
 		}
-		public async Task<SearchResults<T>> SearchFor(IKeyWord keyword)
+		public async Task<SearchResults<T>> SearchFor(TextSearchKeyWord keyword)
 		{
 			var results = new SearchResults<T>();
 			try
@@ -35,7 +35,7 @@ namespace TheLizzards.Search.Azure.Services
 						Select = new[] { "id", "Name", "Description" }
 					};
 
-				var documentResults = await indexClient.Documents.SearchAsync(keyword.Combine(), parameters);
+				var documentResults = await indexClient.Documents.SearchAsync(keyword.SearchTokens, parameters);
 
 				results = ConvertDocumentSearchResult(documentResults);
 
@@ -50,15 +50,4 @@ namespace TheLizzards.Search.Azure.Services
 
 		protected abstract SearchResults<T> ConvertDocumentSearchResult(DocumentSearchResult searchResult);
 	}
-
-	//internal static class SearchResultConverter
-	//{
-	//	public static SearchResults<T> ToSearchResult<T>(this DocumentSearchResult results)
-	//			where T : ISearchResult
-	//		=> results
-	//			.Results
-	//			.OrderBy(x => x.Score)
-	//			.Select(x=>new SearchR)
-
-	//}
 }

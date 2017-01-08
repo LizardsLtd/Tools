@@ -4,7 +4,7 @@ using System.Text;
 
 namespace TheLizzards.Search.Entities
 {
-    class Localisation
+    public interface ISearchKey
     {
     }
 }

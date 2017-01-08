@@ -3,9 +3,10 @@ using TheLizzards.Search.Entities;
 
 namespace TheLizzards.Search.Services
 {
-	public interface ISearchService<T>
-		where T: ISearchResult
+	public interface ISearchService<TKey, TResult>
+		where TKey : ISearchKey
+		where TResult : ISearchResult
 	{
-		Task<SearchResults<T>> SearchFor(IKeyWord keyword);
+		Task<SearchResults<TResult>> SearchFor(TKey keyword);
 	}
 }
