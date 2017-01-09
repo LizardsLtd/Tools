@@ -1,9 +1,10 @@
-﻿using TheLizzards.Localisation.Entities;
+﻿using System.Threading.Tasks;
+using TheLizzards.Localisation.Entities;
 
 namespace TheLizzards.Localisation.Services
 {
 	public interface ILocalisationService
     {
-		LocationPoint Convert(Address address);
+		Task<LocationPoint> Convert(Address address);
 	}
 }

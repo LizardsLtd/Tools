@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 using TheLizzards.Localisation.Entities;
 
 namespace TheLizzards.Localisation.Services
 {
 	public static class WithoutAddressServiceExtension
 	{
-		public static LocationPoint Convert(
+		public static async  Task<LocationPoint> Convert(
 			this ILocalisationService locationService
 			, string houseNumber = ""
 			, string streetName = ""
@@ -19,7 +20,7 @@ namespace TheLizzards.Localisation.Services
 		{
 			var address = new Address(houseNumber, streetName, district, city, province, country, postCode);
 
-			return locationService.Convert(address);
+			return await locationService.Convert(address);
 		}
 	}
 }
