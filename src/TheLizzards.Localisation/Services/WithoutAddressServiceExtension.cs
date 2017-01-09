@@ -9,13 +9,13 @@ namespace TheLizzards.Localisation.Services
 	{
 		public static LocationPoint Convert(
 			this ILocalisationService locationService
-			, string houseNumber
-			, string streetName
-			, string district
-			, string city
-			, string province
-			, string country
-			, string postCode)
+			, string houseNumber = ""
+			, string streetName = ""
+			, string district = ""
+			, string city = ""
+			, string province = ""
+			, string country = ""
+			, string postCode = "")
 		{
 			var address = new Address(houseNumber, streetName, district, city, province, country, postCode);
 
