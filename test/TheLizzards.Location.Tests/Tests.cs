@@ -1,14 +1,19 @@
 using System;
 using Xunit;
+using TheLizzards.Localisation.Services;
 
-namespace Tests
+namespace TheLizzards.Location.Tests
 {
     public class Tests
     {
         [Fact]
         public void Test1()
         {
-            Assert.True(true);
+			var service = new GoogleLocalisationService("AIzaSyA6G-8pKCnYubgFKRjZuTzlrqFxOyAHYdM");
+
+			var result = service.
+
+			Assert.True(true);
         }
     }
 }
