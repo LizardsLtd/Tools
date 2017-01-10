@@ -1,4 +1,4 @@
-﻿using System;
+codin﻿using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
@@ -7,10 +7,10 @@ using TheLizzards.Localisation.Entities;
 
 namespace TheLizzards.Localisation.Services
 {
-	public sealed class GoogleLocalisationService : ILocalisationService
+	public sealed class GoogleGeocodingService : ILocalisationService
 	{
 		private readonly string apiKey;
-		private const string serviceUrl = "https://maps.googleapis.com/maps/api/geocode/json?address={address}&key={key}";
+		private const string serviceUrl = "http://maps.google.com/maps/api/geocode/xml?address={address}&sensor=false";
 
 		public GoogleLocalisationService(string apiKey)
 		{
