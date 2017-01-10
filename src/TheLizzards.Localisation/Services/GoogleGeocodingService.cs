@@ -22,12 +22,21 @@ namespace TheLizzards.Localisation.Services
 				serviceUrl
 				.Replace("{address}", encodedAddress);
 
-			var client = new HttpClient();
+			using (var client = new HttpClient())
+			{
 
-			var result = await client.GetAsync(formattedQueryUrl);
+				using (var result = await client.GetAsync(formattedQueryUrl))
+				{
 
-			var resultContent = await result.Content.ReadAsStringAsync();
+					var resultContent = await result.Content.ReadAsStringAsync();
 
+					return ReadIntoLocationPoint(resultContent);
+				}
+			}
+		}
+
+		private static LocationPoint ReadIntoLocationPoint(string resultContent)
+		{
 			var location = XDocument
 				.Parse(resultContent)
 				.Document
