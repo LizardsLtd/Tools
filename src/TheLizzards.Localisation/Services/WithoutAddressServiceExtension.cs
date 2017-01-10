@@ -8,8 +8,8 @@ namespace TheLizzards.Localisation.Services
 {
 	public static class WithoutAddressServiceExtension
 	{
-		public static async  Task<LocationPoint> Convert(
-			this ILocalisationService locationService
+		public static async  Task<LocationPoint> GeocodeAsync(
+			this IGeocodingService locationService
 			, string houseNumber = ""
 			, string streetName = ""
 			, string district = ""
@@ -20,7 +20,7 @@ namespace TheLizzards.Localisation.Services
 		{
 			var address = new Address(houseNumber, streetName, district, city, province, country, postCode);
 
-			return await locationService.Convert(address);
+			return await locationService.GeocodeAsync(address);
 		}
 	}
 }

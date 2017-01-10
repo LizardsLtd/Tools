@@ -3,8 +3,8 @@ using TheLizzards.Localisation.Entities;
 
 namespace TheLizzards.Localisation.Services
 {
-	public interface ILocalisationService
+	public interface IGeocodingService
     {
-		Task<LocationPoint> Convert(Address address);
+		Task<LocationPoint> GeocodeAsync(Address address);
 	}
 }
