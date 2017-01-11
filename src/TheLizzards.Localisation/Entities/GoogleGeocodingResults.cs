@@ -11,6 +11,7 @@ namespace TheLizzards.Localisation.Entities
 			var document = XDocument.Parse(xmlDocument);
 
 			this.Status = LoadStatus(document);
+
 			if (HasResults)
 			{
 				this.Location = LoadLocation(document);
