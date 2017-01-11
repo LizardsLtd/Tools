@@ -11,4 +11,7 @@
     <PackageReference Include="System.Xml.XPath" Version="4.3.0" />
     <PackageReference Include="System.Xml.XPath.XDocument" Version="4.3.0" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TheLizzards.Maybe\TheLizzards.Maybe.csproj" />
+  </ItemGroup>
 </Project>

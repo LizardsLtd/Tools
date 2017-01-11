@@ -25,8 +25,8 @@ namespace TheLizzards.Location.Tests.Services
 				, city: "London"
 				, country: "UK");
 
-			Assert.Equal(51.5033635, result.Latitude);
-			Assert.Equal(-0.1276248, result.Longitude);
+			Assert.Equal(51.5033635, result.Value.Latitude);
+			Assert.Equal(-0.1276248, result.Value.Longitude);
 		}
 
 		[Fact]
@@ -37,6 +37,8 @@ namespace TheLizzards.Location.Tests.Services
 				   , streetName: "blha"
 				   , city: "bla"
 				   , country: "UK");
+
+			Assert.True(result.IsNone);
 		}
 	}
 }

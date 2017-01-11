@@ -1,10 +1,11 @@
 ﻿using System.Threading.Tasks;
 using TheLizzards.Localisation.Entities;
+using TheLizzards.Maybe;
 
 namespace TheLizzards.Localisation.Services
 {
 	public interface IGeocodingService
     {
-		Task<LocationPoint> GeocodeAsync(Address address);
+		Task<Maybe<LocationPoint>> GeocodeAsync(Address address);
 	}
 }
