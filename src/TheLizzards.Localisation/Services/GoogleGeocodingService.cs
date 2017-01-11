@@ -22,37 +22,25 @@ namespace TheLizzards.Localisation.Services
 				serviceUrl
 				.Replace("{address}", encodedAddress);
 
+			var queryResults = await RunQuery(formattedQueryUrl);
+
+			return queryResults.Location;
+		}
+
+		private async Task<GoogleGeocodingResults> RunQuery(string formattedQueryUrl)
+		{
 			using (var client = new HttpClient())
 			{
-
 				using (var result = await client.GetAsync(formattedQueryUrl))
 				{
 
 					var resultContent = await result.Content.ReadAsStringAsync();
 
-					return ReadIntoLocationPoint(resultContent);
+					return new GoogleGeocodingResults(resultContent);
 				}
 			}
 		}
 
-		private static LocationPoint ReadIntoLocationPoint(string resultContent)
-		{
-			var location = XDocument
-				.Parse(resultContent)
-				.Document
-				.Descendants(XName.Get("location"))
-				.First();
-			var latitude = double.Parse(location
-				.Descendants(XName.Get("lat"))
-				.First()
-				.Value);
-			var longitude = double.Parse(location
-				.Descendants(XName.Get("lng"))
-				.First()
-				.Value);
-
-			return new LocationPoint(latitude, longitude);
-		}
 
 		private string GetEncodedAddress(Address address)
 			=> WebUtility.HtmlEncode(address.ToString());
