@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
-using TheLizzards.Maybe;
 using Xunit;
 
-namespace TheLizzards.Common.Tests
+namespace TheLizzards.Maybe.Tests
 {
 	public sealed class MaybeForCollectionTests
 	{
@@ -13,14 +10,7 @@ namespace TheLizzards.Common.Tests
 
 		public MaybeForCollectionTests()
 		{
-			this.exampleCollection = new List<int>
-			{
-				1,
-				2,
-				3,
-				4,
-				5,
-			};
+			this.exampleCollection = new List<int> { 1, 2, 3, 4, 5, };
 		}
 
 		[Fact]
@@ -28,7 +18,67 @@ namespace TheLizzards.Common.Tests
 		{
 			var collection = this.exampleCollection.ToMaybeList();
 
-            Assert.True(collection.All(x => x.IsSome));
+			Assert.True(collection.All(x => x.IsSome));
 		}
+
+		[Fact]
+		public void SingleOrNothiong()
+		{
+			var collection = new List<int> { 1 };
+
+			var result = collection.SingleOrNothing();
+
+			Assert.True(result.IsSome);
+		}
+
+		[Fact]
+		public void SingleOrNothingWoithQuery()
+		{
+			var result = this
+				.exampleCollection
+				.SingleOrNothing(x => x == 1);
+
+			Assert.True(result.IsSome);
+		}
+
+		//[Fact]
+		//public void SingleOrNothiong()
+		//{
+		//	var collection = new List<int> { 1 };
+
+		//	var result = collection.SingleOrNothing();
+
+		//	Assert.True(result.IsSome);
+		//}
+
+		//[Fact]
+		//public void SingleOrNothingWoithQuery()
+		//{
+		//	var result = this
+		//		.exampleCollection
+		//		.SingleOrNothing(x => x == 1);
+
+		//	Assert.True(result.IsSome);
+		//}
+
+		//[Fact]
+		//public void SingleOrNothiong()
+		//{
+		//	var collection = new List<int> { 1 };
+
+		//	var result = collection.SingleOrNothing();
+
+		//	Assert.True(result.IsSome);
+		//}
+
+		//[Fact]
+		//public void SingleOrNothingWoithQuery()
+		//{
+		//	var result = this
+		//		.exampleCollection
+		//		.SingleOrNothing(x => x == 1);
+
+		//	Assert.True(result.IsSome);
+		//}
 	}
 }

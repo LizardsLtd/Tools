@@ -12,6 +12,7 @@ namespace TheLizzards.Search.Entities
 			: this(new T[0])
 		{
 		}
+
 		public SearchResults(IEnumerable<T> results)
 		{
 			this.Results = results.ToArray();
