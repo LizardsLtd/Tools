@@ -21,12 +21,12 @@ namespace TheLizzards.Localisation.Services
 			var encodedAddress = GetEncodedAddress(address);
 			string formattedQueryUrl = GetServiceUrl(encodedAddress);
 
-			var queryResults = await RunQuery(formattedQueryUrl);
+			var queryResults = await RunQueryAsync(formattedQueryUrl);
 
 			return queryResults.Location;
 		}
 
-		private async Task<GoogleGeocodingResults> RunQuery(string formattedQueryUrl)
+		private async Task<GoogleGeocodingResults> RunQueryAsync(string formattedQueryUrl)
 		{
 			using (var client = new HttpClient())
 			{
