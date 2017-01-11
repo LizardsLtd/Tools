@@ -19,9 +19,7 @@ namespace TheLizzards.Localisation.Services
 		public async Task<Maybe<LocationPoint>> GeocodeAsync(Address address)
 		{
 			var encodedAddress = GetEncodedAddress(address);
-			var formattedQueryUrl =
-				serviceUrl
-				.Replace("{address}", encodedAddress);
+			string formattedQueryUrl = GetServiceUrl(encodedAddress);
 
 			var queryResults = await RunQuery(formattedQueryUrl);
 
@@ -42,8 +40,10 @@ namespace TheLizzards.Localisation.Services
 			}
 		}
 
-
 		private string GetEncodedAddress(Address address)
 			=> WebUtility.HtmlEncode(address.ToString());
+
+		private string GetServiceUrl(string encodedAddress)
+			=> serviceUrl.Replace("{address}", encodedAddress);
 	}
 }
