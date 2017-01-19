@@ -16,7 +16,7 @@
   <PropertyGroup>
     <TargetFramework>netstandard1.4</TargetFramework>
     <PackageTargetFallback Condition=" '$(TargetFramework)' == 'netstandard1.4' ">
-      $(PackageTargetFallback);portable-net40+sl5+win8+wp8+wpa81</PackageTargetFallback>
+      $(PackageTargetFallback);portable-net45+win8+wpa81</PackageTargetFallback>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="**\*.cs" />
