@@ -26,7 +26,7 @@
     <PackageReference Include="NETStandard.Library" Version="1.6.1" />
     <PackageReference Include="System.Xml.XPath" Version="4.3.0" />
     <PackageReference Include="System.Xml.XPath.XDocument" Version="4.3.0" />
-    <PackageReference Include="Microsoft.Spatial" Version="7.0.0." />
+    <PackageReference Include="Microsoft.Spatial" Version="7.0.0" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\TheLizzards.Maybe\TheLizzards.Maybe.csproj" />
