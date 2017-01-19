@@ -3,7 +3,7 @@
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp1.0</TargetFramework>
     <PackageTargetFallback Condition=" '$(TargetFramework)' == 'netcoreapp1.0' ">
-      $(PackageTargetFallback);portable-net45+win8+wpa81
+      $(PackageTargetFallback);net45
     </PackageTargetFallback>
   </PropertyGroup>
   <ItemGroup>
