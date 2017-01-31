@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26020.0
+VisualStudioVersion = 15.0.26127.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{ED1E5032-AA42-45AC-96C3-F21666FD4245}"
 EndProject
@@ -28,11 +28,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheLizzards.Search.Azure", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheLizzards.Localisation", "src\TheLizzards.Localisation\TheLizzards.Localisation.csproj", "{79DC7B66-C46A-4B2E-930E-FCC22D95DC7F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheLizzards.Location.Tests", "test\TheLizzards.Location.Tests\TheLizzards.Location.Tests.csproj", "{FDC73E30-085E-4248-8E7D-9C3AA6323B00}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheLizzards.Maybe.Tests", "test\TheLizzards.Maybe.Tests\TheLizzards.Maybe.Tests.csproj", "{9FD9226F-D969-43E0-82CB-E98F1B9267FE}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheLizzards.Search.Tests", "test\TheLizzards.Search.Tests\TheLizzards.Search.Tests.csproj", "{266D026E-3906-4CF1-8699-991057761134}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheLizzards.Location.Tests", "test\TheLizzards.Location.Tests\TheLizzards.Location.Tests.csproj", "{62161742-5E8F-4BBC-B4B3-303A8694E24A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -140,18 +140,6 @@ Global
 		{79DC7B66-C46A-4B2E-930E-FCC22D95DC7F}.Release|x64.Build.0 = Release|x64
 		{79DC7B66-C46A-4B2E-930E-FCC22D95DC7F}.Release|x86.ActiveCfg = Release|x86
 		{79DC7B66-C46A-4B2E-930E-FCC22D95DC7F}.Release|x86.Build.0 = Release|x86
-		{FDC73E30-085E-4248-8E7D-9C3AA6323B00}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FDC73E30-085E-4248-8E7D-9C3AA6323B00}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FDC73E30-085E-4248-8E7D-9C3AA6323B00}.Debug|x64.ActiveCfg = Debug|x64
-		{FDC73E30-085E-4248-8E7D-9C3AA6323B00}.Debug|x64.Build.0 = Debug|x64
-		{FDC73E30-085E-4248-8E7D-9C3AA6323B00}.Debug|x86.ActiveCfg = Debug|x86
-		{FDC73E30-085E-4248-8E7D-9C3AA6323B00}.Debug|x86.Build.0 = Debug|x86
-		{FDC73E30-085E-4248-8E7D-9C3AA6323B00}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FDC73E30-085E-4248-8E7D-9C3AA6323B00}.Release|Any CPU.Build.0 = Release|Any CPU
-		{FDC73E30-085E-4248-8E7D-9C3AA6323B00}.Release|x64.ActiveCfg = Release|x64
-		{FDC73E30-085E-4248-8E7D-9C3AA6323B00}.Release|x64.Build.0 = Release|x64
-		{FDC73E30-085E-4248-8E7D-9C3AA6323B00}.Release|x86.ActiveCfg = Release|x86
-		{FDC73E30-085E-4248-8E7D-9C3AA6323B00}.Release|x86.Build.0 = Release|x86
 		{9FD9226F-D969-43E0-82CB-E98F1B9267FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{9FD9226F-D969-43E0-82CB-E98F1B9267FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9FD9226F-D969-43E0-82CB-E98F1B9267FE}.Debug|x64.ActiveCfg = Debug|x64
@@ -176,6 +164,18 @@ Global
 		{266D026E-3906-4CF1-8699-991057761134}.Release|x64.Build.0 = Release|x64
 		{266D026E-3906-4CF1-8699-991057761134}.Release|x86.ActiveCfg = Release|x86
 		{266D026E-3906-4CF1-8699-991057761134}.Release|x86.Build.0 = Release|x86
+		{62161742-5E8F-4BBC-B4B3-303A8694E24A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{62161742-5E8F-4BBC-B4B3-303A8694E24A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{62161742-5E8F-4BBC-B4B3-303A8694E24A}.Debug|x64.ActiveCfg = Debug|x64
+		{62161742-5E8F-4BBC-B4B3-303A8694E24A}.Debug|x64.Build.0 = Debug|x64
+		{62161742-5E8F-4BBC-B4B3-303A8694E24A}.Debug|x86.ActiveCfg = Debug|x86
+		{62161742-5E8F-4BBC-B4B3-303A8694E24A}.Debug|x86.Build.0 = Debug|x86
+		{62161742-5E8F-4BBC-B4B3-303A8694E24A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{62161742-5E8F-4BBC-B4B3-303A8694E24A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{62161742-5E8F-4BBC-B4B3-303A8694E24A}.Release|x64.ActiveCfg = Release|x64
+		{62161742-5E8F-4BBC-B4B3-303A8694E24A}.Release|x64.Build.0 = Release|x64
+		{62161742-5E8F-4BBC-B4B3-303A8694E24A}.Release|x86.ActiveCfg = Release|x86
+		{62161742-5E8F-4BBC-B4B3-303A8694E24A}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -189,8 +189,8 @@ Global
 		{B8515272-86FE-46F9-90ED-136E87EAFE11} = {893DD448-96BF-4115-94D6-E85E6466F614}
 		{B2294EB9-E8E1-4A70-86CA-E1E8597AD790} = {893DD448-96BF-4115-94D6-E85E6466F614}
 		{79DC7B66-C46A-4B2E-930E-FCC22D95DC7F} = {893DD448-96BF-4115-94D6-E85E6466F614}
-		{FDC73E30-085E-4248-8E7D-9C3AA6323B00} = {ED1E5032-AA42-45AC-96C3-F21666FD4245}
 		{9FD9226F-D969-43E0-82CB-E98F1B9267FE} = {ED1E5032-AA42-45AC-96C3-F21666FD4245}
 		{266D026E-3906-4CF1-8699-991057761134} = {ED1E5032-AA42-45AC-96C3-F21666FD4245}
+		{62161742-5E8F-4BBC-B4B3-303A8694E24A} = {ED1E5032-AA42-45AC-96C3-F21666FD4245}
 	EndGlobalSection
 EndGlobal
