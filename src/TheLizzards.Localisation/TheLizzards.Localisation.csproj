@@ -1,10 +1,10 @@
-<Project Sdk="Microsoft.NET.Sdk" ToolsVersion="15.0">
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <Description>The geocoidng service.</Description>
     <Copyright>TheLizzards 2016 - 2017</Copyright>
     <AssemblyTitle>TheLizzards.Localisation</AssemblyTitle>
-    <VersionPrefix>1.1.0</VersionPrefix>
-    <Version>1.1.0</Version>
+    <VersionPrefix>1.2.0</VersionPrefix>
+    <Version>1.2.0</Version>
     <AssemblyName>TheLizzards.Localisation</AssemblyName>
     <PackageTags>Localisation;thelizzards</PackageTags>
     <RepositoryType>git</RepositoryType>
@@ -15,15 +15,13 @@
   </PropertyGroup>
   <PropertyGroup>
     <TargetFramework>netstandard1.4</TargetFramework>
+    <PackageTargetFallback Condition=" '$(TargetFramework)' == 'netstandard1.4' ">
+      $(PackageTargetFallback);portable-net45+win8+wpa81</PackageTargetFallback>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="**\*.cs" />
-    <EmbeddedResource Include="**\*.resx" />
-  </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="NETStandard.Library" Version="1.6.1" />
     <PackageReference Include="System.Xml.XPath" Version="4.3.0" />
     <PackageReference Include="System.Xml.XPath.XDocument" Version="4.3.0" />
+    <PackageReference Include="Microsoft.Spatial" Version="7.0.0" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\TheLizzards.Maybe\TheLizzards.Maybe.csproj" />

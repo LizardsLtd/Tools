@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Xml.Linq;
+using Microsoft.Spatial;
 
 namespace TheLizzards.Localisation.Entities
 {
@@ -28,7 +29,7 @@ namespace TheLizzards.Localisation.Entities
 		public bool HasResults => Status == "OK";
 		public bool HasNoResults => !HasResults;
 
-		private LocationPoint LoadLocation(XDocument document)
+		private GeographyPoint LoadLocation(XDocument document)
 		{
 			var location = document
 				.Document
@@ -43,11 +44,11 @@ namespace TheLizzards.Localisation.Entities
 				.First()
 				.Value);
 
-			return new LocationPoint(latitude, longitude);
+			return GeographyPoint.Create(latitude, longitude);
 		}
 
 		public string Status { get; }
 
-		public LocationPoint Location { get; }
+		public GeographyPoint Location { get; }
 	}
 }

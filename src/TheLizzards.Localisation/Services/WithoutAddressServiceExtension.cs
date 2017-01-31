@@ -4,12 +4,13 @@ using System.Text;
 using System.Threading.Tasks;
 using TheLizzards.Localisation.Entities;
 using TheLizzards.Maybe;
+using Microsoft.Spatial;
 
 namespace TheLizzards.Localisation.Services
 {
 	public static class WithoutAddressServiceExtension
 	{
-		public static async  Task<Maybe<LocationPoint>> GeocodeAsync(
+		public static async Task<Maybe<GeographyPoint>> GeocodeAsync(
 			this IGeocodingService locationService
 			, string houseNumber = ""
 			, string streetName = ""
