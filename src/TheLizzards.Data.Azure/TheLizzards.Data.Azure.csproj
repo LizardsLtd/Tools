@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk" ToolsVersion="15.0">
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <Description>Default implementatin of differenet services in Azure.</Description>
     <Copyright>TheLizzards 2016 - 2017</Copyright>
@@ -17,10 +17,6 @@
     <TargetFramework>netstandard1.6</TargetFramework>
     <PackageTargetFallback Condition=" '$(TargetFramework)' == 'netstandard1.6' ">$(PackageTargetFallback);portable-net40+sl5+win8+wp8+wpa81</PackageTargetFallback>
   </PropertyGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="**\*.resx" />
-    <EmbeddedResource Include="compiler\resources\**\*" />
-  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\TheLizzards.Data\TheLizzards.Data.csproj" />
     <ProjectReference Include="..\TheLizzards.Maybe\TheLizzards.Maybe.csproj" />

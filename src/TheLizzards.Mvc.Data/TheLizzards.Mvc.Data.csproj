@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk" ToolsVersion="15.0">
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <Description>Implementation of common data access patterns.</Description>
     <Copyright>TheLizzards 2016 - 2017</Copyright>

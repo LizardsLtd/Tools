@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using System.Xml.Linq;
 using TheLizzards.Localisation.Entities;
 using TheLizzards.Maybe;
+using Microsoft.Spatial;
 
 namespace TheLizzards.Localisation.Services
 {
@@ -16,7 +17,7 @@ namespace TheLizzards.Localisation.Services
 		{
 		}
 
-		public async Task<Maybe<LocationPoint>> GeocodeAsync(Address address)
+		public async Task<Maybe<GeographyPoint>> GeocodeAsync(Address address)
 		{
 			var encodedAddress = GetEncodedAddress(address);
 			string formattedQueryUrl = GetServiceUrl(encodedAddress);

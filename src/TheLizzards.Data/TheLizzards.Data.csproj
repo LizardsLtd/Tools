@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk" ToolsVersion="15.0">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <Description>Implementation of common data access patterns.</Description>
     <Copyright>TheLizzards 2016 - 2017</Copyright>
@@ -19,10 +19,6 @@
   <PropertyGroup>
     <TargetFramework>netstandard1.4</TargetFramework>
   </PropertyGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="**\*.resx" />
-    <EmbeddedResource Include="compiler\resources\**\*" />
-  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\TheLizzards.Maybe\TheLizzards.Maybe.csproj" />
   </ItemGroup>
