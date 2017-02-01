@@ -1,10 +1,10 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <Description>Default implementatin of differenet services in Azure.</Description>
     <Copyright>TheLizzards 2016 - 2017</Copyright>
     <AssemblyTitle>TheLizzards.Data.Azure</AssemblyTitle>
-    <VersionPrefix>1.1.2</VersionPrefix>
-    <Version>1.1.2</Version>
+    <VersionPrefix>1.1.3</VersionPrefix>
+    <Version>1.1.3</Version>
     <AssemblyName>TheLizzards.Data.Azure</AssemblyName>
     <PackageTags>azure;thelizzards</PackageTags>
     <RepositoryType>git</RepositoryType>
@@ -15,7 +15,7 @@
   </PropertyGroup>
   <PropertyGroup>
     <TargetFramework>netstandard1.6</TargetFramework>
-    <PackageTargetFallback Condition=" '$(TargetFramework)' == 'netstandard1.6' ">$(PackageTargetFallback);portable-net40+sl5+win8+wp8+wpa81</PackageTargetFallback>
+    <PackageTargetFallback Condition=" '$(TargetFramework)' == 'netstandard1.6' ">$(PackageTargetFallback);portable-net45+win8+wp8+wpa81</PackageTargetFallback>
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\TheLizzards.Data\TheLizzards.Data.csproj" />
@@ -23,7 +23,7 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.Azure.DocumentDB.Core" Version="1.0.0" />
-    <PackageReference Include="Microsoft.Azure.Search" Version="3.0.1" />
+    <PackageReference Include="Microsoft.Azure.Search" Version="3.0.2" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="1.1.0" />
     <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="1.1.0" />
     <PackageReference Include="Microsoft.Extensions.Options" Version="1.1.0" />
