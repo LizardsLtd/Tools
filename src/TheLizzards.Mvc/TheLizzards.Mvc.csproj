@@ -1,10 +1,10 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <Description>ASP.NET Core MVC implementation.</Description>
     <Copyright>TheLizzards 2016 - 2017</Copyright>
     <AssemblyTitle>Lizzards MVC</AssemblyTitle>
-    <VersionPrefix>1.1.0</VersionPrefix>
-    <Version>1.1.0</Version>
+    <VersionPrefix>1.1.1</VersionPrefix>
+    <Version>1.1.1</Version>
     <WarningsAsErrors>true</WarningsAsErrors>
     <AssemblyName>TheLizzards.Mvc</AssemblyName>
     <GenerateAssemblyTitleAttribute>false</GenerateAssemblyTitleAttribute>
@@ -27,8 +27,8 @@
     <PackageReference Include="Microsoft.AspNetCore.Antiforgery" Version="1.1.0" />
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics" Version="1.1.0" />
     <PackageReference Include="Microsoft.AspNetCore.Identity" Version="1.1.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="1.1.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.Localization" Version="1.1.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="1.1.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Localization" Version="1.1.1" />
     <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="1.1.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration" Version="1.1.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="1.1.0" />

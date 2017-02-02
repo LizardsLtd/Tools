@@ -1,10 +1,10 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <Description>Implementation of common data access patterns.</Description>
     <Copyright>TheLizzards 2016 - 2017</Copyright>
     <AssemblyTitle>Lizzards Data for Mvc</AssemblyTitle>
-    <VersionPrefix>1.1.1</VersionPrefix>
-    <Version>1.1.1</Version>
+    <VersionPrefix>1.1.2</VersionPrefix>
+    <Version>1.1.2</Version>
     <TargetFramework>netstandard1.6</TargetFramework>
     <AssemblyName>TheLizzards.Mvc.Data</AssemblyName>
     <PackageTags>data;thelizzards</PackageTags>

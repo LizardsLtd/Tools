@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Xml.Linq;
-using Microsoft.Spatial;
+using System.Spatial;
 
 namespace TheLizzards.Localisation.Entities
 {
