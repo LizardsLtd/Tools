@@ -4,7 +4,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TheLizzards.Localisation.Entities;
 using TheLizzards.Maybe;
-using System.Spatial;
+using Microsoft.Spatial;
 
 namespace TheLizzards.Localisation.Services
 {
