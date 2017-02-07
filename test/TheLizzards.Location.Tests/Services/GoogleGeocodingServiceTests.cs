@@ -20,7 +20,7 @@ namespace TheLizzards.Location.Tests.Services
 		public async Task ConnectToService()
 		{
 			var result = await this.service.GeocodeAsync(
-				houseNumber: "10"
+                houseNumber: "10"
 				, streetName: "Downing street"
 				, city: "London"
 				, country: "UK");
@@ -33,10 +33,9 @@ namespace TheLizzards.Location.Tests.Services
 		public async Task TryToCheckNonExistingAddress()
 		{
 			var result = await this.service.GeocodeAsync(
-				   houseNumber: "blah "
-				   , streetName: "blha"
-				   , city: "bla"
-				   , country: "UK");
+				   houseNumber: ""
+				   , streetName: ""
+				   , country: "");
 
 			Assert.True(result.IsNone);
 		}
