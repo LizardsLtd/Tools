@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26127.0
+VisualStudioVersion = 15.0.26206.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{ED1E5032-AA42-45AC-96C3-F21666FD4245}"
 EndProject
@@ -33,6 +33,8 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheLizzards.Search.Tests", "test\TheLizzards.Search.Tests\TheLizzards.Search.Tests.csproj", "{266D026E-3906-4CF1-8699-991057761134}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheLizzards.Location.Tests", "test\TheLizzards.Location.Tests\TheLizzards.Location.Tests.csproj", "{62161742-5E8F-4BBC-B4B3-303A8694E24A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheLizzards.NullLoggerFactory", "src\TheLizzards.NullLoggerFactory\TheLizzards.NullLoggerFactory.csproj", "{0E74D772-B53A-45CA-94C4-154C4B523B3B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -176,6 +178,18 @@ Global
 		{62161742-5E8F-4BBC-B4B3-303A8694E24A}.Release|x64.Build.0 = Release|x64
 		{62161742-5E8F-4BBC-B4B3-303A8694E24A}.Release|x86.ActiveCfg = Release|x86
 		{62161742-5E8F-4BBC-B4B3-303A8694E24A}.Release|x86.Build.0 = Release|x86
+		{0E74D772-B53A-45CA-94C4-154C4B523B3B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0E74D772-B53A-45CA-94C4-154C4B523B3B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0E74D772-B53A-45CA-94C4-154C4B523B3B}.Debug|x64.ActiveCfg = Debug|x64
+		{0E74D772-B53A-45CA-94C4-154C4B523B3B}.Debug|x64.Build.0 = Debug|x64
+		{0E74D772-B53A-45CA-94C4-154C4B523B3B}.Debug|x86.ActiveCfg = Debug|x86
+		{0E74D772-B53A-45CA-94C4-154C4B523B3B}.Debug|x86.Build.0 = Debug|x86
+		{0E74D772-B53A-45CA-94C4-154C4B523B3B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0E74D772-B53A-45CA-94C4-154C4B523B3B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0E74D772-B53A-45CA-94C4-154C4B523B3B}.Release|x64.ActiveCfg = Release|x64
+		{0E74D772-B53A-45CA-94C4-154C4B523B3B}.Release|x64.Build.0 = Release|x64
+		{0E74D772-B53A-45CA-94C4-154C4B523B3B}.Release|x86.ActiveCfg = Release|x86
+		{0E74D772-B53A-45CA-94C4-154C4B523B3B}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -192,5 +206,6 @@ Global
 		{9FD9226F-D969-43E0-82CB-E98F1B9267FE} = {ED1E5032-AA42-45AC-96C3-F21666FD4245}
 		{266D026E-3906-4CF1-8699-991057761134} = {ED1E5032-AA42-45AC-96C3-F21666FD4245}
 		{62161742-5E8F-4BBC-B4B3-303A8694E24A} = {ED1E5032-AA42-45AC-96C3-F21666FD4245}
+		{0E74D772-B53A-45CA-94C4-154C4B523B3B} = {893DD448-96BF-4115-94D6-E85E6466F614}
 	EndGlobalSection
 EndGlobal

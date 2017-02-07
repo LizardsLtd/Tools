@@ -13,6 +13,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\src\TheLizzards.Localisation\TheLizzards.Localisation.csproj" />
     <ProjectReference Include="..\..\src\TheLizzards.Maybe\TheLizzards.Maybe.csproj" />
+    <ProjectReference Include="..\..\src\TheLizzards.NullLoggerFactory\TheLizzards.NullLoggerFactory.csproj" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Update="Microsoft.NETCore.App" Version="1.1.0" />
