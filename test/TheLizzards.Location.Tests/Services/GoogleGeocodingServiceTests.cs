@@ -13,7 +13,7 @@ namespace TheLizzards.Location.Tests.Services
 
         public GoogleGeocodingServiceTests()
         {
-            this.service = new GoogleGeocodingService();
+            this.service = new GoogleGeocodingService(new NullLoggerFactory.NullLoggerFactory());
         }
 
         [Fact]
