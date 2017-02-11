@@ -54,6 +54,9 @@ namespace TheLizzards.Localisation.Entities
 			this.logger.LogDebug($"{key}: {latitudeAsString}");
 
 			var value = decimal.Parse(latitudeAsString);
+
+			this.logger.LogDebug($"Parsed  value: {value}");
+
 			return (double)value;
 		}
 
