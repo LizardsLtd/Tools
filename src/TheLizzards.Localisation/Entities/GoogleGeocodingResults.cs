@@ -35,16 +35,16 @@ namespace TheLizzards.Localisation.Entities
 				.Document
 				.Descendants(XName.Get("location"))
 				.First();
-			var latitude = double.Parse(location
+			var latitude = decimal.Parse(location
 				.Descendants(XName.Get("lat"))
 				.First()
 				.Value);
-			var longitude = double.Parse(location
+			var longitude = decimal.Parse(location
 				.Descendants(XName.Get("lng"))
 				.First()
 				.Value);
 
-			return GeographyPoint.Create(latitude, longitude);
+			return GeographyPoint.Create((double)latitude, (double)longitude);
 		}
 
 		public string Status { get; }
