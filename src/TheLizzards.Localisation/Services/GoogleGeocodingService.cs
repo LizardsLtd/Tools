@@ -38,7 +38,7 @@ namespace TheLizzards.Localisation.Services
 				{
 					var resultContent = await result.Content.ReadAsStringAsync();
 					this.logger.LogDebug($"Geocoding results {resultContent}");
-					return new GoogleGeocodingResults(resultContent);
+					return new GoogleGeocodingResults(this.logger, resultContent);
 				}
 			}
 		}
