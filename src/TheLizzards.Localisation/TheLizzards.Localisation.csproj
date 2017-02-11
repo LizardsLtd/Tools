@@ -3,8 +3,8 @@
     <Description>The geocoidng service.</Description>
     <Copyright>TheLizzards 2016 - 2017</Copyright>
     <AssemblyTitle>TheLizzards.Localisation</AssemblyTitle>
-    <VersionPrefix>1.4.2</VersionPrefix>
-    <Version>1.4.2</Version>
+    <VersionPrefix>1.4.3</VersionPrefix>
+    <Version>1.4.3</Version>
     <AssemblyName>TheLizzards.Localisation</AssemblyName>
     <PackageTags>Localisation;thelizzards</PackageTags>
     <RepositoryType>git</RepositoryType>
