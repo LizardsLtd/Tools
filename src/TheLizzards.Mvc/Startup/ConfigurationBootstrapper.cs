@@ -24,7 +24,6 @@ namespace TheLizzards.Mvc.Startup
 		public ConfigurationBootstrapper AddEnvironmentVariablesToConfiguration()
 		{
 			this.configurationBuilder.AddEnvironmentVariables();
-
 			return this;
 		}
 

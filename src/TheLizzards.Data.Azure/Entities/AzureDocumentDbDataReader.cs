@@ -24,12 +24,12 @@ namespace TheLizzards.Data.Azure.Entities
 		{
 		}
 
-        public Task<IEnumerable<T>> GetAll(Expression<Func<T, bool>> predicate)
-            => this.ExecuteCollectionResultQuery<T>(
-                predicate
-                , items => items);
+		public Task<IEnumerable<T>> GetAll(Expression<Func<T, bool>> predicate)
+			=> this.ExecuteCollectionResultQuery<T>(
+				predicate
+				, items => items);
 
-        public Task<IEnumerable<T>> GetPage(Expression<Func<T, bool>> predicate, Page page)
+		public Task<IEnumerable<T>> GetPage(Expression<Func<T, bool>> predicate, Page page)
 			=> this.ExecuteCollectionResultQuery<T>(
 				predicate
 				, items => items

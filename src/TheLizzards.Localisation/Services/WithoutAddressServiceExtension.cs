@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Microsoft.Spatial;
 using System.Threading.Tasks;
 using TheLizzards.Localisation.Entities;
 using TheLizzards.Maybe;
-using Microsoft.Spatial;
 
 namespace TheLizzards.Localisation.Services
 {
