@@ -37,6 +37,7 @@ namespace TheLizzards.Localisation.Entities
 		{
 			var location = document
 				.Document
+				.Descendants(XName.Get("geometry"))
 				.Descendants(XName.Get("location"))
 				.First();
 			var latitude = GetProperty(location, "lat");
@@ -51,11 +52,12 @@ namespace TheLizzards.Localisation.Entities
 				.Descendants(XName.Get(key))
 				.First()
 				.Value;
+
 			this.logger.LogDebug($"{key}: {latitudeAsString}");
 
 			var value = decimal.Parse(latitudeAsString);
 
-			this.logger.LogDebug($"Parsed  value: {value}");
+			this.logger.LogDebug($"Parsed value: {value}");
 
 			return (double)value;
 		}
