@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<GeocodeResponse>
+	<status>OK</status>
+	<result>
+		<type>street_address</type>
+		<formatted_address>Kochanowskiego 5, Zgorzelec, Poland</formatted_address>
+		<address_component>
+			<long_name>5</long_name>
+			<short_name>5</short_name>
+			<type>street_number</type>
+		</address_component>
+		<address_component>
+			<long_name>Kochanowskiego</long_name>
+			<short_name>Kochanowskiego</short_name>
+			<type>route</type>
+		</address_component>
+		<address_component>
+			<long_name>Zgorzelec</long_name>
+			<short_name>Zgorzelec</short_name>
+			<type>locality</type>
+			<type>political</type>
+		</address_component>
+		<address_component>
+			<long_name>zgorzelecki</long_name>
+			<short_name>zgorzelecki</short_name>
+			<type>administrative_area_level_2</type>
+			<type>political</type>
+		</address_component>
+		<address_component>
+			<long_name>Wojew├│dztwo dolno┼øl─àskie</long_name>
+			<short_name>Wojew├│dztwo dolno┼øl─àskie</short_name>
+			<type>administrative_area_level_1</type>
+			<type>political</type>
+		</address_component>
+		<address_component>
+			<long_name>Poland</long_name>
+			<short_name>PL</short_name>
+			<type>country</type>
+			<type>political</type>
+		</address_component>
+		<address_component>
+			<long_name>59</long_name>
+			<short_name>59</short_name>
+			<type>postal_code</type>
+			<type>postal_code_prefix</type>
+		</address_component>
+		<geometry>
+			<location>
+				<lat>51.1287637</lat>
+				<lng>15.0137526</lng>
+			</location>
+			<location_type>ROOFTOP</location_type>
+			<viewport>
+				<southwest>
+					<lat>51.1274147</lat>
+					<lng>15.0124036</lng>
+				</southwest>
+				<northeast>
+					<lat>51.1301127</lat>
+					<lng>15.0151016</lng>
+				</northeast>
+			</viewport>
+		</geometry>
+		<partial_match>true</partial_match>
+		<place_id>ChIJ6f_0o63eCEcRHzzeYdmYOaw</place_id>
+	</result>
+</GeocodeResponse>

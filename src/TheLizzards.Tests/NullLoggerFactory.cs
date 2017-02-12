@@ -2,7 +2,7 @@
 using Microsoft.Extensions.Logging.Abstractions;
 using System;
 
-namespace TheLizzards.NullLoggerFactory
+namespace TheLizzards.Tests
 {
     public class NullLoggerFactory : ILoggerFactory
     {
