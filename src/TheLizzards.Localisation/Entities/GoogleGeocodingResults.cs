@@ -3,6 +3,7 @@ using System.Linq;
 using System.Xml.Linq;
 using Microsoft.Spatial;
 using Microsoft.Extensions.Logging;
+using System.Globalization;
 
 namespace TheLizzards.Localisation.Entities
 {
@@ -40,6 +41,7 @@ namespace TheLizzards.Localisation.Entities
 				.Descendants(XName.Get("geometry"))
 				.Descendants(XName.Get("location"))
 				.First();
+
 			var latitude = GetProperty(location, "lat");
 			var longitude = GetProperty(location, "lng");
 
@@ -55,11 +57,11 @@ namespace TheLizzards.Localisation.Entities
 
 			this.logger.LogDebug($"{key}: {latitudeAsString}");
 
-			var value = decimal.Parse(latitudeAsString);
+			var value = double.Parse(latitudeAsString, CultureInfo.InvariantCulture);
 
 			this.logger.LogDebug($"Parsed value: {value}");
 
-			return (double)value;
+			return value;
 		}
 
 		public string Status { get; }
