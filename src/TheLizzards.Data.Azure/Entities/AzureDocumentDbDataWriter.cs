@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.Azure.Documents.Client;
 using TheLizzards.Data.CQRS.Contracts.DataAccess;
@@ -7,7 +6,7 @@ using TheLizzards.Data.DDD.Contracts;
 
 namespace TheLizzards.Data.Azure.Entities
 {
-	internal class AzureDocumentDbDataWriter<T> 
+	internal class AzureDocumentDbDataWriter<T>
 		: IDataWriter<T>
 			 where T : IAggregateRoot
 	{

@@ -1,7 +1,7 @@
 using System.Threading.Tasks;
+using Microsoft.Spatial;
 using TheLizzards.Localisation.Entities;
 using TheLizzards.Maybe;
-using Microsoft.Spatial;
 
 namespace TheLizzards.Localisation.Services
 {

@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace TheLizzards.Search.Entities
+﻿namespace TheLizzards.Search.Entities
 {
-	public sealed class LocationSearchKeyWord: ISearchKey
+	public sealed class LocationSearchKeyWord : ISearchKey
 	{
 		public LocationSearchKeyWord(double latitute, double longitude)
 		{

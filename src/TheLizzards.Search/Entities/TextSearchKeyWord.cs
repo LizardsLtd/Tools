@@ -1,8 +1,5 @@
-﻿using TheLizzards.Search.Entities;
-
-namespace TheLizzards.Search.Entities
+﻿namespace TheLizzards.Search.Entities
 {
-
 	public sealed class TextSearchKeyWord : ISearchKey
 	{
 		public TextSearchKeyWord(string searchFor)

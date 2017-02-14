@@ -1,9 +1,8 @@
-﻿using System;
+﻿using System.Globalization;
 using System.Linq;
 using System.Xml.Linq;
-using Microsoft.Spatial;
 using Microsoft.Extensions.Logging;
-using System.Globalization;
+using Microsoft.Spatial;
 
 namespace TheLizzards.Localisation.Entities
 {
@@ -24,15 +23,20 @@ namespace TheLizzards.Localisation.Entities
 			}
 		}
 
+		public bool HasResults => Status == "OK";
+
+		public bool HasNoResults => !HasResults;
+
+		public string Status { get; }
+
+		public GeographyPoint Location { get; }
+
 		private string LoadStatus(XDocument document)
-			=> document
+											=> document
 				.Document
 				.Descendants(XName.Get("status"))
 				.First()
 				.Value;
-
-		public bool HasResults => Status == "OK";
-		public bool HasNoResults => !HasResults;
 
 		private GeographyPoint LoadLocation(XDocument document)
 		{
@@ -63,9 +67,5 @@ namespace TheLizzards.Localisation.Entities
 
 			return value;
 		}
-
-		public string Status { get; }
-
-		public GeographyPoint Location { get; }
 	}
 }

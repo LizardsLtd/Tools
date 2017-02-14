@@ -1,12 +1,12 @@
 ﻿using System.Collections.Generic;
-using CSharpVerbalExpressions;
 using System.ComponentModel.DataAnnotations;
+using CSharpVerbalExpressions;
 using TheLizzards.Data.Types.Entites;
 
-namespace TheLizzards.Data.Types.Services.Poland {
-
-	public sealed class PolishBankDetailsValidator : IBankDetailsValidator {
-
+namespace TheLizzards.Data.Types.Services.Poland
+{
+	public sealed class PolishBankDetailsValidator : IBankDetailsValidator
+	{
 		public IEnumerable<ValidationResult> Validate(BankDetails bankDetails)
 			=> new[] {
 				IsValidAccountNumber(bankDetails.AccountNumber.ToString())

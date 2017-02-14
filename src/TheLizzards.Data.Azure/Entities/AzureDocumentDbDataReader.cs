@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 using Microsoft.Azure.Documents.Client;
 using Microsoft.Extensions.Logging;
 using TheLizzards.Data.CQRS.Contracts.DataAccess;
-using TheLizzards.Data.DDD.Contracts;
 using TheLizzards.Data.CQRS.Entities;
+using TheLizzards.Data.DDD.Contracts;
 using TheLizzards.Maybe;
 
 namespace TheLizzards.Data.Azure.Entities

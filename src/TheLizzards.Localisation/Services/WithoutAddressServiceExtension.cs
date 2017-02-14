@@ -1,5 +1,5 @@
-﻿using Microsoft.Spatial;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
+using Microsoft.Spatial;
 using TheLizzards.Localisation.Entities;
 using TheLizzards.Maybe;
 

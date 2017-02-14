@@ -26,7 +26,7 @@ namespace TheLizzards.Data.Azure.Entities
 
 		private bool IsClientCreated => this.client?.IsValueCreated ?? false;
 
-		public IDataReader<T> Read<T>(params object[] attributes) 
+		public IDataReader<T> Read<T>(params object[] attributes)
 			where T : IAggregateRoot
 		{
 			var collectionUri = GetCollectionUri(attributes);
@@ -40,7 +40,7 @@ namespace TheLizzards.Data.Azure.Entities
 				, this.loggerFactory);
 		}
 
-		public IDataWriter<T> Write<T>(params object[] attributes) 
+		public IDataWriter<T> Write<T>(params object[] attributes)
 			where T : IAggregateRoot
 		{
 			var databaseId = attributes[0].ToString();

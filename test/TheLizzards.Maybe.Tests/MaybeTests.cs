@@ -1,7 +1,4 @@
-﻿using System;
-using System.Linq;
-using TheLizzards.Maybe;
-using Xunit;
+﻿using Xunit;
 
 namespace TheLizzards.Maybe.Tests
 {
@@ -65,7 +62,7 @@ namespace TheLizzards.Maybe.Tests
 
 			var comparisionValue = maybe.CompareTo(compareTo);
 
-			Assert.Equal(result , comparisionValue);
+			Assert.Equal(result, comparisionValue);
 		}
 
 		[Theory]

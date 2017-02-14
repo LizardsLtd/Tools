@@ -37,8 +37,11 @@ namespace TheLizzards.Localisation.Entities
 
 		public string PostCode { get; }
 
+		public override string ToString()
+			=> string.Join(" ", FilterEmptyValues());
+
 		private IEnumerable<string> AsEnumerable()
-			=> new[]
+					=> new[]
 			{
 				HouseNumber,
 				StreetName,
@@ -48,11 +51,8 @@ namespace TheLizzards.Localisation.Entities
 				Country,
 				PostCode,
 			};
+
 		private IEnumerable<string> FilterEmptyValues()
 			=> this.AsEnumerable().Where(x => !string.IsNullOrEmpty(x));
-
-
-		public override string ToString()
-			=> string.Join(" ", FilterEmptyValues());
 	}
 }

@@ -1,12 +1,10 @@
 ﻿using System.Net;
-using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
-using System.Xml.Linq;
+using Microsoft.Extensions.Logging;
+using Microsoft.Spatial;
 using TheLizzards.Localisation.Entities;
 using TheLizzards.Maybe;
-using Microsoft.Spatial;
-using Microsoft.Extensions.Logging;
 
 namespace TheLizzards.Localisation.Services
 {

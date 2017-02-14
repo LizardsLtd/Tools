@@ -1,4 +1,3 @@
-using System;
 using TheLizzards.Search.Entities;
 using Xunit;
 
@@ -18,7 +17,7 @@ namespace TheLizzards.Search.Tests.Entities
 		public void CreateNonEmptyResults()
 		{
 			var results = new SearchResults<SearchResultsPayload>(
-				new []
+				new[]
 				{
 					new SearchResultsPayload(),
 					new SearchResultsPayload(),

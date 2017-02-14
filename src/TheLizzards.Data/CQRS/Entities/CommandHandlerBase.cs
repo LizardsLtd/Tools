@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Threading.Tasks;
 using TheLizzards.Data.CQRS.Contracts;
@@ -22,7 +21,7 @@ namespace TheLizzards.Data.CQRS.Entities
 			=> await this.Execute((TCommand)command);
 
 		public Task<IEnumerable<ValidationResult>> Validate(ICommand command)
-			=>   this.Validate((TCommand)command);
+			=> this.Validate((TCommand)command);
 
 		public void Dispose() => Dispose(true);
 

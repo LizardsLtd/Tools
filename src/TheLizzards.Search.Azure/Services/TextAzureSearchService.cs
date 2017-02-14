@@ -1,13 +1,10 @@
-﻿using Microsoft.Azure.Search;
-using Microsoft.Azure.Search.Models;
-using System;
-using System.Linq;
-using System.Collections.Generic;
-using System.Text;
+﻿using System;
 using System.Threading.Tasks;
+using Microsoft.Azure.Search;
+using Microsoft.Azure.Search.Models;
+using Microsoft.Extensions.Logging;
 using TheLizzards.Search.Entities;
 using TheLizzards.Search.Services;
-using Microsoft.Extensions.Logging;
 
 namespace TheLizzards.Search.Azure.Services
 {
@@ -22,6 +19,7 @@ namespace TheLizzards.Search.Azure.Services
 		{
 			this.logger = loggerFactory.CreateLogger<ISearchService<TextSearchKeyWord, T>>();
 		}
+
 		public async Task<SearchResults<T>> SearchFor(TextSearchKeyWord keyword)
 		{
 			var results = new SearchResults<T>();
@@ -38,7 +36,6 @@ namespace TheLizzards.Search.Azure.Services
 				var documentResults = await indexClient.Documents.SearchAsync(keyword.SearchTokens, parameters);
 
 				results = ConvertDocumentSearchResult(documentResults);
-
 			}
 			catch (Exception exp)
 			{

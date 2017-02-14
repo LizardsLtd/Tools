@@ -36,7 +36,7 @@ namespace TheLizzards.Mvc.Data.ModelValidators
 
 					validatorItem.Validator = validator;
 					validatorItem.IsReusable = true;
-					
+
 					if (attribute is RequiredAttribute)
 					{
 						context.Results.Remove(validatorItem);

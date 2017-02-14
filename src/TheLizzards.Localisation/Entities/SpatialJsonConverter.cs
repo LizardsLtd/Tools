@@ -1,6 +1,6 @@
-﻿using Microsoft.Spatial;
+﻿using System;
+using Microsoft.Spatial;
 using Newtonsoft.Json;
-using System;
 
 namespace TheLizzards.Localisation.Entities
 {

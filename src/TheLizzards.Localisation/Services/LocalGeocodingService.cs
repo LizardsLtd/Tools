@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Microsoft.Spatial;
 using TheLizzards.Localisation.Entities;
 using TheLizzards.Maybe;
@@ -16,6 +13,7 @@ namespace TheLizzards.Localisation.Services
 		{
 			this.randomGeographyPoint = GeographyPoint.Create(51.5033635, -0.1276248);
 		}
+
 		public Task<Maybe<GeographyPoint>> GeocodeAsync(Address address)
 			=> Task.FromResult<Maybe<GeographyPoint>>(this.randomGeographyPoint);
 	}

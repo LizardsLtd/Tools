@@ -20,11 +20,12 @@ namespace TheLizzards.Mvc.Data.ModelValidators
 			=> validationProvider
 				.GetProvider(CultureInfo.CurrentCulture)
 				.Validate(context.Model as BankDetails)
-				.SelectMany(validationError 
+				.SelectMany(validationError
 					=> validationError
 						.MemberNames
 						.Select(member
-							=> new  {
+							=> new
+							{
 								Member = member,
 								Message = validationError.ErrorMessage
 							})

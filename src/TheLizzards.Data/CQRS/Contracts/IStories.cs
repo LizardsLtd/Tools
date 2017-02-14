@@ -10,7 +10,7 @@ namespace TheLizzards.Data.CQRS.Contracts
 	}
 
 	public interface IStory
-	{		
+	{
 		IEnumerable<ValidationResult> Validate(ICommand command);
 	}
 }

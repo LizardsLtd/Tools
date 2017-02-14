@@ -1,3 +1,3 @@
 ﻿using System.Runtime.CompilerServices;
 
-[assembly:InternalsVisibleTo("TheLizzards.Location.Tests")]
+[assembly: InternalsVisibleTo("TheLizzards.Location.Tests")]

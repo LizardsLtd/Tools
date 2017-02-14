@@ -1,7 +1,4 @@
-﻿using System;
-using System.Linq;
-
-namespace TheLizzards.Data.Types.Contracts
+﻿namespace TheLizzards.Data.Types.Contracts
 {
 	public interface INameProvider
 	{
