@@ -3,8 +3,8 @@
 		<Description>ASP.NET Core MVC implementation.</Description>
 		<Copyright>TheLizzards 2016 - 2017</Copyright>
 		<AssemblyTitle>Lizzards MVC</AssemblyTitle>
-		<VersionPrefix>1.2.1</VersionPrefix>
-		<Version>1.2.1</Version>
+		<VersionPrefix>1.3.0</VersionPrefix>
+		<Version>1.3.0</Version>
 		<WarningsAsErrors>true</WarningsAsErrors>
 		<AssemblyName>TheLizzards.Mvc</AssemblyName>
 		<GenerateAssemblyTitleAttribute>false</GenerateAssemblyTitleAttribute>
@@ -16,6 +16,8 @@
 	</PropertyGroup>
 	<PropertyGroup>
 		<TargetFramework>netstandard1.6</TargetFramework>
+		<FileVersion>1.3.0</FileVersion>
+		<AssemblyVersion>1.3.0</AssemblyVersion>
 	</PropertyGroup>
 	<ItemGroup>
 		<ProjectReference Include="..\TheLizzards.Data\TheLizzards.Data.csproj" />

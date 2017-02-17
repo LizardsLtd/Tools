@@ -2,5 +2,8 @@
 {
 	public sealed class ServicesExtensionTests
 	{
+		public ServicesExtensionTests()
+		{
+		}
 	}
 }
