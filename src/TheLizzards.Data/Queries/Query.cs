@@ -1,6 +1,7 @@
 ﻿using System;
 using Serilog;
 using TheLizzards.Data.CQRS.Contracts;
+using TheLizzards.Data.CQRS.Contracts.DataAccess;
 using TheLizzards.Data.CQRS.Entities;
 using TheLizzards.Data.DDD.Contracts;
 
@@ -14,11 +15,6 @@ namespace TheLizzards.Data.Queries
 	{
 		private readonly ILogger logger;
 		private readonly string collectionType;
-
-		public SingleSetIdQuery(IDataContext storageContext, ILoggerFactory loggerFactory, string collectionType)
-			: this(storageContext, loggerFactory.CreateLogger(typeof(SingleSetIdQuery<TResult>)), collectionType)
-		{
-		}
 
 		public SingleSetIdQuery(IDataContext storageContext, ILogger logger, string collectionType)
 			: base(storageContext)

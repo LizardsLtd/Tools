@@ -11,7 +11,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Queries\" />
+    <ProjectReference Include="..\..\src\TheLizzards.Data\TheLizzards.Data.csproj" />
+    <ProjectReference Include="..\..\src\TheLizzards.Tests\TheLizzards.Tests.csproj" />
   </ItemGroup>
 
 </Project>
