@@ -1,20 +1,54 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using FluentAssertions;
+using Serilog;
+using TheLizzards.Data.Queries;
 using TheLizzards.Data.Tests.CQRS.Contracts.DataAccess;
+using TheLizzards.Data.Tests.Mocks;
 using Xunit;
 
 namespace TheLizzards.Data.Tests.Queries
 {
 	public sealed class AbilityToCreateQuickQuery
 	{
-		[Fact]
-		public void CanCreateQuery()
+		private readonly DatabaseParts parts;
+		private readonly TestDataContext context;
+		private readonly Guid id;
+
+		public AbilityToCreateQuickQuery()
 		{
-			var storage = new TestDataContext(new InMemoryDataStorage
+			this.parts = new DatabaseParts("test", "test");
+			this.id = Guid.NewGuid();
+			var storage = new InMemoryDataStorage
 			{
-				"SampleAggregateRoot" = new List<object>
+				["SimpleAggregateRoot"] = new List<object>
 				{
+					new SimpleAggregateRoot(id)
 				}
-			});
+			};
+			this.context = new TestDataContext(storage);
+		}
+
+		[Fact]
+		public async Task SingleQueryWithFailWhenNotFound()
+		{
+			var query = new SampleQuery(this.context, Log.Logger, this.parts, id);
+
+			var result = await query.Execute();
+
+			result.Id.Should().Be(id);
+		}
+
+		[Fact]
+		public async Task SingleQueryWithMaybe()
+		{
+			var query = new SampleMaybeQuery(this.context, Log.Logger, this.parts, id);
+
+			var result = await query.Execute();
+
+			result.IsSome.Should().Be(true);
+			result.Value.Id.Should().Be(id);
 		}
 	}
 }

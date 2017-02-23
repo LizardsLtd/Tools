@@ -1,50 +1,31 @@
-﻿using System;
+﻿using System.Threading.Tasks;
 using Serilog;
 using TheLizzards.Data.CQRS.Contracts;
 using TheLizzards.Data.CQRS.Contracts.DataAccess;
-using TheLizzards.Data.CQRS.Entities;
 using TheLizzards.Data.DDD.Contracts;
 
 namespace TheLizzards.Data.Queries
 {
-	public abstract class SingleSetIdQuery<TResult>
-			 : DataContextOperatorBase
-			 //, IIdScoped<IAsyncQuery<TResult>>
-			 , IsQuery
-		 where TResult : IAggregateRoot
+	public abstract class Query<TPayload, TResult> : IAsyncQuery<TResult>
+			where TPayload : IAggregateRoot
 	{
-		private readonly ILogger logger;
-		private readonly string collectionType;
+		protected readonly ILogger logger;
+		private readonly IDataContext storageContext;
+		private readonly DatabaseParts parts;
 
-		public SingleSetIdQuery(IDataContext storageContext, ILogger logger, string collectionType)
-			: base(storageContext)
+		public Query(IDataContext storageContext, ILogger logger, DatabaseParts parts)
 		{
-			this.collectionType = collectionType;
+			this.storageContext = storageContext;
 			this.logger = logger;
+			this.parts = parts;
 		}
 
-		public IAsyncQuery<TResult> SetId(Guid id)
-			=> new Query(this.storageContext, this.logger, this.collectionType, id);
-
-		private sealed class Query : SingleAsyncQueryBase<TResult>
+		public void Dispose()
 		{
-			private readonly IDataContext storageContext;
-			private readonly ILogger logger;
-			private readonly Guid id;
-			private readonly string collectionType;
-
-			public Query(IDataContext storageContext, ILogger logger, string collectionType, Guid id)
-			{
-				this.storageContext = storageContext;
-				this.logger = logger;
-				this.collectionType = collectionType;
-				this.id = id;
-			}
-
-			public override Task<TResult> Execute()
-				=> this.storageContext
-					.Read<TResult>(Databases.Picums, this.collectionType)
-					.Single(x => x.Id == this.id);
 		}
+
+		public abstract Task<TResult> Execute();
+
+		protected IDataReader<TPayload> Read() => this.storageContext.Read<TPayload>(this.parts.Parts);
 	}
 }

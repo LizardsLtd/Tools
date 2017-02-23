@@ -3,6 +3,7 @@ using TheLizzards.Data.CQRS.Contracts.DataAccess;
 
 namespace TheLizzards.Data.CQRS.Entities
 {
+	[Obsolete]
 	public abstract class DataContextOperatorBase : IDisposable
 	{
 		protected readonly IDataContext storageContext;

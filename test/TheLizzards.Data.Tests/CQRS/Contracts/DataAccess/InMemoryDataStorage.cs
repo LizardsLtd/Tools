@@ -2,7 +2,7 @@
 
 namespace TheLizzards.Data.Tests.CQRS.Contracts.DataAccess
 {
-	internal sealed class InMemoryDataStorage : Dictionary<string, Dictionary<string, object>>
+	internal sealed class InMemoryDataStorage : Dictionary<string, List<object>>
 	{
 	}
 }

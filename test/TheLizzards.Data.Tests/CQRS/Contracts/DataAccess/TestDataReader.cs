@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 using TheLizzards.Data.CQRS.Contracts.DataAccess;
@@ -41,12 +42,22 @@ namespace TheLizzards.Data.Tests.CQRS.Contracts.DataAccess
 
 		public Task<T> Single(Expression<Func<T, bool>> predicate)
 		{
-			throw new NotImplementedException();
+			var typeName = typeof(T).Name;
+			var func = predicate.Compile();
+
+			return Task.FromResult(inMemoryDataStorage[typeName]
+				.Cast<T>()
+				.Single(func));
 		}
 
 		public Task<Maybe<T>> SingleOrDefault(Expression<Func<T, bool>> predicate)
 		{
-			throw new NotImplementedException();
+			var typeName = typeof(T).Name;
+			var func = predicate.Compile();
+
+			return Task.FromResult(inMemoryDataStorage[typeName]
+				.Cast<T>()
+				.SingleOrNothing(func));
 		}
 	}
 }

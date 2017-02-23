@@ -1,8 +1,10 @@
+using System;
 using System.Threading.Tasks;
 using TheLizzards.Data.CQRS.Contracts;
 
 namespace TheLizzards.Data.CQRS.Entities
 {
+	[Obsolete]
 	public abstract class SingleAsyncQueryBase<TPayload> : IAsyncQuery<TPayload>
 	{
 		private bool disposedValue = false;

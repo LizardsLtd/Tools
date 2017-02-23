@@ -3,7 +3,7 @@ using TheLizzards.Data.DDD.Contracts;
 
 namespace TheLizzards.Data.Tests.Mocks
 {
-	public sealed class SimpleAggregateRoot : IAggregateRoot
+	internal sealed class SimpleAggregateRoot : IAggregateRoot
 	{
 		public SimpleAggregateRoot(Guid id)
 		{
