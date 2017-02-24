@@ -3,8 +3,8 @@
 		<Description>Implementation of common data access patterns.</Description>
 		<Copyright>TheLizzards 2016 - 2017</Copyright>
 		<AssemblyTitle>Lizzards Data</AssemblyTitle>
-		<VersionPrefix>1.5.0</VersionPrefix>
-		<Version>1.5.0</Version>
+		<VersionPrefix>1.6.0</VersionPrefix>
+		<Version>1.6.0</Version>
 		<AssemblyName>TheLizzards.Data</AssemblyName>
 		<PackageTags>data;thelizzards</PackageTags>
 		<RepositoryType>git</RepositoryType>
