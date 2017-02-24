@@ -3,6 +3,7 @@ using TheLizzards.Data.Types.Entites;
 
 namespace TheLizzards.Data.Types.Contracts.Scoped
 {
+	[Obsolete]
 	public interface IEmailScoped<T> : IDisposable
 	{
 		T SetEmail(Email email);
