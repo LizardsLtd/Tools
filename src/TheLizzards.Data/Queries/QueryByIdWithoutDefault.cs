@@ -6,12 +6,12 @@ using TheLizzards.Data.DDD.Contracts;
 
 namespace TheLizzards.Data.Queries
 {
-	public abstract class QueryById<TPayload> : Query<TPayload, TPayload>
+	public abstract class QueryByIdWithoutDefault<TPayload> : Query<TPayload, TPayload>
 		where TPayload : IAggregateRoot
 	{
 		private readonly Guid id;
 
-		public QueryById(IDataContext storageContext, ILogger logger, DatabaseParts parts, Guid id)
+		public QueryByIdWithoutDefault(IDataContext storageContext, ILogger logger, DatabaseParts parts, Guid id)
 			: base(storageContext, logger, parts)
 		{
 			this.id = id;

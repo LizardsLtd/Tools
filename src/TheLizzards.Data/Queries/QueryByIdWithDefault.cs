@@ -7,12 +7,12 @@ using TheLizzards.Maybe;
 
 namespace TheLizzards.Data.Queries
 {
-	public abstract class MaybeQueryById<TPayload> : Query<TPayload, Maybe<TPayload>>
+	public abstract class QueryByIdWithDefault<TPayload> : Query<TPayload, Maybe<TPayload>>
 		where TPayload : IAggregateRoot
 	{
 		private readonly Guid id;
 
-		public MaybeQueryById(IDataContext storageContext, ILogger logger, DatabaseParts parts, Guid id)
+		public QueryByIdWithDefault(IDataContext storageContext, ILogger logger, DatabaseParts parts, Guid id)
 			: base(storageContext, logger, parts)
 		{
 			this.id = id;
