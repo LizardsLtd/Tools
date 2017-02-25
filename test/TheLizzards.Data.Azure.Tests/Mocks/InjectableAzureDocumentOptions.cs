@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.Options;
 using TheLizzards.Data.Azure.Entities;
 
-namespace TheLizzards.Data.Azure.Tests.Entities
+namespace TheLizzards.Data.Azure.Tests.Mocks
 {
 	internal sealed class InjectableAzureDocumentOptions : IOptions<AzureDocumentDbOptions>
 	{
