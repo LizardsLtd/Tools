@@ -4,9 +4,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 using TheLizzards.Data.CQRS.Contracts.DataAccess;
-using TheLizzards.Data.CQRS.Entities;
 using TheLizzards.Data.DDD.Contracts;
-using TheLizzards.Maybe;
 
 namespace TheLizzards.Data.Tests.CQRS.Contracts.DataAccess
 {
@@ -18,46 +16,20 @@ namespace TheLizzards.Data.Tests.CQRS.Contracts.DataAccess
 		public TestDataReader(InMemoryDataStorage inMemoryDataStorage)
 		{
 			this.inMemoryDataStorage = inMemoryDataStorage;
+			this.NameOfType = typeof(T).Name;
 		}
 
-		public Task<T> First(Expression<Func<T, bool>> predicate)
-		{
-			throw new NotImplementedException();
-		}
+		private string NameOfType { get; }
 
-		public Task<Maybe<T>> FirstOrDefault(Expression<Func<T, bool>> predicate)
-		{
-			throw new NotImplementedException();
-		}
+		public Task<IEnumerable<T>> All() => Task.FromResult(CurrentResults());
 
-		public Task<IEnumerable<T>> GetAll(Expression<Func<T, bool>> predicate)
-		{
-			throw new NotImplementedException();
-		}
+		public Task<TResult> QueryFor<TResult>(Expression<Func<IQueryable<T>, TResult>> predicate)
+			=> Task.FromResult(predicate.Compile().Invoke(CurrentResults().AsQueryable()));
 
-		public Task<IEnumerable<T>> GetPage(Expression<Func<T, bool>> predicate, Page page)
-		{
-			throw new NotImplementedException();
-		}
+		public Task<IQueryable<T>> Where(Expression<Func<T, bool>> predicate)
+			=> Task.FromResult(CurrentResults().Where(predicate.Compile()).AsQueryable());
 
-		public Task<T> Single(Expression<Func<T, bool>> predicate)
-		{
-			var typeName = typeof(T).Name;
-			var func = predicate.Compile();
-
-			return Task.FromResult(inMemoryDataStorage[typeName]
-				.Cast<T>()
-				.Single(func));
-		}
-
-		public Task<Maybe<T>> SingleOrDefault(Expression<Func<T, bool>> predicate)
-		{
-			var typeName = typeof(T).Name;
-			var func = predicate.Compile();
-
-			return Task.FromResult(inMemoryDataStorage[typeName]
-				.Cast<T>()
-				.SingleOrNothing(func));
-		}
+		private IEnumerable<T> CurrentResults()
+			=> this.inMemoryDataStorage[this.NameOfType].Cast<T>();
 	}
 }
