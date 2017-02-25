@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Threading.Tasks;
-using Serilog;
 using TheLizzards.Data.CQRS.Contracts.DataAccess;
 using TheLizzards.Data.DDD.Contracts;
+using Microsoft.Extensions.Logging;
 
 namespace TheLizzards.Data.Queries
 {
@@ -11,8 +11,8 @@ namespace TheLizzards.Data.Queries
 	{
 		private readonly Guid id;
 
-		public QueryByIdWithoutDefault(IDataContext storageContext, ILogger logger, DatabaseParts parts, Guid id)
-			: base(storageContext, logger, parts)
+		public QueryByIdWithoutDefault(IDataContext storageContext, ILoggerFactory loggerfactory, DatabaseParts parts, Guid id)
+			: base(storageContext, loggerfactory, parts)
 		{
 			this.id = id;
 		}

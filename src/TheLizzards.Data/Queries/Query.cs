@@ -1,8 +1,8 @@
 ﻿using System.Threading.Tasks;
-using Serilog;
 using TheLizzards.Data.CQRS.Contracts;
 using TheLizzards.Data.CQRS.Contracts.DataAccess;
 using TheLizzards.Data.DDD.Contracts;
+using Microsoft.Extensions.Logging;
 
 namespace TheLizzards.Data.Queries
 {
@@ -13,10 +13,10 @@ namespace TheLizzards.Data.Queries
 		private readonly IDataContext storageContext;
 		private readonly DatabaseParts parts;
 
-		public Query(IDataContext storageContext, ILogger logger, DatabaseParts parts)
+		public Query(IDataContext storageContext, ILoggerFactory loggerFactory, DatabaseParts parts)
 		{
 			this.storageContext = storageContext;
-			this.logger = logger;
+			this.logger = loggerFactory.CreateLogger(GetType());
 			this.parts = parts;
 		}
 
