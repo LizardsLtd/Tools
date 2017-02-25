@@ -21,9 +21,9 @@ namespace TheLizzards.Data.Azure.Entities
 			this.collectionUri = collectionUri;
 		}
 
-		public async Task Insert(T item) => await this.InsertDocumnet(item);
+		public async Task InsertNew(T item) => await this.InsertDocumnet(item);
 
-		public async Task Update(T item) => await InsertDocumnet(item, await QuertyForETag(item.Id));
+		public async Task UpdateExisting(T item) => await InsertDocumnet(item, await QuertyForETag(item.Id));
 
 		private async Task<string> QuertyForETag(Guid itemId)
 		{

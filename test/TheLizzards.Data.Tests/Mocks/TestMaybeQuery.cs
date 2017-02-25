@@ -5,9 +5,9 @@ using TheLizzards.Data.Queries;
 
 namespace TheLizzards.Data.Tests.Mocks
 {
-	internal sealed class SampleMaybeQuery : QueryByIdWithDefault<SimpleAggregateRoot>
+	internal sealed class TestMaybeQuery : QueryByIdWithDefault<SimpleAggregateRoot>
 	{
-		public SampleMaybeQuery(IDataContext storageContext, ILoggerFactory loggerFactory, DatabaseParts parts, Guid id)
+		public TestMaybeQuery(IDataContext storageContext, ILoggerFactory loggerFactory, DatabaseParts parts, Guid id)
 			: base(storageContext, loggerFactory, parts, id)
 		{
 		}

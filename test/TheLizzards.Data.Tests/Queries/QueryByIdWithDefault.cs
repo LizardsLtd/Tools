@@ -10,13 +10,13 @@ using Xunit;
 
 namespace TheLizzards.Data.Tests.Queries
 {
-	public sealed class AbilityToCreateQuickQuery
+	public sealed class QueryByIdWithDefault
 	{
 		private readonly DatabaseParts parts;
 		private readonly TestDataContext context;
 		private readonly Guid id;
 
-		public AbilityToCreateQuickQuery()
+		public QueryByIdWithDefault()
 		{
 			this.parts = new DatabaseParts("test", "test");
 			this.id = Guid.NewGuid();
@@ -31,19 +31,9 @@ namespace TheLizzards.Data.Tests.Queries
 		}
 
 		[Fact]
-		public async Task SingleQueryWithFailWhenNotFound()
+		public async Task QueringForExistingEntity()
 		{
-			var query = new SampleQuery(this.context, new NullLoggerFactory(), this.parts, id);
-
-			var result = await query.Execute();
-
-			result.Id.Should().Be(id);
-		}
-
-		[Fact]
-		public async Task SingleQueryWithMaybe()
-		{
-			var query = new SampleMaybeQuery(this.context, new NullLoggerFactory(), this.parts, id);
+			var query = new TestMaybeQuery(this.context, new NullLoggerFactory(), this.parts, id);
 
 			var result = await query.Execute();
 
