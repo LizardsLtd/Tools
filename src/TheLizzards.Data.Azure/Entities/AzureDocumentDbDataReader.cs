@@ -28,54 +28,21 @@ namespace TheLizzards.Data.Azure.Entities
 		}
 
 		public Task<IEnumerable<T>> All()
-
 		{
-			throw new NotImplementedException();
+			return Task.FromResult<IEnumerable<T>>(this.QueryDocumentDb().ToArray());
 		}
 
 		public Task<TResult> QueryFor<TResult>(Expression<Func<IQueryable<T>, TResult>> predicate)
 		{
-			throw new NotImplementedException();
+			return Task.FromResult(predicate.Compile().Invoke(this.QueryDocumentDb()));
 		}
 
 		public Task<IQueryable<T>> Where(Expression<Func<T, bool>> predicate)
 		{
-			throw new NotImplementedException();
+			return Task.FromResult(this.QueryDocumentDb().Where(predicate.Compile()).AsQueryable());
 		}
 
-		private Task<TResult> ExecuteQuery<TPayload, TResult>(
-			Expression<Func<TPayload, bool>> predicate
-			, Func<IQueryable<TPayload>, TResult> resultsExtractor)
-				where TPayload : IAggregateRoot
-		{
-			try
-			{
-				this.logger.LogInformation(
-					$"Azure DocDb: For type {nameof(TPayload)} on collection {this.collectionUri}");
-
-				var items = this.QueryDocumentDb(predicate);
-
-				this.logger.LogInformation($"Items count: {items}");
-
-				var result = resultsExtractor(items);
-
-				return Task.FromResult(result);
-			}
-			catch (Exception exp)
-			{
-				this.logger.LogError(
-					new EventId(1)
-					, exp
-					, exp.Message);
-
-				return Task.FromException<TResult>(exp);
-			}
-		}
-
-		private IQueryable<T> QueryDocumentDb<T>(Expression<Func<T, bool>> predicate)
-				where T : IAggregateRoot
-			=> client
-				.CreateDocumentQuery<T>(collectionUri)
-				.Where(predicate);
+		private IOrderedQueryable<T> QueryDocumentDb()
+			=> client.CreateDocumentQuery<T>(collectionUri);
 	}
 }
