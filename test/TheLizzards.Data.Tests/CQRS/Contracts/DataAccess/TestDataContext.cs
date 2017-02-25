@@ -16,10 +16,10 @@ namespace TheLizzards.Data.Tests.CQRS.Contracts.DataAccess
 		{
 		}
 
-		public IDataReader<T> Read<T>(params object[] attributes) where T : IAggregateRoot
+		public IDataReader<T> GetReader<T>(params object[] attributes) where T : IAggregateRoot
 			=> new TestDataReader<T>(this.Data);
 
-		public IDataWriter<T> Write<T>(params object[] attributes) where T : IAggregateRoot
+		public IDataWriter<T> GetWriter<T>(params object[] attributes) where T : IAggregateRoot
 			=> new TestDataWriter<T>(this.Data);
 	}
 }

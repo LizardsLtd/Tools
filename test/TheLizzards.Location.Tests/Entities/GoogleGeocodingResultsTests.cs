@@ -17,7 +17,7 @@ namespace TheLizzards.Location.Tests.Entities
 				.LoadTextFileAsync("TheLizzards.Location.Tests.Resources.GoogleServiceResluts.xml")
 				.GetAwaiter()
 				.GetResult();
-			this.emptyLogger = new NullLoggerFactory().CreateLogger("null");
+			this.emptyLogger = new TestLoggerFactory().CreateLogger("null");
 		}
 
 		[Fact]

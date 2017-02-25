@@ -1,4 +1,4 @@
-﻿namespace TheLizzards.Data.Queries
+﻿namespace TheLizzards.Data.CQRS.Contracts.DataAccess
 {
 	public sealed class DatabaseParts
 	{
@@ -12,5 +12,8 @@
 		}
 
 		public object[] Parts => new[] { this.database, this.collection };
+
+		public static implicit operator object[] (DatabaseParts parts)
+			=> parts.Parts;
 	}
 }

@@ -11,7 +11,7 @@ namespace TheLizzards.Location.Tests.Services
 
 		public GoogleGeocodingServiceTests()
 		{
-			this.service = new GoogleGeocodingService(new NullLoggerFactory());
+			this.service = new GoogleGeocodingService(new TestLoggerFactory());
 		}
 
 		[Fact]

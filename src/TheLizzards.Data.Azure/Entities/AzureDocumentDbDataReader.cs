@@ -29,16 +29,19 @@ namespace TheLizzards.Data.Azure.Entities
 
 		public Task<IEnumerable<T>> All()
 		{
+			this.logger.LogInformation($"AzureDocumentDbDataReader for {typeof(T).Name} All function");
 			return Task.FromResult<IEnumerable<T>>(this.QueryDocumentDb().ToArray());
 		}
 
 		public Task<TResult> QueryFor<TResult>(Expression<Func<IQueryable<T>, TResult>> predicate)
 		{
+			this.logger.LogInformation($"AzureDocumentDbDataReader for {typeof(T).Name} QueryFor function");
 			return Task.FromResult(predicate.Compile().Invoke(this.QueryDocumentDb()));
 		}
 
 		public Task<IQueryable<T>> Where(Expression<Func<T, bool>> predicate)
 		{
+			this.logger.LogInformation($"AzureDocumentDbDataReader for {typeof(T).Name} Where function");
 			return Task.FromResult(this.QueryDocumentDb().Where(predicate.Compile()).AsQueryable());
 		}
 

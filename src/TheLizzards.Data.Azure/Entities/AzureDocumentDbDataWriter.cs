@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Threading.Tasks;
+using Microsoft.Azure.Documents;
 using Microsoft.Azure.Documents.Client;
+using Microsoft.Extensions.Logging;
 using TheLizzards.Data.CQRS.Contracts.DataAccess;
 using TheLizzards.Data.DDD.Contracts;
 
@@ -13,17 +15,21 @@ namespace TheLizzards.Data.Azure.Entities
 		private readonly DocumentClient client;
 		private readonly string collectionUri;
 		private readonly string databaseId;
+		private readonly ILogger logger;
 
-		public AzureDocumentDbDataWriter(DocumentClient client, string databaseId, string collectionUri)
+		public AzureDocumentDbDataWriter(DocumentClient client, string databaseId, string collectionUri, ILogger logger)
 		{
 			this.client = client;
 			this.databaseId = databaseId;
 			this.collectionUri = collectionUri;
+			this.logger = logger;
 		}
 
-		public async Task InsertNew(T item) => await this.InsertDocumnet(item);
+		public async Task InsertNew(T item)
+			=> await this.InsertDocument(item);
 
-		public async Task UpdateExisting(T item) => await InsertDocumnet(item, await QuertyForETag(item.Id));
+		public async Task UpdateExisting(T item)
+			=> await InsertDocument(item, await QuertyForETag(item.Id));
 
 		private async Task<string> QuertyForETag(Guid itemId)
 		{
@@ -37,23 +43,30 @@ namespace TheLizzards.Data.Azure.Entities
 			return document?.Resource?.ETag;
 		}
 
-		private async Task InsertDocumnet(T item, string etag = "")
+		private async Task InsertDocument(T item, string etag = "")
 		{
-			var requestOptions = new RequestOptions();
-
-			if (!string.IsNullOrEmpty(etag))
+			try
 			{
-				requestOptions.AccessCondition = new AccessCondition
-				{
-					Condition = etag,
-					Type = AccessConditionType.IfMatch,
-				};
-			}
+				var requestOptions = new RequestOptions();
 
-			await this.client.UpsertDocumentAsync(
-				  UriFactory.CreateDocumentCollectionUri(databaseId, collectionUri)
-				  , item
-				  , requestOptions);
+				if (!string.IsNullOrEmpty(etag))
+				{
+					requestOptions.AccessCondition = new AccessCondition
+					{
+						Condition = etag,
+						Type = AccessConditionType.IfMatch,
+					};
+				}
+
+				await this.client.UpsertDocumentAsync(
+					  UriFactory.CreateDocumentCollectionUri(databaseId, collectionUri)
+					  , item
+					  , requestOptions);
+			}
+			catch (DocumentClientException exp)
+			{
+				this.logger.LogError(exp.Message);
+			}
 		}
 	}
 }

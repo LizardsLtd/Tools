@@ -24,7 +24,7 @@ namespace TheLizzards.Data.Azure.Entities
 
 		private bool IsClientCreated => this.client?.IsValueCreated ?? false;
 
-		public IDataReader<T> Read<T>(params object[] attributes)
+		public IDataReader<T> GetReader<T>(params object[] attributes)
 			where T : IAggregateRoot
 		{
 			var collectionUri = GetCollectionUri(attributes);
@@ -38,7 +38,7 @@ namespace TheLizzards.Data.Azure.Entities
 				, this.logger);
 		}
 
-		public IDataWriter<T> Write<T>(params object[] attributes)
+		public IDataWriter<T> GetWriter<T>(params object[] attributes)
 			where T : IAggregateRoot
 		{
 			var databaseId = attributes[0].ToString();
@@ -47,7 +47,11 @@ namespace TheLizzards.Data.Azure.Entities
 			this.logger.LogInformation(
 				$"AzureDocumentDb: Writer for {typeof(T).Name} and collection {collectionId}");
 
-			return new AzureDocumentDbDataWriter<T>(this.client.Value, databaseId, collectionId);
+			return new AzureDocumentDbDataWriter<T>(
+				this.client.Value
+				, databaseId
+				, collectionId
+				, this.logger);
 		}
 
 		public void Dispose()

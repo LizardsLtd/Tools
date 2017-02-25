@@ -26,6 +26,6 @@ namespace TheLizzards.Data.Queries
 
 		public abstract Task<TResult> Execute();
 
-		protected IDataReader<TPayload> Read() => this.storageContext.Read<TPayload>(this.parts.Parts);
+		protected IDataReader<TPayload> Read() => this.storageContext.GetReader<TPayload>(this.parts.Parts);
 	}
 }

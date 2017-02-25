@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using FluentAssertions;
-using TheLizzards.Data.Queries;
+using TheLizzards.Data.CQRS.Contracts.DataAccess;
 using TheLizzards.Data.Tests.CQRS.Contracts.DataAccess;
 using TheLizzards.Data.Tests.Mocks;
 using TheLizzards.Tests;
@@ -33,7 +33,7 @@ namespace TheLizzards.Data.Tests.Queries
 		[Fact]
 		public async Task QueringForExistingEntity()
 		{
-			var query = new TestMaybeQuery(this.context, new NullLoggerFactory(), this.parts, id);
+			var query = new TestMaybeQuery(this.context, new TestLoggerFactory(), this.parts, id);
 
 			var result = await query.Execute();
 
