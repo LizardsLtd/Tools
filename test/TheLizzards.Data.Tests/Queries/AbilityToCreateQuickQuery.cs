@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using FluentAssertions;
-using Serilog;
 using TheLizzards.Data.Queries;
 using TheLizzards.Data.Tests.CQRS.Contracts.DataAccess;
 using TheLizzards.Data.Tests.Mocks;
+using TheLizzards.Tests;
 using Xunit;
 
 namespace TheLizzards.Data.Tests.Queries
@@ -33,7 +33,7 @@ namespace TheLizzards.Data.Tests.Queries
 		[Fact]
 		public async Task SingleQueryWithFailWhenNotFound()
 		{
-			var query = new SampleQuery(this.context, Log.Logger, this.parts, id);
+			var query = new SampleQuery(this.context, new NullLoggerFactory(), this.parts, id);
 
 			var result = await query.Execute();
 
@@ -43,7 +43,7 @@ namespace TheLizzards.Data.Tests.Queries
 		[Fact]
 		public async Task SingleQueryWithMaybe()
 		{
-			var query = new SampleMaybeQuery(this.context, Log.Logger, this.parts, id);
+			var query = new SampleMaybeQuery(this.context, new NullLoggerFactory(), this.parts, id);
 
 			var result = await query.Execute();
 
