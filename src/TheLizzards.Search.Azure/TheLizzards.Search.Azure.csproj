@@ -1,31 +1,32 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-  <PropertyGroup>
-    <Description>UnAzure provider for Search services.</Description>
-    <Copyright>TheLizzards 2016 - 2017</Copyright>
-    <AssemblyTitle>Lizzards Search Azure</AssemblyTitle>
-    <VersionPrefix>1.0.1</VersionPrefix>
-    <Version>1.0.1</Version>
-    <AssemblyName>TheLizzards.Search.Azure</AssemblyName>
-    <PackageTags>search;azure;thelizzards</PackageTags>
-    <RepositoryType>git</RepositoryType>
-    <RepositoryUrl>https://github.com/TheLizzards/tools</RepositoryUrl>
-    <GenerateAssemblyTitleAttribute>false</GenerateAssemblyTitleAttribute>
-    <GenerateAssemblyDescriptionAttribute>false</GenerateAssemblyDescriptionAttribute>
-    <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
-    <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
-    <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
-    <GenerateAssemblyCopyrightAttribute>false</GenerateAssemblyCopyrightAttribute>
-  </PropertyGroup>
-  <PropertyGroup>
-    <TargetFramework>netstandard1.4</TargetFramework>
-    <PackageTargetFallback Condition=" '$(TargetFramework)' == 'netstandard1.4' ">$(PackageTargetFallback);portable-net40+sl5+win8+wp8+wpa81</PackageTargetFallback>
-  </PropertyGroup>
-  <ItemGroup>
-    <PackageReference Include="Microsoft.Azure.Search" Version="3.0.2" />
-    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="1.1.0" />
-    <PackageReference Include="Newtonsoft.Json" Version="9.0.2-beta2" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\TheLizzards.Search\TheLizzards.Search.csproj" />
-  </ItemGroup>
+	<PropertyGroup>
+		<Description>UnAzure provider for Search services.</Description>
+		<Copyright>TheLizzards 2016 - 2017</Copyright>
+		<AssemblyTitle>Lizzards Search Azure</AssemblyTitle>
+		<VersionPrefix>1.1.0</VersionPrefix>
+		<Version>1.1.0</Version>
+		<AssemblyName>TheLizzards.Search.Azure</AssemblyName>
+		<PackageTags>search;azure;thelizzards</PackageTags>
+		<RepositoryType>git</RepositoryType>
+		<RepositoryUrl>https://github.com/TheLizzards/tools</RepositoryUrl>
+		<GenerateAssemblyTitleAttribute>false</GenerateAssemblyTitleAttribute>
+		<GenerateAssemblyDescriptionAttribute>false</GenerateAssemblyDescriptionAttribute>
+		<GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
+		<GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
+		<GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
+		<GenerateAssemblyCopyrightAttribute>false</GenerateAssemblyCopyrightAttribute>
+	</PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>netstandard1.4</TargetFramework>
+		<PackageTargetFallback Condition=" '$(TargetFramework)' == 'netstandard1.4' ">$(PackageTargetFallback);portable-net40+sl5+win8+wp8+wpa81</PackageTargetFallback>
+	</PropertyGroup>
+	<ItemGroup>
+		<PackageReference Include="Microsoft.Azure.Search" Version="3.0.2" />
+		<PackageReference Include="Microsoft.Extensions.Logging" Version="1.1.0" />
+		<PackageReference Include="Newtonsoft.Json" Version="9.0.2-beta2" />
+		<PackageReference Include="Microsoft.Extensions.Logging" Version="1.1.0" />
+	</ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\TheLizzards.Search\TheLizzards.Search.csproj" />
+	</ItemGroup>
 </Project>

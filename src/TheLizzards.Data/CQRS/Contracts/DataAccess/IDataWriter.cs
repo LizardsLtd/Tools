@@ -1,13 +1,13 @@
 ﻿using System.Threading.Tasks;
-using TheLizzards.Data.DDD.Contracts;
+using TheLizzards.Data.DDD;
 
 namespace TheLizzards.Data.CQRS.Contracts.DataAccess
 {
 	public interface IDataWriter<T>
 		where T : IAggregateRoot
 	{
-		Task Insert(T item);
+		Task InsertNew(T item);
 
-		Task Update(T item);
+		Task UpdateExisting(T item);
 	}
 }

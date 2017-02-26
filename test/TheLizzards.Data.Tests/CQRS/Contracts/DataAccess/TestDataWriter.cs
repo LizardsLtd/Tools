@@ -1,8 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using TheLizzards.Data.CQRS.Contracts.DataAccess;
-using TheLizzards.Data.DDD.Contracts;
+using TheLizzards.Data.DDD;
 
 namespace TheLizzards.Data.Tests.CQRS.Contracts.DataAccess
 {
@@ -16,12 +15,12 @@ namespace TheLizzards.Data.Tests.CQRS.Contracts.DataAccess
 			this.inMemoryDataStorage = inMemoryDataStorage;
 		}
 
-		public Task Insert(T item)
+		public Task InsertNew(T item)
 		{
 			throw new NotImplementedException();
 		}
 
-		public Task Update(T item)
+		public Task UpdateExisting(T item)
 		{
 			throw new NotImplementedException();
 		}
