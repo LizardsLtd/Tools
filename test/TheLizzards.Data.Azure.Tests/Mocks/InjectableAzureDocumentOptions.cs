@@ -1,5 +1,5 @@
 ﻿using Microsoft.Extensions.Options;
-using TheLizzards.Data.Azure.Entities;
+using TheLizzards.Data.Azure;
 
 namespace TheLizzards.Data.Azure.Tests.Mocks
 {

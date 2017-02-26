@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 using Microsoft.Azure.Documents.Client;
 using Microsoft.Extensions.Logging;
 using TheLizzards.Data.CQRS.Contracts.DataAccess;
-using TheLizzards.Data.DDD.Contracts;
+using TheLizzards.Data.DDD;
 
-namespace TheLizzards.Data.Azure.Entities
+namespace TheLizzards.Data.Azure
 {
 	internal sealed class AzureDocumentDbDataReader<T> : IDataReader<T>
 		where T : IAggregateRoot

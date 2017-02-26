@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace TheLizzards.Data.DDD.Contracts
+namespace TheLizzards.Data.DDD
 {
 	public interface IAggregateRoot
 	{

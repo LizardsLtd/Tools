@@ -3,9 +3,9 @@ using Microsoft.Azure.Documents.Client;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using TheLizzards.Data.CQRS.Contracts.DataAccess;
-using TheLizzards.Data.DDD.Contracts;
+using TheLizzards.Data.DDD;
 
-namespace TheLizzards.Data.Azure.Entities
+namespace TheLizzards.Data.Azure
 {
 	public sealed class AzureDocumentDbContext : IDataContext
 	{

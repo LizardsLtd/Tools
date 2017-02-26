@@ -7,7 +7,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using TheLizzards.Data.CQRS.Contracts.DataAccess;
 
-namespace TheLizzards.Data.Azure.Entities
+namespace TheLizzards.Data.Azure
 {
 	public sealed class AzureDocumentDbContextInitialiser : IDataContextInitialiser
 	{

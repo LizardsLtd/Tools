@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using TheLizzards.Data.CQRS.Contracts.DataAccess;
-using TheLizzards.Data.DDD.Contracts;
+using TheLizzards.Data.DDD;
 
 namespace TheLizzards.Data.CQRS.Queries
 {

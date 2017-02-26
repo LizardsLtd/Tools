@@ -1,6 +1,6 @@
 ﻿using System;
 using Newtonsoft.Json;
-using TheLizzards.Data.DDD.Contracts;
+using TheLizzards.Data.DDD;
 
 namespace TheLizzards.Data.Azure.Tests.Mocks
 {

@@ -1,5 +1,5 @@
 ﻿using TheLizzards.Data.CQRS.Contracts.DataAccess;
-using TheLizzards.Data.DDD.Contracts;
+using TheLizzards.Data.DDD;
 
 namespace TheLizzards.Data.Tests.CQRS.Contracts.DataAccess
 {
