@@ -6,7 +6,6 @@ using Microsoft.Azure.Documents.Client;
 using TheLizzards.Data.Azure.Tests.Mocks;
 using TheLizzards.Data.CQRS.Contracts.DataAccess;
 using TheLizzards.Tests;
-using Xunit;
 
 namespace TheLizzards.Data.Azure.Tests.Entities
 {
@@ -21,7 +20,6 @@ namespace TheLizzards.Data.Azure.Tests.Entities
 			this.parts = new DatabaseParts("Test", "TestItem");
 		}
 
-		[Fact(Skip = true)]
 		public async Task SaveDataWithDataWriter()
 		{
 			await InitialiseDatabase();
