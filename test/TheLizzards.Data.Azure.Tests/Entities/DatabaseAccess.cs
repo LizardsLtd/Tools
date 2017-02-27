@@ -3,7 +3,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using FluentAssertions;
 using Microsoft.Azure.Documents.Client;
-using TheLizzards.Data.Azure;
 using TheLizzards.Data.Azure.Tests.Mocks;
 using TheLizzards.Data.CQRS.Contracts.DataAccess;
 using TheLizzards.Tests;
@@ -22,7 +21,7 @@ namespace TheLizzards.Data.Azure.Tests.Entities
 			this.parts = new DatabaseParts("Test", "TestItem");
 		}
 
-		[Fact]
+		[Fact(Skip = true)]
 		public async Task SaveDataWithDataWriter()
 		{
 			await InitialiseDatabase();
