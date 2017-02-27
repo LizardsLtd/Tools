@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
-using TheLizzards.Data.CQRS.Contracts;
-using TheLizzards.Data.CQRS.Contracts.DataAccess;
+using TheLizzards.Data.CQRS;
+using TheLizzards.Data.CQRS.DataAccess;
 using TheLizzards.Data.DDD;
 using TheLizzards.Maybe;
 

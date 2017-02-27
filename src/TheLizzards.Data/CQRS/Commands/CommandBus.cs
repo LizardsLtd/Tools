@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
-using TheLizzards.Data.CQRS.Contracts;
+using TheLizzards.Data.CQRS;
 
 namespace TheLizzards.Data.CQRS.Commands
 {

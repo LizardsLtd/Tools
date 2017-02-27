@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using FluentAssertions;
-using TheLizzards.Data.CQRS.Contracts.DataAccess;
+using TheLizzards.Data.CQRS.DataAccess;
 using TheLizzards.Data.Tests.CQRS.Contracts.DataAccess;
 using TheLizzards.Data.Tests.Mocks;
 using TheLizzards.Tests;

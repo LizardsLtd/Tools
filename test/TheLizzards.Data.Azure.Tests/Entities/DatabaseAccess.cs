@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using FluentAssertions;
 using Microsoft.Azure.Documents.Client;
 using TheLizzards.Data.Azure.Tests.Mocks;
-using TheLizzards.Data.CQRS.Contracts.DataAccess;
+using TheLizzards.Data.CQRS.DataAccess;
 using TheLizzards.Tests;
 
 namespace TheLizzards.Data.Azure.Tests.Entities

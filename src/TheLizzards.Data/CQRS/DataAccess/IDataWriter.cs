@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
 using TheLizzards.Data.DDD;
 
-namespace TheLizzards.Data.CQRS.Contracts.DataAccess
+namespace TheLizzards.Data.CQRS.DataAccess
 {
 	public interface IDataWriter<T>
 		where T : IAggregateRoot

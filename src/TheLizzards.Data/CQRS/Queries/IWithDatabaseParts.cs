@@ -1,4 +1,4 @@
-﻿using TheLizzards.Data.CQRS.Contracts.DataAccess;
+﻿using TheLizzards.Data.CQRS.DataAccess;
 
 namespace TheLizzards.Data.CQRS.Queries
 {

@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
-using TheLizzards.Data.CQRS.Contracts.DataAccess;
+using TheLizzards.Data.CQRS.DataAccess;
 using TheLizzards.Data.DDD;
 
 namespace TheLizzards.Data.Tests.CQRS.Contracts.DataAccess

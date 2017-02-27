@@ -1,5 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
-using TheLizzards.Data.CQRS.Contracts.DataAccess;
+using TheLizzards.Data.CQRS.DataAccess;
 
 namespace TheLizzards.Data.CQRS.Queries
 {
@@ -8,10 +8,6 @@ namespace TheLizzards.Data.CQRS.Queries
 		protected IDataContext dataContext;
 		protected ILoggerFactory loggerFactory;
 		protected DatabaseParts parts;
-
-		public QueryBuilder()
-		{
-		}
 
 		public TResult WithDatabaseParts(DatabaseParts parts)
 		{

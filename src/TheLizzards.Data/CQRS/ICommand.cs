@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace TheLizzards.Data.CQRS.Contracts
+namespace TheLizzards.Data.CQRS
 {
 	public interface ICommand
 	{

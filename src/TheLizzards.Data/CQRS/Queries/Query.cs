@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
-using TheLizzards.Data.CQRS.Contracts;
-using TheLizzards.Data.CQRS.Contracts.DataAccess;
+using TheLizzards.Data.CQRS;
+using TheLizzards.Data.CQRS.DataAccess;
 using TheLizzards.Data.DDD;
 
 namespace TheLizzards.Data.CQRS.Queries
@@ -25,10 +25,6 @@ namespace TheLizzards.Data.CQRS.Queries
 			this.logger = loggerFactory.CreateLogger(GetType());
 			this.parts = parts;
 			this.execute = execute;
-		}
-
-		public void Dispose()
-		{
 		}
 
 		public Task<TResult> Execute()

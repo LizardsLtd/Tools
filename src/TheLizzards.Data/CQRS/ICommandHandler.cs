@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Threading.Tasks;
 
-namespace TheLizzards.Data.CQRS.Contracts
+namespace TheLizzards.Data.CQRS
 {
 	public interface ICommandHandler : IDisposable
 	{

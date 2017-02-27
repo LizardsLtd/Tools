@@ -5,7 +5,7 @@ using System.Linq.Expressions;
 using System.Threading.Tasks;
 using TheLizzards.Data.DDD;
 
-namespace TheLizzards.Data.CQRS.Contracts.DataAccess
+namespace TheLizzards.Data.CQRS.DataAccess
 {
 	public interface IDataReader<T>
 		where T : IAggregateRoot

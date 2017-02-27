@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using TheLizzards.Data.CQRS.Contracts;
+using TheLizzards.Data.CQRS;
 using TheLizzards.Data.DDD;
 
 namespace TheLizzards.Data.CQRS.Queries
@@ -10,7 +10,7 @@ namespace TheLizzards.Data.CQRS.Queries
 			where TPayload : IAggregateRoot
 	{
 		protected override IAsyncQuery<IEnumerable<TPayload>> NextBuildStep()
-									=> new Query<TPayload, IEnumerable<TPayload>>(
+			=> new Query<TPayload, IEnumerable<TPayload>>(
 				this.dataContext
 				, this.loggerFactory
 				, this.parts

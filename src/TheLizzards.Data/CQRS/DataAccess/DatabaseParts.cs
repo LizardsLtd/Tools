@@ -1,4 +1,4 @@
-﻿namespace TheLizzards.Data.CQRS.Contracts.DataAccess
+﻿namespace TheLizzards.Data.CQRS.DataAccess
 {
 	public sealed class DatabaseParts
 	{

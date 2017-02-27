@@ -1,5 +1,5 @@
 ﻿using System;
-using TheLizzards.Data.CQRS.Contracts;
+using TheLizzards.Data.CQRS;
 
 namespace TheLizzards.Data.CQRS.Commands
 {
