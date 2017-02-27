@@ -1,27 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using Microsoft.Extensions.Logging;
-using TheLizzards.Data.CQRS.Contracts.DataAccess;
+﻿using System.Collections.Generic;
+using TheLizzards.Data.CQRS.Contracts;
 using TheLizzards.Data.DDD;
 
 namespace TheLizzards.Data.CQRS.Queries
 {
-	public abstract class QueryForAll<TPayload> : Query<TPayload, IEnumerable<TPayload>>
-		where TPayload : IAggregateRoot
+	public abstract class QueryForAll<TPayload>
+		: QueryBuilder<IAsyncQuery<IEnumerable<TPayload>>>
+		, IQueryBuilder<IAsyncQuery<IEnumerable<TPayload>>>
+			where TPayload : IAggregateRoot
 	{
-		private readonly Guid id;
-
-		public QueryForAll(
-			IDataContext storageContext
-			, ILoggerFactory loggerfactory
-			, DatabaseParts parts, Guid id)
-				: base(storageContext, loggerfactory, parts)
-		{
-			this.id = id;
-		}
-
-		public override Task<IEnumerable<TPayload>> Execute()
-			=> this.Read().All();
+		protected override IAsyncQuery<IEnumerable<TPayload>> NextBuildStep()
+									=> new Query<TPayload, IEnumerable<TPayload>>(
+				this.dataContext
+				, this.loggerFactory
+				, this.parts
+				, x => x.All());
 	}
 }

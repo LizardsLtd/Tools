@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using FluentAssertions;
 using TheLizzards.Data.CQRS.Contracts.DataAccess;
@@ -8,15 +9,15 @@ using TheLizzards.Data.Tests.Mocks;
 using TheLizzards.Tests;
 using Xunit;
 
-namespace TheLizzards.Data.Tests.Queries
+namespace TheLizzards.Data.Tests.CQRS.Queries
 {
-	public sealed class QueryByIdWithoutDefault
+	public sealed class QueryForAllTests
 	{
 		private readonly DatabaseParts parts;
 		private readonly TestDataContext context;
 		private readonly Guid id;
 
-		public QueryByIdWithoutDefault()
+		public QueryForAllTests()
 		{
 			this.parts = new DatabaseParts("test", "test");
 			this.id = Guid.NewGuid();
@@ -33,11 +34,14 @@ namespace TheLizzards.Data.Tests.Queries
 		[Fact]
 		public async Task QueringForExistingEntity()
 		{
-			var query = new TestQuery(this.context, new TestLoggerFactory(), this.parts, id);
+			var query = new TestGetAllQuery()
+				.WithDataContext(this.context)
+				.WithLogger(new TestLoggerFactory())
+				.WithDatabaseParts(this.parts);
 
 			var result = await query.Execute();
 
-			result.Id.Should().Be(id);
+			result.Count().Should().Be(1);
 		}
 	}
 }

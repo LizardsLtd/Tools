@@ -1,27 +1,28 @@
 ﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.Extensions.Logging;
+using TheLizzards.Data.CQRS.Contracts;
 using TheLizzards.Data.CQRS.Contracts.DataAccess;
 using TheLizzards.Data.DDD;
 
 namespace TheLizzards.Data.CQRS.Queries
 {
-	public abstract class QueryByIdWithoutDefault<TPayload> : Query<TPayload, TPayload>
-		where TPayload : IAggregateRoot
+	public abstract class QueryByIdWithoutDefault<TPayload>
+		: QueryBuilder<IWithId<IAsyncQuery<TPayload>>>
+		, IQueryBuilder<IWithId<IAsyncQuery<TPayload>>>
+		, IWithId<IAsyncQuery<TPayload>>
+			where TPayload : IAggregateRoot
 	{
-		private readonly Guid id;
+		public IAsyncQuery<TPayload> WithId(Guid id)
+			=> new Query<TPayload, TPayload>(
+				this.dataContext
+				, this.loggerFactory
+				, this.parts
+				, reader => this.Execute(reader, id));
 
-		public QueryByIdWithoutDefault(
-			IDataContext storageContext
-			, ILoggerFactory loggerfactory
-			, DatabaseParts parts, Guid id)
-				: base(storageContext, loggerfactory, parts)
-		{
-			this.id = id;
-		}
+		public Task<TPayload> Execute(IDataReader<TPayload> reader, Guid id)
+			=> reader.QueryFor(items => items.Single(x => x.Id == id));
 
-		public override Task<TPayload> Execute()
-			=> this.Read().QueryFor(items => items.Single(x => x.Id == this.id));
+		protected override IWithId<IAsyncQuery<TPayload>> NextBuildStep() => this;
 	}
 }

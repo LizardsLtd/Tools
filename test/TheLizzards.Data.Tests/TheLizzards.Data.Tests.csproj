@@ -5,7 +5,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <None Include="Queries\QueryByIdWithDefault.cs" />
+	  <None Include="CQRS\Queries\QueryByIdWithDefault.cs" />
 	</ItemGroup>
 
 	<ItemGroup>

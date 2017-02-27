@@ -1,28 +1,29 @@
 ﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.Extensions.Logging;
+using TheLizzards.Data.CQRS.Contracts;
 using TheLizzards.Data.CQRS.Contracts.DataAccess;
 using TheLizzards.Data.DDD;
 using TheLizzards.Maybe;
 
 namespace TheLizzards.Data.CQRS.Queries
 {
-	public abstract class QueryByIdWithDefault<TPayload> : Query<TPayload, Maybe<TPayload>>
-		where TPayload : IAggregateRoot
+	public abstract class QueryByIdWithDefault<TPayload>
+		: QueryBuilder<IWithId<IAsyncQuery<Maybe<TPayload>>>>
+		, IQueryBuilder<IWithId<IAsyncQuery<Maybe<TPayload>>>>
+		, IWithId<IAsyncQuery<Maybe<TPayload>>>
+			where TPayload : IAggregateRoot
 	{
-		private readonly Guid id;
+		public IAsyncQuery<Maybe<TPayload>> WithId(Guid id)
+			=> new Query<TPayload, Maybe<TPayload>>(
+				this.dataContext
+				, this.loggerFactory
+				, this.parts
+				, reader => this.Execute(reader, id));
 
-		public QueryByIdWithDefault(
-			IDataContext storageContext
-			, ILoggerFactory loggerfactory
-			, DatabaseParts parts, Guid id)
-				: base(storageContext, loggerfactory, parts)
-		{
-			this.id = id;
-		}
+		public Task<Maybe<TPayload>> Execute(IDataReader<TPayload> reader, Guid id)
+			=> reader.QueryFor(items => (Maybe<TPayload>)items.SingleOrDefault(x => x.Id == id));
 
-		public override Task<Maybe<TPayload>> Execute()
-			=> this.Read().QueryFor(items => (Maybe<TPayload>)items.SingleOrDefault(x => x.Id == this.id));
+		protected override IWithId<IAsyncQuery<Maybe<TPayload>>> NextBuildStep() => this;
 	}
 }

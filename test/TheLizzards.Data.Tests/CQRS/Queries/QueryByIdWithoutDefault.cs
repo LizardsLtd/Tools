@@ -8,15 +8,15 @@ using TheLizzards.Data.Tests.Mocks;
 using TheLizzards.Tests;
 using Xunit;
 
-namespace TheLizzards.Data.Tests.Queries
+namespace TheLizzards.Data.Tests.CQRS.Queries
 {
-	public sealed class QueryByIdWithDefault
+	public sealed class QueryByIdWithoutDefault
 	{
 		private readonly DatabaseParts parts;
 		private readonly TestDataContext context;
 		private readonly Guid id;
 
-		public QueryByIdWithDefault()
+		public QueryByIdWithoutDefault()
 		{
 			this.parts = new DatabaseParts("test", "test");
 			this.id = Guid.NewGuid();
@@ -33,12 +33,15 @@ namespace TheLizzards.Data.Tests.Queries
 		[Fact]
 		public async Task QueringForExistingEntity()
 		{
-			var query = new TestMaybeQuery(this.context, new TestLoggerFactory(), this.parts, id);
+			var query = new TestQuery()
+				.WithDataContext(this.context)
+				.WithLogger(new TestLoggerFactory())
+				.WithDatabaseParts(this.parts)
+				.WithId(id);
 
 			var result = await query.Execute();
 
-			result.IsSome.Should().Be(true);
-			result.Value.Id.Should().Be(id);
+			result.Id.Should().Be(id);
 		}
 	}
 }
