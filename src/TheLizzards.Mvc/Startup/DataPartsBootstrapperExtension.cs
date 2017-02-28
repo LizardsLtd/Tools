@@ -1,6 +1,6 @@
 ﻿using TheLizzards.Data.Types;
-using TheLizzards.Mvc.Data.ApplicationServices;
-using TheLizzards.Mvc.Data.ModelValidators;
+using TheLizzards.Mvc.ApplicationServices;
+using TheLizzards.Mvc.ModelValidators;
 
 namespace TheLizzards.Mvc.Startup
 {

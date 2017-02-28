@@ -1,6 +1,6 @@
 using System;
 
-namespace TheLizzards.Data.Types.Entites
+namespace TheLizzards.Data.Types
 {
 	public sealed class ContactDetails : IEquatable<ContactDetails>
 	{

@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
-using TheLizzards.Data.Types.Contracts;
+using TheLizzards.Data.Claims;
 using TheLizzards.Mvc.Claims.Entities;
 
 namespace Microsoft.Extensions.DependencyInjection
@@ -8,7 +8,7 @@ namespace Microsoft.Extensions.DependencyInjection
 	public static class IdentityServiceCollectionExtensions
 	{
 		public static IServiceCollection AddClaimsIdentity<TUser>(this IServiceCollection services)
-			where TUser : class, IClaimsProvider, IIdProvider
+			where TUser : class, IClaimsProvider, IUser
 		{
 			services.AddIdentity<TUser, string>();
 			return services

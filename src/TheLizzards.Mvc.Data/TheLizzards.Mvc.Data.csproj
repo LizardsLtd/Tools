@@ -3,8 +3,8 @@
 		<Description>Implementation of common data access patterns.</Description>
 		<Copyright>TheLizzards 2016 - 2017</Copyright>
 		<AssemblyTitle>Lizzards Data for Mvc</AssemblyTitle>
-		<VersionPrefix>1.1.3-beta3</VersionPrefix>
-		<Version>1.1.3-beta3</Version>
+		<VersionPrefix>1.1.3-beta4</VersionPrefix>
+		<Version>1.1.3-beta4</Version>
 		<TargetFramework>netstandard1.6</TargetFramework>
 		<AssemblyName>TheLizzards.Mvc.Data</AssemblyName>
 		<PackageTags>data;thelizzards</PackageTags>
@@ -25,6 +25,9 @@
 	<ItemGroup>
 		<PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="1.1.0" />
 		<PackageReference Include="System.ComponentModel.Annotations" Version="4.3.0" />
+	</ItemGroup>
+	<ItemGroup>
+	  <Folder Include="ModelBinders\" />
 	</ItemGroup>
 	<PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
 		<DefineConstants>$(DefineConstants);RELEASE</DefineConstants>

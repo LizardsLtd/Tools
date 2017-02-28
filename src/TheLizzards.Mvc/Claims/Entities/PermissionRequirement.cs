@@ -4,8 +4,7 @@ using System.Reflection;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Controllers;
-using TheLizzards.Data.Types.Entites;
-
+using TheLizzards.Data.Claims;
 using MvcAuthorizationContext = Microsoft.AspNetCore.Mvc.Filters.AuthorizationFilterContext;
 
 namespace TheLizzards.Mvc.Claims.Entities

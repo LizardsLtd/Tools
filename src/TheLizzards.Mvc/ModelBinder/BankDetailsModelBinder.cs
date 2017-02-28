@@ -3,9 +3,9 @@ using System.Globalization;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc.Internal;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
-using TheLizzards.Data.Types.Entites;
+using TheLizzards.Data.Types;
 
-namespace TheLizzards.Mvc.Data.ApplicationServices
+namespace TheLizzards.Mvc.ApplicationServices
 {
 	public sealed class BankDetailsModelBinder : IModelBinder
 	{

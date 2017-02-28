@@ -1,4 +1,4 @@
-﻿namespace TheLizzards.Data.Types.Entites
+﻿namespace TheLizzards.Data.Claims
 {
 	public static class ClaimIdentity
 	{
