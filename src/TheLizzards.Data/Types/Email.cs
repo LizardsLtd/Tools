@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Text.RegularExpressions;
 
-namespace TheLizzards.Data.Types.Entites
+namespace TheLizzards.Data.Types
 {
 	public sealed class Email
 	{

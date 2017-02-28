@@ -1,28 +1,33 @@
 ﻿using System.Collections.Generic;
 
-namespace TheLizzards.Data.Types.Entites
+namespace TheLizzards.Data.Types
 {
-	public sealed class PersonalContactDetails
+	public class CompanyContactDetails
 	{
 		private readonly List<ContactDetails> contactDetails;
 
-		public PersonalContactDetails(string firstName, string lastName)
+		public CompanyContactDetails(string companyName, string firstName, string lastName)
 			: this(
-				  firstName
-				  , lastName
-				  , new List<ContactDetails>())
+				companyName
+				, firstName
+				, lastName
+				, new List<ContactDetails>())
 		{
 		}
 
-		private PersonalContactDetails(
-			string firstName
+		private CompanyContactDetails(
+			string companyName
+			, string firstName
 			, string lastName
 			, List<ContactDetails> contactDetails)
 		{
+			this.CompanyName = companyName;
 			this.FirstName = firstName;
 			this.LastName = lastName;
 			this.contactDetails = contactDetails;
 		}
+
+		public string CompanyName { get; }
 
 		public string FirstName { get; }
 
@@ -30,16 +35,17 @@ namespace TheLizzards.Data.Types.Entites
 
 		public IReadOnlyCollection<ContactDetails> ContactDetails => contactDetails.AsReadOnly();
 
-		public PersonalContactDetails AddContactDetails(ContactDetails newContact)
+		public CompanyContactDetails AddContactDetails(ContactDetails newContact)
 		{
 			var extendedContactDetails = new List<ContactDetails>(this.contactDetails);
 
 			extendedContactDetails.Add(newContact);
 
-			return new PersonalContactDetails(
-				  this.FirstName
-				  , this.LastName
-				  , extendedContactDetails);
+			return new CompanyContactDetails(
+				this.CompanyName
+				, this.FirstName
+				, this.LastName
+				, extendedContactDetails);
 		}
 	}
 }
