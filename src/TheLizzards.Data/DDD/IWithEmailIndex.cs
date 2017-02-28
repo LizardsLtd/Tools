@@ -1,4 +1,4 @@
-﻿using TheLizzards.Data.Types;;
+﻿using TheLizzards.Data.Types;
 
 namespace TheLizzards.Data.DDD
 {

@@ -26,6 +26,9 @@
 		<PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="1.1.0" />
 		<PackageReference Include="System.ComponentModel.Annotations" Version="4.3.0" />
 	</ItemGroup>
+	<ItemGroup>
+	  <Folder Include="ModelBinders\" />
+	</ItemGroup>
 	<PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
 		<DefineConstants>$(DefineConstants);RELEASE</DefineConstants>
 	</PropertyGroup>

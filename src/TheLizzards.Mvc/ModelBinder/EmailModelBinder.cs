@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc.Internal;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using TheLizzards.Data.Types;
 
-namespace TheLizzards.Mvc.Data.ApplicationServices
+namespace TheLizzards.Mvc.ApplicationServices
 {
 	public sealed class EmailModelBinder : IModelBinder
 	{
