@@ -10,7 +10,7 @@ namespace TheLizzards.Mvc.Startup
 	public static class AuthenticationBootstrapper
 	{
 		public static IConfiguration AddAuthentication<TUser, TUserStore>(this IConfiguration startup)
-			where TUser : class, IClaimsProvider, IIdProvider
+			where TUser : class, IClaimsProvider, IUser
 			where TUserStore : class, IUserStore<TUser>
 		{
 			startup.AddConfiguration((app, e, lf) => app.UseIdentity());

@@ -8,7 +8,7 @@ namespace Microsoft.Extensions.DependencyInjection
 	public static class IdentityServiceCollectionExtensions
 	{
 		public static IServiceCollection AddClaimsIdentity<TUser>(this IServiceCollection services)
-			where TUser : class, IClaimsProvider, IIdProvider
+			where TUser : class, IClaimsProvider, IUser
 		{
 			services.AddIdentity<TUser, string>();
 			return services
