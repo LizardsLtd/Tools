@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
-using TheLizzards.Data.Types.Services.Poland;
+using TheLizzards.Data.Types;.Services.Poland;
 
 namespace TheLizzards.Data.Types.Services
 {

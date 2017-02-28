@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Options;
-using TheLizzards.Data.Types.Contracts;
+using TheLizzards.Data.Claims;
 
 namespace TheLizzards.Mvc.Claims.Entities
 {

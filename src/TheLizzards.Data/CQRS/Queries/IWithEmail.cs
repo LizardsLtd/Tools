@@ -1,4 +1,4 @@
-﻿using TheLizzards.Data.Types.Entites;
+﻿using TheLizzards.Data.Types;;
 
 namespace TheLizzards.Data.CQRS.Queries
 {

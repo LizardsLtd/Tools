@@ -1,4 +1,4 @@
-﻿using TheLizzards.Data.Types.Entites;
+﻿using TheLizzards.Data.Types;
 using TheLizzards.Mvc.Data.ApplicationServices;
 using TheLizzards.Mvc.Data.ModelValidators;
 

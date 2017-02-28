@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace TheLizzards.Data.Types
+namespace TheLizzards.Data.Claims
 {
 	public struct Permission : IEquatable<Permission>
 	{

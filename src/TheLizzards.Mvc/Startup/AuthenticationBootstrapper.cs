@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
-using TheLizzards.Data.Types.Contracts;
+using TheLizzards.Data.Claims;
 
 namespace TheLizzards.Mvc.Startup
 {

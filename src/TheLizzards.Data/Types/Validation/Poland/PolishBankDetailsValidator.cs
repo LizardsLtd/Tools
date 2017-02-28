@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using CSharpVerbalExpressions;
-using TheLizzards.Data.Types.Entites;
 
 namespace TheLizzards.Data.Types.Services.Poland
 {

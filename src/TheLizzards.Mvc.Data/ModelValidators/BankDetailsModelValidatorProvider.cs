@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
-using TheLizzards.Data.Types.Entites;
+using TheLizzards.Data.Types;
 using TheLizzards.Data.Types.Services;
 
 namespace TheLizzards.Mvc.Data.ModelValidators
