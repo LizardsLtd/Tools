@@ -2,7 +2,7 @@
 
 namespace TheLizzards.Data.Tests.Mocks
 {
-	internal sealed class TestMaybeQuery : QueryByIdWithDefault<SimpleAggregateRoot>
+	internal sealed class TestMaybeQuery : QueryByIdBuilder<SimpleAggregateRoot>
 	{
 	}
 }
