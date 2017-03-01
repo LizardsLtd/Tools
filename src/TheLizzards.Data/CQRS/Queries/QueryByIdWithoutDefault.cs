@@ -6,7 +6,7 @@ using TheLizzards.Data.DDD;
 
 namespace TheLizzards.Data.CQRS.Queries
 {
-	public abstract class QueryByIdWithoutDefault<TPayload>
+	public sealed class QueryByIdWithoutDefault<TPayload>
 		: QueryBuilder<IWithId<IAsyncQuery<TPayload>>>
 		, IQueryBuilder<IWithId<IAsyncQuery<TPayload>>>
 		, IWithId<IAsyncQuery<TPayload>>

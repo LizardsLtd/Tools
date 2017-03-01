@@ -3,7 +3,7 @@ using TheLizzards.Data.DDD;
 
 namespace TheLizzards.Data.CQRS.Queries
 {
-	public abstract class QueryForAll<TPayload>
+	public sealed class QueryForAll<TPayload>
 		: QueryBuilder<IAsyncQuery<IEnumerable<TPayload>>>
 		, IQueryBuilder<IAsyncQuery<IEnumerable<TPayload>>>
 			where TPayload : IAggregateRoot

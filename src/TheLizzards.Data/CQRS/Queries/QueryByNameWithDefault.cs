@@ -6,7 +6,7 @@ using TheLizzards.Maybe;
 
 namespace TheLizzards.Data.CQRS.Queries
 {
-	public abstract class QueryByNameWithDefault<TPayload>
+	public sealed class QueryByNameWithDefault<TPayload>
 		: QueryBuilder<IWithName<IAsyncQuery<Maybe<TPayload>>>>
 		, IQueryBuilder<IWithName<IAsyncQuery<Maybe<TPayload>>>>
 		, IWithName<IAsyncQuery<Maybe<TPayload>>>
