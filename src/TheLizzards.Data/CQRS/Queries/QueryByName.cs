@@ -7,7 +7,7 @@ using TheLizzards.Maybe;
 namespace TheLizzards.Data.CQRS.Queries
 {
 	public abstract class QueryByName<TPayload> : IAsyncQuery<Maybe<TPayload>>
-		where TPayload : IAggregateRoot
+		where TPayload : IAggregateRoot, IWithNameIndex
 	{
 		private readonly IDataContext dataContext;
 		private readonly ILoggerFactory loggerFactory;

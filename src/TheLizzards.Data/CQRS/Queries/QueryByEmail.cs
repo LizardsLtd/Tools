@@ -8,7 +8,7 @@ using TheLizzards.Maybe;
 namespace TheLizzards.Data.CQRS.Queries
 {
 	public abstract class QueryByEmail<TPayload> : IAsyncQuery<Maybe<TPayload>>
-		where TPayload : IAggregateRoot
+		where TPayload : IAggregateRoot, IWithEmailIndex
 	{
 		private readonly IDataContext dataContext;
 		private readonly ILoggerFactory loggerFactory;

@@ -33,11 +33,11 @@ namespace TheLizzards.Data.Tests.CQRS.Queries
 		[Fact]
 		public async Task QueringForExistingEntity()
 		{
-			var query = new TestMaybeQuery()
-				.WithDataContext(this.context)
-				.WithLogger(new TestLoggerFactory())
-				.WithDatabaseParts(this.parts)
-				.WithId(id);
+			var query = new TestMaybeQuery(
+				this.context
+				, new TestLoggerFactory()
+				, this.parts
+				, id);
 
 			var result = await query.Execute();
 
