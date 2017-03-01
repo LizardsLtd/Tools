@@ -16,7 +16,7 @@ namespace TheLizzards.Data.CQRS.Queries
 		public IAsyncQuery<Maybe<TPayload>> WithEmail(Email email)
 			=> new Query<TPayload, Maybe<TPayload>>(
 				this.dataContext
-				, this.loggerFactory
+				, this.logger
 				, this.parts
 				, reader => this.Execute(reader, email));
 

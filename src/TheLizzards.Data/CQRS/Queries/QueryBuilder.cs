@@ -6,7 +6,7 @@ namespace TheLizzards.Data.CQRS.Queries
 	public abstract class QueryBuilder<TResult> : IQueryBuilder<TResult>
 	{
 		protected IDataContext dataContext;
-		protected ILoggerFactory loggerFactory;
+		protected ILogger logger;
 		protected DatabaseParts parts;
 
 		public TResult WithDatabaseParts(DatabaseParts parts)
@@ -22,8 +22,11 @@ namespace TheLizzards.Data.CQRS.Queries
 		}
 
 		public IWithDatabaseParts<TResult> WithLogger(ILoggerFactory loggerFactory)
+			=> WithLogger(loggerFactory.CreateLogger("query"));
+
+		public IWithDatabaseParts<TResult> WithLogger(ILogger logger)
 		{
-			this.loggerFactory = loggerFactory;
+			this.logger = logger;
 			return this;
 		}
 

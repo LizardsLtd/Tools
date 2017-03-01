@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using TheLizzards.Data.CQRS;
 using TheLizzards.Data.DDD;
 
 namespace TheLizzards.Data.CQRS.Queries
@@ -12,7 +11,7 @@ namespace TheLizzards.Data.CQRS.Queries
 		protected override IAsyncQuery<IEnumerable<TPayload>> NextBuildStep()
 			=> new Query<TPayload, IEnumerable<TPayload>>(
 				this.dataContext
-				, this.loggerFactory
+				, this.logger
 				, this.parts
 				, x => x.All());
 	}

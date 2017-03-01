@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
-using TheLizzards.Data.CQRS;
 using TheLizzards.Data.CQRS.DataAccess;
 using TheLizzards.Data.DDD;
 using TheLizzards.Maybe;
@@ -17,7 +16,7 @@ namespace TheLizzards.Data.CQRS.Queries
 		public IAsyncQuery<Maybe<TPayload>> WithId(Guid id)
 			=> new Query<TPayload, Maybe<TPayload>>(
 				this.dataContext
-				, this.loggerFactory
+				, this.logger
 				, this.parts
 				, reader => this.Execute(reader, id));
 

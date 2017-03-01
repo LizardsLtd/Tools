@@ -15,7 +15,7 @@ namespace TheLizzards.Data.CQRS.Queries
 		public IAsyncQuery<Maybe<TPayload>> WithName(string name)
 			=> new Query<TPayload, Maybe<TPayload>>(
 				this.dataContext
-				, this.loggerFactory
+				, this.logger
 				, this.parts
 				, reader => this.Execute(reader, name));
 

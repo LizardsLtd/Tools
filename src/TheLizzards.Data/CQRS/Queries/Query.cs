@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
-using TheLizzards.Data.CQRS;
 using TheLizzards.Data.CQRS.DataAccess;
 using TheLizzards.Data.DDD;
 
@@ -17,12 +16,12 @@ namespace TheLizzards.Data.CQRS.Queries
 
 		public Query(
 			IDataContext storageContext
-			, ILoggerFactory loggerFactory
+			, ILogger logger
 			, DatabaseParts parts
 			, Func<IDataReader<TPayload>, Task<TResult>> execute)
 		{
 			this.storageContext = storageContext;
-			this.logger = loggerFactory.CreateLogger(GetType());
+			this.logger = logger;
 			this.parts = parts;
 			this.execute = execute;
 		}
