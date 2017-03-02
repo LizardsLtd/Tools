@@ -10,7 +10,7 @@ using Xunit;
 
 namespace TheLizzards.Data.Tests.CQRS.Queries
 {
-	public sealed class QueryByIdWithDefault
+	public sealed class QueryByIdTests
 	{
 		private readonly DatabaseParts parts;
 		private readonly TestDataContext context;
@@ -34,10 +34,10 @@ namespace TheLizzards.Data.Tests.CQRS.Queries
 		public async Task QueringForExistingEntity()
 		{
 			var query = new TestMaybeQuery(
-				this.context
-				, new TestLoggerFactory()
-				, this.parts
-				, id);
+					this.context
+					, new TestLoggerFactory())
+				.WithDatabaseParts(this.parts)
+				.WithId(id);
 
 			var result = await query.Execute();
 
