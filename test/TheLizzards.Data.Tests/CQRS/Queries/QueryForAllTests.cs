@@ -34,7 +34,10 @@ namespace TheLizzards.Data.Tests.CQRS.Queries
 		[Fact]
 		public async Task QueringForExistingEntity()
 		{
-			var query = new TestGetAllQuery(this.context, new TestLoggerFactory(), this.parts);
+			var query = new QueryForAll<SimpleAggregateRoot>(
+					this.context
+					, new TestLoggerFactory())
+				.WithDatabaseParts(this.parts);
 
 			var result = await query.Execute();
 
