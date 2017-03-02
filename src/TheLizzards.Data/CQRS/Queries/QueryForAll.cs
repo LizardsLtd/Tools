@@ -6,7 +6,7 @@ using TheLizzards.Data.DDD;
 
 namespace TheLizzards.Data.CQRS.Queries
 {
-	public abstract class QueryForAll<TPayload>
+	public sealed class QueryForAll<TPayload>
 		: IWithDatabaseParts<IAsyncQuery<IEnumerable<TPayload>>>
 		, IAsyncQuery<IEnumerable<TPayload>>
 			where TPayload : IAggregateRoot
