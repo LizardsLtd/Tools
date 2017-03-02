@@ -33,7 +33,7 @@ namespace TheLizzards.Data.Tests.CQRS.Queries
 		[Fact]
 		public async Task QueringForExistingEntity()
 		{
-			var query = new TestMaybeQuery(
+			var query = new QuertyById<SimpleAggregateRoot>(
 					this.context
 					, new TestLoggerFactory())
 				.WithDatabaseParts(this.parts)
