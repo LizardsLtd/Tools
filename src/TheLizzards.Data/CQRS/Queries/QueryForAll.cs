@@ -6,8 +6,10 @@ using TheLizzards.Data.DDD;
 
 namespace TheLizzards.Data.CQRS.Queries
 {
-	public abstract class QueryForAll<TPayload> : IAsyncQuery<IEnumerable<TPayload>>
-		where TPayload : IAggregateRoot
+	public abstract class QueryForAll<TPayload>
+		: IWithDatabaseParts<IWithId<IAsyncQuery<IEnumerable<TPayload>>>>
+		, IAsyncQuery<IEnumerable<TPayload>>
+			where TPayload : IAggregateRoot
 	{
 		private readonly IDataContext dataContext;
 		private readonly ILoggerFactory loggerFactory;
@@ -19,6 +21,11 @@ namespace TheLizzards.Data.CQRS.Queries
 			this.loggerFactory = loggerFactory;
 			this.parts = parts;
 		}
+		public IAsyncQuery<IEnumerable<TPayload>> WithDatabaseParts(DatabaseParts parts)
+			=> new QueryById<TPayload>(
+				this.dataContext
+				, this.loggerFactory
+				, parts);
 
 		public Task<IEnumerable<TPayload>> Execute()
 			=> new QueryForAllBuilder<TPayload>()
