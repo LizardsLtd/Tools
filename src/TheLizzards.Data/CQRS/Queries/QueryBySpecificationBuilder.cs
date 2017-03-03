@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
@@ -8,20 +9,20 @@ using TheLizzards.Data.DDD;
 namespace TheLizzards.Data.CQRS.Queries
 {
 	public sealed class QueryBySpecificationBuilder<TPayload>
-		: QueryBuilder<IWithSpecification<IAsyncQuery<IQueryable<TPayload>>, TPayload>>
-		, IWithSpecification<IAsyncQuery<IQueryable<TPayload>>, TPayload>
+		: QueryBuilder<IWithSpecification<IAsyncQuery<IEnumerable<TPayload>>, TPayload>>
+		, IWithSpecification<IAsyncQuery<IEnumerable<TPayload>>, TPayload>
 			where TPayload : IAggregateRoot
 	{
-		public IAsyncQuery<IQueryable<TPayload>> WithSpecification(Expression<Func<TPayload, bool>> specification)
-			=> new Query<TPayload, IQueryable<TPayload>>(
+		public IAsyncQuery<IEnumerable<TPayload>> WithSpecification(Expression<Func<TPayload, bool>> specification)
+			=> new Query<TPayload, IEnumerable<TPayload>>(
 				this.dataContext
 				, this.logger
 				, this.parts
 				, reader => this.Execute(reader, specification));
 
-		protected override IWithSpecification<IAsyncQuery<IQueryable<TPayload>>, TPayload> NextBuildStep() => this;
+		protected override IWithSpecification<IAsyncQuery<IEnumerable<TPayload>>, TPayload> NextBuildStep() => this;
 
-		private Task<IQueryable<TPayload>> Execute(IDataReader<TPayload> reader, Expression<Func<TPayload, bool>> specification)
-			=> reader.Where(specification);
+		private async Task<IEnumerable<TPayload>> Execute(IDataReader<TPayload> reader, Expression<Func<TPayload, bool>> specification)
+			=> (await reader.Where(specification)).ToArray();
 	}
 }
