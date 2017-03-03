@@ -2,7 +2,7 @@
 
 namespace TheLizzards.Data.DDD
 {
-	public interface IWithEmailIndex
+	public interface IHasEmail
 	{
 		Email Email { get; }
 	}
