@@ -15,14 +15,15 @@ namespace TheLizzards.Data.CQRS.Queries
 		private readonly ILoggerFactory loggerFactory;
 		private readonly DatabaseParts parts;
 
-		protected QueryForAll(IDataContext dataContext, ILoggerFactory loggerFactory, DatabaseParts parts)
+		public QueryForAll(IDataContext dataContext, ILoggerFactory loggerFactory, DatabaseParts parts)
 		{
 			this.dataContext = dataContext;
 			this.loggerFactory = loggerFactory;
 			this.parts = parts;
 		}
+
 		public IAsyncQuery<IEnumerable<TPayload>> WithDatabaseParts(DatabaseParts parts)
-			=> new QueryById<TPayload>(
+			=> new QueryForAll<TPayload>(
 				this.dataContext
 				, this.loggerFactory
 				, parts);
