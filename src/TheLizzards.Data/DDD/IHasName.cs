@@ -1,6 +1,6 @@
 ﻿namespace TheLizzards.Data.DDD
 {
-	public interface IWithNameIndex
+	public interface IHasName
 	{
 		string Name { get; }
 	}
