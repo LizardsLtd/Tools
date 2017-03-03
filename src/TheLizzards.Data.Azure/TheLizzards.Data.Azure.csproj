@@ -3,8 +3,8 @@
 		<Description>Default implementatin of differenet services in Azure.</Description>
 		<Copyright>TheLizzards 2016 - 2017</Copyright>
 		<AssemblyTitle>TheLizzards.Data.Azure</AssemblyTitle>
-		<VersionPrefix>2.1.0-beta8</VersionPrefix>
-		<Version>2.1.0-beta8</Version>
+		<VersionPrefix>2.1.0-RC1</VersionPrefix>
+		<Version>2.1.0-RC1</Version>
 		<AssemblyName>TheLizzards.Data.Azure</AssemblyName>
 		<PackageTags>azure;thelizzards</PackageTags>
 		<RepositoryType>git</RepositoryType>
