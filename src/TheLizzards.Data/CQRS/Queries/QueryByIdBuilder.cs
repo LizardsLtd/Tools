@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Threading.Tasks;
 using TheLizzards.Data.CQRS.DataAccess;
-using TheLizzards.Data.DDD;
+using TheLizzards.Data.Domain;
 using TheLizzards.Maybe;
 
 namespace TheLizzards.Data.CQRS.Queries

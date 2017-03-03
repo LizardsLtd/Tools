@@ -1,4 +1,4 @@
-﻿using TheLizzards.Data.DDD;
+﻿using TheLizzards.Data.Domain;
 
 namespace TheLizzards.Data.Claims
 {

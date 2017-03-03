@@ -1,14 +1,15 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using TheLizzards.Data.CQRS.DataAccess;
-using TheLizzards.Data.DDD;
+using TheLizzards.Data.Domain;
 
 namespace TheLizzards.Data.CQRS.Queries
-{
-	public sealed class QueryBySpecification<TPayload> : IAsyncQuery<IQueryable<TPayload>>
+{	
+	public sealed class QueryBySpecification<TPayload> : IAsyncQuery<IEnumerable<TPayload>>
 		where TPayload : IAggregateRoot
 	{
 		private readonly IDataContext dataContext;
@@ -24,7 +25,7 @@ namespace TheLizzards.Data.CQRS.Queries
 			this.specification = specification;
 		}
 
-		public Task<IQueryable<TPayload>> Execute()
+		public Task<IEnumerable<TPayload>> Execute()
 			=> new QueryBySpecificationBuilder<TPayload>()
 				.WithDataContext(this.dataContext)
 				.WithLogger(this.loggerFactory)

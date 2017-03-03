@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using TheLizzards.Data.CQRS.DataAccess;
-using TheLizzards.Data.DDD;
+using TheLizzards.Data.Domain;
 using TheLizzards.Maybe;
 
 namespace TheLizzards.Data.CQRS.Queries

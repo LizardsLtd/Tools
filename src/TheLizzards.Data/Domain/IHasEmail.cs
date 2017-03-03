@@ -1,6 +1,6 @@
 ﻿using TheLizzards.Data.Types;
 
-namespace TheLizzards.Data.DDD
+namespace TheLizzards.Data.Domain
 {
 	public interface IHasEmail
 	{
