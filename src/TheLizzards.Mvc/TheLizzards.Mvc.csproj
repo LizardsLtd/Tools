@@ -3,8 +3,8 @@
 		<Description>ASP.NET Core MVC implementation.</Description>
 		<Copyright>TheLizzards 2016 - 2017</Copyright>
 		<AssemblyTitle>Lizzards MVC</AssemblyTitle>
-		<VersionPrefix>1.3.1-RC1</VersionPrefix>
-		<Version>1.3.1-RC1</Version>
+		<VersionPrefix>1.3.1-RC2</VersionPrefix>
+		<Version>1.3.1-RC2</Version>
 		<WarningsAsErrors>true</WarningsAsErrors>
 		<AssemblyName>TheLizzards.Mvc</AssemblyName>
 		<GenerateAssemblyTitleAttribute>false</GenerateAssemblyTitleAttribute>

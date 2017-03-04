@@ -1,22 +1,22 @@
 ﻿using System.Reflection;
 using Microsoft.Extensions.DependencyInjection;
-using TheLizzards.Data.CQRS.Commands;
 using TheLizzards.Data.CQRS;
+using TheLizzards.Data.CQRS.Commands;
 using TheLizzards.Data.CQRS.DataAccess;
 
 namespace TheLizzards.Mvc.Startup
 {
 	public static class StartupBootstrapperExtension
 	{
-		public static IConfiguration AddAutmaticDetectionCQRS(
+		public static IConfiguration AddAutomaticDetectionCQRS(
 			this IConfiguration startup
 			, string assemblyName)
 		{
 			var assembly = Assembly.Load(new AssemblyName(assemblyName));
-			return startup.AddAutmaticDetectionCQRS(assembly);
+			return startup.AddAutomaticDetectionCQRS(assembly);
 		}
 
-		public static IConfiguration AddAutmaticDetectionCQRS(
+		public static IConfiguration AddAutomaticDetectionCQRS(
 				this IConfiguration startup
 				, Assembly assembly)
 			=> startup.AddServices(services
@@ -61,7 +61,7 @@ namespace TheLizzards.Mvc.Startup
 					.ForAssembly(assembly)
 					.IncludeClassesOnly()
 					.ForTypesImplementingInterface<IsQuery>()
-					.AsImplementedInterfaces()
+					.AsSelf()
 				.DiscoverImplementation()
 					.ForAssembly(assembly)
 					.IncludeClassesOnly()
