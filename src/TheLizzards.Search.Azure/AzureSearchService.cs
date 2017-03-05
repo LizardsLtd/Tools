@@ -3,37 +3,36 @@ using System.Threading.Tasks;
 using Microsoft.Azure.Search;
 using Microsoft.Azure.Search.Models;
 using Microsoft.Extensions.Logging;
-using TheLizzards.Search.Entities;
-using TheLizzards.Search.Services;
+using TheLizzards.Search.Azure.KeyWords;
 
 namespace TheLizzards.Search.Azure.Services
 {
-	public abstract class AzureSearchService<T> : ISearchService<TextSearchKeyWord, T>
+	public abstract class AzureSearchService<T>
 		where T : ISearchResult
 	{
-		private const string ServiceName = "picums";
-		private readonly SearchCredentials ApiKey = new SearchCredentials("0FB97B382F5032BF05EA684B4A694983");
-		private readonly ILogger<ISearchService<TextSearchKeyWord, T>> logger;
+		private readonly ILogger<AzureSearchService<T>> logger;
+		private readonly AzureSearchOptions options;
 
-		public AzureSearchService(ILoggerFactory loggerFactory)
+		public AzureSearchService(ILoggerFactory loggerFactory, AzureSearchOptions options)
 		{
-			this.logger = loggerFactory.CreateLogger<ISearchService<TextSearchKeyWord, T>>();
+			this.options = options;
+			this.logger = loggerFactory.CreateLogger<AzureSearchService<T>>();
 		}
 
-		public async Task<SearchResults<T>> SearchFor(TextSearchKeyWord keyword)
+		public async Task<SearchResults<T>> SearchFor(ISearchForParameter keyword)
 		{
 			var results = new SearchResults<T>();
 			try
 			{
-				var indexClient = new SearchIndexClient(ServiceName, "provider-by-details", ApiKey);
+				var indexClient = new SearchIndexClient(this.options.ServiceName, this.options.IndexName, this.options.ApiKey);
 
 				var parameters =
 					new SearchParameters()
 					{
-						Select = new[] { "id", "Name", "Description" }
+						Select = this.options.SearchParameters
 					};
 
-				var documentResults = await indexClient.Documents.SearchAsync(keyword.SearchTokens, parameters);
+				var documentResults = await indexClient.Documents.SearchAsync(keyword.GetSearchCommmand(), parameters);
 
 				results = ConvertDocumentSearchResult(documentResults);
 			}

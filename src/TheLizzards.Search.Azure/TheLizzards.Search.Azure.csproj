@@ -3,8 +3,8 @@
 		<Description>UnAzure provider for Search services.</Description>
 		<Copyright>TheLizzards 2016 - 2017</Copyright>
 		<AssemblyTitle>Lizzards Search Azure</AssemblyTitle>
-		<VersionPrefix>1.1.0</VersionPrefix>
-		<Version>1.1.0</Version>
+		<VersionPrefix>2.0.0-RC1</VersionPrefix>
+		<Version>2.0.0-RC1</Version>
 		<AssemblyName>TheLizzards.Search.Azure</AssemblyName>
 		<PackageTags>search;azure;thelizzards</PackageTags>
 		<RepositoryType>git</RepositoryType>
@@ -25,8 +25,5 @@
 		<PackageReference Include="Microsoft.Extensions.Logging" Version="1.1.0" />
 		<PackageReference Include="Newtonsoft.Json" Version="9.0.2-beta2" />
 		<PackageReference Include="Microsoft.Extensions.Logging" Version="1.1.0" />
-	</ItemGroup>
-	<ItemGroup>
-		<ProjectReference Include="..\TheLizzards.Search\TheLizzards.Search.csproj" />
 	</ItemGroup>
 </Project>
