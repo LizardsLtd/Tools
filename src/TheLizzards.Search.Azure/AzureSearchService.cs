@@ -12,11 +12,13 @@ namespace TheLizzards.Search.Azure.Services
 	{
 		private readonly ILogger<AzureSearchService<T>> logger;
 		private readonly AzureSearchOptions options;
+		private readonly string[] fieldsToRetireve;
 
-		public AzureSearchService(ILoggerFactory loggerFactory, AzureSearchOptions options)
+		protected AzureSearchService(ILoggerFactory loggerFactory, AzureSearchOptions options, string[] fieldsToRetireve)
 		{
 			this.options = options;
 			this.logger = loggerFactory.CreateLogger<AzureSearchService<T>>();
+			this.fieldsToRetireve = fieldsToRetireve;
 		}
 
 		public async Task<SearchResults<T>> SearchFor(ISearchForParameter keyword)
@@ -29,7 +31,7 @@ namespace TheLizzards.Search.Azure.Services
 				var parameters =
 					new SearchParameters()
 					{
-						Select = this.options.SearchParameters
+						Select = fieldsToRetireve
 					};
 
 				var documentResults = await indexClient.Documents.SearchAsync(keyword.GetSearchCommmand(), parameters);

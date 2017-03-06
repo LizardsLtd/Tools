@@ -1,4 +1,6 @@
-﻿namespace TheLizzards.Search.Azure.KeyWords
+﻿using System.Linq;
+
+namespace TheLizzards.Search.Azure.KeyWords
 {
 	public sealed class And : ISearchForParameter
 	{

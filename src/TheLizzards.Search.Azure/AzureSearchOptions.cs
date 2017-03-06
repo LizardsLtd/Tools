@@ -4,6 +4,10 @@ namespace TheLizzards.Search.Azure
 {
 	public sealed class AzureSearchOptions
 	{
+		public AzureSearchOptions()
+		{
+		}
+
 		public AzureSearchOptions(
 			string apiKey
 			, string serviceName
@@ -16,12 +20,12 @@ namespace TheLizzards.Search.Azure
 			this.SearchParameters = searchParameters;
 		}
 
-		public SearchCredentials ApiKey { get; }
+		public SearchCredentials ApiKey { get; set; }
 
-		public string ServiceName { get; }
+		public string ServiceName { get; set; }
 
-		public string IndexName { get; }
+		public string IndexName { get; set; }
 
-		public string[] SearchParameters { get; }
+		public string[] SearchParameters { get; set; }
 	}
 }

@@ -1,12 +1,15 @@
-﻿using System;
-
-namespace TheLizzards.Search.Azure.KeyWords
+﻿namespace TheLizzards.Search.Azure.KeyWords
 {
 	public sealed class TextSearchForParameter : ISearchForParameter
 	{
-		public string GetSearchCommmand()
+		private readonly string keyword;
+
+		public TextSearchForParameter(string keyword)
 		{
-			throw new NotImplementedException();
+			this.keyword = keyword;
 		}
+
+		public string GetSearchCommmand()
+			=> this.keyword;
 	}
 }
