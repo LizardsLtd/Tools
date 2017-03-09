@@ -1,6 +1,6 @@
 namespace TheLizzards.Mvc.Localisation
 {
-  public interface ITranslationsPorvider
+  public interface ITranslationsProvider
   {
     TranslationSet GetTranslations();
   }
