@@ -6,6 +6,7 @@ using TheLizzards.Mvc.Localisation.Entities;
 
 namespace TheLizzards.Mvc.Localisation.Services
 {
+	[Obsolete]
 	internal sealed class JsonBasedTransaltionLoader
 	{
 		private readonly IConfigurationSection configuration;
