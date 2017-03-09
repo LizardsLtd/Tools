@@ -1,38 +1,36 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using TheLizzards.Data.CQRS.DataAccess;
 using TheLizzards.Data.Domain;
 
 namespace TheLizzards.Data.CQRS.Queries
-{
-	public sealed class QueryForAll<TPayload>
-		: IWithDatabaseParts<IAsyncQuery<IEnumerable<TPayload>>>
-		, IAsyncQuery<IEnumerable<TPayload>>
-			where TPayload : IAggregateRoot
+{	
+	public sealed class QueryBySpecification<TPayload> : IAsyncQuery<IEnumerable<TPayload>>
+		where TPayload : IAggregateRoot
 	{
 		private readonly IDataContext dataContext;
 		private readonly ILoggerFactory loggerFactory;
 		private readonly DatabaseParts parts;
+		private readonly Expression<Func<TPayload, bool>> specification;
 
-		public QueryForAll(IDataContext dataContext, ILoggerFactory loggerFactory, DatabaseParts parts)
+		public QueryBySpecification(IDataContext dataContext, ILoggerFactory loggerFactory, DatabaseParts parts, Expression<Func<TPayload, bool>> specification)
 		{
 			this.dataContext = dataContext;
 			this.loggerFactory = loggerFactory;
 			this.parts = parts;
+			this.specification = specification;
 		}
 
-		public IAsyncQuery<IEnumerable<TPayload>> WithDatabaseParts(DatabaseParts parts)
-			=> new QueryForAll<TPayload>(
-				this.dataContext
-				, this.loggerFactory
-				, parts);
-
 		public Task<IEnumerable<TPayload>> Execute()
-			=> new QueryForAllBuilder<TPayload>()
+			=> new QueryBySpecificationBuilder<TPayload>()
 				.WithDataContext(this.dataContext)
 				.WithLogger(this.loggerFactory)
 				.WithDatabaseParts(this.parts)
+				.WithSpecification(specification)
 				.Execute();
 	}
 }

@@ -4,7 +4,7 @@ using Microsoft.Azure.Documents;
 using Microsoft.Azure.Documents.Client;
 using Microsoft.Extensions.Logging;
 using TheLizzards.Data.CQRS.DataAccess;
-using TheLizzards.Data.DDD;
+using TheLizzards.Data.Domain;
 
 namespace TheLizzards.Data.Azure
 {

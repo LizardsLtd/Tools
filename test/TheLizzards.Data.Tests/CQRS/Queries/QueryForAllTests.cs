@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using FluentAssertions;
 using TheLizzards.Data.CQRS.DataAccess;
+using TheLizzards.Data.CQRS.Queries;
 using TheLizzards.Data.Tests.CQRS.Contracts.DataAccess;
 using TheLizzards.Data.Tests.Mocks;
 using TheLizzards.Tests;
@@ -34,7 +35,10 @@ namespace TheLizzards.Data.Tests.CQRS.Queries
 		[Fact]
 		public async Task QueringForExistingEntity()
 		{
-			var query = new TestGetAllQuery(this.context, new TestLoggerFactory(), this.parts);
+			var query = new QueryForAll<SimpleAggregateRoot>(
+					this.context
+					, new TestLoggerFactory()
+					, this.parts);
 
 			var result = await query.Execute();
 

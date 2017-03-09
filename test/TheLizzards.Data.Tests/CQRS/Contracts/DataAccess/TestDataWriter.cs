@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using TheLizzards.Data.CQRS.DataAccess;
-using TheLizzards.Data.DDD;
+using TheLizzards.Data.Domain;
 
 namespace TheLizzards.Data.Tests.CQRS.Contracts.DataAccess
 {

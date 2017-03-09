@@ -1,5 +1,5 @@
 ﻿using System;
-using TheLizzards.Data.DDD;
+using TheLizzards.Data.Domain;
 
 namespace TheLizzards.Data.CQRS.DataAccess
 {

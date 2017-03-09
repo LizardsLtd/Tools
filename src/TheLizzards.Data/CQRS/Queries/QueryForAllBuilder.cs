@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using TheLizzards.Data.DDD;
+using TheLizzards.Data.Domain;
 
 namespace TheLizzards.Data.CQRS.Queries
 {
