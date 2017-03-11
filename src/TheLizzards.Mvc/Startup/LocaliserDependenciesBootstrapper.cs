@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc.DataAnnotations;
 using Microsoft.AspNetCore.Mvc.Localization;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Localization;
-using TheLizzards.Mvc.Localisation.Entities;
+using TheLizzards.Mvc.Localisation;
 using TheLizzards.Mvc.Localisation.Services;
 
 namespace TheLizzards.Mvc.Startup

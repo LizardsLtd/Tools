@@ -1,28 +1,31 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using Microsoft.Extensions.Configuration;
 
 namespace TheLizzards.Mvc.Localisation.Services
 {
-    internal sealed class JsonTranslationProvider
+    internal sealed class JsonTransaltionProvider
     {
         private readonly IConfigurationSection configuration;
+        private readonly CultureInfo defaultCulture;
 
-        public JsonTranslationProvider(IConfigurationSection configuration)
+        public JsonTransaltionProvider(IConfigurationSection configuration, CultureInfo defaultCulture)
         {
             this.configuration = configuration;
+            this.defaultCulture = defaultCulture;
         }
 
         public TranslationSet GetTranslationSet()
-            => new TranslationSet(ConvertToTransationData(this.configuration), this.defaultCulture);
+            => new TranslationSet(ConvertToTransationData(this.configuration));
 
-        public IEnumerable<TranslactionItem> ConvertToTransationData(IConfigurationSection configuration)
+        public IEnumerable<(string, string, string)> ConvertToTransationData(IConfigurationSection configuration)
             => configuration
                 .GetChildren()
                 .SelectMany(x => ConverToFlatDictionary(x.GetChildren()));
 
-        private IEnumerable<TranslactionItem> ConverToFlatDictionary(IEnumerable<IConfigurationSection> itemsToProcess)
+        private IEnumerable<(string, string, string)> ConverToFlatDictionary(
+                IEnumerable<IConfigurationSection> itemsToProcess)
             => itemsToProcess
                 .Aggregate(
                     Enumerable.Empty<IConfigurationSection>(),
@@ -40,8 +43,8 @@ namespace TheLizzards.Mvc.Localisation.Services
                     Key = x.Key.Replace($"{x.Culture}.", string.Empty),
                     Value = x.Value,
                 })
-                .Select(x => new TranslactionItem(
-                    x.Culture
+                .Select(x => (
+                    x.Culture.TwoLetterISOLanguageName
                     , x.Key
                     , x.Value));
 

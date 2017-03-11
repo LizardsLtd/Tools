@@ -4,91 +4,90 @@ using System.Globalization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.Extensions.Configuration;
-using TheLizzards.Mvc.Localisation.Entities;
-using TheLizzards.Mvc.Localisation.Services;
 
 namespace TheLizzards.Mvc.Startup
 {
-	public sealed class UseConfigurationRoot : ConfigurationBase
-	{
-		private readonly IConfigurationRoot configuration;
-		private readonly Dictionary<string, string> properties;
-		private readonly List<CultureInfo> availableLanguages;
-		private readonly CultureInfo defaultLanguage;
+    public sealed class UseConfigurationRoot : ConfigurationBase
+    {
+        private readonly IConfigurationRoot configuration;
+        private readonly Dictionary<string, string> properties;
+        private readonly List<CultureInfo> availableLanguages;
+        private readonly CultureInfo defaultLanguage;
 
-		internal UseConfigurationRoot(
-			IConfiguration startup
-			, CultureInfo defaultLanguage
-			, List<CultureInfo> availableLanguages
-			, IConfigurationRoot configuration)
-				: base(startup)
-		{
-			this.configuration = configuration;
-			this.properties = new Dictionary<string, string>();
-			this.defaultLanguage = defaultLanguage;
-			this.availableLanguages = availableLanguages;
-		}
+        internal UseConfigurationRoot(
+            IConfiguration startup
+            , CultureInfo defaultLanguage
+            , List<CultureInfo> availableLanguages
+            , IConfigurationRoot configuration)
+                : base(startup)
+        {
+            this.configuration = configuration;
+            this.properties = new Dictionary<string, string>();
+            this.defaultLanguage = defaultLanguage;
+            this.availableLanguages = availableLanguages;
+        }
 
-		public UseConfigurationRoot UseMiddlewareCultureRecognition()
-		{
-			var defaultLanguage = new RequestCulture(this.defaultLanguage);
+        public UseConfigurationRoot UseMiddlewareCultureRecognition()
+        {
+            var defaultLanguage = new RequestCulture(this.defaultLanguage);
 
-			return UseMiddlewareCultureRecognition(
-				defaultLanguage
-				, availableLanguages
-				, new CookieRequestCultureProvider()
-				, new QueryStringRequestCultureProvider()
-				, new AcceptLanguageHeaderRequestCultureProvider());
-		}
+            return UseMiddlewareCultureRecognition(
+                defaultLanguage
+                , availableLanguages
+                , new CookieRequestCultureProvider()
+                , new QueryStringRequestCultureProvider()
+                , new AcceptLanguageHeaderRequestCultureProvider());
+        }
 
-		public UseConfigurationRoot UseMiddlewareCultureRecognition(
-			RequestCulture defaultCulture
-			, IList<CultureInfo> availableLanguages
-			, params IRequestCultureProvider[] culturePrviders)
-		{
-			this.Startup.AddConfiguration(
-					(app, e, lf) => app.UseRequestLocalization(
-							new RequestLocalizationOptions
-							{
-								RequestCultureProviders = new List<IRequestCultureProvider>
-								{
-									new AcceptLanguageHeaderRequestCultureProvider()
-									, new QueryStringRequestCultureProvider()
-									, new CookieRequestCultureProvider()
-								},
-								SupportedCultures = availableLanguages,
-								SupportedUICultures = availableLanguages,
-								DefaultRequestCulture = defaultCulture,
-							}));
-			return this;
-		}
+        public UseConfigurationRoot UseMiddlewareCultureRecognition(
+            RequestCulture defaultCulture
+            , IList<CultureInfo> availableLanguages
+            , params IRequestCultureProvider[] culturePrviders)
+        {
+            this.Startup.AddConfiguration(
+                    (app, e, lf) => app.UseRequestLocalization(
+                            new RequestLocalizationOptions
+                            {
+                                RequestCultureProviders = new List<IRequestCultureProvider>
+                                {
+                                    new AcceptLanguageHeaderRequestCultureProvider()
+                                    , new QueryStringRequestCultureProvider()
+                                    , new CookieRequestCultureProvider()
+                                },
+                                SupportedCultures = availableLanguages,
+                                SupportedUICultures = availableLanguages,
+                                DefaultRequestCulture = defaultCulture,
+                            }));
+            return this;
+        }
 
-		public LocaliserDependenciesBootstrapper InitialiseTranslation(string translationSelector)
-		{
-			var cachedLocaliser = CreateLocaliserFromJson(translationSelector);
+        public LocaliserDependenciesBootstrapper InitialiseTranslation(string translationSelector)
+        {
+            //var cachedLocaliser = CreateLocaliserFromJson(translationSelector);
 
-			return new LocaliserDependenciesBootstrapper(
-				this.Startup
-				, cachedLocaliser);
-		}
+            return new LocaliserDependenciesBootstrapper(
+                this.Startup
+                , null);
+            //, cachedLocaliser);
+        }
 
-		public UseConfigurationRoot Configure<TOptions>(Action<IConfigurationRoot, TOptions> configureOptions)
-			where TOptions : class
-		{
-			this.Startup.ConfigureOption<TOptions>(x => configureOptions(this.configuration, x));
+        public UseConfigurationRoot Configure<TOptions>(Action<IConfigurationRoot, TOptions> configureOptions)
+            where TOptions : class
+        {
+            this.Startup.ConfigureOption<TOptions>(x => configureOptions(this.configuration, x));
 
-			return this;
-		}
+            return this;
+        }
 
-		private CachedLocalizer CreateLocaliserFromJson(string translationSelector)
-		{
-			var translationData
-				= new JsonBasedTransaltionLoader(
-						this.configuration.GetSection(translationSelector)
-						, defaultLanguage)
-					.GetTranslationSet();
+        //private CachedLocalizer CreateLocaliserFromJson(string translationSelector)
+        //{
+        //	var translationData
+        //		= new JsonBasedTransaltionLoader(
+        //				this.configuration.GetSection(translationSelector)
+        //				, defaultLanguage)
+        //			.GetTranslationSet();
 
-			return new CachedLocalizer(translationData, defaultLanguage);
-		}
-	}
+        //	return new CachedLocalizer(translationData, defaultLanguage);
+        //}
+    }
 }

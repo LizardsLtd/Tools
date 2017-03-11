@@ -2,7 +2,7 @@
 using System.Globalization;
 using System.Linq;
 using Microsoft.Extensions.Configuration;
-using TheLizzards.Mvc.Localisation.Entities;
+using TheLizzards.Mvc.Localisation;
 
 namespace TheLizzards.Mvc.Localisation.Services
 {

@@ -4,11 +4,11 @@ using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ApplicationModels;
 using Microsoft.AspNetCore.Mvc.Internal;
-using TheLizzards.Mvc.Localisation.Entities;
+using TheLizzards.Mvc.Localisation;
 using AttributeConstruct = System.Tuple<
 	Microsoft.AspNetCore.Mvc.ApplicationModels.ActionModel,
 	Microsoft.AspNetCore.Mvc.ApplicationModels.ControllerModel,
-	TheLizzards.Mvc.Localisation.Entities.LocalizedRouteAttribute>;
+	TheLizzards.Mvc.Localisation.LocalizedRouteAttribute>;
 
 namespace TheLizzards.Mvc.Localisation.Services
 {
