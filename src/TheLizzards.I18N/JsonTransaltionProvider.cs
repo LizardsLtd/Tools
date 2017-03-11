@@ -19,12 +19,12 @@ namespace TheLizzards.Mvc.Localisation.Services
         public TranslationSet GetTranslationSet()
             => new TranslationSet(ConvertToTransationData(this.configuration));
 
-        public IEnumerable<(string, string, string)> ConvertToTransationData(IConfigurationSection configuration)
+        public IEnumerable<TranslationItem> ConvertToTransationData(IConfigurationSection configuration)
             => configuration
                 .GetChildren()
                 .SelectMany(x => ConverToFlatDictionary(x.GetChildren()));
 
-        private IEnumerable<(string, string, string)> ConverToFlatDictionary(
+        private IEnumerable<TranslationItem> ConverToFlatDictionary(
                 IEnumerable<IConfigurationSection> itemsToProcess)
             => itemsToProcess
                 .Aggregate(
@@ -43,7 +43,7 @@ namespace TheLizzards.Mvc.Localisation.Services
                     Key = x.Key.Replace($"{x.Culture}.", string.Empty),
                     Value = x.Value,
                 })
-                .Select(x => (
+                .Select(x => new TranslationItem(
                     x.Culture.TwoLetterISOLanguageName
                     , x.Key
                     , x.Value));

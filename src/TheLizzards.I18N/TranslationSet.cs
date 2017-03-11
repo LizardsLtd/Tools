@@ -6,27 +6,27 @@ namespace TheLizzards.Mvc.Localisation
 {
     public sealed class TranslationSet
     {
-        private readonly HashSet<(string, string, string)> translationData;
+        private readonly HashSet<TranslationItem> translationData;
 
-        public TranslationSet(IEnumerable<(string, string, string)> items)
+        public TranslationSet(IEnumerable<TranslationItem> items)
         {
-            translationData = new HashSet<(string, string, string)>(items, new CultureAndKeyComparer());
+            translationData = new HashSet<TranslationItem>(items, new CultureAndKeyComparer());
         }
-
-        public string GetTranslation(CultureInfo culture, string key)
-            => this.translationData
-                .Where(x => x.Item1 == culture.TwoLetterISOLanguageName)
-                .Where(x => x.Item2 == key)
-                .Select(x => x.Item3)
-                .DefaultIfEmpty(key)
-                .FirstOrDefault();
 
         public TranslationSet Merge(TranslationSet additionalData)
             => new TranslationSet(translationData.Union(additionalData.translationData));
 
+        public string GetTranslation(CultureInfo culture, string key)
+                    => this.translationData
+                .Where(x => x.CultureName == culture.TwoLetterISOLanguageName)
+                .Where(x => x.TranslationKey == key)
+                .Select(x => x.Value)
+                .DefaultIfEmpty(key)
+                .FirstOrDefault();
+
         internal IEnumerable<(string, string)> GetAll(CultureInfo culture)
             => this.translationData
-                .Where(x => x.Item1 == culture.TwoLetterISOLanguageName)
-                .Select(x => (x.Item2, x.Item3));
+                .Where(x => x.CultureName == culture.TwoLetterISOLanguageName)
+                .Select(x => (x.TranslationKey, x.Value));
     }
 }

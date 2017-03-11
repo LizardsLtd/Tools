@@ -23,7 +23,7 @@
 		<ProjectReference Include="..\TheLizzards.Maybe\TheLizzards.Maybe.csproj" />
 	</ItemGroup>
 	<ItemGroup>
-		<PackageReference Include="Microsoft.Extensions.Logging" Version="1.1.0" />
+		<PackageReference Include="Microsoft.Extensions.Logging" Version="1.1.1" />
 		<PackageReference Include="System.ComponentModel.Annotations" Version="4.3.0" />
 		<PackageReference Include="System.Security.Claims" Version="4.3.0" />
 		<PackageReference Include="VerbalExpressions-netstandard" Version="0.3.0" />

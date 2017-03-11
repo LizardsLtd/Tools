@@ -3,13 +3,12 @@ using System.Collections.Generic;
 
 namespace TheLizzards.Mvc.Localisation
 {
-    internal sealed class CultureAndKeyComparer : IEqualityComparer<(string, string, string)>
+    internal sealed class CultureAndKeyComparer : IEqualityComparer<TranslationItem>
     {
-        public bool Equals((string, string, string) x, (string, string, string) y)
-            => string.Equals(x.Item1, y.Item1, StringComparison.CurrentCultureIgnoreCase)
-            && string.Equals(x.Item2, y.Item2, StringComparison.CurrentCultureIgnoreCase);
+        public bool Equals(TranslationItem x, TranslationItem y)
+            => string.Equals(x.CultureName, y.CultureName, StringComparison.CurrentCultureIgnoreCase)
+            && string.Equals(x.TranslationKey, y.TranslationKey, StringComparison.CurrentCultureIgnoreCase);
 
-        public int GetHashCode((string, string, string) obj)
-            => $"{obj.Item1}:{obj.Item2}".GetHashCode();
+        public int GetHashCode(TranslationItem obj) => obj.GetHashCode();
     }
 }
