@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace TheLizzards.Mvc.Localisation
+namespace TheLizzards.I18N.Data
 {
     internal sealed class CultureAndKeyComparer : IEqualityComparer<TranslationItem>
     {

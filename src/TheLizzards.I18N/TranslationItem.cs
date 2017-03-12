@@ -1,6 +1,9 @@
-﻿namespace TheLizzards.Mvc.Localisation
+﻿using System;
+using TheLizzards.Data.Domain;
+
+namespace TheLizzards.I18N.Data
 {
-    public struct TranslationItem
+    public sealed class TranslationItem : IAggregateRoot
     {
         /// <summary>Record Constructor</summary>
         /// <param name="cultureName"><see cref="CultureName"/></param>
@@ -8,10 +11,13 @@
         /// <param name="value"><see cref="Value"/></param>
         public TranslationItem(string cultureName, string translationKey, string value)
         {
+            this.Id = Guid.NewGuid();
             CultureName = cultureName;
             TranslationKey = translationKey;
             Value = value;
         }
+
+        public Guid Id { get; }
 
         public string CultureName { get; }
 

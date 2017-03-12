@@ -4,12 +4,15 @@ using System.Globalization;
 using System.Linq;
 using Microsoft.Extensions.Localization;
 
-namespace TheLizzards.Mvc.Localisation
+namespace TheLizzards.I18N.Data
 {
     internal sealed class TranslationProvider : IStringLocalizer
     {
         private readonly CultureInfo culture;
         private readonly TranslationSet translationData;
+
+        public TranslationProvider(TranslationSet translationData, CultureStore culture)
+            : this(translationData, culture.CurrentCulture) { }
 
         public TranslationProvider(TranslationSet translationData, CultureInfo culture)
         {
@@ -29,7 +32,9 @@ namespace TheLizzards.Mvc.Localisation
                 .Select(x => new LocalizedString(x.Item1, x.Item2));
 
         public IStringLocalizer WithCulture(CultureInfo culture)
-            => new TranslationProvider(this.translationData, culture);
+        {
+            return new TranslationProvider(this.translationData, culture);
+        }
 
         private string GetTranslatedString(string name, params object[] arguments)
             => String.Format(this.translationData.GetTranslation(this.culture, name), arguments);

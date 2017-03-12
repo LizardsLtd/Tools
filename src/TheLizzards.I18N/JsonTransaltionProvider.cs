@@ -3,7 +3,7 @@ using System.Globalization;
 using System.Linq;
 using Microsoft.Extensions.Configuration;
 
-namespace TheLizzards.Mvc.Localisation.Services
+namespace TheLizzards.I18N.Data.Services
 {
     internal sealed class JsonTransaltionProvider
     {

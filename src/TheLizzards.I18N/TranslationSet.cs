@@ -1,8 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 
-namespace TheLizzards.Mvc.Localisation
+namespace TheLizzards.I18N.Data
 {
     public sealed class TranslationSet
     {
@@ -17,7 +18,7 @@ namespace TheLizzards.Mvc.Localisation
             => new TranslationSet(translationData.Union(additionalData.translationData));
 
         public string GetTranslation(CultureInfo culture, string key)
-                    => this.translationData
+            => this.translationData
                 .Where(x => x.CultureName == culture.TwoLetterISOLanguageName)
                 .Where(x => x.TranslationKey == key)
                 .Select(x => x.Value)
@@ -28,5 +29,10 @@ namespace TheLizzards.Mvc.Localisation
             => this.translationData
                 .Where(x => x.CultureName == culture.TwoLetterISOLanguageName)
                 .Select(x => (x.TranslationKey, x.Value));
+
+        internal IEnumerable<(string, string)> GetAll(object currentCulture)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
