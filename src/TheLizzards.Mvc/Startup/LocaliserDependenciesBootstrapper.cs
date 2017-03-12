@@ -38,8 +38,7 @@ namespace TheLizzards.Mvc.Startup
 
         public LocaliserDependenciesBootstrapper AddDisplayAttributeProvider()
         {
-            this
-                .Startup
+            this.Startup
                 .ForMvcOption()
                 .AddMvcOption(options
                     => options.ModelMetadataDetailsProviders.Add(
@@ -49,19 +48,17 @@ namespace TheLizzards.Mvc.Startup
 
         public LocaliserDependenciesBootstrapper AddValidationAttributeProvider()
         {
-            this
-                .Startup
+            this.Startup
                 .ForMvcOption()
                 .AddMvcOption(options
-                => options.ModelMetadataDetailsProviders.Add(
+                   => options.ModelMetadataDetailsProviders.Add(
                      new ValidationAttributeLocalisationProvider(this.localiser)));
             return this;
         }
 
         public LocaliserDependenciesBootstrapper AddIdentityError()
         {
-            this
-                .Startup
+            this.Startup
                 .AddServices(services
                     => services.AddScoped<IdentityErrorDescriber, LocalisedIdentityErrorDescriber>());
             return this;
@@ -69,8 +66,7 @@ namespace TheLizzards.Mvc.Startup
 
         public LocaliserDependenciesBootstrapper AddDataAnnotationsLocalization(bool useViewLcalisation = true)
         {
-            this
-                .Startup
+            this.Startup
                 .ForMvcOption()
                 .AddMvcBuilderAction(options
                     => options.AddDataAnnotationsLocalization(DataAnnotationOptions));

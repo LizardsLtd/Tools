@@ -6,25 +6,28 @@ using Microsoft.Extensions.Logging;
 
 namespace TheLizzards.Mvc.Startup
 {
-	public abstract class ConfigurationBase : IConfiguration
-	{
-		protected ConfigurationBase(IConfiguration startup)
-		{
-			Startup = startup;
-		}
+    public abstract class ConfigurationBase : IConfiguration
+    {
+        protected ConfigurationBase(IConfiguration startup)
+        {
+            Startup = startup;
+        }
 
-		protected IConfiguration Startup { get; }
+        protected IConfiguration Startup { get; }
 
-		public IConfiguration AddConfiguration(Action<IApplicationBuilder, IHostingEnvironment, ILoggerFactory> action)
-			=> Startup.AddConfiguration(action);
+        public IConfiguration AddConfiguration(Action<IApplicationBuilder, IHostingEnvironment, ILoggerFactory> action)
+            => Startup.AddConfiguration(action);
 
-		public MvcConfiguration ForMvcOption()
-			=> Startup.ForMvcOption();
+        public MvcConfiguration ForMvcOption()
+            => Startup.ForMvcOption();
 
-		public IConfiguration AddServices(Action<IServiceCollection> action)
-			=> Startup.AddServices(action);
+        public IConfiguration AddServices(Action<IServiceCollection> action)
+            => Startup.AddServices(action);
 
-		public IConfiguration ConfigureOption<TOption>(Action<TOption> action) where TOption : class
-			=> Startup.ConfigureOption(action);
-	}
+        public IConfiguration ConfigureOption<TOption>(Action<TOption> action) where TOption : class
+            => Startup.ConfigureOption(action);
+
+        public IConfiguration AddSetupSystemAfterInitialisation(Action<IServiceProvider> action)
+            => Startup.AddSetupSystemAfterInitialisation(action);
+    }
 }

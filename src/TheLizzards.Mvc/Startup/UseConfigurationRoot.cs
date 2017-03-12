@@ -14,6 +14,7 @@ namespace TheLizzards.Mvc.Startup
         private readonly Dictionary<string, string> properties;
         private readonly List<CultureInfo> availableLanguages;
         private readonly CultureInfo defaultLanguage;
+        private IStringLocalizer stringLocaliser;
 
         internal UseConfigurationRoot(
             IConfiguration startup
@@ -60,11 +61,12 @@ namespace TheLizzards.Mvc.Startup
 
         public LocaliserDependenciesBootstrapper InitialiseTranslation(string translationSelector)
         {
-            var translation = new Lazy<IStringLocalizer>();
+            this.Startup
+                .AddSetupSystemAfterInitialisation(serviceProvider
+                    => this.stringLocaliser = serviceProvider.GetService(typeof(IStringLocalizer)) as IStringLocalizer);
+            var translation = new Lazy<IStringLocalizer>(() => this.stringLocaliser);
 
-            return new LocaliserDependenciesBootstrapper(
-                this.Startup
-                , translation);
+            return new LocaliserDependenciesBootstrapper(this.Startup, translation);
         }
 
         public UseConfigurationRoot Configure<TOptions>(Action<IConfigurationRoot, TOptions> configureOptions)

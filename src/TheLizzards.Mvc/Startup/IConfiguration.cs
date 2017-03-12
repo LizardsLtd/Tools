@@ -6,14 +6,16 @@ using Microsoft.Extensions.Logging;
 
 namespace TheLizzards.Mvc.Startup
 {
-	public interface IConfiguration
-	{
-		IConfiguration AddConfiguration(Action<IApplicationBuilder, IHostingEnvironment, ILoggerFactory> action);
+    public interface IConfiguration
+    {
+        IConfiguration AddConfiguration(Action<IApplicationBuilder, IHostingEnvironment, ILoggerFactory> action);
 
-		IConfiguration AddServices(Action<IServiceCollection> action);
+        IConfiguration AddServices(Action<IServiceCollection> action);
 
-		IConfiguration ConfigureOption<TOption>(Action<TOption> action) where TOption : class;
+        IConfiguration AddSetupSystemAfterInitialisation(Action<IServiceProvider> action);
 
-		MvcConfiguration ForMvcOption();
-	}
+        IConfiguration ConfigureOption<TOption>(Action<TOption> action) where TOption : class;
+
+        MvcConfiguration ForMvcOption();
+    }
 }
