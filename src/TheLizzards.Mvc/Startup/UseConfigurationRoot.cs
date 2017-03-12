@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Linq;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Localization;
+using TheLizzards.I18N;
 
 namespace TheLizzards.Mvc.Startup
 {
@@ -12,26 +14,24 @@ namespace TheLizzards.Mvc.Startup
     {
         private readonly IConfigurationRoot configuration;
         private readonly Dictionary<string, string> properties;
-        private readonly List<CultureInfo> availableLanguages;
-        private readonly CultureInfo defaultLanguage;
+        private readonly CultureStore cultureStore;
         private IStringLocalizer stringLocaliser;
 
-        internal UseConfigurationRoot(
-            IConfiguration startup
-            , IConfigurationRoot configuration)
+        internal UseConfigurationRoot(IConfiguration startup, IConfigurationRoot configuration, CultureStore cultureStore)
                 : base(startup)
         {
             this.configuration = configuration;
             this.properties = new Dictionary<string, string>();
+            this.cultureStore = cultureStore;
         }
 
         public UseConfigurationRoot UseMiddlewareCultureRecognition()
         {
-            var defaultLanguage = new RequestCulture(this.defaultLanguage);
+            var defaultLanguage = new RequestCulture(this.cultureStore.DefaultCulture);
 
             return UseMiddlewareCultureRecognition(
                 defaultLanguage
-                , availableLanguages
+                , this.cultureStore.AvailableCultures.ToList()
                 , new CookieRequestCultureProvider()
                 , new QueryStringRequestCultureProvider()
                 , new AcceptLanguageHeaderRequestCultureProvider());

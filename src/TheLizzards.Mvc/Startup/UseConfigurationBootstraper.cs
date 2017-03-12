@@ -8,49 +8,49 @@ using TheLizzards.I18N.Data.Services;
 
 namespace TheLizzards.Mvc.Startup
 {
-    public sealed class LanguageSelector : ConfigurationBase
+    public sealed class UseConfigurationBootstraper : ConfigurationBase
     {
-        private readonly string databaseName;
+        private readonly List<ITranslationSetProvider> providers;
         private IConfigurationRoot configuration;
+        private CultureStore cultureStore;
 
-        internal LanguageSelector(
-             IConfiguration startup
-            , IConfigurationRoot configuration
-            , string databaseName)
+        internal UseConfigurationBootstraper(IConfiguration startup, IConfigurationRoot configuration)
                 : base(startup)
         {
             this.configuration = configuration;
-            this.databaseName = databaseName;
+            this.providers = new List<ITranslationSetProvider>(5);
         }
 
-        public LanguageSelector InitialiseCultureStore(string selector)
+        public UseConfigurationBootstraper InitialiseCultureStore(string selector)
         {
-            var cultureStore = new CultureStore(
+            this.cultureStore = new CultureStore(
                 this.GetDefaultLanguage($"{selector}:Default")
                 , this.GetAvailableLanguages($"{selector}:Available"));
 
             this.Startup.AddSingleton(cultureStore);
-            this.Startup.AddSingleton<ConfigurableStringLocalizer>();
 
             return this;
         }
 
-        public LanguageSelector InitialiseJsonBasedTranslations(string selector)
+        public UseConfigurationBootstraper InitialiseJsonBasedTranslations(string selector)
         {
-            this.Startup.AddTransient<ITranslationSetProvider>(new JsonTransaltionProvider(this.configuration.GetSection(selector)));
+            providers.Add(new JsonTransaltionProvider(this.configuration.GetSection(selector)));
+
             return this;
         }
 
-        public LanguageSelector InitialiseDataStorageBasedTranslations(string databaseName)
+        public UseConfigurationBootstraper InitialiseDataStorageBasedTranslations(string databaseName)
         {
-            this.Startup.AddTransient<ITranslationSetProvider, DataTransaltionProvider>();
+            providers.Add(new
+                ;
             return this;
         }
 
         public UseConfigurationRoot UseIn()
-                => new UseConfigurationRoot(
-                    this.Startup
-                    , this.configuration);
+        {
+            this.Startup.AddSingleton<ConfigurableStringLocalizer>();
+            return new UseConfigurationRoot(this.Startup, this.configuration, this.cultureStore);
+        }
 
         private CultureInfo GetDefaultLanguage(string selector) => new CultureInfo(this.configuration[selector]);
 

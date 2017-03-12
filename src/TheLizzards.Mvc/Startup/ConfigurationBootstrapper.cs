@@ -33,16 +33,7 @@ namespace TheLizzards.Mvc.Startup
             return this;
         }
 
-        public ConfigurationBootstrapper AddDatabaseName(string database)
-        {
-            this.configurationBuilder.Properties["database"] = database;
-            return this;
-        }
-
-        public LanguageSelector UseFor()
-            => new LanguageSelector(
-                this.Startup
-                , this.configurationBuilder.Build()
-                , this.configurationBuilder.Properties["database"].ToString());
+        public UseConfigurationBootstraper UseFor()
+            => new UseConfigurationBootstraper(this.Startup, this.configurationBuilder.Build());
     }
 }
