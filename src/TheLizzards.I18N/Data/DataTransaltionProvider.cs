@@ -1,6 +1,6 @@
 ﻿namespace TheLizzards.I18N.Data.Services
 {
-    internal sealed class DataTransaltionProvider
+    public sealed class DataTransaltionProvider : ITranslationSetProvider
     {
         private readonly GetAllTranslationsQuery query;
 

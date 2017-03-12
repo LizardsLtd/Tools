@@ -2,48 +2,64 @@
 using System.Globalization;
 using System.Linq;
 using Microsoft.Extensions.Configuration;
+using TheLizzards.I18N;
+using TheLizzards.I18N.Data;
+using TheLizzards.I18N.Data.Services;
 
 namespace TheLizzards.Mvc.Startup
 {
-	public sealed class LanguageSelector : ConfigurationBase
-	{
-		private CultureInfo defaultLanguage;
-		private List<CultureInfo> availableLanguages;
-		private IConfigurationRoot configuration;
+    public sealed class LanguageSelector : ConfigurationBase
+    {
+        private readonly string databaseName;
+        private IConfigurationRoot configuration;
 
-		internal LanguageSelector(
-			 IConfiguration startup
-			, IConfigurationRoot configuration)
-				: base(startup)
-		{
-			this.configuration = configuration;
-		}
+        internal LanguageSelector(
+             IConfiguration startup
+            , IConfigurationRoot configuration
+            , string databaseName)
+                : base(startup)
+        {
+            this.configuration = configuration;
+            this.databaseName = databaseName;
+        }
 
-		public LanguageSelector SetDefaultLanguage(string selector)
-		{
-			this.defaultLanguage
-				= new CultureInfo(
-					this.configuration[selector]);
-			return this;
-		}
+        public LanguageSelector InitialiseCultureStore(string selector)
+        {
+            var cultureStore = new CultureStore(
+                this.GetDefaultLanguage($"{selector}:Default")
+                , this.GetAvailableLanguages($"{selector}:Available"));
 
-		public LanguageSelector SetAvailableLanguages(string selector)
-		{
-			this.availableLanguages
-				 = this.configuration
-					.GetSection(selector)
-					.GetChildren()
-					.Select(x => x.Value)
-					.Select(x => new CultureInfo(x))
-					.ToList();
-			return this;
-		}
+            this.Startup.AddSingleton(cultureStore);
+            this.Startup.AddSingleton<ConfigurableStringLocalizer>();
 
-		public UseConfigurationRoot UseIn()
-			=> new UseConfigurationRoot(
-				this.Startup
-				, this.defaultLanguage
-				, this.availableLanguages
-				, this.configuration);
-	}
+            return this;
+        }
+
+        public LanguageSelector InitialiseJsonBasedTranslations(string selector)
+        {
+            this.Startup.AddTransient<ITranslationSetProvider>(new JsonTransaltionProvider(this.configuration.GetSection(selector)));
+            return this;
+        }
+
+        public LanguageSelector InitialiseDataStorageBasedTranslations(string databaseName)
+        {
+            this.Startup.AddTransient<ITranslationSetProvider, DataTransaltionProvider>();
+            return this;
+        }
+
+        public UseConfigurationRoot UseIn()
+                => new UseConfigurationRoot(
+                    this.Startup
+                    , this.configuration);
+
+        private CultureInfo GetDefaultLanguage(string selector) => new CultureInfo(this.configuration[selector]);
+
+        private IEnumerable<CultureInfo> GetAvailableLanguages(string selector)
+            => this.configuration
+                .GetSection(selector)
+                .GetChildren()
+                .Select(x => x.Value)
+                .Select(x => new CultureInfo(x))
+                .ToList();
+    }
 }

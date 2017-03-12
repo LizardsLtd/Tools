@@ -39,6 +39,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\TheLizzards.Data\TheLizzards.Data.csproj" />
+    <ProjectReference Include="..\TheLizzards.I18N\TheLizzards.I18N.csproj" />
     <ProjectReference Include="..\TheLizzards.Localisation\TheLizzards.Localisation.csproj" />
     <ProjectReference Include="..\TheLizzards.Maybe\TheLizzards.Maybe.csproj">
       <FromP2P>true</FromP2P>

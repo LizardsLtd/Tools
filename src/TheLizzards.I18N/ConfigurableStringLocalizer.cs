@@ -3,18 +3,25 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using Microsoft.Extensions.Localization;
+using TheLizzards.I18N.Data.Services;
 
 namespace TheLizzards.I18N.Data
 {
-    internal sealed class TranslationProvider : IStringLocalizer
+    public sealed class ConfigurableStringLocalizer : IStringLocalizer
     {
         private readonly CultureInfo culture;
         private readonly TranslationSet translationData;
 
-        public TranslationProvider(TranslationSet translationData, CultureStore culture)
+        public ConfigurableStringLocalizer(IEnumerable<ITranslationSetProvider> translationData, CultureStore culture)
             : this(translationData, culture.CurrentCulture) { }
 
-        public TranslationProvider(TranslationSet translationData, CultureInfo culture)
+        public ConfigurableStringLocalizer(IEnumerable<ITranslationSetProvider> translationData, CultureInfo culture)
+            : this(
+                translationData.Select(x => x.GetTranslationSet()).Aggregate((prev, next) => prev.Merge(next))
+                , culture)
+        { }
+
+        private ConfigurableStringLocalizer(TranslationSet translationData, CultureInfo culture)
         {
             this.translationData = translationData;
             this.culture = culture;
@@ -32,9 +39,7 @@ namespace TheLizzards.I18N.Data
                 .Select(x => new LocalizedString(x.Item1, x.Item2));
 
         public IStringLocalizer WithCulture(CultureInfo culture)
-        {
-            return new TranslationProvider(this.translationData, culture);
-        }
+            => new ConfigurableStringLocalizer(this.translationData, culture);
 
         private string GetTranslatedString(string name, params object[] arguments)
             => String.Format(this.translationData.GetTranslation(this.culture, name), arguments);

@@ -4,6 +4,7 @@ using System.Globalization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Localization;
 
 namespace TheLizzards.Mvc.Startup
 {
@@ -16,15 +17,11 @@ namespace TheLizzards.Mvc.Startup
 
         internal UseConfigurationRoot(
             IConfiguration startup
-            , CultureInfo defaultLanguage
-            , List<CultureInfo> availableLanguages
             , IConfigurationRoot configuration)
                 : base(startup)
         {
             this.configuration = configuration;
             this.properties = new Dictionary<string, string>();
-            this.defaultLanguage = defaultLanguage;
-            this.availableLanguages = availableLanguages;
         }
 
         public UseConfigurationRoot UseMiddlewareCultureRecognition()
@@ -45,30 +42,29 @@ namespace TheLizzards.Mvc.Startup
             , params IRequestCultureProvider[] culturePrviders)
         {
             this.Startup.AddConfiguration(
-                    (app, e, lf) => app.UseRequestLocalization(
-                            new RequestLocalizationOptions
-                            {
-                                RequestCultureProviders = new List<IRequestCultureProvider>
-                                {
-                                    new AcceptLanguageHeaderRequestCultureProvider()
-                                    , new QueryStringRequestCultureProvider()
-                                    , new CookieRequestCultureProvider()
-                                },
-                                SupportedCultures = availableLanguages,
-                                SupportedUICultures = availableLanguages,
-                                DefaultRequestCulture = defaultCulture,
-                            }));
+                (app, e, lf) => app.UseRequestLocalization(
+                    new RequestLocalizationOptions
+                    {
+                        RequestCultureProviders = new List<IRequestCultureProvider>
+                        {
+                            new AcceptLanguageHeaderRequestCultureProvider()
+                            , new QueryStringRequestCultureProvider()
+                            , new CookieRequestCultureProvider()
+                        },
+                        SupportedCultures = availableLanguages,
+                        SupportedUICultures = availableLanguages,
+                        DefaultRequestCulture = defaultCulture,
+                    }));
             return this;
         }
 
         public LocaliserDependenciesBootstrapper InitialiseTranslation(string translationSelector)
         {
-            //var cachedLocaliser = CreateLocaliserFromJson(translationSelector);
+            var translation = new Lazy<IStringLocalizer>();
 
             return new LocaliserDependenciesBootstrapper(
                 this.Startup
-                , null);
-            //, cachedLocaliser);
+                , translation);
         }
 
         public UseConfigurationRoot Configure<TOptions>(Action<IConfigurationRoot, TOptions> configureOptions)
@@ -78,16 +74,5 @@ namespace TheLizzards.Mvc.Startup
 
             return this;
         }
-
-        //private CachedLocalizer CreateLocaliserFromJson(string translationSelector)
-        //{
-        //	var translationData
-        //		= new JsonBasedTransaltionLoader(
-        //				this.configuration.GetSection(translationSelector)
-        //				, defaultLanguage)
-        //			.GetTranslationSet();
-
-        //	return new CachedLocalizer(translationData, defaultLanguage);
-        //}
     }
 }

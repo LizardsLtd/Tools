@@ -5,19 +5,16 @@ using Microsoft.Extensions.Configuration;
 
 namespace TheLizzards.I18N.Data.Services
 {
-    internal sealed class JsonTransaltionProvider
+    public sealed class JsonTransaltionProvider : ITranslationSetProvider
     {
         private readonly IConfigurationSection configuration;
-        private readonly CultureInfo defaultCulture;
 
-        public JsonTransaltionProvider(IConfigurationSection configuration, CultureInfo defaultCulture)
+        public JsonTransaltionProvider(IConfigurationSection configuration)
         {
             this.configuration = configuration;
-            this.defaultCulture = defaultCulture;
         }
 
-        public TranslationSet GetTranslationSet()
-            => new TranslationSet(ConvertToTransationData(this.configuration));
+        public TranslationSet GetTranslationSet() => new TranslationSet(ConvertToTransationData(this.configuration));
 
         public IEnumerable<TranslationItem> ConvertToTransationData(IConfigurationSection configuration)
             => configuration
@@ -48,8 +45,7 @@ namespace TheLizzards.I18N.Data.Services
                     , x.Key
                     , x.Value));
 
-        private IEnumerable<IConfigurationSection> GetAlldescendantsAndSelf(
-            IConfigurationSection section)
+        private IEnumerable<IConfigurationSection> GetAlldescendantsAndSelf(IConfigurationSection section)
         {
             IEnumerable<IConfigurationSection> result = new[] { section };
 
