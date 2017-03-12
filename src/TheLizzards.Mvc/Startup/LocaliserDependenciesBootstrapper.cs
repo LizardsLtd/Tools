@@ -13,9 +13,7 @@ namespace TheLizzards.Mvc.Startup
     {
         private readonly Lazy<IStringLocalizer> localiser;
 
-        public LocaliserDependenciesBootstrapper(
-            IConfiguration startup
-            , Lazy<IStringLocalizer> localiser)
+        public LocaliserDependenciesBootstrapper(IConfiguration startup, Lazy<IStringLocalizer> localiser)
                 : base(startup)
         {
             this.localiser = localiser;
@@ -29,12 +27,14 @@ namespace TheLizzards.Mvc.Startup
         }
 
         public LocaliserDependenciesBootstrapper AddAllTranslators()
-            => this
-                .AddHtmlLocalizer()
-                .AddDisplayAttributeProvider()
-                .AddValidationAttributeProvider()
-                .AddIdentityError()
-                .AddDataAnnotationsLocalization();
+        {
+            return this
+                   .AddHtmlLocalizer()
+                   .AddDisplayAttributeProvider()
+                   .AddValidationAttributeProvider()
+                   .AddIdentityError()
+                   .AddDataAnnotationsLocalization();
+        }
 
         public LocaliserDependenciesBootstrapper AddDisplayAttributeProvider()
         {
