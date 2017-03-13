@@ -34,14 +34,15 @@ namespace TheLizzards.Mvc.Startup
 
         public UseConfigurationBootstraper InitialiseJsonBasedTranslations(string selector)
         {
-            providers.Add(new JsonTransaltionProvider(this.configuration.GetSection(selector)));
+            this.Startup.AddSingleton<ITranslationSetProvider>(
+                new JsonTransaltionProvider(this.configuration.GetSection(selector)));
 
             return this;
         }
 
         public UseConfigurationBootstraper InitialiseDataStorageBasedTranslations(string databaseName)
         {
-           // providers.Add(new 
+            this.Startup.AddSingleton<ITranslationSetProvider, DataTranslationProvider>();
             return this;
         }
 
