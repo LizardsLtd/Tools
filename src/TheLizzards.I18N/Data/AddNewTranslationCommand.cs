@@ -9,8 +9,8 @@ namespace TheLizzards.I18N.Data
         /// <param name="databaseName"><see cref="DatabaseName"/></param>
         public AddNewTranslationCommand(TranslationItem translationItem, string databaseName)
         {
-            TranslationItem = translationItem;
-            DatabaseName = databaseName;
+            this.TranslationItem = translationItem;
+            this.DatabaseName = databaseName;
         }
 
         public TranslationItem TranslationItem { get; }
