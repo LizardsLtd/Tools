@@ -17,7 +17,6 @@ namespace TheLizzards.Mvc.Startup
                 : base(startup)
         {
             this.localiserFactory = localiserFactory;
-            this.Startup.AddServices(services => services.AddSingleton(localiser));
         }
 
         public LocaliserDependenciesBootstrapper AddHtmlLocalizer()
