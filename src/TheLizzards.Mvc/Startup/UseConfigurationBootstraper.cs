@@ -41,8 +41,7 @@ namespace TheLizzards.Mvc.Startup
 
         public UseConfigurationBootstraper InitialiseDataStorageBasedTranslations(string databaseName)
         {
-            providers.Add(new
-                ;
+           // providers.Add(new 
             return this;
         }
 
