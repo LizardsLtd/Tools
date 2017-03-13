@@ -78,7 +78,7 @@ namespace TheLizzards.Mvc.Startup
 
         private void DataAnnotationOptions(MvcDataAnnotationsLocalizationOptions options)
         {
-            options.DataAnnotationLocalizerProvider = (x, y) => this.localiser.Value;
+            options.DataAnnotationLocalizerProvider = (x, y) => this.localiser;
         }
     }
 }
