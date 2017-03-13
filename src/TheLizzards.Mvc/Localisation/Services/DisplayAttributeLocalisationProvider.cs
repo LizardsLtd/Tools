@@ -8,9 +8,9 @@ namespace TheLizzards.Mvc.Localisation.Services
 {
     public sealed class DisplayAttributeLocalisationProvider : IDisplayMetadataProvider
     {
-        private Lazy<IStringLocalizer> localiser;
+        private IStringLocalizer localiser;
 
-        public DisplayAttributeLocalisationProvider(Lazy<IStringLocalizer> localiser)
+        public DisplayAttributeLocalisationProvider(IStringLocalizer localiser)
         {
             this.localiser = localiser;
         }
@@ -30,7 +30,7 @@ namespace TheLizzards.Mvc.Localisation.Services
         {
             var name = attribute.Name ?? $"{context.Key.ContainerType.Name}.{context.Key.Name}";
 
-            return this.localiser.Value.GetString(name);
+            return this.localiser.GetString(name);
         }
     }
 }
