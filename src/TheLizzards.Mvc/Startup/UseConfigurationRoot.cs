@@ -65,7 +65,7 @@ namespace TheLizzards.Mvc.Startup
                 .AddSetupSystemAfterInitialisation(serviceProvider
                     => this.stringLocaliser = serviceProvider.GetService(typeof(IStringLocalizer)) as IStringLocalizer);
                     
-            return new LocaliserDependenciesBootstrapper(this.Startup, () => this.stringLocaliser);
+            return new LocaliserDependenciesBootstrapper(this.Startup, new Lazy<IStringLocalizer>(() => this.stringLocaliser));
         }
 
         public UseConfigurationRoot Configure<TOptions>(Action<IConfigurationRoot, TOptions> configureOptions)
