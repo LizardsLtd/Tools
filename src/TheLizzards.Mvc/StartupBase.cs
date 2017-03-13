@@ -63,9 +63,8 @@ namespace Picums.Web
         public void Configure(IApplicationBuilder app, ILoggerFactory loggerFactory)
         {
             this.configurationAction.ForEach(action => action(app, this.env, loggerFactory));
-            this.mvcConfiguration.SetupUseMvc(app);
-
             this.setupSystemAfterInitialisationActions.ForEach(action => action(app.ApplicationServices));
+            this.mvcConfiguration.SetupUseMvc(app);
         }
     }
 }
