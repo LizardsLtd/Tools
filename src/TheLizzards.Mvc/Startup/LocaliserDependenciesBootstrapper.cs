@@ -1,9 +1,9 @@
-﻿using System;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.DataAnnotations;
 using Microsoft.AspNetCore.Mvc.Localization;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Localization;
+using System;
 using TheLizzards.Mvc.Localisation;
 using TheLizzards.Mvc.Localisation.Services;
 
@@ -16,7 +16,7 @@ namespace TheLizzards.Mvc.Startup
         public LocaliserDependenciesBootstrapper(IConfiguration startup, Lazy<IStringLocalizer> localiser)
                 : base(startup)
         {
-            this.localiserFactory = localiser;
+            this.localiser = localiser;
         }
 
         public LocaliserDependenciesBootstrapper AddHtmlLocalizer()
@@ -39,11 +39,11 @@ namespace TheLizzards.Mvc.Startup
         {
             this.Startup
                 .ForMvcOption()
-                .AddMvcOption(options => 
+                .AddMvcOption(options =>
                 {
                     var localiserInstance = this.localiser.Value;
                     options.ModelMetadataDetailsProviders.Add(new DisplayAttributeLocalisationProvider(localiserInstance));
-                 });
+                });
             return this;
         }
 
@@ -51,11 +51,11 @@ namespace TheLizzards.Mvc.Startup
         {
             this.Startup
                 .ForMvcOption()
-                .AddMvcOption(options =>                 
+                .AddMvcOption(options =>
                 {
                     var localiserInstance = this.localiser.Value;
                     options.ModelMetadataDetailsProviders.Add(new ValidationAttributeLocalisationProvider(localiserInstance));
-                 });
+                });
             return this;
         }
 
