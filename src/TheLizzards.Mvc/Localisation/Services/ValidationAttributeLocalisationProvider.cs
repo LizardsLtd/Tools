@@ -8,9 +8,9 @@ namespace TheLizzards.Mvc.Localisation.Services
 {
     public sealed class ValidationAttributeLocalisationProvider : IValidationMetadataProvider
     {
-        private Lazy<IStringLocalizer> localiser;
+        private IStringLocalizer localiser;
 
-        public ValidationAttributeLocalisationProvider(Lazy<IStringLocalizer> localiser)
+        public ValidationAttributeLocalisationProvider(IStringLocalizer localiser)
         {
             this.localiser = localiser;
         }
@@ -22,7 +22,7 @@ namespace TheLizzards.Mvc.Localisation.Services
                 .Cast<ValidationAttribute>()
                 .ToList()
                 .ForEach(x
-                    => x.ErrorMessage = this.localiser.Value.GetString($"Errors.{x.GetType().Name}", GetName(context)));
+                    => x.ErrorMessage = this.localiser.GetString($"Errors.{x.GetType().Name}", GetName(context)));
 
         private string GetName(ValidationMetadataProviderContext context)
         {
