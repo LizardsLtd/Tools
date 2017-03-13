@@ -9,7 +9,7 @@ namespace TheLizzards.I18N.Data
         private readonly IDataContext storageContext;
         private readonly DatabaseParts parts;
 
-        public AddNewTranslationCommandHandler(IDataContext storageContext)
+        public AddNewTranslationCommandHandler(IDataContext storageContext, DatabaseParts parts)
         {
             this.storageContext = storageContext;
             this.parts = parts;
