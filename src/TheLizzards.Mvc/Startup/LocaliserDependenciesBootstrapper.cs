@@ -11,9 +11,9 @@ namespace TheLizzards.Mvc.Startup
 {
     public sealed class LocaliserDependenciesBootstrapper : ConfigurationBase
     {
-        private readonly Func<IStringLocalizer> localiserFactory;
+        private readonly Lazy<IStringLocalizer> localiserFactory;
 
-        public LocaliserDependenciesBootstrapper(IConfiguration startup, Func<IStringLocalizer> localiserFactory)
+        public LocaliserDependenciesBootstrapper(IConfiguration startup, Lazy<IStringLocalizer> localiserFactory)
                 : base(startup)
         {
             this.localiserFactory = localiserFactory;
@@ -41,7 +41,7 @@ namespace TheLizzards.Mvc.Startup
                 .ForMvcOption()
                 .AddMvcOption(options => 
                 {
-                    var localiser = this.localiserFactory();
+                    var localiser = this.localiserFactory.Value;
                     options.ModelMetadataDetailsProviders.Add(new DisplayAttributeLocalisationProvider(localiser));
                  });
             return this;
@@ -53,7 +53,7 @@ namespace TheLizzards.Mvc.Startup
                 .ForMvcOption()
                 .AddMvcOption(options =>                 
                 {
-                    var localiser = this.localiserFactory();
+                    var localiser = this.localiserFactory.Value;
                     options.ModelMetadataDetailsProviders.Add(new ValidationAttributeLocalisationProvider(localiser));
                  });
             return this;
@@ -78,7 +78,7 @@ namespace TheLizzards.Mvc.Startup
 
         private void DataAnnotationOptions(MvcDataAnnotationsLocalizationOptions options)
         {
-            options.DataAnnotationLocalizerProvider = (x, y) => this.localiser;
+            options.DataAnnotationLocalizerProvider = (x, y) => this.localiser.Value;
         }
     }
 }
