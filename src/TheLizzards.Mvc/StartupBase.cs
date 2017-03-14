@@ -1,9 +1,9 @@
-using System;
-using System.Collections.Generic;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using System;
+using System.Collections.Generic;
 using TheLizzards.Mvc.Startup;
 
 namespace Picums.Web
@@ -54,14 +54,19 @@ namespace Picums.Web
 
         public MvcConfiguration ForMvcOption() => this.mvcConfiguration;
 
-        public void ConfigureServices(IServiceCollection services)
+        public void ConfigureServices(IServiceCollection services, ILoggerFactory loggerFactory)
         {
             this.serviceConfigurationAction.ForEach(action => action(services));
             this.mvcConfiguration.SetupMvcService(services);
         }
 
+        public virtual void InitialiseBeforeConfigure(IApplicationBuilder app, ILoggerFactory loggerFactory)
+        {
+        }
+
         public void Configure(IApplicationBuilder app, ILoggerFactory loggerFactory)
         {
+            this.InitialiseBeforeConfigure(app, loggerFactory);
             this.configurationAction.ForEach(action => action(app, this.env, loggerFactory));
             this.setupSystemAfterInitialisationActions.ForEach(action => action(app.ApplicationServices));
             this.mvcConfiguration.SetupUseMvc(app);
