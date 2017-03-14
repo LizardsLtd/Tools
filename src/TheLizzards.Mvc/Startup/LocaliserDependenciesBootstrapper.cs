@@ -17,11 +17,12 @@ namespace TheLizzards.Mvc.Startup
                 : base(startup)
         {
             this.localiser = localiser;
+            this.Startup.AddSingleton(services => this.localiser.Value);
         }
 
         public LocaliserDependenciesBootstrapper AddHtmlLocalizer()
         {
-            this.Startup.AddServices(services => services.AddTransient<IHtmlLocalizer, HtmlLocalizer>());
+            this.Startup.AddTransient<IHtmlLocalizer, HtmlLocalizer>();
             return this;
         }
 
