@@ -39,6 +39,9 @@
     <Compile Include="Localisation\Services\ValidationAttributeLocalisationProvider.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Startup\RazorViewBootstrapper.cs" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\TheLizzards.Data\TheLizzards.Data.csproj" />
     <ProjectReference Include="..\TheLizzards.I18N\TheLizzards.I18N.csproj" />
     <ProjectReference Include="..\TheLizzards.Localisation\TheLizzards.Localisation.csproj" />
@@ -61,6 +64,9 @@
     <PackageReference Include="Microsoft.Extensions.Options" Version="1.1.1" />
     <PackageReference Include="Microsoft.VisualStudio.Web.BrowserLink.Loader" Version="14.1.0" />
     <PackageReference Include="Markdig" Version="0.10.6" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Startup\Configuration\" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
     <DefineConstants>$(DefineConstants);RELEASE</DefineConstants>

@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc.Razor;
-using Microsoft.Extensions.DependencyInjection;
 using TheLizzards.Mvc.FeatureSlices;
 
 namespace TheLizzards.Mvc.Startup
@@ -11,10 +10,5 @@ namespace TheLizzards.Mvc.Startup
                 => new ViewLocationFormatsUpdater(options)
                     .UpdateViewLocations()
                     .AddExtender());
-
-        public static IConfiguration UseViewLocalisation(this IConfiguration startup)
-            => startup
-                .ForMvcOption()
-                .AddMvcBuilderAction(options => options.AddViewLocalization());
     }
 }

@@ -1,8 +1,8 @@
-﻿using System;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using System;
 
 namespace TheLizzards.Mvc.Startup
 {
@@ -12,10 +12,6 @@ namespace TheLizzards.Mvc.Startup
 
         IConfiguration AddServices(Action<IServiceCollection> action);
 
-        IConfiguration AddSetupSystemAfterInitialisation(Action<IServiceProvider> action);
-
         IConfiguration ConfigureOption<TOption>(Action<TOption> action) where TOption : class;
-
-        MvcConfiguration ForMvcOption();
     }
 }

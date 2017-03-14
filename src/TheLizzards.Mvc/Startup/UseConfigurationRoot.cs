@@ -1,11 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Localization;
+using System;
+using System.Collections.Generic;
+using System.Globalization;
+using System.Linq;
 using TheLizzards.I18N;
 
 namespace TheLizzards.Mvc.Startup
@@ -61,11 +61,7 @@ namespace TheLizzards.Mvc.Startup
 
         public LocaliserDependenciesBootstrapper InitialiseTranslation(string translationSelector)
         {
-            this.Startup
-                .AddSetupSystemAfterInitialisation(serviceProvider
-                    => this.stringLocaliser = serviceProvider.GetService(typeof(IStringLocalizer)) as IStringLocalizer);
-                    
-            return new LocaliserDependenciesBootstrapper(this.Startup, new Lazy<IStringLocalizer>(() => this.stringLocaliser));
+            return new LocaliserDependenciesBootstrapper(this.Startup);
         }
 
         public UseConfigurationRoot Configure<TOptions>(Action<IConfigurationRoot, TOptions> configureOptions)
