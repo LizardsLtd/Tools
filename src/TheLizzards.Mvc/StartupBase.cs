@@ -54,7 +54,7 @@ namespace Picums.Web
 
         public MvcConfiguration ForMvcOption() => this.mvcConfiguration;
 
-        public void ConfigureServices(IServiceCollection services, ILoggerFactory loggerFactory)
+        public void ConfigureServices(IServiceCollection services)
         {
             this.serviceConfigurationAction.ForEach(action => action(services));
             this.mvcConfiguration.SetupMvcService(services);
