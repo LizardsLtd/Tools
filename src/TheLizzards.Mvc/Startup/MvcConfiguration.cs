@@ -36,20 +36,30 @@ namespace TheLizzards.Mvc.Startup
             this.localiser = localiser;
         }
 
-        //public MvcConfiguration AddMvcOption(Action<MvcOptions> action)
-        //{
-        //    this.mvcOptionsActions.Add(action);
-        //    return this;
-        //}
+        public MvcConfiguration AddDataParts(this IConfiguration startup)
+            => startup
+                .AddBankModelHandlers()
+                .AddEmailModelHandlers()
+                .AddAddressModelHandlers();
 
-        //public MvcConfiguration AddMvcBuilderAction(Action<IMvcBuilder> action)
-        //{
-        //    this.mvcBuilderActions.Add(action);
-        //    return this;
-        //}
+        public MvcConfiguration AddBankModelHandlers(this IConfiguration startup)
+            => startup
+                .ForMvcOption()
+                    .AddModelBinderProvider<BankDetails, BankDetailsModelBinder>()
+                    .AddModelValidator<BankDetailsModelValidatorProvider>();
+
+        public MvcConfiguration AddEmailModelHandlers(this IConfiguration startup)
+            => startup
+                .ForMvcOption()
+                    .AddModelBinderProvider<Email, EmailModelBinder>();
+
+        public MvcConfiguration AddAddressModelHandlers(this IConfiguration startup)
+            => startup
+                .ForMvcOption()
+                    .AddModelBinderProvider<Address, AddressModelBinder>();
 
         public MvcConfiguration AddMvcFilter<TFilterMetadata>()
-                where TFilterMetadata : IFilterMetadata, new()
+                                                where TFilterMetadata : IFilterMetadata, new()
             => AddMvcFilter(new TFilterMetadata());
 
         public MvcConfiguration AddMvcFilter(IFilterMetadata filter)
@@ -119,22 +129,21 @@ namespace TheLizzards.Mvc.Startup
         public MvcConfiguration AddAllTranslators()
         {
             return this
-                   .AddHtmlLocalizer()
+                   //.AddHtmlLocalizer()
                    .AddDisplayAttributeProvider()
                    .AddValidationAttributeProvider()
                    .AddIdentityError()
                    .AddDataAnnotationsLocalization();
         }
 
-        public MvcConfiguration UseFeatures(this IConfiguration startup)
+        public MvcConfiguration ActivateFeatures()
         {
             this.AddControllerConvention<FeatureConvention>();
-            this.AddFeatureSlice();
 
             return this;
         }
 
-        public MvcConfiguration AddPermissionBasedAuthorization(this IConfiguration startup)
+        public MvcConfiguration AddPermissionBasedAuthorization()
             => this.AddMvcFilter(
                     new AuthorizeFilter(
                         new AuthorizationPolicyBuilder()
@@ -173,12 +182,6 @@ namespace TheLizzards.Mvc.Startup
         {
             app.UseMvc(this.routeBuilder.BuildRoutes);
         }
-
-        private MvcConfiguration AddFeatureSlice()
-                                                    => startup.ConfigureOption<RazorViewEngineOptions>(options
-                => new ViewLocationFormatsUpdater(options)
-                    .UpdateViewLocations()
-                    .AddExtender());
 
         private NavigationItems AddNavigationItems(IServiceCollection services, IMvcBuilder mvcBuilder)
         {

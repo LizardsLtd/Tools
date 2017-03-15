@@ -39,9 +39,6 @@
     <Compile Include="Localisation\Services\ValidationAttributeLocalisationProvider.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Startup\RazorViewBootstrapper.cs" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\TheLizzards.Data\TheLizzards.Data.csproj" />
     <ProjectReference Include="..\TheLizzards.I18N\TheLizzards.I18N.csproj" />
     <ProjectReference Include="..\TheLizzards.Localisation\TheLizzards.Localisation.csproj" />
