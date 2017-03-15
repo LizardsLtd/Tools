@@ -29,5 +29,14 @@ namespace TheLizzards.Mvc.Startup
             this.Startup.AddTransient<IHtmlLocalizer, HtmlLocalizer>();
             return this;
         }
+
+        public LocaliserDependenciesBootstrapper AddLocalisation()
+        {
+            this.AddIdentityError();
+            this.AddStringLocaliser();
+            this.AddHtmlLocalizer();
+
+            return this;
+        }
     }
 }

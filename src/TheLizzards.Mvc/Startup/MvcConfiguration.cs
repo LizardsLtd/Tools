@@ -12,10 +12,13 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Localization;
 using System;
 using System.Collections.Generic;
+using TheLizzards.Data.Types;
+using TheLizzards.Mvc.ApplicationServices;
 using TheLizzards.Mvc.Claims.Entities;
 using TheLizzards.Mvc.FeatureSlices;
 using TheLizzards.Mvc.Localisation.Services;
 using TheLizzards.Mvc.ModelBinder;
+using TheLizzards.Mvc.ModelValidators;
 using TheLizzards.Mvc.Navigation;
 using TheLizzards.Mvc.Stratup;
 
@@ -36,27 +39,21 @@ namespace TheLizzards.Mvc.Startup
             this.localiser = localiser;
         }
 
-        public MvcConfiguration AddDataParts(this IConfiguration startup)
-            => startup
+        public MvcConfiguration AddDataParts()
+            => this
                 .AddBankModelHandlers()
                 .AddEmailModelHandlers()
                 .AddAddressModelHandlers();
 
-        public MvcConfiguration AddBankModelHandlers(this IConfiguration startup)
-            => startup
-                .ForMvcOption()
-                    .AddModelBinderProvider<BankDetails, BankDetailsModelBinder>()
+        public MvcConfiguration AddBankModelHandlers()
+            => this.AddModelBinderProvider<BankDetails, BankDetailsModelBinder>()
                     .AddModelValidator<BankDetailsModelValidatorProvider>();
 
-        public MvcConfiguration AddEmailModelHandlers(this IConfiguration startup)
-            => startup
-                .ForMvcOption()
-                    .AddModelBinderProvider<Email, EmailModelBinder>();
+        public MvcConfiguration AddEmailModelHandlers()
+            => this.AddModelBinderProvider<Email, EmailModelBinder>();
 
-        public MvcConfiguration AddAddressModelHandlers(this IConfiguration startup)
-            => startup
-                .ForMvcOption()
-                    .AddModelBinderProvider<Address, AddressModelBinder>();
+        public MvcConfiguration AddAddressModelHandlers()
+            => this.AddModelBinderProvider<Address, AddressModelBinder>();
 
         public MvcConfiguration AddMvcFilter<TFilterMetadata>()
                                                 where TFilterMetadata : IFilterMetadata, new()
@@ -132,7 +129,6 @@ namespace TheLizzards.Mvc.Startup
                    //.AddHtmlLocalizer()
                    .AddDisplayAttributeProvider()
                    .AddValidationAttributeProvider()
-                   .AddIdentityError()
                    .AddDataAnnotationsLocalization();
         }
 
