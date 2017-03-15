@@ -1,6 +1,8 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ApplicationModels;
+using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.AspNetCore.Mvc.DataAnnotations;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
@@ -10,6 +12,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Localization;
 using System;
 using System.Collections.Generic;
+using TheLizzards.Mvc.Claims.Entities;
+using TheLizzards.Mvc.FeatureSlices;
 using TheLizzards.Mvc.Localisation.Services;
 using TheLizzards.Mvc.ModelBinder;
 using TheLizzards.Mvc.Navigation;
@@ -112,28 +116,26 @@ namespace TheLizzards.Mvc.Startup
             return this;
         }
 
-        //public LocaliserDependenciesBootstrapper AddAllTranslators()
-        //{
-        //    return this
-        //           .AddHtmlLocalizer()
-        //           .AddDisplayAttributeProvider()
-        //           .AddValidationAttributeProvider()
-        //           .AddIdentityError()
-        //           .AddDataAnnotationsLocalization();
-        //}
+        public MvcConfiguration AddAllTranslators()
+        {
+            return this
+                   .AddHtmlLocalizer()
+                   .AddDisplayAttributeProvider()
+                   .AddValidationAttributeProvider()
+                   .AddIdentityError()
+                   .AddDataAnnotationsLocalization();
+        }
+
         public MvcConfiguration UseFeatures(this IConfiguration startup)
         {
-            startup.AddAddressModelHandlers
-                    .ForMvcOption()
-                      .AddControllerConvention<FeatureConvention>()
-                  .AddFeatureSlice();
+            this.AddControllerConvention<FeatureConvention>();
+            this.AddFeatureSlice();
+
             return this;
         }
 
         public MvcConfiguration AddPermissionBasedAuthorization(this IConfiguration startup)
-            => startup
-                .ForMvcOption()
-                .AddMvcFilter(
+            => this.AddMvcFilter(
                     new AuthorizeFilter(
                         new AuthorizationPolicyBuilder()
                             .RequireAuthenticatedUser()
@@ -171,6 +173,12 @@ namespace TheLizzards.Mvc.Startup
         {
             app.UseMvc(this.routeBuilder.BuildRoutes);
         }
+
+        private MvcConfiguration AddFeatureSlice()
+                                                    => startup.ConfigureOption<RazorViewEngineOptions>(options
+                => new ViewLocationFormatsUpdater(options)
+                    .UpdateViewLocations()
+                    .AddExtender());
 
         private NavigationItems AddNavigationItems(IServiceCollection services, IMvcBuilder mvcBuilder)
         {
