@@ -3,8 +3,8 @@
     <Description>ASP.NET Core MVC implementation.</Description>
     <Copyright>TheLizzards 2016 - 2017</Copyright>
     <AssemblyTitle>Lizzards MVC</AssemblyTitle>
-    <VersionPrefix>2.1.0-beta7</VersionPrefix>
-    <Version>2.1.0-beta7</Version>
+    <VersionPrefix>2.1.0-beta8</VersionPrefix>
+    <Version>2.1.0-beta8</Version>
     <WarningsAsErrors>true</WarningsAsErrors>
     <AssemblyName>TheLizzards.Mvc</AssemblyName>
     <GenerateAssemblyTitleAttribute>false</GenerateAssemblyTitleAttribute>
@@ -32,6 +32,14 @@
     <Compile Remove="Localisation\JsonTranslationProvider.cs" />
     <Compile Remove="Localisation\TranslactionItem.cs" />
     <Compile Remove="Localisation\TranslationSet.cs" />
+    <Compile Remove="StartupBase.cs" />
+    <Compile Remove="Startup\ConfigurationBase.cs" />
+    <Compile Remove="Startup\ConfigurationBootstrapper.cs" />
+    <Compile Remove="Startup\IConfiguration.cs" />
+    <Compile Remove="Startup\LocaliserDependenciesBootstrapper.cs" />
+    <Compile Remove="Startup\Mvc\MvcServices.cs" />
+    <Compile Remove="Startup\RouteConfigurator.cs" />
+    <Compile Remove="Startup\ServicesExtension.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Localisation\Services\DisplayAttributeLocalisationProvider.cs" />
@@ -61,9 +69,6 @@
     <PackageReference Include="Microsoft.Extensions.Options" Version="1.1.1" />
     <PackageReference Include="Microsoft.VisualStudio.Web.BrowserLink.Loader" Version="14.1.0" />
     <PackageReference Include="Markdig" Version="0.10.6" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Startup\Configuration\" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
     <DefineConstants>$(DefineConstants);RELEASE</DefineConstants>

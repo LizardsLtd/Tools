@@ -21,18 +21,6 @@ namespace TheLizzards.Mvc.Startup
             this.configurationBuilder.SetBasePath(this.basePath);
         }
 
-        public ConfigurationBootstrapper AddEnvironmentVariablesToConfiguration()
-        {
-            this.configurationBuilder.AddEnvironmentVariables();
-            return this;
-        }
-
-        public ConfigurationBootstrapper AddJsonFile(string fileName)
-        {
-            this.configurationBuilder.AddJsonFile(fileName);
-            return this;
-        }
-
         public UseConfigurationBootstraper UseFor()
             => new UseConfigurationBootstraper(this.Startup, this.configurationBuilder.Build());
     }
