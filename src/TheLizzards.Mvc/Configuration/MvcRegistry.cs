@@ -1,7 +1,12 @@
 ﻿using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
+using Microsoft.AspNetCore.Mvc.Localization;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Localization;
+using TheLizzards.I18N.Data;
+using TheLizzards.Mvc.Localisation;
 using TheLizzards.Mvc.Navigation;
 
 namespace TheLizzards.Mvc.Configuration
@@ -36,7 +41,10 @@ namespace TheLizzards.Mvc.Configuration
 
             services
                 .AddSingleton(AddNavigationItems(services, mvcBuilder))
-                .AddSingleton<IActionContextAccessor, ActionContextAccessor>();
+                .AddSingleton<IActionContextAccessor, ActionContextAccessor>()
+                .AddScoped<IdentityErrorDescriber, LocalisedIdentityErrorDescriber>()
+                .AddTransient<IHtmlLocalizer, HtmlLocalizer>()
+                .AddSingleton<IStringLocalizer, ConfigurableStringLocalizer>();
         }
 
         internal void Execute(IApplicationBuilder app)

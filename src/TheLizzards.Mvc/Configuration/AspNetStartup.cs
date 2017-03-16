@@ -38,15 +38,14 @@ namespace TheLizzards.Mvc.Configuration
 
             public LocaliserDependenciesBootstrapper AddIdentityError()
             {
-                this.Startup.AddScoped<IdentityErrorDescriber, LocalisedIdentityErrorDescriber>();
                 return this;
             }
 
             public LocaliserDependenciesBootstrapper AddStringLocaliser()
             {
-                this.Startup.AddSingleton<IStringLocalizer, ConfigurableStringLocalizer>();
+                this.Startup
                 {
-                    this.Startup.AddTransient<IHtmlLocalizer, HtmlLocalizer>();
+                    this.Startup;
                     return this;
                 }
 
