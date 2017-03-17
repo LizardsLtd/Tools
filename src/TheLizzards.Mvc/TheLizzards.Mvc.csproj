@@ -21,10 +21,13 @@
   <ItemGroup>
     <Compile Remove="Localisation\Entities\**" />
     <Compile Remove="Localisation\Services\**" />
+    <Compile Remove="Startup\**" />
     <EmbeddedResource Remove="Localisation\Entities\**" />
     <EmbeddedResource Remove="Localisation\Services\**" />
+    <EmbeddedResource Remove="Startup\**" />
     <None Remove="Localisation\Entities\**" />
     <None Remove="Localisation\Services\**" />
+    <None Remove="Startup\**" />
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="Localisation\CachedLocalizer.cs" />
@@ -33,13 +36,6 @@
     <Compile Remove="Localisation\TranslactionItem.cs" />
     <Compile Remove="Localisation\TranslationSet.cs" />
     <Compile Remove="StartupBase.cs" />
-    <Compile Remove="Startup\ConfigurationBase.cs" />
-    <Compile Remove="Startup\ConfigurationBootstrapper.cs" />
-    <Compile Remove="Startup\IConfiguration.cs" />
-    <Compile Remove="Startup\LocaliserDependenciesBootstrapper.cs" />
-    <Compile Remove="Startup\Mvc\MvcServices.cs" />
-    <Compile Remove="Startup\RouteConfigurator.cs" />
-    <Compile Remove="Startup\ServicesExtension.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Localisation\Services\DisplayAttributeLocalisationProvider.cs" />

@@ -47,6 +47,10 @@ namespace TheLizzards.Mvc.Configuration
                 .AddSingleton<IStringLocalizer, ConfigurableStringLocalizer>();
         }
 
+        internal void UseMvc()
+        {
+        }
+
         internal void Execute(IApplicationBuilder app)
         {
             //app.UseMvc(this.routeBuilder.BuildRoutes);
