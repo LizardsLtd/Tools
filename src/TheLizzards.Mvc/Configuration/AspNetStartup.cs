@@ -19,6 +19,7 @@ namespace TheLizzards.Mvc.Configuration
         }
 
         protected IConfigurationRoot ConfigurationRoot => this.configure.Configuration;
+
         protected IHostingEnvironment Enviroment => configure.Enviroment;
 
         public void ConfigureServices(IServiceCollection services)
@@ -32,6 +33,13 @@ namespace TheLizzards.Mvc.Configuration
         public void Configure(IApplicationBuilder app, ILoggerFactory loggerFactory)
         {
             ConfigureLogging(loggerFactory);
+            ConfigureApplication(app);
+
+            configure.SetupEnviromentType(
+                app
+                , ConfigureDevelopmentEnviroment
+                , ConfigureStagingEnviroment
+                , ConfigureProductionEnviroment);
 
             configure.ConfigureAll(app, loggerFactory);
         }
@@ -52,6 +60,26 @@ namespace TheLizzards.Mvc.Configuration
         {
         }
 
+        protected virtual void ConfigureApplication(IApplicationBuilder app)
+        {
+
+        }
+
+        protected virtual void ConfigureDevelopmentEnviroment(IApplicationBuilder app)
+        {
+
+        }
+
+        protected virtual void ConfigureStagingEnviroment(IApplicationBuilder app)
+        {
+
+        }
+
+        protected virtual void ConfigureProductionEnviroment(IApplicationBuilder app)
+        {
+
+        }
+        
         protected virtual void ConfigureLocalisation()
         {
         }

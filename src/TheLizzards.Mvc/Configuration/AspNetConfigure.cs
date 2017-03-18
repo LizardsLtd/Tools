@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using System;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -42,6 +43,26 @@ namespace TheLizzards.Mvc.Configuration
         {
             AspRegistry.Configure(app, Enviroment, loggerFactory);
             MvcRegistry.UseMvc();
+        }
+
+        internal void SetupEnviromentType(
+            IApplicationBuilder app
+            , Action<IApplicationBuilder> configureDevelopmentEnviroment
+            , Action<IApplicationBuilder> configureStagingEnviroment
+            , Action<IApplicationBuilder> configureProductionEnviroment)
+        {
+            if (Enviroment.IsDevelopment())
+            {
+                configureDevelopmentEnviroment(app);
+            }
+            else if (Enviroment.IsStaging())
+            {
+                configureStagingEnviroment(app);
+            }
+            else if (Enviroment.IsProduction())
+            {
+                configureProductionEnviroment(app);
+            }
         }
     }
 }
