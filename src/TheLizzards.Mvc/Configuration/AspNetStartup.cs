@@ -19,18 +19,20 @@ namespace TheLizzards.Mvc.Configuration
         }
 
         protected IConfigurationRoot ConfigurationRoot => this.configure.Configuration;
+        protected IHostingEnvironment Enviroment => configure.Enviroment;
 
         public void ConfigureServices(IServiceCollection services)
         {
             AddServices(this.configure.ServiceRegistry);
             AddMvcService(this.configure.MvcRegistry);
 
-            this.configure.ServiceRegistry.Execute(services);
-            this.configure.MvcRegistry.AddMvc(services);
+            configure.ConfigureServices(services);
         }
 
         public void Configure(IApplicationBuilder app, ILoggerFactory loggerFactory)
         {
+            ConfigureLogging(loggerFactory);
+
             configure.ConfigureAll(app, loggerFactory);
         }
 

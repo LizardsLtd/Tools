@@ -1,17 +1,18 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 
 namespace TheLizzards.Mvc.Configuration
 {
     public sealed class AspNetConfigure
     {
-        internal readonly IHostingEnvironment env;
+        internal IHostingEnvironment Enviroment { get; }
 
         internal AspNetConfigure(IHostingEnvironment env, ConfigurationBuilder configurationProvider)
         {
-            this.env = env;
+            Enviroment = env;
 
             Configuration = configurationProvider.Build();
 
@@ -31,9 +32,15 @@ namespace TheLizzards.Mvc.Configuration
 
         public IConfigurationRoot Configuration { get; }
 
+        internal void ConfigureServices(IServiceCollection services)
+        {
+            ServiceRegistry.Execute(services);
+            MvcRegistry.AddMvc(services);
+        }
+
         internal void ConfigureAll(IApplicationBuilder app, ILoggerFactory loggerFactory)
         {
-            AspRegistry.Configure(app, env, loggerFactory);
+            AspRegistry.Configure(app, Enviroment, loggerFactory);
             MvcRegistry.UseMvc();
         }
     }
