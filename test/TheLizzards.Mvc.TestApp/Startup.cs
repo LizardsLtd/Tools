@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
 using TheLizzards.Mvc.Configuration;
 
 namespace TheLizzards.Mvc.TestApp
@@ -17,13 +19,18 @@ namespace TheLizzards.Mvc.TestApp
         {
         }
 
-        protected override void Configure(AspRegistry config)
+        protected override void ConfigureLocalisation()
         {
         }
 
-        protected override void StaticSiteConfiguration(ConfigurationProvider provider)
+        protected override void ConfigureLogging(ILoggerFactory loggerFactory)
+            => loggerFactory
+                .AddConsole(ConfigurationRoot.GetSection("Logging"))
+                .AddDebug();
+
+        protected override void AddConfigurationBuilderDetails(ConfigurationBuilder provider)
             => provider
-                .AddEnvironmentVariablesToConfiguration()
+                .AddEnvironmentVariables()
                 .AddJsonFile("Configuration.json")
                 .AddJsonFile("Translations.json");
 
@@ -49,9 +56,6 @@ namespace TheLizzards.Mvc.TestApp
         //// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         //public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         //{
-        //    loggerFactory.AddConsole(Configuration.GetSection("Logging"));
-        //    loggerFactory.AddDebug();
-
         //    if (env.IsDevelopment())
         //    {
         //        app.UseDeveloperExceptionPage();

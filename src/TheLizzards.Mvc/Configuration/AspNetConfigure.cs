@@ -9,7 +9,7 @@ namespace TheLizzards.Mvc.Configuration
     {
         internal readonly IHostingEnvironment env;
 
-        internal AspNetConfigure(IHostingEnvironment env, ConfigurationProvider configurationProvider)
+        internal AspNetConfigure(IHostingEnvironment env, ConfigurationBuilder configurationProvider)
         {
             this.env = env;
 

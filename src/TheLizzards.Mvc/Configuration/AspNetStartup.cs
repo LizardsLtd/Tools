@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 
@@ -11,10 +12,13 @@ namespace TheLizzards.Mvc.Configuration
 
         protected AspNetStartup(IHostingEnvironment env)
         {
-            var configurationProvider = new ConfigurationProvider(env.ContentRootPath);
-            StaticSiteConfiguration(configurationProvider);
-            configure = new AspNetConfigure(env, configurationProvider);
+            var configurationBuilder = new ConfigurationBuilder();
+            configurationBuilder.SetBasePath(env.ContentRootPath);
+            AddConfigurationBuilderDetails(configurationBuilder);
+            configure = new AspNetConfigure(env, configurationBuilder);
         }
+
+        protected IConfigurationRoot ConfigurationRoot => this.configure.Configuration;
 
         public void ConfigureServices(IServiceCollection services)
         {
@@ -23,8 +27,6 @@ namespace TheLizzards.Mvc.Configuration
 
             this.configure.ServiceRegistry.Execute(services);
             this.configure.MvcRegistry.AddMvc(services);
-
-            this.configure.TranslationRegistry.AddTranslationBasedItems(services);
         }
 
         public void Configure(IApplicationBuilder app, ILoggerFactory loggerFactory)
@@ -32,14 +34,24 @@ namespace TheLizzards.Mvc.Configuration
             configure.ConfigureAll(app, loggerFactory);
         }
 
-        protected abstract void StaticSiteConfiguration(ConfigurationProvider provider);
+        protected virtual void AddConfigurationBuilderDetails(ConfigurationBuilder provider)
+        {
+        }
 
-        protected abstract void AddServices(ServiceRegistry services);
+        protected virtual void AddServices(ServiceRegistry services)
+        {
+        }
 
-        protected abstract void AddMvcService(MvcRegistry services);
+        protected virtual void AddMvcService(MvcRegistry services)
+        {
+        }
 
-        protected abstract void ConfigureLogging();
+        protected virtual void ConfigureLogging(ILoggerFactory loggerFactory)
+        {
+        }
 
-        protected abstract void ConfigureLocalisation();
+        protected virtual void ConfigureLocalisation()
+        {
+        }
     }
 }
