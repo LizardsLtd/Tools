@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Hosting;
+﻿using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using TheLizzards.Mvc.Configuration;
@@ -17,6 +18,12 @@ namespace TheLizzards.Mvc.TestApp
 
         protected override void AddServices(ServiceRegistry services)
         {
+
+        }
+
+        protected override void ConfigureApplication(IApplicationBuilder app)
+        {
+            app.UseStaticFiles();
         }
 
         protected override void ConfigureLocalisation()
