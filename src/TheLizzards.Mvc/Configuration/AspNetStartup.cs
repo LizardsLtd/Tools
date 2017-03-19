@@ -8,41 +8,49 @@ namespace TheLizzards.Mvc.Configuration
 {
     public abstract partial class AspNetStartup
     {
-        protected readonly AspNetConfigure configure;
+        private MvcRegistry mvcRegistry;
+
+        private IHostingEnvironment environment;
 
         protected AspNetStartup(IHostingEnvironment env)
         {
             var configurationBuilder = new ConfigurationBuilder();
             configurationBuilder.SetBasePath(env.ContentRootPath);
-            AddConfigurationBuilderDetails(configurationBuilder);
-            configure = new AspNetConfigure(env, configurationBuilder);
+            this.AddConfigurationBuilderDetails(configurationBuilder);
+
+            this.ConfigurationRoot = configurationBuilder.Build();
+            this.environment = env;
+            this.mvcRegistry = new MvcRegistry();
         }
 
-        protected IConfigurationRoot ConfigurationRoot => this.configure.Configuration;
+        protected IConfigurationRoot ConfigurationRoot { get; }
 
         public void ConfigureServices(IServiceCollection services)
         {
-            AddServices(this.configure.ServiceRegistry);
-            AddMvcService(this.configure.MvcRegistry);
+            this.AddMvcService(this.mvcRegistry);
 
-            this.configure.ServiceRegistry.Execute(services);
-            this.configure.MvcRegistry.AddMvc(services);
+            this.mvcRegistry.AddMvc(services);
         }
 
         public void Configure(IApplicationBuilder app, ILoggerFactory loggerFactory)
         {
-            configure.ConfigureAll(app, loggerFactory);
+            this.ConfigureAsp(app, environment, loggerFactory);
+            this.mvcRegistry.UseMvc();
         }
 
         protected virtual void AddConfigurationBuilderDetails(ConfigurationBuilder provider)
         {
         }
 
-        protected virtual void AddServices(ServiceRegistry services)
+        protected virtual void AddServices(IServiceCollection services)
         {
         }
 
         protected virtual void AddMvcService(MvcRegistry services)
+        {
+        }
+
+        protected virtual void ConfigureAsp(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
         }
 
