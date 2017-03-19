@@ -35,7 +35,7 @@ namespace TheLizzards.Mvc.Configuration
         public void Configure(IApplicationBuilder app, ILoggerFactory loggerFactory)
         {
             this.ConfigureAsp(app, environment, loggerFactory);
-            this.mvcRegistry.UseMvc();
+            this.mvcRegistry.UseMvc(app);
         }
 
         protected virtual void AddConfigurationBuilderDetails(ConfigurationBuilder provider)
@@ -50,7 +50,10 @@ namespace TheLizzards.Mvc.Configuration
         {
         }
 
-        protected virtual void ConfigureAsp(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+        protected virtual void ConfigureAsp(
+            IApplicationBuilder app
+            , IHostingEnvironment env
+            , ILoggerFactory loggerFactory)
         {
         }
 

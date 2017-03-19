@@ -33,12 +33,19 @@ namespace TheLizzards.Mvc.Configuration
 
         public RouteConfigurator Routes { get; }
 
+        public MvcRegistry ApplyDefaults<TDefaults>() where TDefaults : IDefaultMvcConfiguration, new()
+        {
+            var defaults = new TDefaults();
+            defaults.Apply(this);
+
+            return this;
+        }
+
         internal void AddMvc(IServiceCollection services)
         {
             var mvcBuilder = services
                 .AddMvc(CreateMvcOptions)
                 .AddViewLocalization();
-            //.AddDataAnnotationsLocalization(this.DataAnnotationOptions);
 
             services
                 .AddSingleton(AddNavigationItems(services, mvcBuilder))
@@ -48,21 +55,9 @@ namespace TheLizzards.Mvc.Configuration
                 .AddSingleton<IStringLocalizer, ConfigurableStringLocalizer>();
         }
 
-        internal void UseMvc()
+        internal void UseMvc(IApplicationBuilder app)
         {
-        }
-
-        internal void Execute(IApplicationBuilder app)
-        {
-            //app.UseMvc(this.routeBuilder.BuildRoutes);
-        }
-
-        public MvcRegistry ApplyDefaults<TDefaults>() where TDefaults : IDefaultMvcConfiguration, new()
-        {
-            var defaults = new TDefaults();
-            defaults.Apply(this);
-
-            return this;
+            app.UseMvc(this.Routes.BuildRoutes);
         }
 
         private void CreateMvcOptions(MvcOptions options)
