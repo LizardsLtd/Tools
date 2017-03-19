@@ -8,10 +8,6 @@ namespace TheLizzards.Mvc.Configuration
 {
     public abstract partial class AspNetStartup
     {
-        private MvcRegistry mvcRegistry;
-
-        private IHostingEnvironment environment;
-
         protected AspNetStartup(IHostingEnvironment env)
         {
             var configurationBuilder = new ConfigurationBuilder();
@@ -19,23 +15,30 @@ namespace TheLizzards.Mvc.Configuration
             this.AddConfigurationBuilderDetails(configurationBuilder);
 
             this.ConfigurationRoot = configurationBuilder.Build();
-            this.environment = env;
-            this.mvcRegistry = new MvcRegistry();
+            this.Environment = env;
+            this.MVC = new MvcRegistry();
+            this.ASP = new AspRegistry();
         }
 
-        protected IConfigurationRoot ConfigurationRoot { get; }
+        public MvcRegistry MVC { get; }
+
+        public AspRegistry ASP { get; }
+
+        public IHostingEnvironment Environment { get; }
+
+        public IConfigurationRoot ConfigurationRoot { get; }
 
         public void ConfigureServices(IServiceCollection services)
         {
-            this.AddMvcService(this.mvcRegistry);
+            this.AddMvcService(this.MVC);
 
-            this.mvcRegistry.AddMvc(services);
+            this.MVC.AddMvc(services);
         }
 
         public void Configure(IApplicationBuilder app, ILoggerFactory loggerFactory)
         {
-            this.ConfigureAsp(app, environment, loggerFactory);
-            this.mvcRegistry.UseMvc(app);
+            this.ASP.Configure(app, Environment, loggerFactory);
+            this.MVC.UseMvc(app);
         }
 
         protected virtual void AddConfigurationBuilderDetails(ConfigurationBuilder provider)
@@ -64,5 +67,7 @@ namespace TheLizzards.Mvc.Configuration
         protected virtual void ConfigureLocalisation()
         {
         }
+
+        protected virtual void ApplyDefault<TDefault>() where TDefault :
     }
 }

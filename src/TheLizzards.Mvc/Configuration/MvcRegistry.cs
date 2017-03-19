@@ -6,7 +6,6 @@ using Microsoft.AspNetCore.Mvc.Localization;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Localization;
 using TheLizzards.I18N.Data;
-using TheLizzards.Mvc.Configuration.Defaults;
 using TheLizzards.Mvc.Localisation;
 using TheLizzards.Mvc.Navigation;
 
@@ -32,14 +31,6 @@ namespace TheLizzards.Mvc.Configuration
         public FilterRegistry Filters { get; }
 
         public RouteConfigurator Routes { get; }
-
-        public MvcRegistry ApplyDefaults<TDefaults>() where TDefaults : IDefaultMvcConfiguration, new()
-        {
-            var defaults = new TDefaults();
-            defaults.Apply(this);
-
-            return this;
-        }
 
         internal void AddMvc(IServiceCollection services)
         {
