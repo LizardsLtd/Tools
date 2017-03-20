@@ -2,6 +2,6 @@
 {
     public interface IDefault
     {
-        void Apply(IDefaultsHost host);
+        void Apply(StartupConfigurations host);
     }
 }

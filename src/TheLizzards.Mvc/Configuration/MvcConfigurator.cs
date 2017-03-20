@@ -11,9 +11,9 @@ using TheLizzards.Mvc.Navigation;
 
 namespace TheLizzards.Mvc.Configuration
 {
-    public sealed class MvcRegistry
+    public sealed class MvcConfigurator
     {
-        public MvcRegistry()
+        public MvcConfigurator()
         {
             Conventions = new MvcConventionRegistry();
             Models = new MvcModelRegistry();
@@ -46,7 +46,7 @@ namespace TheLizzards.Mvc.Configuration
                 .AddSingleton<IStringLocalizer, ConfigurableStringLocalizer>();
         }
 
-        internal void UseMvc(IApplicationBuilder app)
+        internal void Use(IApplicationBuilder app)
         {
             app.UseMvc(this.Routes.BuildRoutes);
         }

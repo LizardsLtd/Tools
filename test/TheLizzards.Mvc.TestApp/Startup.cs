@@ -12,13 +12,12 @@ namespace TheLizzards.Mvc.TestApp
         {
         }
 
-        protected override void AddMvcService(MvcRegistry services)
+        protected override void AddMvcService(MvcConfigurator services)
         {
         }
 
         protected override void AddServices(ServiceRegistry services)
         {
-
         }
 
         protected override void ConfigureApplication(IApplicationBuilder app)
