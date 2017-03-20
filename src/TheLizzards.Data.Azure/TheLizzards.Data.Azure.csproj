@@ -22,7 +22,7 @@
     <ProjectReference Include="..\TheLizzards.Maybe\TheLizzards.Maybe.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.Azure.DocumentDB.Core" Version="1.1.0" />
+    <PackageReference Include="Microsoft.Azure.DocumentDB.Core" Version="1.1.2" />
     <PackageReference Include="Microsoft.Azure.Search" Version="3.0.2" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="1.1.1" />
     <PackageReference Include="Microsoft.Extensions.Options" Version="1.1.1" />

@@ -7,11 +7,11 @@ namespace TheLizzards.Mvc.Configuration
 {
     public class FilterRegistry
     {
-        private readonly List<Action<MvcOptions>> filters;
+        private readonly List<Action<Microsoft.AspNetCore.Mvc.MvcOptions>> filters;
 
         internal FilterRegistry()
         {
-            filters = new List<Action<MvcOptions>>(25);
+            filters = new List<Action<Microsoft.AspNetCore.Mvc.MvcOptions>>(25);
         }
 
         public FilterRegistry Add<TFilterMetadata>() where TFilterMetadata : IFilterMetadata, new()
@@ -23,6 +23,6 @@ namespace TheLizzards.Mvc.Configuration
             return this;
         }
 
-        internal void Execute(MvcOptions options) => filters.ForEach(x => x(options));
+        internal void Execute(Microsoft.AspNetCore.Mvc.MvcOptions options) => filters.ForEach(x => x(options));
     }
 }

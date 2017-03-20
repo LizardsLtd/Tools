@@ -12,22 +12,8 @@ namespace TheLizzards.Mvc.TestApp
         {
         }
 
-        protected override void AddMvcService(MvcConfigurator services)
-        {
-        }
-
-        protected override void AddServices(ServiceRegistry services)
-        {
-        }
-
-        protected override void ConfigureApplication(IApplicationBuilder app)
-        {
-            app.UseStaticFiles();
-        }
-
-        protected override void ConfigureLocalisation()
-        {
-        }
+        protected override void ConfigurationApp(IApplicationBuilder app)
+            => app.UseStaticFiles();
 
         protected override void ConfigureLogging(ILoggerFactory loggerFactory)
             => loggerFactory
@@ -37,8 +23,15 @@ namespace TheLizzards.Mvc.TestApp
         protected override void AddConfigurationBuilderDetails(ConfigurationBuilder provider)
             => provider
                 .AddEnvironmentVariables()
-                .AddJsonFile("Configuration.json")
-                .AddJsonFile("Translations.json");
+                .AddJsonFile("appsettings.json");
+
+        protected override void AddMvcService(MvcConfigurator config)
+            => config.Routes.AddRoute(routes => routes.MapRoute("default", "{controller=Home}/{action=Index}/{id?}"));
+
+        protected override void ConfigureDevelopmentEnviroment(IApplicationBuilder app)
+        {
+            app.UseDeveloperExceptionPage();
+        }
 
         //public Startup(IHostingEnvironment env)
         //{

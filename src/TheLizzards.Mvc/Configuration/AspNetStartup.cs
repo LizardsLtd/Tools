@@ -35,6 +35,7 @@ namespace TheLizzards.Mvc.Configuration
 
         public void Configure(IApplicationBuilder app, ILoggerFactory loggerFactory)
         {
+            this.ConfigurationApp(app);
             this.ConfigureAsp(this.configuration.ASP);
             this.ConfigureLogging(loggerFactory);
 
@@ -62,15 +63,42 @@ namespace TheLizzards.Mvc.Configuration
         {
         }
 
-        protected virtual void ConfigureLocalisation()
+        protected virtual void ConfigurationApp(IApplicationBuilder app)
         {
-            //tbi
+        }
+
+        protected virtual void ConfigureDevelopmentEnviroment(IApplicationBuilder app)
+        {
+        }
+
+        protected virtual void ConfigureStagingEnviroment(IApplicationBuilder app)
+        {
+        }
+
+        protected virtual void ConfigureProductionEnviroment(IApplicationBuilder app)
+        {
         }
 
         protected virtual void ApplyDefault<TDefault>() where TDefault : IDefault, new()
         {
             var @default = new TDefault();
             @default.Apply(this.configuration);
+        }
+
+        private void SelectEnviroment(IApplicationBuilder app)
+        {
+            if (this.Environment.IsDevelopment())
+            {
+                this.ConfigureDevelopmentEnviroment(app);
+            }
+            else if (this.Environment.IsStaging())
+            {
+                this.ConfigureStagingEnviroment(app);
+            }
+            else if (this.Environment.IsProduction())
+            {
+                this.ConfigureProductionEnviroment(app);
+            }
         }
     }
 }

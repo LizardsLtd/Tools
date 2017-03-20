@@ -9,11 +9,11 @@ namespace TheLizzards.Mvc.Configuration
 {
     public sealed class MvcModelRegistry
     {
-        private readonly List<Action<MvcOptions>> models;
+        private readonly List<Action<Microsoft.AspNetCore.Mvc.MvcOptions>> models;
 
         internal MvcModelRegistry()
         {
-            models = new List<Action<MvcOptions>>(25);
+            models = new List<Action<Microsoft.AspNetCore.Mvc.MvcOptions>>(25);
         }
 
         public MvcModelRegistry AddModelBinderProvider<TBindedType, TModelBinder>()
@@ -36,6 +36,6 @@ namespace TheLizzards.Mvc.Configuration
             return this;
         }
 
-        internal void Execute(MvcOptions options) => models.ForEach(x => x(options));
+        internal void Execute(Microsoft.AspNetCore.Mvc.MvcOptions options) => models.ForEach(x => x(options));
     }
 }

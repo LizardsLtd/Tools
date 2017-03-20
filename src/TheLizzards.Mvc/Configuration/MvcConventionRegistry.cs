@@ -8,11 +8,11 @@ namespace TheLizzards.Mvc.Configuration
 {
     public sealed class MvcConventionRegistry
     {
-        private readonly List<Action<MvcOptions>> options;
+        private readonly List<Action<Microsoft.AspNetCore.Mvc.MvcOptions>> options;
 
         internal MvcConventionRegistry()
         {
-            options = new List<Action<MvcOptions>>(25);
+            options = new List<Action<Microsoft.AspNetCore.Mvc.MvcOptions>>(25);
         }
 
         public MvcConventionRegistry AddApplicationConvention<T>() where T : IApplicationModelConvention, new()
@@ -33,6 +33,6 @@ namespace TheLizzards.Mvc.Configuration
             return this;
         }
 
-        internal void Execute(MvcOptions mvcOption) => options.ForEach(x => x(mvcOption));
+        internal void Execute(Microsoft.AspNetCore.Mvc.MvcOptions mvcOption) => options.ForEach(x => x(mvcOption));
     }
 }

@@ -17,7 +17,7 @@ namespace TheLizzards.Mvc.Configuration
         {
             Conventions = new MvcConventionRegistry();
             Models = new MvcModelRegistry();
-            Options = new MvcOptionsRegistry();
+            Options = new MvcOptionsConfigurator();
             Filters = new FilterRegistry();
             Routes = new RouteConfigurator();
         }
@@ -26,7 +26,7 @@ namespace TheLizzards.Mvc.Configuration
 
         public MvcModelRegistry Models { get; }
 
-        public MvcOptionsRegistry Options { get; }
+        public MvcOptionsConfigurator Options { get; }
 
         public FilterRegistry Filters { get; }
 
