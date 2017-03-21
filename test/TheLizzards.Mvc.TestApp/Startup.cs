@@ -12,7 +12,7 @@ namespace TheLizzards.Mvc.TestApp
         public Startup(IHostingEnvironment env) : base(env)
         {
             this.ApplyDefault<SetLocalisation>();
-            this.ApplyDefault<LocalisationByDatabase>();
+            //this.ApplyDefault<LocalisationByDatabase>();
             this.ApplyDefault<DataStorage>("TheLizzards.I18N");
         }
 
