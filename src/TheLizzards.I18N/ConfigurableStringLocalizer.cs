@@ -1,8 +1,8 @@
-﻿using Microsoft.Extensions.Localization;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using Microsoft.Extensions.Localization;
 using TheLizzards.I18N.Data.Services;
 
 namespace TheLizzards.I18N.Data
@@ -17,7 +17,9 @@ namespace TheLizzards.I18N.Data
 
         public ConfigurableStringLocalizer(IEnumerable<ITranslationSetProvider> translationData, CultureInfo culture)
             : this(
-                translationData.Select(x => x.GetTranslationSet()).Aggregate((prev, next) => prev.Merge(next))
+                  translationData
+                    .Select(x => x.GetTranslationSet())
+                    .Aggregate((prev, next) => prev.Merge(next))
                 , culture)
         { }
 

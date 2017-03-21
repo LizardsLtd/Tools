@@ -16,6 +16,7 @@ namespace TheLizzards.Mvc.Configuration
             this.MVC = new MvcConfigurator();
             this.ASP = new AspConfigurator();
             this.Razor = new RazorOptions();
+            this.Services = new ServicesConfigurator();
             this.Environment = environment;
             this.ConfigurationRoot = configurationRoot;
         }
@@ -25,6 +26,8 @@ namespace TheLizzards.Mvc.Configuration
         public AspConfigurator ASP { get; }
 
         public RazorOptions Razor { get; }
+
+        public ServicesConfigurator Services { get; }
 
         public IHostingEnvironment Environment { get; }
 

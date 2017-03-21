@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using TheLizzards.Mvc.Configuration;
+using TheLizzards.Mvc.Configuration.Defaults;
 
 namespace TheLizzards.Mvc.TestApp
 {
@@ -10,6 +11,9 @@ namespace TheLizzards.Mvc.TestApp
     {
         public Startup(IHostingEnvironment env) : base(env)
         {
+            this.ApplyDefault<SetLocalisation>();
+            this.ApplyDefault<LocalisationByDatabase>();
+            this.ApplyDefault<DataStorage>("TheLizzards.I18N");
         }
 
         protected override void ConfigurationApp(IApplicationBuilder app)
@@ -32,46 +36,5 @@ namespace TheLizzards.Mvc.TestApp
         {
             app.UseDeveloperExceptionPage();
         }
-
-        //public Startup(IHostingEnvironment env)
-        //{
-        //    var builder = new ConfigurationBuilder()
-        //        .SetBasePath(env.ContentRootPath)
-        //        .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
-        //        .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
-        //        .AddEnvironmentVariables();
-        //    Configuration = builder.Build();
-        //}
-
-        //public IConfigurationRoot Configuration { get; }
-
-        //// This method gets called by the runtime. Use this method to add services to the container.
-        //public void ConfigureServices(IServiceCollection services)
-        //{
-        //    // Add framework services.
-        //    services.AddMvc();
-        //}
-
-        //// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        //public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
-        //{
-        //    if (env.IsDevelopment())
-        //    {
-        //        app.UseDeveloperExceptionPage();
-        //    }
-        //    else
-        //    {
-        //        app.UseExceptionHandler("/Home/Error");
-        //    }
-
-        //    app.UseStaticFiles();
-
-        //    app.UseMvc(routes =>
-        //    {
-        //        routes.MapRoute(
-        //            name: "default",
-        //            template: "{controller=Home}/{action=Index}/{id?}");
-        //    });
-        //}
     }
 }

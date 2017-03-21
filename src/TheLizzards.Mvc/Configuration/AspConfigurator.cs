@@ -1,7 +1,7 @@
-﻿using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
 
 namespace TheLizzards.Mvc.Configuration
 {
@@ -14,7 +14,7 @@ namespace TheLizzards.Mvc.Configuration
             this.actions = new List<Action<IApplicationBuilder, IHostingEnvironment>>();
         }
 
-        internal void Add(Action<IApplicationBuilder, IHostingEnvironment> action)
+        public void Add(Action<IApplicationBuilder, IHostingEnvironment> action)
             => this.actions.Add(action);
 
         internal void Use(IApplicationBuilder app, IHostingEnvironment environment)

@@ -27,10 +27,10 @@ namespace TheLizzards.Mvc.Configuration
         public void ConfigureServices(IServiceCollection services)
         {
             this.AddServices(services);
-
             this.AddMvcService(this.configuration.MVC);
             this.configuration.MVC.AddMvc(services);
             this.configuration.Razor.Use(services);
+            this.configuration.Services.Use(services);
         }
 
         public void Configure(IApplicationBuilder app, ILoggerFactory loggerFactory)
@@ -79,10 +79,10 @@ namespace TheLizzards.Mvc.Configuration
         {
         }
 
-        protected virtual void ApplyDefault<TDefault>() where TDefault : IDefault, new()
+        protected virtual void ApplyDefault<TDefault>(params object[] arguments) where TDefault : IDefault, new()
         {
             var @default = new TDefault();
-            @default.Apply(this.configuration);
+            @default.Apply(this.configuration, arguments);
         }
 
         private void SelectEnviroment(IApplicationBuilder app)
