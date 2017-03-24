@@ -17,7 +17,7 @@
     <PackageReference Include="xunit.runner.visualstudio" Version="2.2.0" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Picums.Localisation\Picums.GeoCoding.csproj" />
+    <ProjectReference Include="..\..\src\Picums.GeoCoding\Picums.GeoCoding.csproj" />
     <ProjectReference Include="..\..\src\Picums.Maybe\Picums.Maybe.csproj" />
     <ProjectReference Include="..\..\src\Picums.Tests\Picums.Tests.csproj" />
   </ItemGroup>
