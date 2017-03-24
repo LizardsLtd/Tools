@@ -4,7 +4,7 @@ using System.Globalization;
 using System.Linq;
 using System.Xml.Linq;
 
-namespace Picums.Localisation.Entities
+namespace Picums.GeoCoding
 {
     public sealed class GoogleGeocodingResults
     {

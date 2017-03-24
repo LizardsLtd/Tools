@@ -1,3 +1,3 @@
 ﻿using System.Runtime.CompilerServices;
 
-[assembly: InternalsVisibleTo("Picums.Location.Tests")]
+[assembly: InternalsVisibleTo("Picums.GeoCoding.Tests")]

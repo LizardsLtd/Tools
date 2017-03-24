@@ -1,5 +1,5 @@
 ﻿using System.Threading.Tasks;
-using Picums.Localisation.Services;
+using Picums.GeoCoding;
 using Picums.Tests;
 using Xunit;
 
