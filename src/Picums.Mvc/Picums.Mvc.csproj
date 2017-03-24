@@ -3,8 +3,8 @@
     <Description>ASP.NET Core MVC implementation.</Description>
     <Copyright>Picums 2016 - 2017</Copyright>
     <AssemblyTitle>Lizzards MVC</AssemblyTitle>
-    <VersionPrefix>2.1.0-beta8</VersionPrefix>
-    <Version>2.1.0-beta8</Version>
+    <VersionPrefix>0.1.0</VersionPrefix>
+    <Version>0.1.0</Version>
     <WarningsAsErrors>true</WarningsAsErrors>
     <AssemblyName>Picums.Mvc</AssemblyName>
     <GenerateAssemblyTitleAttribute>false</GenerateAssemblyTitleAttribute>
