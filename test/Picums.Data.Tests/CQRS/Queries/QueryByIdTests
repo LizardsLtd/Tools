@@ -1,0 +1,48 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using FluentAssertions;
+using Picums.Data.CQRS.DataAccess;
+using Picums.Data.Tests.CQRS.Contracts.DataAccess;
+using Picums.Data.Tests.Mocks;
+using Picums.Tests;
+using Xunit;
+
+namespace Picums.Data.Tests.CQRS.Queries
+{
+	public sealed class QueryByIdTests
+	{
+		private readonly DatabaseParts parts;
+		private readonly TestDataContext context;
+		private readonly Guid id;
+
+		public QueryByIdWithDefault()
+		{
+			this.parts = new DatabaseParts("test", "test");
+			this.id = Guid.NewGuid();
+			var storage = new InMemoryDataStorage
+			{
+				["SimpleAggregateRoot"] = new List<object>
+				{
+					new SimpleAggregateRoot(id)
+				}
+			};
+			this.context = new TestDataContext(storage);
+		}
+
+		[Fact]
+		public async Task QueringForExistingEntity()
+		{
+			var query = new QuertyById<SimpleAggregateRoot>(
+					this.context
+					, new TestLoggerFactory())
+				.WithDatabaseParts(this.parts)
+				.WithId(id);
+
+			var result = await query.Execute();
+
+			result.IsSome.Should().Be(true);
+			result.Value.Id.Should().Be(id);
+		}
+	}
+}

@@ -1,0 +1,35 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<Description>Implementation of common data access patterns.</Description>
+		<Copyright>TheLizzards 2016 - 2017</Copyright>
+		<AssemblyTitle>Lizzards Data</AssemblyTitle>
+		<VersionPrefix>2.1.0-RC3</VersionPrefix>
+		<Version>2.1.0-RC3</Version>
+		<AssemblyName>TheLizzards.Data</AssemblyName>
+		<PackageTags>data;thelizzards</PackageTags>
+		<RepositoryType>git</RepositoryType>
+		<RepositoryUrl>https://github.com/TheLizzards/Mvc</RepositoryUrl>
+		<GenerateAssemblyTitleAttribute>false</GenerateAssemblyTitleAttribute>
+		<GenerateAssemblyDescriptionAttribute>false</GenerateAssemblyDescriptionAttribute>
+		<GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
+		<GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
+		<GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
+		<GenerateAssemblyCopyrightAttribute>false</GenerateAssemblyCopyrightAttribute>
+	</PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>netstandard1.6</TargetFramework>
+	</PropertyGroup>
+	<ItemGroup>
+		<PackageReference Include="Microsoft.Extensions.Logging" Version="1.1.1" />
+		<PackageReference Include="System.ComponentModel.Annotations" Version="4.3.0" />
+		<PackageReference Include="System.Security.Claims" Version="4.3.0" />
+		<PackageReference Include="VerbalExpressions-netstandard" Version="0.3.0" />
+		<PackageReference Include="System.ComponentModel.Annotations" Version="4.3.0" />
+	</ItemGroup>
+	<ItemGroup>
+	  <ProjectReference Include="..\TheLizzards.Maybe\Picums.Maybe.csproj" />
+	</ItemGroup>
+	<PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+		<DefineConstants>$(DefineConstants);RELEASE</DefineConstants>
+	</PropertyGroup>
+</Project>
