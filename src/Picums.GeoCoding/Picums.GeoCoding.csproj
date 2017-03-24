@@ -2,11 +2,11 @@
   <PropertyGroup>
     <Description>The geocoidng service.</Description>
     <Copyright>Picums 2016 - 2017</Copyright>
-    <AssemblyTitle>Picums.Localisation</AssemblyTitle>
+    <AssemblyTitle>Picums.GeoCoding</AssemblyTitle>
     <VersionPrefix>0.1.0</VersionPrefix>
     <Version>0.1.0</Version>
-    <AssemblyName>Picums.Localisation</AssemblyName>
-    <PackageTags>Localisation;Picums</PackageTags>
+    <AssemblyName>Picums.GeoCoding</AssemblyName>
+    <PackageTags>GeoCoding;Picums</PackageTags>
     <RepositoryType>git</RepositoryType>
     <RepositoryUrl>https://github.com/Picums/tools</RepositoryUrl>
     <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>

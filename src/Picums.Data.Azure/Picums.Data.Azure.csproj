@@ -2,7 +2,7 @@
   <PropertyGroup>
     <Description>Default implementatin of differenet services in Azure.</Description>
     <Copyright>Picums 2016 - 2017</Copyright>
-    <AssemblyTitle>Picums.Data.Azure</AssemblyTitle>
+    <AssemblyTitle>Data.Azure</AssemblyTitle>
     <VersionPrefix>0.1.0</VersionPrefix>
     <Version>0.1.0</Version>
     <AssemblyName>Picums.Data.Azure</AssemblyName>

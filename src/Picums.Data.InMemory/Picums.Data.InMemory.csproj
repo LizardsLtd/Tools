@@ -2,7 +2,7 @@
   <PropertyGroup>
     <Description>In Memory data contex implementation.</Description>
     <Copyright>Picums 2016 - 2017</Copyright>
-    <AssemblyTitle>Lizzards Data</AssemblyTitle>
+    <AssemblyTitle>Data.InMemory</AssemblyTitle>
     <VersionPrefix>0.1.0</VersionPrefix>
     <Version>0.1.0</Version>
     <AssemblyName>Picums.Data.InMemory</AssemblyName>

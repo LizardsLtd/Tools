@@ -2,7 +2,7 @@
   <PropertyGroup>
     <Description>Implementation of common data access patterns.</Description>
     <Copyright>Picums 2016 - 2017</Copyright>
-    <AssemblyTitle>Lizzards Data</AssemblyTitle>
+    <AssemblyTitle>Data</AssemblyTitle>
     <VersionPrefix>0.1.0</VersionPrefix>
     <Version>0.1.0</Version>
     <AssemblyName>Picums.Data</AssemblyName>
