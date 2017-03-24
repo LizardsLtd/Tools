@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
 
-namespace TheLizzards.Mvc.Startup
+namespace Picums.Mvc.Startup
 {
     public static class ConfigurationBootstrapperCreator
     {

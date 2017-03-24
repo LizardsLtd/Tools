@@ -3,9 +3,9 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
-using TheLizzards.Data.Claims;
+using Picums.Data.Claims;
 
-namespace TheLizzards.Mvc.Startup
+namespace Picums.Mvc.Startup
 {
 	public static class AuthenticationBootstrapper
 	{

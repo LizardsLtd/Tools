@@ -5,14 +5,14 @@ using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.Extensions.Localization;
 using System;
 using System.Collections.Generic;
-using TheLizzards.Data.Types;
-using TheLizzards.Mvc.ApplicationServices;
-using TheLizzards.Mvc.Claims.Entities;
-using TheLizzards.Mvc.FeatureSlices;
-using TheLizzards.Mvc.Localisation.Services;
-using TheLizzards.Mvc.ModelValidators;
+using Picums.Data.Types;
+using Picums.Mvc.ApplicationServices;
+using Picums.Mvc.Claims.Entities;
+using Picums.Mvc.FeatureSlices;
+using Picums.Mvc.Localisation.Services;
+using Picums.Mvc.ModelValidators;
 
-namespace TheLizzards.Mvc.Startup
+namespace Picums.Mvc.Startup
 {
     public sealed class MvcConfiguration
     {

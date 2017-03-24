@@ -3,7 +3,7 @@ using System.Globalization;
 using System.Linq;
 using Microsoft.Extensions.Localization;
 
-namespace TheLizzards.Mvc.Localisation
+namespace Picums.Mvc.Localisation
 {
     internal sealed class CachedLocalizer : IStringLocalizer
     {

@@ -4,7 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
-using TheLizzards.Mvc.Startup;
+using Picums.Mvc.Startup;
 
 namespace Picums.Web
 {

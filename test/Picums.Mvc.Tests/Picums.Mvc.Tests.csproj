@@ -12,6 +12,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\TheLizzards.Mvc\Picums.Mvc.csproj" />
+    <ProjectReference Include="..\..\src\Picums.Mvc\Picums.Mvc.csproj" />
   </ItemGroup>
 </Project>

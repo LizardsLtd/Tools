@@ -17,6 +17,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\TheLizzards.Mvc\Picums.Mvc.csproj" />
+    <ProjectReference Include="..\Picums.Mvc\Picums.Mvc.csproj" />
   </ItemGroup>
 </Project>

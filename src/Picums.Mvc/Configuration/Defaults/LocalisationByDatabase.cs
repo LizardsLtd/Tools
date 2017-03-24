@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using Picums.I18N.Data;
-using Picums.I18N.Data.Services;
+using Picums.Localisation.Data;
+using Picums.Localisation.Data.Services;
 
 namespace Picums.Mvc.Configuration.Defaults
 {

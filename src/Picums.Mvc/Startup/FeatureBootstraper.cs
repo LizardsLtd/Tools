@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc.Razor;
-using TheLizzards.Mvc.FeatureSlices;
+using Picums.Mvc.FeatureSlices;
 
-namespace TheLizzards.Mvc.Startup
+namespace Picums.Mvc.Startup
 {
     public static class FeatureBootstraper
     {

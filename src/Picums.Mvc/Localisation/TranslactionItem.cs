@@ -1,6 +1,6 @@
 ﻿using System.Globalization;
 
-namespace TheLizzards.Mvc.Localisation
+namespace Picums.Mvc.Localisation
 {
     public struct TranslactionItem
     {

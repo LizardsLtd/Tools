@@ -1,14 +1,14 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <Description>In Memory data contex implementation.</Description>
-    <Copyright>TheLizzards 2016 - 2017</Copyright>
+    <Copyright>Picums 2016 - 2017</Copyright>
     <AssemblyTitle>Lizzards Data</AssemblyTitle>
     <VersionPrefix>0.1.0</VersionPrefix>
     <Version>0.1.0</Version>
-    <AssemblyName>TheLizzards.Data.InMemory</AssemblyName>
-    <PackageTags>data;thelizzards</PackageTags>
+    <AssemblyName>Picums.Data.InMemory</AssemblyName>
+    <PackageTags>data;Picums</PackageTags>
     <RepositoryType>git</RepositoryType>
-    <RepositoryUrl>https://github.com/TheLizzards/Mvc</RepositoryUrl>
+    <RepositoryUrl>https://github.com/Picums/Mvc</RepositoryUrl>
     <GenerateAssemblyTitleAttribute>false</GenerateAssemblyTitleAttribute>
     <GenerateAssemblyDescriptionAttribute>false</GenerateAssemblyDescriptionAttribute>
     <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
@@ -26,6 +26,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\TheLizzards.Data\Picums.Data.csproj" />
+    <ProjectReference Include="..\Picums.Data\Picums.Data.csproj" />
   </ItemGroup>
 </Project>

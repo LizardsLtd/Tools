@@ -18,8 +18,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\TheLizzards.Data\Picums.Data.csproj" />
-    <ProjectReference Include="..\..\src\TheLizzards.Tests\Picums.Tests.csproj" />
+    <ProjectReference Include="..\..\src\Picums.Data\Picums.Data.csproj" />
+    <ProjectReference Include="..\..\src\Picums.Tests\Picums.Tests.csproj" />
   </ItemGroup>
 
   <ItemGroup>

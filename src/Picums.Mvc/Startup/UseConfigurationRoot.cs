@@ -6,9 +6,9 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using TheLizzards.I18N;
+using Picums.I18N;
 
-namespace TheLizzards.Mvc.Startup
+namespace Picums.Mvc.Startup
 {
     public sealed class UseConfigurationRoot : ConfigurationBase
     {

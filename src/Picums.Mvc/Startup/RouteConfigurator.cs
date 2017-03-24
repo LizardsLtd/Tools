@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Routing;
 
-namespace TheLizzards.Mvc.Stratup
+namespace Picums.Mvc.Stratup
 {
     public sealed class RouteConfigurator
     {

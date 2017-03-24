@@ -1,12 +1,12 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <Description>ASP.NET Core MVC implementation.</Description>
-    <Copyright>TheLizzards 2016 - 2017</Copyright>
+    <Copyright>Picums 2016 - 2017</Copyright>
     <AssemblyTitle>Lizzards MVC</AssemblyTitle>
     <VersionPrefix>2.1.0-beta8</VersionPrefix>
     <Version>2.1.0-beta8</Version>
     <WarningsAsErrors>true</WarningsAsErrors>
-    <AssemblyName>TheLizzards.Mvc</AssemblyName>
+    <AssemblyName>Picums.Mvc</AssemblyName>
     <GenerateAssemblyTitleAttribute>false</GenerateAssemblyTitleAttribute>
     <GenerateAssemblyDescriptionAttribute>false</GenerateAssemblyDescriptionAttribute>
     <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
@@ -43,10 +43,10 @@
     <Compile Include="Localisation\Services\ValidationAttributeLocalisationProvider.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\TheLizzards.Data\Picums.Data.csproj" />
-    <ProjectReference Include="..\TheLizzards.I18N\Picums.I18N.csproj" />
-    <ProjectReference Include="..\TheLizzards.Localisation\Picums.GeoCoding.csproj" />
-    <ProjectReference Include="..\TheLizzards.Maybe\Picums.Maybe.csproj" />
+    <ProjectReference Include="..\Picums.Data\Picums.Data.csproj" />
+    <ProjectReference Include="..\Picums.GeoCoding\Picums.GeoCoding.csproj" />
+    <ProjectReference Include="..\Picums.Localisation\Picums.Localisation.csproj" />
+    <ProjectReference Include="..\Picums.Maybe\Picums.Maybe.csproj" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Antiforgery" Version="1.1.1" />

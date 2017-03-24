@@ -1,8 +1,8 @@
 ﻿using System;
 using Microsoft.Extensions.DependencyInjection;
-using TheLizzards.Mvc.Startup;
+using Picums.Mvc.Startup;
 
-namespace TheLizzards.Mvc.Startup
+namespace Picums.Mvc.Startup
 {
     public static class ServicesExtension
     {

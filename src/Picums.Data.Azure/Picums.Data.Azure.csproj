@@ -1,14 +1,14 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <Description>Default implementatin of differenet services in Azure.</Description>
-    <Copyright>TheLizzards 2016 - 2017</Copyright>
-    <AssemblyTitle>TheLizzards.Data.Azure</AssemblyTitle>
+    <Copyright>Picums 2016 - 2017</Copyright>
+    <AssemblyTitle>Picums.Data.Azure</AssemblyTitle>
     <VersionPrefix>2.1.0-RC2</VersionPrefix>
     <Version>2.1.0-RC2</Version>
-    <AssemblyName>TheLizzards.Data.Azure</AssemblyName>
-    <PackageTags>azure;thelizzards</PackageTags>
+    <AssemblyName>Picums.Data.Azure</AssemblyName>
+    <PackageTags>azure;Picums</PackageTags>
     <RepositoryType>git</RepositoryType>
-    <RepositoryUrl>https://github.com/TheLizzards/Mvc</RepositoryUrl>
+    <RepositoryUrl>https://github.com/Picums/Mvc</RepositoryUrl>
     <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
     <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
     <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
@@ -18,8 +18,8 @@
     <PackageTargetFallback Condition=" '$(TargetFramework)' == 'netstandard1.6' ">$(PackageTargetFallback);portable-net45+win8+wpa81</PackageTargetFallback>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\TheLizzards.Data\Picums.Data.csproj" />
-    <ProjectReference Include="..\TheLizzards.Maybe\Picums.Maybe.csproj" />
+    <ProjectReference Include="..\Picums.Data\Picums.Data.csproj" />
+    <ProjectReference Include="..\Picums.Maybe\Picums.Maybe.csproj" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.Azure.DocumentDB.Core" Version="1.1.2" />

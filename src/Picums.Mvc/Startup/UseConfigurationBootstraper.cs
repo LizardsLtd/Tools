@@ -2,11 +2,11 @@
 using System.Globalization;
 using System.Linq;
 using Microsoft.Extensions.Configuration;
-using TheLizzards.I18N;
-using TheLizzards.I18N.Data;
-using TheLizzards.I18N.Data.Services;
+using Picums.I18N;
+using Picums.I18N.Data;
+using Picums.I18N.Data.Services;
 
-namespace TheLizzards.Mvc.Startup
+namespace Picums.Mvc.Startup
 {
     public sealed class UseConfigurationBootstraper : ConfigurationBase
     {

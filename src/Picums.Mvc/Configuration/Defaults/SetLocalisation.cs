@@ -6,9 +6,9 @@ using Microsoft.AspNetCore.Mvc.Localization;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Localization;
-using Picums.I18N;
-using Picums.I18N.Data;
-using Picums.I18N.Data.Services;
+using Picums.Localisation;
+using Picums.Localisation.Data;
+using Picums.Localisation.Data.Services;
 using Picums.Mvc.Localisation;
 
 namespace Picums.Mvc.Configuration.Defaults

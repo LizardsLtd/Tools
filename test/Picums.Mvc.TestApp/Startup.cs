@@ -13,7 +13,7 @@ namespace Picums.Mvc.TestApp
         {
             this.ApplyDefault<SetLocalisation>();
             //this.ApplyDefault<LocalisationByDatabase>();
-            this.ApplyDefault<DataStorage>("Picums.I18N");
+            this.ApplyDefault<DataStorage>("Picums.Localisation");
         }
 
         protected override void ConfigurationApp(IApplicationBuilder app)

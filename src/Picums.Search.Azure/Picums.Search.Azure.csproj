@@ -1,14 +1,14 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <Description>Azure provider for Search services.</Description>
-    <Copyright>TheLizzards 2016 - 2017</Copyright>
+    <Copyright>Picums 2016 - 2017</Copyright>
     <AssemblyTitle>Lizzards Search Azure</AssemblyTitle>
     <VersionPrefix>2.1.0-RC1</VersionPrefix>
     <Version>2.1.0-RC1</Version>
-    <AssemblyName>TheLizzards.Search.Azure</AssemblyName>
-    <PackageTags>search;azure;thelizzards</PackageTags>
+    <AssemblyName>Picums.Search.Azure</AssemblyName>
+    <PackageTags>search;azure;Picums</PackageTags>
     <RepositoryType>git</RepositoryType>
-    <RepositoryUrl>https://github.com/TheLizzards/tools</RepositoryUrl>
+    <RepositoryUrl>https://github.com/Picums/tools</RepositoryUrl>
   </PropertyGroup>
   <PropertyGroup>
     <TargetFramework>netstandard1.6</TargetFramework>

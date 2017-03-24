@@ -1,4 +1,4 @@
-﻿namespace TheLizzards.Mvc.Startup
+﻿namespace Picums.Mvc.Startup
 {
     public sealed class LocaliserDependenciesBootstrapper : ConfigurationBase
     {

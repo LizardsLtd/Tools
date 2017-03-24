@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Globalization;
 
-namespace TheLizzards.Mvc.Localisation
+namespace Picums.Mvc.Localisation
 {
     public sealed class TranslationSet
     {

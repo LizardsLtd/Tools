@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Logging;
 
-namespace TheLizzards.Mvc.Startup
+namespace Picums.Mvc.Startup
 {
 	public static class ServerBootstrapper
 	{

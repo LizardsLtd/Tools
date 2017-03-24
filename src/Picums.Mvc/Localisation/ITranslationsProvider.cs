@@ -1,4 +1,4 @@
-namespace TheLizzards.Mvc.Localisation
+namespace Picums.Mvc.Localisation
 {
     public interface ITranslationsProvider
     {

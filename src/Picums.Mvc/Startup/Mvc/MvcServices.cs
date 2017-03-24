@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace TheLizzards.Mvc.Startup.Mvc
+namespace Picums.Mvc.Startup.Mvc
 {
     public class MvcServices
     {

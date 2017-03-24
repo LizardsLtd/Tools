@@ -1,10 +1,10 @@
 ﻿using System.Reflection;
 using Microsoft.Extensions.DependencyInjection;
-using TheLizzards.Data.CQRS;
-using TheLizzards.Data.CQRS.Commands;
-using TheLizzards.Data.CQRS.DataAccess;
+using Picums.Data.CQRS;
+using Picums.Data.CQRS.Commands;
+using Picums.Data.CQRS.DataAccess;
 
-namespace TheLizzards.Mvc.Startup
+namespace Picums.Mvc.Startup
 {
     public static class StartupBootstrapperExtension
     {
