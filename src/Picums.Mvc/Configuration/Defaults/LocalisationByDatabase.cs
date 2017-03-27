@@ -10,6 +10,8 @@ namespace Picums.Mvc.Configuration.Defaults
         {
             host.Services.Add(x => x.AddTransient<GetAllTranslationsQuery>());
             host.Services.Add(x => x.AddTransient<ITranslationSetProvider, DataTranslationProvider>());
+
+            host.Apply<DataStorage>("Picums.Localisation");
         }
     }
 }

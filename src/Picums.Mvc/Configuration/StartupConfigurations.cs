@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
+using Picums.Mvc.Configuration.Defaults;
 
 namespace Picums.Mvc.Configuration
 {
@@ -32,5 +33,11 @@ namespace Picums.Mvc.Configuration
         public IHostingEnvironment Environment { get; }
 
         public IConfigurationRoot ConfigurationRoot { get; }
+
+        internal void Apply<TDefault>(params object[] arguments) where TDefault : IDefault, new()
+        {
+            var @default = new TDefault();
+            @default.Apply(this, arguments);
+        }
     }
 }

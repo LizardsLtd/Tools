@@ -43,6 +43,11 @@ namespace Picums.Mvc.Configuration
             this.configuration.MVC.Use(app);
         }
 
+        public void ApplyDefault<TDefault>(params object[] arguments) where TDefault : IDefault, new()
+        {
+            this.configuration.Apply<TDefault>(arguments);
+        }
+
         protected virtual void AddConfigurationBuilderDetails(ConfigurationBuilder provider)
         {
         }
@@ -77,12 +82,6 @@ namespace Picums.Mvc.Configuration
 
         protected virtual void ConfigureProductionEnviroment(IApplicationBuilder app)
         {
-        }
-
-        protected virtual void ApplyDefault<TDefault>(params object[] arguments) where TDefault : IDefault, new()
-        {
-            var @default = new TDefault();
-            @default.Apply(this.configuration, arguments);
         }
 
         private void SelectEnviroment(IApplicationBuilder app)
