@@ -35,7 +35,6 @@ namespace Picums.Mvc.Configuration
 
         public void Configure(IApplicationBuilder app, ILoggerFactory loggerFactory)
         {
-            this.ConfigurationApp(app);
             this.ConfigureAsp(this.configuration.ASP);
             this.ConfigureLogging(loggerFactory);
 
@@ -65,10 +64,6 @@ namespace Picums.Mvc.Configuration
         }
 
         protected virtual void ConfigureLogging(ILoggerFactory loggerFactory)
-        {
-        }
-
-        protected virtual void ConfigurationApp(IApplicationBuilder app)
         {
         }
 

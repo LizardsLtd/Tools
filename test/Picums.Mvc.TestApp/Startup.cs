@@ -14,10 +14,8 @@ namespace Picums.Mvc.TestApp
             this.ApplyDefault<SetLocalisation>();
             //this.ApplyDefault<LocalisationByDatabase>();
             this.ApplyDefault<DataStorage>("Picums.Localisation");
+            this.ApplyDefault<UseStaticFiles>();
         }
-
-        protected override void ConfigurationApp(IApplicationBuilder app)
-            => app.UseStaticFiles();
 
         protected override void ConfigureLogging(ILoggerFactory loggerFactory)
             => loggerFactory
