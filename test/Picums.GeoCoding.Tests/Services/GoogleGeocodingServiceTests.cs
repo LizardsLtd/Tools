@@ -1,9 +1,8 @@
 ﻿using System.Threading.Tasks;
-using Picums.GeoCoding;
 using Picums.Tests;
 using Xunit;
 
-namespace Picums.Location.Tests.Services
+namespace Picums.GeoCoding.Tests.Services
 {
     public sealed class GoogleGeocodingServiceTests
     {

@@ -1,9 +1,8 @@
 ﻿using Microsoft.Extensions.Logging;
-using Picums.GeoCoding;
 using Picums.Tests;
 using Xunit;
 
-namespace Picums.Location.Tests.Entities
+namespace Picums.GeoCoding.Tests.Entities
 {
     public sealed class GoogleGeocodingResultsTests
     {
@@ -12,7 +11,7 @@ namespace Picums.Location.Tests.Entities
 
         public GoogleGeocodingResultsTests()
         {
-            var embededResources = new EmbeddedContentLoader("Picums.Location.Tests");
+            var embededResources = new EmbeddedContentLoader("Picums.GeoCoding.Tests");
             this.exampleFile = embededResources
                 .LoadTextFileAsync("Picums.GeoCoding.Tests.Resources.GoogleServiceResluts.xml")
                 .GetAwaiter()
