@@ -14,7 +14,7 @@ namespace Picums.Location.Tests.Entities
         {
             var embededResources = new EmbeddedContentLoader("Picums.Location.Tests");
             this.exampleFile = embededResources
-                .LoadTextFileAsync("Picums.Location.Tests.Resources.GoogleServiceResluts.xml")
+                .LoadTextFileAsync("Picums.GeoCoding.Tests.Resources.GoogleServiceResluts.xml")
                 .GetAwaiter()
                 .GetResult();
             this.emptyLogger = new TestLoggerFactory().CreateLogger("null");
