@@ -15,6 +15,7 @@ namespace Picums.Mvc.TestApp
             //this.ApplyDefault<LocalisationByDatabase>();
             this.ApplyDefault<DataStorage>("Picums.Localisation");
             this.ApplyDefault<UseStaticFiles>();
+            this.ApplyDefault<DevelopmentSetup>();
         }
 
         protected override void ConfigureLogging(ILoggerFactory loggerFactory)
@@ -29,10 +30,5 @@ namespace Picums.Mvc.TestApp
 
         protected override void AddMvcService(MvcConfigurator config)
             => config.Routes.AddRoute(routes => routes.MapRoute("default", "{controller=Home}/{action=Index}/{id?}"));
-
-        protected override void ConfigureDevelopmentEnviroment(IApplicationBuilder app)
-        {
-            app.UseDeveloperExceptionPage();
-        }
     }
 }

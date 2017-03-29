@@ -66,33 +66,5 @@ namespace Picums.Mvc.Configuration
         protected virtual void ConfigureLogging(ILoggerFactory loggerFactory)
         {
         }
-
-        protected virtual void ConfigureDevelopmentEnviroment(IApplicationBuilder app)
-        {
-        }
-
-        protected virtual void ConfigureStagingEnviroment(IApplicationBuilder app)
-        {
-        }
-
-        protected virtual void ConfigureProductionEnviroment(IApplicationBuilder app)
-        {
-        }
-
-        private void SelectEnviroment(IApplicationBuilder app)
-        {
-            if (this.Environment.IsDevelopment())
-            {
-                this.ConfigureDevelopmentEnviroment(app);
-            }
-            else if (this.Environment.IsStaging())
-            {
-                this.ConfigureStagingEnviroment(app);
-            }
-            else if (this.Environment.IsProduction())
-            {
-                this.ConfigureProductionEnviroment(app);
-            }
-        }
     }
 }
