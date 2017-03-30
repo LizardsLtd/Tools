@@ -19,6 +19,7 @@ namespace Picums.Mvc.Configuration.Defaults
         protected override void ConfigureServices(IServiceCollection services)
         {
             services.AddIdentity<TUser, string>();
+            services.AddTransient<IUserStore<TUser>, TUserStore>();
             services.AddScoped<IUserClaimsPrincipalFactory<TUser>, ClaimsPrincipalFactory<TUser>>();
             services.AddScoped<IUserStore<TUser>, TUserStore>();
         }
