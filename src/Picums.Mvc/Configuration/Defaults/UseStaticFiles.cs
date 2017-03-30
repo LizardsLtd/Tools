@@ -1,12 +1,13 @@
 ﻿using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
 
 namespace Picums.Mvc.Configuration.Defaults
 {
-    public sealed class UseStaticFiles : IDefault
+    public sealed class UseStaticFiles : BasicDefault
     {
-        public void Apply(StartupConfigurations host, params object[] arguments)
+        protected override void ConfigureApp(IApplicationBuilder app, IHostingEnvironment env)
         {
-            host.ASP.Add((app, env) => app.UseStaticFiles());
+            app.UseStaticFiles();
         }
     }
 }
