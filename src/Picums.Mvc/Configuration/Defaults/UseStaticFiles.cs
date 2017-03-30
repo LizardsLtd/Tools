@@ -5,7 +5,7 @@ namespace Picums.Mvc.Configuration.Defaults
 {
     public sealed class UseStaticFiles : BasicDefault
     {
-        protected override void ConfigureApp(IApplicationBuilder app, IHostingEnvironment env)
+        protected override void ConfigureApp(IApplicationBuilder app, IHostingEnvironment env, object[] arguments)
         {
             app.UseStaticFiles();
         }

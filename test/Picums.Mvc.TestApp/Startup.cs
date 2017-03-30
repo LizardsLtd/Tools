@@ -13,7 +13,7 @@ namespace Picums.Mvc.TestApp
         {
             this.ApplyDefault<SetLocalisation>();
             //this.ApplyDefault<LocalisationByDatabase>();
-            this.ApplyDefault<DataStorage>("Picums.Localisation");
+            this.ApplyDefault<CQRSDefaults>("Picums.Localisation");
             this.ApplyDefault<UseStaticFiles>();
             this.ApplyDefault<DevelopmentSetup>();
         }

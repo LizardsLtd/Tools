@@ -11,12 +11,12 @@ namespace Picums.Mvc.Configuration.Defaults
         where TUser : class, IClaimsProvider, IUser
         where TUserStore : class, IUserStore<TUser>
     {
-        protected override void ConfigureApp(IApplicationBuilder app, IHostingEnvironment env)
+        protected override void ConfigureApp(IApplicationBuilder app, IHostingEnvironment env, object[] arguments)
         {
             app.UseIdentity();
         }
 
-        protected override void ConfigureServices(IServiceCollection services)
+        protected override void ConfigureServices(IServiceCollection services, object[] arguments)
         {
             services.AddIdentity<TUser, string>();
             services.AddTransient<IUserStore<TUser>, TUserStore>();
