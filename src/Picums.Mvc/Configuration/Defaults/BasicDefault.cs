@@ -8,15 +8,15 @@ namespace Picums.Mvc.Configuration.Defaults
     {
         public void Apply(StartupConfigurations host, params object[] arguments)
         {
-            host.ASP.Add((app, env) => this.ConfigureApp(app, env));
-            host.Services.Add(services => this.ConfigureServices(services));
+            host.ASP.Add((app, env) => this.ConfigureApp(app, env, arguments));
+            host.Services.Add(services => this.ConfigureServices(services, arguments));
         }
 
-        protected virtual void ConfigureApp(IApplicationBuilder app, IHostingEnvironment env)
+        protected virtual void ConfigureApp(IApplicationBuilder app, IHostingEnvironment env, object[] arguments)
         {
         }
 
-        protected virtual void ConfigureServices(IServiceCollection services)
+        protected virtual void ConfigureServices(IServiceCollection services, object[] arguments)
         {
         }
     }
