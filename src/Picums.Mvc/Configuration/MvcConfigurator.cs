@@ -37,7 +37,7 @@ namespace Picums.Mvc.Configuration
 
         internal void Use(IApplicationBuilder app)
         {
-            app.UseMvc(this.Routes.BuildRoutes);
+            app.UseMvc(routes => this.Routes.BuildRoutes(routes));
         }
 
         private void CreateMvcOptions(MvcOptions options)
