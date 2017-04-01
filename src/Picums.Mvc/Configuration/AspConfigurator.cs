@@ -19,7 +19,7 @@ namespace Picums.Mvc.Configuration
 
         internal void Use(IApplicationBuilder app, IHostingEnvironment environment)
         {
-            //this.actions.ForEach(x => x(app, environment));
+            this.actions.ForEach(x => x(app, environment));
         }
     }
 }
