@@ -43,8 +43,11 @@ namespace Picums.Mvc.Configuration
         }
 
         public void ApplyDefault<TDefault>(params object[] arguments) where TDefault : IDefault, new()
+            => this.ApplyDefault(new TDefault(), arguments);
+
+        public void ApplyDefault(IDefault @default, params object[] arguments)
         {
-            this.configuration.Apply<TDefault>(arguments);
+            this.configuration.Apply(@default);
         }
 
         protected virtual void AddConfigurationBuilderDetails(ConfigurationBuilder provider)
