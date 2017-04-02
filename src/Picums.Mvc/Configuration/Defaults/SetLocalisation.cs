@@ -10,6 +10,7 @@ using Picums.Localisation;
 using Picums.Localisation.Data;
 using Picums.Localisation.Data.Services;
 using Picums.Mvc.Localisation;
+using Picums.Mvc.Middleware;
 
 namespace Picums.Mvc.Configuration.Defaults
 {
@@ -25,6 +26,8 @@ namespace Picums.Mvc.Configuration.Defaults
             host.Services.Add(x => x.AddSingleton<IHtmlLocalizer, HtmlLocalizer>());
             host.Services.Add(x => x.AddTransient<ITranslationSetProvider>(provider
                 => new JsonTransaltionProvider(host.ConfigurationRoot.GetSection("translation"))));
+
+            host.Apply<MiddlewareDefault<CultureCookieSetterMiddleware>>();
         }
 
         private CultureStore GetCultureStore(IConfigurationRoot configurationRoot)
