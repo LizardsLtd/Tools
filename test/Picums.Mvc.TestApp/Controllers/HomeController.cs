@@ -1,11 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Localization;
+using Microsoft.Extensions.Localization;
 
 namespace Picums.Mvc.TestApp.Controllers
 {
     public class HomeController : Controller
     {
-        public HomeController(IHtmlLocalizer localiser)
+        public HomeController(IStringLocalizer localiser)
         {
         }
 

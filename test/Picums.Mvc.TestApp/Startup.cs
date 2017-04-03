@@ -16,6 +16,7 @@ namespace Picums.Mvc.TestApp
             this.ApplyDefault<CQRSDefaults>("Picums.Localisation");
             this.ApplyDefault<UseStaticFiles>();
             this.ApplyDefault<DevelopmentSetup>();
+            this.ApplyDefault<LocaliseUsingConfigurationDefault>();
         }
 
         protected override void ConfigureLogging(ILoggerFactory loggerFactory)

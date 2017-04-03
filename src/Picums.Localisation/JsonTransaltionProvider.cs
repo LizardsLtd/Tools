@@ -7,14 +7,14 @@ namespace Picums.Localisation.Data.Services
 {
     public sealed class JsonTransaltionProvider : ITranslationSetProvider
     {
-        private readonly IConfigurationSection configuration;
+        private readonly TranslationSet translationSet;
 
         public JsonTransaltionProvider(IConfigurationSection configuration)
         {
-            this.configuration = configuration;
+            this.translationSet = new TranslationSet(ConvertToTransationData(configuration));
         }
 
-        public TranslationSet GetTranslationSet() => new TranslationSet(ConvertToTransationData(this.configuration));
+        public TranslationSet GetTranslationSet() => this.translationSet;
 
         public IEnumerable<TranslationItem> ConvertToTransationData(IConfigurationSection configuration)
             => configuration

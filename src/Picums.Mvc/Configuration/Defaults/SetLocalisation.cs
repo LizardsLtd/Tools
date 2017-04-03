@@ -23,9 +23,6 @@ namespace Picums.Mvc.Configuration.Defaults
             host.Services.Add(x => x.AddSingleton<IStringLocalizer, ConfigurableStringLocalizer>());
             host.Services.Add(x => x.AddSingleton<IdentityErrorDescriber, LocalisedIdentityErrorDescriber>());
             host.Services.Add(x => x.AddSingleton<IHtmlLocalizer, HtmlLocalizer>());
-            host.Services.Add(x => x.AddTransient<ITranslationSetProvider>(provider
-                => new JsonTransaltionProvider(host.ConfigurationRoot.GetSection("translation"))));
-
             //host.Apply<MiddlewareDefault<CultureCookieSetterMiddleware>>();
         }
 
