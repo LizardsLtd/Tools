@@ -7,10 +7,6 @@ namespace Picums.Mvc.Configuration.Defaults
 {
     public sealed class LocaliseUsingConfigurationDefault : BasicDefault
     {
-        public void Apply(StartupConfigurations host, IEnumerable<object> arguments)
-        {
-        }
-
         protected override void ConfigureServices(IServiceCollection services, IEnumerable<object> arguments)
         {
             services.TryAddSingleton<ITranslationSetProvider>(
