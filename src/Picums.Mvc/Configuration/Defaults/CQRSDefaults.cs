@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using Microsoft.Extensions.DependencyInjection;
@@ -11,7 +12,7 @@ namespace Picums.Mvc.Configuration.Defaults
 {
     public sealed class CQRSDefaults : IDefault
     {
-        public void Apply(StartupConfigurations host, params object[] arguments)
+        public void Apply(StartupConfigurations host, IEnumerable<object> arguments)
         {
             arguments
                 .Cast<string>()

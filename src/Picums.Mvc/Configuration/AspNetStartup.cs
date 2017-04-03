@@ -47,7 +47,7 @@ namespace Picums.Mvc.Configuration
 
         public void ApplyDefault(IDefault @default, params object[] arguments)
         {
-            this.configuration.Apply(@default);
+            this.configuration.Apply(@default, arguments);
         }
 
         protected virtual void AddConfigurationBuilderDetails(ConfigurationBuilder provider)

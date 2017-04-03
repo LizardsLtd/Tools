@@ -1,11 +1,12 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using System.Collections.Generic;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 
 namespace Picums.Mvc.Configuration.Defaults
 {
     public sealed class DevelopmentSetup : IDefault
     {
-        public void Apply(StartupConfigurations host, params object[] arguments)
+        public void Apply(StartupConfigurations host, IEnumerable<object> arguments)
         {
             if (host.Environment.IsDevelopment())
             {

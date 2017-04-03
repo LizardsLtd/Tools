@@ -1,10 +1,11 @@
-﻿using Picums.Mvc.FeatureSlices;
+﻿using System.Collections.Generic;
+using Picums.Mvc.FeatureSlices;
 
 namespace Picums.Mvc.Configuration.Defaults
 {
     public sealed class FeaturesDefaults : IDefault
     {
-        public void Apply(StartupConfigurations host, params object[] arguments)
+        public void Apply(StartupConfigurations host, IEnumerable<object> arguments)
         {
             host.MVC.Conventions.AddControllerConvention<FeatureConvention>();
 

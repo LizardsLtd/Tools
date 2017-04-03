@@ -15,7 +15,7 @@ namespace Picums.Mvc.Configuration.Defaults
 {
     public sealed class SetLocalisation : IDefault
     {
-        public void Apply(StartupConfigurations host, params object[] arguments)
+        public void Apply(StartupConfigurations host, IEnumerable<object> arguments)
         {
             var cultureStore = GetCultureStore(host.ConfigurationRoot);
 
