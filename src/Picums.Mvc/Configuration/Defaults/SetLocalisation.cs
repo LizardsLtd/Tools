@@ -1,14 +1,17 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc.Localization;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Localization;
 using Picums.Localisation;
 using Picums.Localisation.Data;
-using Picums.Localisation.Data.Services;
 using Picums.Mvc.Localisation;
 
 namespace Picums.Mvc.Configuration.Defaults
@@ -24,6 +27,7 @@ namespace Picums.Mvc.Configuration.Defaults
             host.Services.Add(x => x.AddSingleton<IdentityErrorDescriber, LocalisedIdentityErrorDescriber>());
             host.Services.Add(x => x.AddSingleton<IHtmlLocalizer, HtmlLocalizer>());
             //host.Apply<MiddlewareDefault<CultureCookieSetterMiddleware>>();
+            host.ASP.Add(this.ConfigureRequestLocalisation(cultureStore));
         }
 
         private CultureStore GetCultureStore(IConfigurationRoot configurationRoot)
@@ -41,5 +45,32 @@ namespace Picums.Mvc.Configuration.Defaults
                 .Select(x => x.Value)
                 .Select(x => new CultureInfo(x))
                 .ToList();
+
+        private Action<IApplicationBuilder, IHostingEnvironment> ConfigureRequestLocalisation(CultureStore cultureStore)
+        {
+            var defaultLanguage = new RequestCulture(cultureStore.DefaultCulture);
+            var availableLanguages = cultureStore.AvailableCultures.ToList();
+
+            return (app, env) => app.UseRequestLocalization(
+                   new RequestLocalizationOptions
+                   {
+                       RequestCultureProviders = new List<IRequestCultureProvider>
+                       {
+                            new AcceptLanguageHeaderRequestCultureProvider()
+                            , new QueryStringRequestCultureProvider()
+                            , new CookieRequestCultureProvider()
+                       },
+                       SupportedCultures = availableLanguages,
+                       SupportedUICultures = availableLanguages,
+                       DefaultRequestCulture = defaultLanguage,
+                   });
+
+            //        UseMiddlewareCultureRecognition(
+            //defaultLanguage
+            //,
+            //, new CookieRequestCultureProvider()
+            //, new QueryStringRequestCultureProvider()
+            //, new AcceptLanguageHeaderRequestCultureProvider());
+        }
     }
 }
