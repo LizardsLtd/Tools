@@ -4,7 +4,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Picums.Data.CQRS.DataAccess;
 using Picums.Localisation.Data;
 using Picums.Localisation.Data.Services;
-using Picums.Mvc.Middleware;
 
 namespace Picums.Mvc.Configuration.Defaults
 {
@@ -17,7 +16,6 @@ namespace Picums.Mvc.Configuration.Defaults
             host.Services.Add(x => x.AddSingleton(arguments.ElementAt(0) as DatabaseParts));
 
             host.Apply<CQRSDefaults>("Picums.Localisation");
-            host.Apply<MiddlewareDefault<CultureCookieSetterMiddleware>>();
         }
     }
 }
