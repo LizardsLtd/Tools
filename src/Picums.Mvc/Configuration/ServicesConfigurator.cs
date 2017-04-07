@@ -16,6 +16,10 @@ namespace Picums.Mvc.Configuration
         public void Add(Action<IServiceCollection> service)
             => this.services.Add(service);
 
+        public void Configure<TOptions>(Action<TOptions> configureAction)
+                where TOptions : class
+            => this.services.Add(services => services.Configure(configureAction));
+
         internal void Use(IServiceCollection services)
             => this.services.ForEach(x => x(services));
     }
