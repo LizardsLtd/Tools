@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace Picums.Mvc.Configuration.Defaults
 {
-    public abstract class ConfigurableDefault<TOption> : IDefault
+    public abstract class DependnecyInjectionConfiguratinDefault<TOption> : IDefault
     {
         public void Apply(StartupConfigurations host, IEnumerable<object> arguments)
         {
