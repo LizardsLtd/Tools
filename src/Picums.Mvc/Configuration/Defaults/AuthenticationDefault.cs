@@ -25,4 +25,4 @@ namespace Picums.Mvc.Configuration.Defaults
             services.AddScoped<IUserStore<TUser>, TUserStore>();
         }
     }
-}\
+}

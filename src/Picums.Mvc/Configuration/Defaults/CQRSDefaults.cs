@@ -10,7 +10,7 @@ using Picums.Data.CQRS.DataAccess;
 
 namespace Picums.Mvc.Configuration.Defaults
 {
-    internal sealed class CQRSDefaults : IDefault
+    public sealed class CQRSDefaults : IDefault
     {
         public void Apply(StartupConfigurations host, IEnumerable<object> arguments)
         {
