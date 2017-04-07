@@ -25,7 +25,7 @@ namespace Picums.Mvc.Configuration
 
         public IConfigurationRoot ConfigurationRoot => this.configuration.ConfigurationRoot;
 
-        public AspNetStartup ConfigureService<TOption>(Action<TOption> configure) where TOption : class
+        public AspNetStartup ConfigureOptions<TOption>(Action<TOption> configure) where TOption : class
         {
             this.configuration.Services.Configure<TOption>(configure);
 
