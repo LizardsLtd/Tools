@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using System;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -23,6 +24,13 @@ namespace Picums.Mvc.Configuration
         public IHostingEnvironment Environment => this.configuration.Environment;
 
         public IConfigurationRoot ConfigurationRoot => this.configuration.ConfigurationRoot;
+
+        public AspNetStartup ConfigureService<TOption>(Action<TOption> configure) where TOption : class
+        {
+            this.configuration.Services.Configure<TOption>(configure);
+
+            return this;
+        }
 
         public void ConfigureServices(IServiceCollection services)
         {
