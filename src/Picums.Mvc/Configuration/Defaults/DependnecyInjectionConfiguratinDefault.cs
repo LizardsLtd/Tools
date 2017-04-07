@@ -1,18 +1,18 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Picums.Mvc.Configuration.Defaults
 {
-    public abstract class DependnecyInjectionConfiguratinDefault<TOption> : IDefault
+    public sealed class DependnecyInjectionConfiguratinDefault<TOption> : IDefault
+        where TOption : class
     {
         public void Apply(StartupConfigurations host, IEnumerable<object> arguments)
         {
-            if (arguments.FirstOrDefault() is TOption option)
+            if (arguments.FirstOrDefault() is Action<TOption> option)
             {
-                this.Apply(host, option);
+                host.Services.Configure(option);
             }
         }
-
-        protected abstract void Apply(StartupConfigurations host, TOption option);
     }
 }
