@@ -13,6 +13,7 @@ using Microsoft.Extensions.Localization;
 using Picums.Localisation;
 using Picums.Localisation.Data;
 using Picums.Mvc.Localisation;
+using Picums.Mvc.Middleware;
 
 namespace Picums.Mvc.Configuration.Defaults
 {
