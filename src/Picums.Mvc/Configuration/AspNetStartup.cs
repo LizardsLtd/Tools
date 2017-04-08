@@ -5,7 +5,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Picums.Mvc.Configuration.Defaults;
-using Picums.Mvc.Middleware;
 
 namespace Picums.Mvc.Configuration
 {
@@ -49,8 +48,6 @@ namespace Picums.Mvc.Configuration
 
             this.configuration.ASP.Use(app, Environment);
             this.configuration.MVC.Use(app);
-
-            app.UseMiddleware<CultureCookieSetterMiddleware>();
         }
 
         public void ApplyDefault<TDefault>(params object[] arguments) where TDefault : IDefault, new()

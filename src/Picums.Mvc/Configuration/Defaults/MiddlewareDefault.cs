@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 
@@ -11,7 +12,14 @@ namespace Picums.Mvc.Configuration.Defaults
             , IHostingEnvironment env
             , IEnumerable<object> arguments)
         {
-            app.UseMiddleware<TMiddleware>(arguments);
+            if (arguments.Any())
+            {
+                app.UseMiddleware<TMiddleware>(arguments);
+            }
+            else
+            {
+                app.UseMiddleware<TMiddleware>();
+            }
         }
     }
 }
