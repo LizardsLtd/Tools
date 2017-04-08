@@ -48,6 +48,7 @@ namespace Picums.Mvc.Configuration
 
             this.configuration.ASP.Use(app, Environment);
             this.configuration.MVC.Use(app);
+            this.ConfigureMiddlewares(app);
         }
 
         public void ApplyDefault<TDefault>(params object[] arguments) where TDefault : IDefault, new()
@@ -56,6 +57,10 @@ namespace Picums.Mvc.Configuration
         public void ApplyDefault(IDefault @default, params object[] arguments)
         {
             this.configuration.Apply(@default, arguments);
+        }
+
+        protected virtual void ConfigureMiddlewares(IApplicationBuilder app)
+        {
         }
 
         protected virtual void AddConfigurationBuilderDetails(ConfigurationBuilder provider)
