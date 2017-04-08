@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Localization;
 
 namespace Picums.Mvc.Middleware
 {
-    internal sealed class CultureCookieSetterMiddleware
+    public sealed class CultureCookieSetterMiddleware
     {
         private readonly RequestDelegate next;
 
