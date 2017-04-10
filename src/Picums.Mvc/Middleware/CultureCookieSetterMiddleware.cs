@@ -22,9 +22,7 @@ namespace Picums.Mvc.Middleware
 
         private void CreateLanguageCookie(HttpContext context)
         {
-            var currentCulture =
-                context
-                .Features[typeof(IRequestCultureFeature)] as IRequestCultureFeature;
+            var currentCulture = context.Features.Get<IRequestCultureFeature>();
 
             var cookieValue =
                 CookieRequestCultureProvider.MakeCookieValue(currentCulture?.RequestCulture);
