@@ -27,8 +27,8 @@ namespace Picums.Mvc.Configuration.Defaults
             host.Services.Add(x => x.AddSingleton<IStringLocalizer, ConfigurableStringLocalizer>());
             host.Services.Add(x => x.AddSingleton<IdentityErrorDescriber, LocalisedIdentityErrorDescriber>());
             host.Services.Add(x => x.AddSingleton<IHtmlLocalizer, HtmlLocalizer>());
-            host.Apply<MiddlewareDefault<CultureCookieSetterMiddleware>>();
             host.ASP.Add(this.ConfigureRequestLocalisation(cultureStore));
+            host.Apply<MiddlewareDefault<CultureCookieSetterMiddleware>>();
         }
 
         private CultureStore GetCultureStore(IConfigurationRoot configurationRoot)
