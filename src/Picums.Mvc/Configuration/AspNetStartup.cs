@@ -43,8 +43,6 @@ namespace Picums.Mvc.Configuration
 
         public void Configure(IApplicationBuilder app, ILoggerFactory loggerFactory)
         {
-            this.configuration.Middleware.Use(app);
-
             this.ConfigureAsp(this.configuration.ASP);
             this.ConfigureLogging(loggerFactory);
 

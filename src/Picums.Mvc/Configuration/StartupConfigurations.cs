@@ -18,7 +18,6 @@ namespace Picums.Mvc.Configuration
             this.ASP = new AspConfigurator();
             this.Razor = new RazorOptions();
             this.Services = new ServicesConfigurator();
-            this.Middleware = new MiddlewareCollection();
             this.Environment = environment;
             this.ConfigurationRoot = configurationRoot;
         }
@@ -30,8 +29,6 @@ namespace Picums.Mvc.Configuration
         public RazorOptions Razor { get; }
 
         public ServicesConfigurator Services { get; }
-
-        public MiddlewareCollection Middleware { get; }
 
         public IHostingEnvironment Environment { get; }
 
