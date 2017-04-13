@@ -7,21 +7,27 @@ using Picums.Maybe;
 
 namespace Picums.Data.CQRS.Queries
 {
-	public sealed class QueryByIdBuilder<TPayload>
-		: QueryBuilder<IWithId<IAsyncQuery<Maybe<TPayload>>>>
-		, IWithId<IAsyncQuery<Maybe<TPayload>>>
-			where TPayload : IAggregateRoot
-	{
-		public IAsyncQuery<Maybe<TPayload>> WithId(Guid id)
-			=> new Query<TPayload, Maybe<TPayload>>(
-				this.dataContext
-				, this.logger
-				, this.parts
-				, reader => this.Execute(reader, id));
+    public sealed class QueryByIdBuilder<TPayload>
+        : QueryBuilder<IWithId<IAsyncQuery<Maybe<TPayload>>>>
+        , IWithId<IAsyncQuery<Maybe<TPayload>>>
+            where TPayload : IAggregateRoot
+    {
+        public IAsyncQuery<Maybe<TPayload>> WithId(Guid id)
+            => new Query<TPayload, Maybe<TPayload>>(
+                this.dataContext
+                , this.logger
+                , this.parts
+                , reader => this.Execute(reader, id));
 
-		protected override IWithId<IAsyncQuery<Maybe<TPayload>>> NextBuildStep() => this;
+        protected override IWithId<IAsyncQuery<Maybe<TPayload>>> NextBuildStep() => this;
 
-		private Task<Maybe<TPayload>> Execute(IDataReader<TPayload> reader, Guid id)
-					=> reader.QueryFor(items => (Maybe<TPayload>)items.SingleOrDefault(x => x.Id == id));
-	}
+        private Task<Maybe<TPayload>> Execute(IDataReader<TPayload> reader, Guid id)
+                    => reader.QueryFor(items => this.SingleOrDefault(items, id));
+
+        private Maybe<TPayload> SingleOrDefault(IQueryable<TPayload> items, Guid id)
+        {
+            var result = items.SingleOrDefault(x => x.Id == id);
+            return (Maybe<TPayload>)result;
+        }
+    }
 }
