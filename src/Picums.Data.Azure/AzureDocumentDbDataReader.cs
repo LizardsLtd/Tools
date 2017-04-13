@@ -36,7 +36,8 @@ namespace Picums.Data.Azure
         public Task<TResult> QueryFor<TResult>(Expression<Func<IQueryable<T>, TResult>> predicate)
         {
             this.logger.LogInformation($"AzureDocumentDbDataReader for {typeof(T).Name} QueryFor function");
-            return Task.FromResult(predicate.Compile().Invoke(this.QueryDocumentDb()));
+            var results = predicate.Compile().Invoke(this.QueryDocumentDb());
+            return Task.FromResult(results);
         }
 
         public Task<IQueryable<T>> Where(Expression<Func<T, bool>> predicate)
