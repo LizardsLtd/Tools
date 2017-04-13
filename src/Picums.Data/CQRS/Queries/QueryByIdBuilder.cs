@@ -26,7 +26,7 @@ namespace Picums.Data.CQRS.Queries
 
         private Maybe<TPayload> SingleOrDefault(IQueryable<TPayload> items, Guid id)
         {
-            var result = items.SingleOrDefault(x => x.Id == id);
+            var result = items.SingleOrDefault(x => x.Id.Equals(id));
             return (Maybe<TPayload>)result;
         }
     }
