@@ -7,6 +7,7 @@ using Microsoft.Azure.Documents.Client;
 using Microsoft.Extensions.Logging;
 using Picums.Data.CQRS.DataAccess;
 using Picums.Data.Domain;
+using Picums.Maybe;
 
 namespace Picums.Data.Azure
 {
@@ -38,6 +39,13 @@ namespace Picums.Data.Azure
             this.logger.LogInformation($"AzureDocumentDbDataReader for {typeof(T).Name} QueryFor function");
             var results = predicate.Compile().Invoke(this.QueryDocumentDb());
             return Task.FromResult(results);
+        }
+
+        public Task<Maybe<T>> SingleOrDefault(Expression<Func<T, bool>> predicate)
+        {
+            this.logger.LogInformation($"AzureDocumentDbDataReader for {typeof(T).Name} Where function");
+            var result = this.QueryDocumentDb().Where(predicate.Compile()).ToArray();
+            return Task.FromResult((Maybe<T>)result.FirstOrDefault());
         }
 
         public Task<IQueryable<T>> Where(Expression<Func<T, bool>> predicate)
