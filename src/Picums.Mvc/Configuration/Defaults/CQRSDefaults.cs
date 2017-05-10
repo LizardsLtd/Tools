@@ -5,7 +5,6 @@ using System.Reflection;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Picums.Data.CQRS;
-using Picums.Data.CQRS.Commands;
 using Picums.Data.CQRS.DataAccess;
 
 namespace Picums.Mvc.Configuration.Defaults

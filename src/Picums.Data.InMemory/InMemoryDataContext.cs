@@ -1,17 +1,16 @@
-﻿using Picums.Data.CQRS.DataAccess;
+﻿using System.Collections.Generic;
+using Picums.Data.CQRS.DataAccess;
 using Picums.Data.Domain;
-using System;
-using System.Collections.Generic;
 
 namespace Picums.Data.InMemory
 {
     public sealed class InMemoryDataContext : IDataContext
     {
-        private readonly Dictionary<string, List<object>> items;
+        private readonly Dictionary<string, object> items;
 
         public InMemoryDataContext()
         {
-            this.items = new Dictionary<string, List<object>>();
+            this.items = new Dictionary<string, object>();
         }
 
         public void Dispose()
@@ -19,13 +18,29 @@ namespace Picums.Data.InMemory
         }
 
         public IDataReader<T> GetReader<T>(params object[] attributes) where T : IAggregateRoot
-        {
-            throw new NotImplementedException();
-        }
+            => new InMemoryReader<T>(this.GetItemsCollection<T>());
 
         public IDataWriter<T> GetWriter<T>(params object[] attributes) where T : IAggregateRoot
+            => new InMemoryWriter<T>(this.GetItemsCollection<T>());
+
+        public List<T> GetItemsCollection<T>() where T : IAggregateRoot
         {
-            throw new NotImplementedException();
+            var key = this.CreateKey<T>();
+
+            this.CreateCollectionIfKeyNotExist<T>(key);
+
+            return this.items[key] as List<T>;
         }
+
+        private void CreateCollectionIfKeyNotExist<T>(string key)
+        {
+            if (!this.items.ContainsKey(key))
+            {
+                this.items[key] = new List<T>();
+            }
+        }
+
+        private string CreateKey<T>() where T : IAggregateRoot
+            => nameof(T);
     }
 }

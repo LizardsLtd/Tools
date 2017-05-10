@@ -1,4 +1,4 @@
-﻿using Picums.Data.CQRS.Commands;
+﻿using Picums.Data.CQRS;
 
 namespace Picums.Localisation.Data
 {

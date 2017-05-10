@@ -1,5 +1,5 @@
 ﻿using System.Threading.Tasks;
-using Picums.Data.CQRS.Commands;
+using Picums.Data.CQRS;
 using Picums.Data.CQRS.DataAccess;
 
 namespace Picums.Localisation.Data
