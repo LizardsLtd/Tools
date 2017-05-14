@@ -19,20 +19,21 @@ namespace Picums.Localisation.Data
 
         public string GetTranslation(CultureInfo culture, string key)
             => this.translationData
-                .Where(x => x.CultureName == culture.TwoLetterISOLanguageName)
-                .Where(x => x.TranslationKey == key)
+                .Where(x => CompareWithCaseIgnored(x.CultureName, culture.TwoLetterISOLanguageName))
+                .Where(x => CompareWithCaseIgnored(x.TranslationKey, key))
                 .Select(x => x.Value)
                 .DefaultIfEmpty(key)
                 .FirstOrDefault();
 
         internal IEnumerable<(string, string)> GetAll(CultureInfo culture)
             => this.translationData
-                .Where(x => x.CultureName == culture.TwoLetterISOLanguageName)
+                .Where(x => CompareWithCaseIgnored(x.CultureName, culture.TwoLetterISOLanguageName))
                 .Select(x => (x.TranslationKey, x.Value));
 
+        private bool CompareWithCaseIgnored(string first, string second)
+            => string.Equals(first, second, StringComparison.OrdinalIgnoreCase);
+
         internal IEnumerable<(string, string)> GetAll(object currentCulture)
-        {
-            throw new NotImplementedException();
-        }
+            => this.GetAll(currentCulture as CultureInfo);
     }
 }
