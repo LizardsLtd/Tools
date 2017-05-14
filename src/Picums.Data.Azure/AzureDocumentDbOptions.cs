@@ -27,21 +27,16 @@ namespace Picums.Data.Azure
 						return secureString;
 					});
 
-		public static void FromConfiguration(IConfigurationRoot root, AzureDocumentDbOptions options)
+		public static void FromConfiguration(IConfigurationRoot root, IEnumerable<string> collections,  AzureDocumentDbOptions options)
 		{
 			options.Databases = root
 				.GetSection("ConnectionString:Databases")
 				.GetChildren()
 				.Select(x => new
 				{
-					Name = x["Name"],
-					Collections
-						= x
-							.GetSection("Collections")
-							.GetChildren()
-							.Select(col => col.Value)
+					Name = x["Name"]
 				})
-				.Select(x => new AzureDatabase(x.Name, x.Collections));
+				.Select(x => new AzureDatabase(x.Name, collections));
 			options.Endpoint = root["ConnectionString:AccountEndpoint"];
 			options.AuthKey = root["ConnectionString:AccountKey"];
 		}
