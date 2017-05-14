@@ -14,7 +14,8 @@ namespace Picums.Mvc.Configuration.Defaults
             host.Services.Add(services => services
                     .AddTransient<GetAllTranslationsQuery>()
                     .AddTransient<AddNewTranslationCommandHandler>()
-                    .AddTransient<ITranslationSetProvider, DataTranslationProvider>());
+                    .AddTransient<ITranslationSetProvider, DataTranslationProvider>()
+                    .AddSingleton(arguments.ElementAt(0)));
 
             host.Apply<CQRSDefaults>("Picums.Localisation");
         }
