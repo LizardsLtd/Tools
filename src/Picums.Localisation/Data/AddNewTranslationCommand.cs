@@ -2,7 +2,7 @@
 
 namespace Picums.Localisation.Data
 {
-    public sealed class AddNewTranslationCommand : CommandBase
+    public sealed class AddNewTranslationCommand : CommandBase, ICommand
     {
         /// <summary>Record Constructor</summary>
         /// <param name="translationItem"><see cref="TranslationItem"/></param>
