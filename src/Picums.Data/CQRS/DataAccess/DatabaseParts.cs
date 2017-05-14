@@ -13,7 +13,7 @@
 
         public object[] Parts => new[] { this.database, this.collection };
 
-        public static implicit operator object[] (DatabaseParts parts) => parts.Parts;
+        public static explicit operator object[] (DatabaseParts parts) => parts.Parts;
 
         public DatabaseParts WithCollection(string collection) => new DatabaseParts(this.database, collection);
     }
