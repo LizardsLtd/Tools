@@ -31,6 +31,12 @@ namespace Picums.Mvc.Configuration
 
             return this;
         }
+        public AspNetStartup ConfigureOptions<TOption>(Action<IConfigurationRoot, TOption> configure) where TOption : class
+        {
+            this.configuration.Services.Configure<TOption>(options => configure(this.ConfigurationRoot, options));
+
+            return this;
+        }
 
         public void ConfigureServices(IServiceCollection services)
         {

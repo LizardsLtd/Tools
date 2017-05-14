@@ -41,7 +41,7 @@ namespace Picums.Localisation.Data.Services
                     Value = x.Value,
                 })
                 .Select(x => new TranslationItem(
-                    x.Culture.TwoLetterISOLanguageName
+                    x.Culture
                     , x.Key
                     , x.Value));
 
