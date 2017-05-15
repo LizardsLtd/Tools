@@ -6,14 +6,19 @@ using Picums.Data.CQRS.Queries;
 
 namespace Picums.Localisation.Data
 {
-    public sealed class GetAllTranslationsQuery : QueryProvider<IEnumerable<TranslationItem>>
+    public sealed class GetAllTranslationsQuery // : QueryProvider<IEnumerable<TranslationItem>>
     {
-        public GetAllTranslationsQuery(IDataContext dataContext, ILoggerFactory loggerFactory, DatabaseParts parts)
-            : base(dataContext, loggerFactory, parts)
+        private readonly IDataContext dataContext;
+        private readonly ILoggerFactory loggerFactory;
+
+        public GetAllTranslationsQuery(IDataContext dataContext, ILoggerFactory loggerFactory)
+        //: base(dataContext, loggerFactory)
         {
+            this.dataContext = dataContext;
+            this.loggerFactory = loggerFactory;
         }
 
-        public IAsyncQuery<IEnumerable<TranslationItem>> GetQuery()
-            => new QueryForAll<TranslationItem>(this.dataContext, this.loggerFactory, this.parts);
+        public IAsyncQuery<IEnumerable<TranslationItem>> GetQuery(DatabaseParts parts)
+            => new QueryForAll<TranslationItem>(this.dataContext, this.loggerFactory, parts);
     }
 }
