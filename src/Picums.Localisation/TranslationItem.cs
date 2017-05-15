@@ -6,16 +6,16 @@ using System.Diagnostics;
 namespace Picums.Localisation.Data
 {
     [DebuggerDisplay("{CultureName}:{TranslationKey}:{Value}")]
-    public sealed class TranslationItem : IAggregateRoot
+    public sealed class TranslationItem : IAggregateRoot, IEquatable<TranslationItem>
     {
         /// <summary>Record Constructor</summary>
         /// <param name="cultureName"><see cref="CultureName"/></param>
         /// <param name="translationKey"><see cref="TranslationKey"/></param>
         /// <param name="value"><see cref="Value"/></param>
-        public TranslationItem(CultureInfo cultureName, string translationKey, string value)
+        public TranslationItem(CultureInfo culture, string translationKey, string value)
         {
             this.Id = Guid.NewGuid();
-            CultureName = cultureName.TwoLetterISOLanguageName;
+            CultureName = GetCultureName(culture);
             TranslationKey = translationKey;
             Value = value;
         }
@@ -28,11 +28,17 @@ namespace Picums.Localisation.Data
 
         public string Value { get; }
 
-        public bool Compare(CultureInfo culture, string key )
-            => this.GetHashCode() == $"{culture}:{key}".GetHashCode();
+        public bool CompareKeys(CultureInfo culture, string key)
+            => this.GetHashCode() == $"{this.GetCultureName(culture)}:{key}".GetHashCode();
+
+        public override bool Equals(object obj) => this.Equals(obj as TranslationItem);
+
+        public bool Equals(TranslationItem other)
+            => this.GetHashCode() == other?.GetHashCode()
+             && this.Value == other?.Value;
 
         public override int GetHashCode() => $"{CultureName}:{TranslationKey}".GetHashCode();
 
-
+        private string GetCultureName(CultureInfo culture) => culture.TwoLetterISOLanguageName;
     }
 }

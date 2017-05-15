@@ -6,13 +6,12 @@ using Picums.Data.CQRS.Queries;
 
 namespace Picums.Localisation.Data
 {
-    public sealed class GetAllTranslationsQuery // : QueryProvider<IEnumerable<TranslationItem>>
+    public sealed class GetAllTranslationsQuery
     {
         private readonly IDataContext dataContext;
         private readonly ILoggerFactory loggerFactory;
 
         public GetAllTranslationsQuery(IDataContext dataContext, ILoggerFactory loggerFactory)
-        //: base(dataContext, loggerFactory)
         {
             this.dataContext = dataContext;
             this.loggerFactory = loggerFactory;
