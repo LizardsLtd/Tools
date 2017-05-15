@@ -13,13 +13,16 @@ namespace Picums.Mvc.Configuration.Defaults
     {
         public void Apply(StartupConfigurations host, IEnumerable<object> arguments)
         {
+            var databasePartsForTranslation = GetParts(arguments);
             host.Services.Add(services => services
-                    //.AddTransient<GetAllTranslationsQuery>()
-                    .AddTransient<AddNewTranslationCommandHandler>()
-                    .AddTransient(serviceProvider => GetTranslationSetProvider(serviceProvider, GetParts(arguments))));
+                    .AddTransient(serviceProvider => GetNewTranslationCommandHandler(serviceProvider, databasePartsForTranslation))
+                    .AddTransient(serviceProvider => GetTranslationSetProvider(serviceProvider, databasePartsForTranslation)));
 
             host.Apply<CQRSDefaults>("Picums.Localisation");
         }
+
+        private object GetNewTranslationCommandHandler(IServiceProvider serviceProvider, DatabaseParts databasePartsForTranslation)
+            => new AddNewTranslationCommandHandler(serviceProvider.GetService<IDataContext>(), databasePartsForTranslation);
 
         private ITranslationSetProvider GetTranslationSetProvider(IServiceProvider serviceProvider, DatabaseParts parts)
             => new DataTranslationProvider(GetTranslationQuery(serviceProvider), parts);
