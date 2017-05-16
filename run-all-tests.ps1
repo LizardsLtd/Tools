@@ -1,6 +1,6 @@
 function executeXUnit($path){
 	cd $path
-	dotnet xunit
+	dotnet xunit -appveyor
 	cd ../..
 }
 
