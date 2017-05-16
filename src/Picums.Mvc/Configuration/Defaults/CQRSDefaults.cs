@@ -6,24 +6,31 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Picums.Data.CQRS;
 using Picums.Data.CQRS.DataAccess;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
 
 namespace Picums.Mvc.Configuration.Defaults
 {
-    public sealed class CQRSDefaults : IDefault
+    public sealed class CQRSDefaults : BasicDefault
     {
-        public void Apply(StartupConfigurations host, IEnumerable<object> arguments)
+        protected override void ConfigureApp(IApplicationBuilder app, IHostingEnvironment env, IEnumerable<object> arguments)
+        {
+            app.ApplicationServices.GetService<IDataContextInitialiser>().Initialise().Wait();
+        }
+
+        protected override void ConfigureServices(IServiceCollection services, IEnumerable<object> arguments)
         {
             arguments
                 .Cast<string>()
                 .Select(assemblyName => Assembly.Load(new AssemblyName(assemblyName)))
                 .ToList()
-                .ForEach(assembly => host.Services.Add(AutomaticDetection(assembly)));
+                .ForEach(assembly => AutomaticDetection(services, assembly));
 
-            host.Services.Add(services => services.TryAddSingleton<ICommandBus, CommandBus>());
+            services.TryAddSingleton<ICommandBus, CommandBus>();
         }
 
-        private Action<IServiceCollection> AutomaticDetection(Assembly assembly)
-            => services => services
+        private void AutomaticDetection(IServiceCollection services, Assembly assembly)
+            => services
                 .DiscoverImplementation()
                     .ForAssembly(assembly)
                     .IncludeClassesOnly()
