@@ -1,5 +1,5 @@
 ﻿using Xunit;
-using Should;
+using Should.Fluent;
 
 namespace Picums.Maybe.Tests
 {
@@ -10,9 +10,7 @@ namespace Picums.Maybe.Tests
 		{
 			Maybe<string> possibleMaybe = null;
 
-			Assert.NotNull(possibleMaybe);
-            possibleMaybe.S
-            //possibleMaybe.Should().
+            possibleMaybe.Should().Not.Be.Null();
 		}
 
 		[Fact]
@@ -20,7 +18,7 @@ namespace Picums.Maybe.Tests
 		{
 			Maybe<string> maybe = null;
 
-			Assert.True(maybe.IsNone);
+            maybe.IsNone.Should().Be.True();
 		}
 
 		[Fact]
@@ -28,31 +26,31 @@ namespace Picums.Maybe.Tests
 		{
 			Maybe<string> maybe = null;
 
-			Assert.False(maybe.IsSome);
-		}
+            maybe.IsSome.Should().Be.False();
+        }
 
 		[Fact]
 		public void ValueCastedMaybeIsNotNone()
 		{
 			var maybe = Maybe.From("test");
 
-			Assert.False(maybe.IsNone);
-		}
+            maybe.IsNone.Should().Be.False();
+        }
 
 		[Fact]
 		public void ValueCastedMaybeIsSome()
 		{
 			var maybe = Maybe.From("test");
 
-			Assert.True(maybe.IsSome);
-		}
+            maybe.IsSome.Should().Be.True();
+        }
 
-		[Fact]
+        [Fact]
 		public void CreateMaybeUsingFrom()
 		{
 			var maybe = Maybe.From("test");
 
-			Assert.True(maybe.IsSome);
+            maybe.IsSome.Should().Be.True();
 		}
 
 		[Theory]
@@ -65,10 +63,10 @@ namespace Picums.Maybe.Tests
 
 			var comparisionValue = maybe.CompareTo(compareTo);
 
-			Assert.Equal(result, comparisionValue);
-		}
+            result.Should().Be.Equals(comparisionValue);
+        }
 
-		[Theory]
+        [Theory]
 		[InlineData(5, 3, 1)]
 		[InlineData(5, 8, -1)]
 		[InlineData(5, 5, 0)]
@@ -79,8 +77,8 @@ namespace Picums.Maybe.Tests
 
 			var comparisionValue = maybe.CompareTo(other);
 
-			Assert.Equal(result, comparisionValue);
-		}
+            result.Should().Be.Equals(comparisionValue);
+        }
 
 		[Theory]
 		[InlineData(5, 5, true)]
@@ -90,9 +88,9 @@ namespace Picums.Maybe.Tests
 			var maybe = Maybe.From(value);
 
 			var comparisionValue = maybe.Equals(compareTo);
-
-			Assert.Equal(result, comparisionValue);
-		}
+            
+            result.Should().Be.Equals(comparisionValue);
+        }
 
 		[Theory]
 		[InlineData(5, 5, true)]
@@ -102,8 +100,8 @@ namespace Picums.Maybe.Tests
 			var maybe = Maybe.From(value);
 
 			var comparisionValue = maybe.Equals(compareTo);
-
-			Assert.Equal(result, comparisionValue);
-		}
+            
+            result.Should().Be.Equals(comparisionValue);
+        }
 	}
 }
