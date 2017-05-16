@@ -1,4 +1,5 @@
 ﻿using Xunit;
+using Should;
 
 namespace Picums.Maybe.Tests
 {
@@ -10,6 +11,8 @@ namespace Picums.Maybe.Tests
 			Maybe<string> possibleMaybe = null;
 
 			Assert.NotNull(possibleMaybe);
+            possibleMaybe.S
+            //possibleMaybe.Should().
 		}
 
 		[Fact]

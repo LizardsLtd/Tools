@@ -16,7 +16,7 @@
 
         let areEquals = first.Equals(second)
 
-        areEquals.ShouldBeTrue();
+        areEquals.S();
 
     [<Fact>]
     let ``Translation item are not equals for differente values`` () =
