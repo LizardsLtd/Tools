@@ -9,17 +9,24 @@ using Microsoft.Extensions.Logging;
 
 namespace Picums.Mvc.Configuration.Defaults
 {
-    public sealed class LocaliseUsingDatabaseDefault : IDefault
+    public sealed class LocaliseUsingDatabaseDefault : BasicDefault
     {
-        public void Apply(StartupConfigurations host, IEnumerable<object> arguments)
+        protected override void ConfigureServices(IServiceCollection services, IEnumerable<object> arguments)
         {
             var databasePartsForTranslation = GetParts(arguments);
-            host.Services.Add(services => services
-                    .AddTransient(serviceProvider => GetNewTranslationCommandHandler(serviceProvider, databasePartsForTranslation))
-                    .AddTransient(serviceProvider => GetTranslationSetProvider(serviceProvider, databasePartsForTranslation)));
-
-            host.Apply<CQRSDefaults>("Picums.Localisation");
+            services
+                .AddTransient(serviceProvider => GetNewTranslationCommandHandler(serviceProvider, databasePartsForTranslation))
+                .AddTransient(serviceProvider => GetTranslationSetProvider(serviceProvider, databasePartsForTranslation));
         }
+        //public void Apply(StartupConfigurations host, IEnumerable<object> arguments)
+        //{
+        //    var databasePartsForTranslation = GetParts(arguments);
+        //    host.Services.Add(services => services
+        //            .AddTransient(serviceProvider => GetNewTranslationCommandHandler(serviceProvider, databasePartsForTranslation))
+        //            .AddTransient(serviceProvider => GetTranslationSetProvider(serviceProvider, databasePartsForTranslation)));
+
+        //    host.Apply<CQRSDefaults>("Picums.Localisation");
+        //}
 
         private object GetNewTranslationCommandHandler(IServiceProvider serviceProvider, DatabaseParts databasePartsForTranslation)
             => new AddNewTranslationCommandHandler(serviceProvider.GetService<IDataContext>(), databasePartsForTranslation);
