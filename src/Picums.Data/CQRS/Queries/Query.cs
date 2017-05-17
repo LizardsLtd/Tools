@@ -30,6 +30,6 @@ namespace Picums.Data.CQRS.Queries
 			=> this.execute(this.Read());
 
 		private IDataReader<TPayload> Read()
-			=> this.storageContext.GetReader<TPayload>(this.parts.Parts);
+			=> this.storageContext.GetReader<TPayload>(this.parts);
 	}
 }

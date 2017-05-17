@@ -17,7 +17,7 @@ namespace Picums.Localisation.Data
 
         protected override async Task Execute(AddNewTranslationCommand command)
             => await this.storageContext
-                .GetWriter<TranslationItem>(new DatabaseParts(command.DatabaseName, "Translations"))
+                .GetWriter<TranslationItem>(this.parts)
                 .InsertNew(command.TranslationItem);
     }
 }

@@ -27,7 +27,10 @@ namespace Picums.Data.Azure
 		public IDataReader<T> GetReader<T>(params object[] attributes)
 			where T : IAggregateRoot
 		{
-			var collectionUri = GetCollectionUri(attributes);
+
+            (var databaseId, var collectionId) = UnwrapDatabaseParts(attributes);
+
+            var collectionUri = GetCollectionUri(databaseId, collectionId);
 
 			this.logger.LogInformation(
 				$"AzureDocumentDb: Reader for {typeof(T).Name} and collection {collectionUri}");
@@ -40,33 +43,35 @@ namespace Picums.Data.Azure
 
 		public IDataWriter<T> GetWriter<T>(params object[] attributes)
 			where T : IAggregateRoot
-		{
-			var databaseId = attributes[0].ToString();
-			var collectionId = attributes[1].ToString();
+        {
+            (var databaseId, var collectionId) = UnwrapDatabaseParts(attributes);
 
-			this.logger.LogInformation(
-				$"AzureDocumentDb: Writer for {typeof(T).Name} and collection {collectionId}");
+            this.logger.LogInformation(
+                $"AzureDocumentDb: Writer for {typeof(T).Name} and collection {collectionId}");
 
-			return new AzureDocumentDbDataWriter<T>(
-				this.client.Value
-				, databaseId
-				, collectionId
-				, this.logger);
-		}
+            return new AzureDocumentDbDataWriter<T>(
+                this.client.Value
+                , databaseId
+                , collectionId
+                , this.logger);
+        }
 
-		public void Dispose()
+        private (string, string) UnwrapDatabaseParts(object[] attributes)
+        {
+            var parts = attributes[0] as DatabaseParts;
+
+            return (parts.Database, parts.Collection);
+        }
+
+        public void Dispose()
 		{
 			this.logger.LogInformation("AzureDocumentDb: Disposing");
 
 			Dispose(true);
 		}
 
-		private Uri GetCollectionUri(object[] attributes)
-		{
-			var databaseId = attributes[0].ToString();
-			var collectionId = attributes[1].ToString();
-			return UriFactory.CreateDocumentCollectionUri(databaseId, collectionId);
-		}
+        private Uri GetCollectionUri(string databaseId, string collectionId)
+            => UriFactory.CreateDocumentCollectionUri(databaseId, collectionId);
 
 		private void Dispose(bool disposing)
 		{
