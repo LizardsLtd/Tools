@@ -6,6 +6,7 @@ using Picums.Data.CQRS.DataAccess;
 using Picums.Localisation.Data;
 using Picums.Localisation.Data.Services;
 using Microsoft.Extensions.Logging;
+using Picums.Data.CQRS;
 
 namespace Picums.Mvc.Configuration.Defaults
 {
@@ -18,17 +19,8 @@ namespace Picums.Mvc.Configuration.Defaults
                 .AddTransient(serviceProvider => GetNewTranslationCommandHandler(serviceProvider, databasePartsForTranslation))
                 .AddTransient(serviceProvider => GetTranslationSetProvider(serviceProvider, databasePartsForTranslation));
         }
-        //public void Apply(StartupConfigurations host, IEnumerable<object> arguments)
-        //{
-        //    var databasePartsForTranslation = GetParts(arguments);
-        //    host.Services.Add(services => services
-        //            .AddTransient(serviceProvider => GetNewTranslationCommandHandler(serviceProvider, databasePartsForTranslation))
-        //            .AddTransient(serviceProvider => GetTranslationSetProvider(serviceProvider, databasePartsForTranslation)));
 
-        //    host.Apply<CQRSDefaults>("Picums.Localisation");
-        //}
-
-        private object GetNewTranslationCommandHandler(IServiceProvider serviceProvider, DatabaseParts databasePartsForTranslation)
+        private ICommandHandler GetNewTranslationCommandHandler(IServiceProvider serviceProvider, DatabaseParts databasePartsForTranslation)
             => new AddNewTranslationCommandHandler(serviceProvider.GetService<IDataContext>(), databasePartsForTranslation);
 
         private ITranslationSetProvider GetTranslationSetProvider(IServiceProvider serviceProvider, DatabaseParts parts)
