@@ -2,6 +2,7 @@
 using System.Globalization;
 using System.Linq;
 using Microsoft.Extensions.Configuration;
+using System;
 
 namespace Picums.Localisation.Data.Services
 {
@@ -41,7 +42,8 @@ namespace Picums.Localisation.Data.Services
                     Value = x.Value,
                 })
                 .Select(x => new TranslationItem(
-                    x.Culture
+                    Guid.NewGuid()
+                    , x.Culture
                     , x.Key
                     , x.Value));
 

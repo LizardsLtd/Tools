@@ -2,6 +2,7 @@
 using Picums.Data.Domain;
 using System.Globalization;
 using System.Diagnostics;
+using Newtonsoft.Json;
 
 namespace Picums.Localisation.Data
 {
@@ -12,14 +13,15 @@ namespace Picums.Localisation.Data
         /// <param name="cultureName"><see cref="CultureName"/></param>
         /// <param name="translationKey"><see cref="TranslationKey"/></param>
         /// <param name="value"><see cref="Value"/></param>
-        public TranslationItem(CultureInfo culture, string translationKey, string value)
+        public TranslationItem(Guid id, CultureInfo culture, string translationKey, string value)
         {
-            this.Id = Guid.NewGuid();
+            this.Id = id;
             CultureName = GetCultureName(culture);
             TranslationKey = translationKey;
             Value = value;
         }
 
+        [JsonProperty(PropertyName = "id")]
         public Guid Id { get; }
 
         public string CultureName { get; }
