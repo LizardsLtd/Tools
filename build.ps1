@@ -4,3 +4,4 @@ Invoke-WebRequest -Uri https://raw.githubusercontent.com/dotnet/cli/master/scrip
 
 ./dt/dotnet restore -v m
 ./dt/dotnet build -v m
+./dt/dotnet pack -v m -c debug --include-symbols --include-source

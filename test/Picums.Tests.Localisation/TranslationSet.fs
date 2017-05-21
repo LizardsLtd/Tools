@@ -11,8 +11,8 @@ module TranslationSet =
         let culture = System.Globalization.CultureInfo("en-gb")
         let key = "example key"
         let value = "example value"
-        let first = TranslationItem(culture, key, value)
-        let second = TranslationItem(culture, key, value)
+        let first = TranslationItem(System.Guid.NewGuid(), culture, key, value)
+        let second = TranslationItem(System.Guid.NewGuid(), culture, key, value)
 
         first.Should().Be.Equals(second);
 
@@ -21,8 +21,8 @@ module TranslationSet =
         let culture = System.Globalization.CultureInfo("en-gb")
         let key = "example key"
         let value = "example value"
-        let first = TranslationItem(culture, key, "1")
-        let second = TranslationItem(culture, key, "2")
+        let first = TranslationItem(System.Guid.NewGuid(), culture, key, "1")
+        let second = TranslationItem(System.Guid.NewGuid(), culture, key, "2")
 
         first.Should().Not.Be.Equals(second);
 
@@ -31,7 +31,7 @@ module TranslationSet =
         let culture = System.Globalization.CultureInfo("en-gb")
         let key = "example key"
         let value = "example value"
-        let first = TranslationItem(culture, key, "example value")
+        let first = TranslationItem(System.Guid.NewGuid(), culture, key, "example value")
 
         let areEquals = first.CompareKeys(culture, key)
 
