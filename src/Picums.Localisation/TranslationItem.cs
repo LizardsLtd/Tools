@@ -13,7 +13,6 @@ namespace Picums.Localisation.Data
         /// <param name="cultureName"><see cref="CultureName"/></param>
         /// <param name="translationKey"><see cref="TranslationKey"/></param>
         /// <param name="value"><see cref="Value"/></param>
-        [JsonConstructor]
         public TranslationItem(Guid id, CultureInfo culture, string translationKey, string value)
         {
             this.Id = id;
@@ -22,14 +21,20 @@ namespace Picums.Localisation.Data
             Value = value;
         }
 
+        [JsonConstructor]
+        public TranslationItem()
+        {
+
+        }
+
         [JsonProperty(PropertyName = "id")]
-        public Guid Id { get; }
+        public Guid Id { get; set; }
 
-        public string CultureName { get; }
+        public string CultureName { get; set; }
 
-        public string TranslationKey { get; }
+        public string TranslationKey { get; set; }
 
-        public string Value { get; }
+        public string Value { get; set; }
 
         public bool CompareKeys(CultureInfo culture, string key)
             => this.GetHashCode() == $"{this.GetCultureName(culture)}:{key}".GetHashCode();
