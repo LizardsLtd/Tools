@@ -13,6 +13,7 @@ namespace Picums.Localisation.Data
         /// <param name="cultureName"><see cref="CultureName"/></param>
         /// <param name="translationKey"><see cref="TranslationKey"/></param>
         /// <param name="value"><see cref="Value"/></param>
+        [JsonConstructor]
         public TranslationItem(Guid id, CultureInfo culture, string translationKey, string value)
         {
             this.Id = id;
