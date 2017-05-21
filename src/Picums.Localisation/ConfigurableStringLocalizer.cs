@@ -1,9 +1,9 @@
-﻿using System;
+﻿using Microsoft.Extensions.Localization;
+using Picums.Localisation.Data.Services;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using Microsoft.Extensions.Localization;
-using Picums.Localisation.Data.Services;
 
 namespace Picums.Localisation.Data
 {
@@ -36,9 +36,7 @@ namespace Picums.Localisation.Data
             => new LocalizedString(name, this.GetTranslatedString(name, arguments));
 
         public IEnumerable<LocalizedString> GetAllStrings(bool includeParentCultures)
-            => this.translationData
-                .GetAll(this.culture)
-                .Select(x => new LocalizedString(x.Item1, x.Item2));
+            => this.translationData.GetAll(this.culture).Select(x => new LocalizedString(x.Item1, x.Item2));
 
         public IStringLocalizer WithCulture(CultureInfo culture)
             => new ConfigurableStringLocalizer(this.translationData, culture);
