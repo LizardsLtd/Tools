@@ -10,7 +10,6 @@ using Microsoft.AspNetCore.Mvc.Localization;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Localization;
-using Picums.Data.CQRS;
 using Picums.Localisation;
 using Picums.Localisation.Data;
 using Picums.Mvc.Localisation;
@@ -28,8 +27,8 @@ namespace Picums.Mvc.Configuration.Defaults
                 .AddSingleton(cultureStore)
                 .AddScoped<IStringLocalizer, ConfigurableStringLocalizer>()
                 .AddSingleton<IdentityErrorDescriber, LocalisedIdentityErrorDescriber>()
-                .AddSingleton<IHtmlLocalizer, HtmlLocalizer>()
-                .AddSingleton<ICommandHandler, ReloadTranslationsCommandHandler>());
+            //.AddSingleton<ICommandHandler, ReloadTranslationsCommandHandler>()
+                .AddSingleton<IHtmlLocalizer, HtmlLocalizer>());
 
             host.ASP.Add(this.ConfigureRequestLocalisation(cultureStore));
 
