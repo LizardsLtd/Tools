@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Mvc.Localization;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Localization;
+using Picums.Data.CQRS;
 using Picums.Localisation;
 using Picums.Localisation.Data;
 using Picums.Mvc.Localisation;
@@ -23,10 +24,12 @@ namespace Picums.Mvc.Configuration.Defaults
         {
             var cultureStore = GetCultureStore(host.ConfigurationRoot);
 
-            host.Services.Add(x => x.AddSingleton(cultureStore));
-            host.Services.Add(x => x.AddSingleton<IStringLocalizer, ConfigurableStringLocalizer>());
-            host.Services.Add(x => x.AddSingleton<IdentityErrorDescriber, LocalisedIdentityErrorDescriber>());
-            host.Services.Add(x => x.AddSingleton<IHtmlLocalizer, HtmlLocalizer>());
+            host.Services.Add(x => x
+                .AddSingleton(cultureStore)
+                .AddSingleton<IStringLocalizer, ConfigurableStringLocalizer>()
+                .AddSingleton<IdentityErrorDescriber, LocalisedIdentityErrorDescriber>()
+                .AddSingleton<IHtmlLocalizer, HtmlLocalizer>()
+                .AddSingleton<ICommandHandler, ReloadTranslationsCommandHandler>());
             host.ASP.Add(this.ConfigureRequestLocalisation(cultureStore));
             host.Apply<MiddlewareDefault<CultureCookieSetterMiddleware>>();
         }

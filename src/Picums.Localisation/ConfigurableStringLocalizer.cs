@@ -1,9 +1,9 @@
-﻿using Microsoft.Extensions.Localization;
-using Picums.Localisation.Data.Services;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using Microsoft.Extensions.Localization;
+using Picums.Localisation.Data.Services;
 
 namespace Picums.Localisation.Data
 {
