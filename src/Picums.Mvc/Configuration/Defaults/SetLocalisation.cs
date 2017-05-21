@@ -26,11 +26,13 @@ namespace Picums.Mvc.Configuration.Defaults
 
             host.Services.Add(x => x
                 .AddSingleton(cultureStore)
-                .AddSingleton<IStringLocalizer, ConfigurableStringLocalizer>()
+                .AddScoped<IStringLocalizer, ConfigurableStringLocalizer>()
                 .AddSingleton<IdentityErrorDescriber, LocalisedIdentityErrorDescriber>()
                 .AddSingleton<IHtmlLocalizer, HtmlLocalizer>()
                 .AddSingleton<ICommandHandler, ReloadTranslationsCommandHandler>());
+
             host.ASP.Add(this.ConfigureRequestLocalisation(cultureStore));
+
             host.Apply<MiddlewareDefault<CultureCookieSetterMiddleware>>();
         }
 

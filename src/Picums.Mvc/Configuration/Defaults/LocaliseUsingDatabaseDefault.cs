@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
+using Picums.Data.CQRS;
 using Picums.Data.CQRS.DataAccess;
 using Picums.Localisation.Data;
 using Picums.Localisation.Data.Services;
-using Microsoft.Extensions.Logging;
-using Picums.Data.CQRS;
 
 namespace Picums.Mvc.Configuration.Defaults
 {
@@ -16,8 +16,8 @@ namespace Picums.Mvc.Configuration.Defaults
         {
             var databasePartsForTranslation = GetParts(arguments);
             services
-                .AddTransient(serviceProvider => GetNewTranslationCommandHandler(serviceProvider, databasePartsForTranslation))
-                .AddTransient(serviceProvider => GetTranslationSetProvider(serviceProvider, databasePartsForTranslation));
+                .AddSingleton(serviceProvider => GetNewTranslationCommandHandler(serviceProvider, databasePartsForTranslation))
+                .AddSingleton(serviceProvider => GetTranslationSetProvider(serviceProvider, databasePartsForTranslation));
         }
 
         private ICommandHandler GetNewTranslationCommandHandler(IServiceProvider serviceProvider, DatabaseParts databasePartsForTranslation)

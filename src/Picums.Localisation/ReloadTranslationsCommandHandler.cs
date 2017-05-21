@@ -1,10 +1,10 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Localization;
 using Picums.Data.CQRS;
 using Picums.Localisation.Data;
 using Picums.Localisation.Data.Services;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace Picums.Localisation
 {
@@ -15,7 +15,7 @@ namespace Picums.Localisation
         private readonly IEnumerable<ITranslationSetProvider> translationData;
         private readonly CultureStore store;
 
-        public ReloadTranslationsCommandHandler(IServiceCollection services, IStringLocalizer localiser, IEnumerable<ITranslationSetProvider> translationData, CultureStore store)
+        public ReloadTranslationsCommandHandler(IStringLocalizer localiser, IEnumerable<ITranslationSetProvider> translationData, CultureStore store)
         {
             this.services = services;
             this.localiser = localiser;
