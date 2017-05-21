@@ -21,7 +21,7 @@ namespace Picums.Localisation.Data.Services
         {
             var queryResults = query.Execute().Result.ToArray();
 
-            this.logger.LogInformation($"Query loaded with {queryResults.Length}");
+            this.logger.LogDebug($"ITranslationSetProvider: Query loaded with {queryResults.Length}");
 
             return new TranslationSet(queryResults);
         }
