@@ -16,25 +16,23 @@ namespace Picums.Localisation.Data
         public TranslationItem(Guid id, CultureInfo culture, string translationKey, string value)
         {
             this.Id = id;
-            CultureName = GetCultureName(culture);
-            TranslationKey = translationKey;
-            Value = value;
+            this.CultureName = GetCultureName(culture);
+            this.TranslationKey = translationKey;
+            this.Value = value;
         }
 
         [JsonConstructor]
-        public TranslationItem()
-        {
-
-        }
+        public TranslationItem(Guid id, string cultureName, string translationKey, string value)
+            : this(id, new CultureInfo(cultureName), translationKey, value) { }
 
         [JsonProperty(PropertyName = "id")]
-        public Guid Id { get; set; }
+        public Guid Id { get;  }
 
-        public string CultureName { get; set; }
+        public string CultureName { get;  }
 
-        public string TranslationKey { get; set; }
+        public string TranslationKey { get;  }
 
-        public string Value { get; set; }
+        public string Value { get;  }
 
         public bool CompareKeys(CultureInfo culture, string key)
             => this.GetHashCode() == $"{this.GetCultureName(culture)}:{key}".GetHashCode();
