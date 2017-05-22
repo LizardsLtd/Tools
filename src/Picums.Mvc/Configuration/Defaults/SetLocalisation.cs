@@ -25,10 +25,9 @@ namespace Picums.Mvc.Configuration.Defaults
 
             host.Services.Add(x => x
                 .AddSingleton(cultureStore)
-                .AddScoped<IStringLocalizer, ConfigurableStringLocalizer>()
                 .AddSingleton<IdentityErrorDescriber, LocalisedIdentityErrorDescriber>()
-            //.AddSingleton<ICommandHandler, ReloadTranslationsCommandHandler>()
-                .AddSingleton<IHtmlLocalizer, HtmlLocalizer>());
+                .AddScoped<IStringLocalizer, ConfigurableStringLocalizer>()
+                .AddScoped<IHtmlLocalizer, HtmlLocalizer>());
 
             host.ASP.Add(this.ConfigureRequestLocalisation(cultureStore));
 
