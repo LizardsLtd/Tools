@@ -1,8 +1,8 @@
 ﻿using System;
-using Picums.Data.Domain;
-using System.Globalization;
 using System.Diagnostics;
+using System.Globalization;
 using Newtonsoft.Json;
+using Picums.Data.Domain;
 
 namespace Picums.Localisation.Data
 {
@@ -26,13 +26,16 @@ namespace Picums.Localisation.Data
             : this(id, new CultureInfo(cultureName), translationKey, value) { }
 
         [JsonProperty(PropertyName = "id")]
-        public Guid Id { get;  }
+        public Guid Id { get; }
 
-        public string CultureName { get;  }
+        public string CultureName { get; }
 
-        public string TranslationKey { get;  }
+        public string TranslationKey { get; }
 
-        public string Value { get;  }
+        public string Value { get; }
+
+        public TranslationItem AddValue(string value)
+            => new TranslationItem(this.Id, this.CultureName, this.TranslationKey, value);
 
         public bool CompareKeys(CultureInfo culture, string key)
             => this.GetHashCode() == $"{this.GetCultureName(culture)}:{key}".GetHashCode();

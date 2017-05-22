@@ -21,7 +21,10 @@ namespace Picums.Mvc.Configuration.Defaults
         }
 
         private ICommandHandler GetNewTranslationCommandHandler(IServiceProvider serviceProvider, DatabaseParts databasePartsForTranslation)
-            => new AddNewTranslationCommandHandler(serviceProvider.GetService<IDataContext>(), databasePartsForTranslation);
+            => new AddNewTranslationCommandHandler(
+                serviceProvider.GetService<IDataContext>()
+                , serviceProvider.GetService<ILoggerFactory>()
+                , databasePartsForTranslation);
 
         private ITranslationSetProvider GetTranslationSetProvider(IServiceProvider serviceProvider, DatabaseParts parts)
             => new DataTranslationProvider(GetTranslationQuery(serviceProvider), parts, this.GetLoggerFactory(serviceProvider));
