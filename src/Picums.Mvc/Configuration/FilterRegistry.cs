@@ -24,5 +24,10 @@ namespace Picums.Mvc.Configuration
         }
 
         internal void Execute(Microsoft.AspNetCore.Mvc.MvcOptions options) => filters.ForEach(x => x(options));
+
+        internal void Add(object configureFilter)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
