@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.DependencyInjection.Extensions;
 using Picums.Localisation.Data.Services;
 
 namespace Picums.Mvc.Configuration.Defaults
@@ -9,8 +8,10 @@ namespace Picums.Mvc.Configuration.Defaults
     {
         protected override void ConfigureServices(IServiceCollection services, IEnumerable<object> arguments)
         {
-            services.TryAddSingleton<ITranslationSetProvider>(
-                new JsonTransaltionProvider(this.ConfigurationRoot.GetSection("Translations")));
+            services.AddTransient(_ => this.GetTranslationSetProvider());
         }
+
+        private ITranslationSetProvider GetTranslationSetProvider()
+            => new JsonTransaltionProvider(this.ConfigurationRoot.GetSection("Translations"));
     }
 }

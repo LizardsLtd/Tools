@@ -16,8 +16,8 @@ namespace Picums.Mvc.Configuration.Defaults
         {
             var databasePartsForTranslation = GetParts(arguments);
             services
-                .AddSingleton(serviceProvider => GetNewTranslationCommandHandler(serviceProvider, databasePartsForTranslation))
-                .AddSingleton(serviceProvider => GetTranslationSetProvider(serviceProvider, databasePartsForTranslation));
+                .AddTransient(serviceProvider => GetNewTranslationCommandHandler(serviceProvider, databasePartsForTranslation))
+                .AddTransient(serviceProvider => GetTranslationSetProvider(serviceProvider, databasePartsForTranslation));
         }
 
         private ICommandHandler GetNewTranslationCommandHandler(IServiceProvider serviceProvider, DatabaseParts databasePartsForTranslation)
