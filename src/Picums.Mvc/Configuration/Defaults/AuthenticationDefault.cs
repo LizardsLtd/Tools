@@ -27,7 +27,11 @@ namespace Picums.Mvc.Configuration.Defaults
                 .UseCookieAuthentication(new CookieAuthenticationOptions
                 {
                     //AuthenticationType = DefaultAuthenticationTypes.ApplicationCookie,
-                    LoginPath = new PathString("/Login/Login"),
+                    AuthenticationScheme = "Cookie",
+                    LoginPath = new PathString("/Login/Login/"),
+                    AccessDeniedPath = new PathString("/Login/Forbidden/"),
+                    AutomaticAuthenticate = true,
+                    AutomaticChallenge = true
                     //Provider = new CookieAuthenticationProvider
                     //{
                     //    // Enables the application to validate the security stamp when the user logs in.

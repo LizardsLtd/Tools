@@ -9,43 +9,43 @@ using MvcAuthorizationContext = Microsoft.AspNetCore.Mvc.Filters.AuthorizationFi
 
 namespace Picums.Mvc.Claims.Entities
 {
-	public class PermissionRequirement : AuthorizationHandler<PermissionRequirement>, IAuthorizationRequirement
-	{
-		protected override Task HandleRequirementAsync(
-				AuthorizationHandlerContext context
-				, PermissionRequirement requirement)
-			=> Task.Run(() => ExecutePermissionEvaluation(context, requirement));
+    public class PermissionRequirement : AuthorizationHandler<PermissionRequirement>, IAuthorizationRequirement
+    {
+        protected override Task HandleRequirementAsync(
+                AuthorizationHandlerContext context
+                , PermissionRequirement requirement)
+            => Task.Run(() => ExecutePermissionEvaluation(context, requirement));
 
-		private void ExecutePermissionEvaluation(
-		   AuthorizationHandlerContext context
-		   , PermissionRequirement requirement)
-		{
-			var resources = (MvcAuthorizationContext)context.Resource;
-			var actionDescription = (ControllerActionDescriptor)resources.ActionDescriptor;
-			var attributtes = actionDescription.MethodInfo.CustomAttributes;
+        private void ExecutePermissionEvaluation(
+           AuthorizationHandlerContext context
+           , PermissionRequirement requirement)
+        {
+            var resources = (MvcAuthorizationContext)context.Resource;
+            var actionDescription = (ControllerActionDescriptor)resources.ActionDescriptor;
+            var attributtes = actionDescription.MethodInfo.CustomAttributes;
 
-			bool hasAllPermissions = CheckForPermissions(context, attributtes);
+            bool hasAllPermissions = CheckForPermissions(context, attributtes);
 
-			if (hasAllPermissions)
-			{
-				context.Succeed(requirement);
-			}
-			else
-			{
-				context.Fail();
-			}
-		}
+            if (hasAllPermissions)
+            {
+                context.Succeed(requirement);
+            }
+            else
+            {
+                context.Fail();
+            }
+        }
 
-		private bool CheckForPermissions(
-			AuthorizationHandlerContext context
-			, IEnumerable<CustomAttributeData> attributtes)
-			=> attributtes
-				.Where(x => x.AttributeType == typeof(RequirePermissionAttribute))
-				.ToList()
-				.Where(x => x.NamedArguments != null)
-				.Where(x => x.NamedArguments.Any())
-				.Select(x => x.NamedArguments[0].TypedValue.Value.ToString())
-				.Select(x => new Permission(x))
-				.All(x => context.User.HasClaim(ClaimIdentity.Permission, x.ToString()));
-	}
+        private bool CheckForPermissions(
+            AuthorizationHandlerContext context
+            , IEnumerable<CustomAttributeData> attributtes)
+            => attributtes
+                .Where(x => x.AttributeType == typeof(RequirePermissionAttribute))
+                .ToList()
+                .Where(x => x.NamedArguments != null)
+                .Where(x => x.NamedArguments.Any())
+                .Select(x => x.NamedArguments[0].TypedValue.Value.ToString())
+                .Select(x => new Permission(x))
+                .All(x => context.User.HasClaim(ClaimIdentity.Permission, x.ToString()));
+    }
 }
