@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.Extensions.DependencyInjection;
@@ -22,7 +23,21 @@ namespace Picums.Mvc.Configuration.Defaults
         }
 
         private void ConfigureApp(IApplicationBuilder app, IHostingEnvironment env)
-            => app.UseIdentity();
+            => app
+                .UseCookieAuthentication(new CookieAuthenticationOptions
+                {
+                    //AuthenticationType = DefaultAuthenticationTypes.ApplicationCookie,
+                    LoginPath = new PathString("/Login/Login"),
+                    //Provider = new CookieAuthenticationProvider
+                    //{
+                    //    // Enables the application to validate the security stamp when the user logs in.
+                    //    // This is a security feature which is used when you change a password or add an external login to your account.
+                    //    OnValidateIdentity = SecurityStampValidator.OnValidateIdentity<ApplicationUserManager, ApplicationUser>(
+                    //    validateInterval: TimeSpan.FromMinutes(30),
+                    //    regenerateIdentity: (manager, user) => user.GenerateUserIdentityAsync(manager))
+                    //}
+                })
+                .UseIdentity();
 
         private void ConfigureServices(IServiceCollection services)
             => services
