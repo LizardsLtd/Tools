@@ -35,8 +35,8 @@ namespace Picums.Mvc.Authorization
                     .Build();
 
         private bool IsUnAuthorizeAccess(AuthorizationFilterContext context)
-                    => context.HttpContext.User.Identity.IsAuthenticated
-                && this.AnonymousAccessIsNotAllowed(context);
+            => context.HttpContext.User.Identity.IsAuthenticated
+                || this.AnonymousAccessIsNotAllowed(context);
 
         private bool AnonymousAccessIsNotAllowed(AuthorizationFilterContext context)
             => !context.Filters.Any(x => x.GetType() == typeof(AllowAnonymousFilter));

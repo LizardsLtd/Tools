@@ -7,6 +7,7 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.3.0-preview-20170502-03" />
+    <PackageReference Include="Moq" Version="4.7.10" />
     <PackageReference Include="ShouldFluent" Version="1.1.19" />
     <PackageReference Include="xunit" Version="2.3.0-beta3-build3694" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.3.0-beta3-build1318" />
@@ -15,5 +16,9 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\src\Picums.Mvc\Picums.Mvc.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Service Include="{82a7f48d-3b50-4b1e-b82e-3ada8210c358}" />
   </ItemGroup>
 </Project>

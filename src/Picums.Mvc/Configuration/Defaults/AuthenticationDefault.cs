@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -19,8 +18,8 @@ namespace Picums.Mvc.Configuration.Defaults
         {
             host.Services.Add(this.ConfigureServices);
             host.ASP.Add(this.ConfigureApp);
-            host.MVC.Filters.Add(new AuthorizeByPermissionFilter(arguments.ElementAt(0).ToString(), arguments.ElementAt(1).ToString()));
-            //host.MVC.Filters.Add(this.BuildAuthorizeFilter());
+            //host.MVC.Filters.Add(new AuthorizeByPermissionFilter(arguments.ElementAt(0).ToString(), arguments.ElementAt(1).ToString()));
+            host.MVC.Filters.Add(this.BuildAuthorizeFilter());
         }
 
         private void ConfigureApp(IApplicationBuilder app, IHostingEnvironment env)
