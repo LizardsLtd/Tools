@@ -39,6 +39,6 @@ namespace Picums.Mvc.Authorization
                 && this.AnonymousAccessIsNotAllowed(context);
 
         private bool AnonymousAccessIsNotAllowed(AuthorizationFilterContext context)
-            => !ontext.Filters.Any(x => x.GetType() == typeof(AllowAnonymousFilter));
+            => !context.Filters.Any(x => x.GetType() == typeof(AllowAnonymousFilter));
     }
 }
