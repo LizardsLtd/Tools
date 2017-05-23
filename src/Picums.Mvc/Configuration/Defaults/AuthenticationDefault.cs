@@ -2,12 +2,11 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.Extensions.DependencyInjection;
 using Picums.Data.Claims;
-using Picums.Mvc.Claims.Entities;
+using Picums.Mvc.Authorization;
 
 namespace Picums.Mvc.Configuration.Defaults
 {
@@ -24,23 +23,23 @@ namespace Picums.Mvc.Configuration.Defaults
 
         private void ConfigureApp(IApplicationBuilder app, IHostingEnvironment env)
             => app
-                .UseCookieAuthentication(new CookieAuthenticationOptions
-                {
-                    //AuthenticationType = DefaultAuthenticationTypes.ApplicationCookie,
-                    AuthenticationScheme = "Cookie",
-                    LoginPath = new PathString("/Login/Login/"),
-                    AccessDeniedPath = new PathString("/Login/Forbidden/"),
-                    AutomaticAuthenticate = true,
-                    AutomaticChallenge = true
-                    //Provider = new CookieAuthenticationProvider
-                    //{
-                    //    // Enables the application to validate the security stamp when the user logs in.
-                    //    // This is a security feature which is used when you change a password or add an external login to your account.
-                    //    OnValidateIdentity = SecurityStampValidator.OnValidateIdentity<ApplicationUserManager, ApplicationUser>(
-                    //    validateInterval: TimeSpan.FromMinutes(30),
-                    //    regenerateIdentity: (manager, user) => user.GenerateUserIdentityAsync(manager))
-                    //}
-                })
+                //.UseCookieAuthentication(new CookieAuthenticationOptions
+                //{
+                //    //AuthenticationType = DefaultAuthenticationTypes.ApplicationCookie,
+                //    AuthenticationScheme = "Cookie",
+                //    LoginPath = new PathString("/Login/Login/"),
+                //    AccessDeniedPath = new PathString("/Login/Forbidden/"),
+                //    AutomaticAuthenticate = true,
+                //    AutomaticChallenge = true
+                //    //Provider = new CookieAuthenticationProvider
+                //    //{
+                //    //    // Enables the application to validate the security stamp when the user logs in.
+                //    //    // This is a security feature which is used when you change a password or add an external login to your account.
+                //    //    OnValidateIdentity = SecurityStampValidator.OnValidateIdentity<ApplicationUserManager, ApplicationUser>(
+                //    //    validateInterval: TimeSpan.FromMinutes(30),
+                //    //    regenerateIdentity: (manager, user) => user.GenerateUserIdentityAsync(manager))
+                //    //}
+                //})
                 .UseIdentity();
 
         private void ConfigureServices(IServiceCollection services)

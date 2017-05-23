@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Picums.Data.Claims;
-using Picums.Mvc.Claims.Entities;
+using Picums.Mvc.Authorization.Entities;
 
 namespace Microsoft.Extensions.DependencyInjection
 {
