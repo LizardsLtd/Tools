@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.Extensions.DependencyInjection;
@@ -23,7 +24,17 @@ namespace Picums.Mvc.Configuration.Defaults
         }
 
         private void ConfigureApp(IApplicationBuilder app, IHostingEnvironment env)
-            => app.UseIdentity();
+            => app
+                .UseCookieAuthentication(new CookieAuthenticationOptions()
+                {
+                    LoginPath = new PathString("login/login"),
+                    AuthenticationScheme = "Cookies",
+                    AutomaticAuthenticate = true,
+                    AutomaticChallenge = true,
+                    CookieSecure = CookieSecurePolicy.Always,
+                    SlidingExpiration = true
+                })
+                .UseIdentity();
 
         private void ConfigureServices(IServiceCollection services)
             => services
