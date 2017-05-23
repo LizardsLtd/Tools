@@ -27,7 +27,7 @@ namespace Picums.Mvc.Configuration.Defaults
             => app
                 .UseCookieAuthentication(new CookieAuthenticationOptions()
                 {
-                    LoginPath = new PathString("login/login"),
+                    LoginPath = new PathString("/login/login"),
                     AuthenticationScheme = "Cookies",
                     AutomaticAuthenticate = true,
                     AutomaticChallenge = true,
