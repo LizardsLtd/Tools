@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -28,11 +29,14 @@ namespace Picums.Mvc.Configuration.Defaults
                 .UseCookieAuthentication(new CookieAuthenticationOptions()
                 {
                     LoginPath = new PathString("/login/login"),
+                    AccessDeniedPath = new PathString("/login/login"),
+                    LogoutPath = new PathString("/login/logout"),
                     AuthenticationScheme = "Cookies",
                     AutomaticAuthenticate = true,
                     AutomaticChallenge = true,
                     CookieSecure = CookieSecurePolicy.Always,
-                    SlidingExpiration = true
+                    ExpireTimeSpan = TimeSpan.FromMinutes(5),
+                    SlidingExpiration = true,
                 })
                 .UseIdentity();
 
