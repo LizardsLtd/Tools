@@ -1,5 +1,4 @@
 ﻿using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc.Filters;
 using Moq;
 using Picums.Mvc.Authorization;
 using Xunit;

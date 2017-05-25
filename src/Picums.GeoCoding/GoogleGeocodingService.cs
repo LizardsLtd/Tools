@@ -1,9 +1,9 @@
-﻿using Microsoft.Extensions.Logging;
-using Microsoft.Spatial;
-using Picums.Maybe;
-using System.Net;
+﻿using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Logging;
+using Microsoft.Spatial;
+using Picums.Maybe;
 
 namespace Picums.GeoCoding
 {

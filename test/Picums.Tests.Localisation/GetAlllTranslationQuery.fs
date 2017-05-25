@@ -6,7 +6,7 @@ module Picums.Tests.Localisation
     open Picums.Data.CQRS.DataAccess
     open Picums.Tests
     open Should.Fluent
-    open Xunit 
+    open Xunit
 
     module GetAllTranslationQuery =
         let context = InMemoryDataContext()

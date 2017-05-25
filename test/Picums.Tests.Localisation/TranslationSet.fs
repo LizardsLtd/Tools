@@ -4,7 +4,7 @@ open Picums.Tests
 open Should.Fluent
 open Xunit
 
-module TranslationSet = 
+module TranslationSet =
 
     [<Fact>]
     let ``Translation item are matching`` () =

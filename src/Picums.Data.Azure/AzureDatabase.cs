@@ -5,27 +5,27 @@ using Microsoft.Azure.Documents.Client;
 
 namespace Picums.Data.Azure
 {
-	public sealed class AzureDatabase
-	{
-		public AzureDatabase(string databaseId, IEnumerable<string> collections)
-		{
-			this.DatabaseId = databaseId;
-			this.Collections = collections.ToArray();
-		}
+    public sealed class AzureDatabase
+    {
+        public AzureDatabase(string databaseId, IEnumerable<string> collections)
+        {
+            this.DatabaseId = databaseId;
+            this.Collections = collections.ToArray();
+        }
 
-		public string DatabaseId { get; }
+        public string DatabaseId { get; }
 
-		public string[] Collections { get; }
+        public string[] Collections { get; }
 
-		internal void CreateDatabaseWithCollection(DocumentClient client)
-			=> new AzureDatabaseCreator(client)
-				.EnsureDatabseExist(CreateDatabase())
-				.EnsureCollectionExists(Collections);
+        internal void CreateDatabaseWithCollection(DocumentClient client)
+            => new AzureDatabaseCreator(client)
+                .EnsureDatabseExist(CreateDatabase())
+                .EnsureCollectionExists(Collections);
 
-		private Database CreateDatabase()
-			=> new Database
-			{
-				Id = this.DatabaseId,
-			};
-	}
+        private Database CreateDatabase()
+            => new Database
+            {
+                Id = this.DatabaseId,
+            };
+    }
 }

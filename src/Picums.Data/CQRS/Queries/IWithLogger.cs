@@ -2,8 +2,8 @@
 
 namespace Picums.Data.CQRS.Queries
 {
-	public interface IWithLogger<TResult>
-	{
-		TResult WithLogger(ILoggerFactory loggerFactory);
-	}
+    public interface IWithLogger<TResult>
+    {
+        TResult WithLogger(ILoggerFactory loggerFactory);
+    }
 }

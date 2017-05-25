@@ -4,12 +4,12 @@ using System.Threading.Tasks;
 
 namespace Picums.Data.CQRS
 {
-	public interface ICommandBus
-	{
-		void Dispose();
+    public interface ICommandBus
+    {
+        void Dispose();
 
-		Task<IEnumerable<ValidationResult>> Validate(ICommand command);
+        Task<IEnumerable<ValidationResult>> Validate(ICommand command);
 
-		Task Execute(ICommand command);
-	}
+        Task Execute(ICommand command);
+    }
 }

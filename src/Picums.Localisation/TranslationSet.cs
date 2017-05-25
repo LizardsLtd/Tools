@@ -30,10 +30,10 @@ namespace Picums.Localisation.Data
                 .Where(x => CompareWithCaseIgnored(x.CultureName, culture.TwoLetterISOLanguageName))
                 .Select(x => (x.TranslationKey, x.Value));
 
-        private bool CompareWithCaseIgnored(string first, string second)
-            => string.Equals(first, second, StringComparison.OrdinalIgnoreCase);
-
         internal IEnumerable<(string, string)> GetAll(object currentCulture)
             => this.GetAll(currentCulture as CultureInfo);
+
+        private bool CompareWithCaseIgnored(string first, string second)
+                    => string.Equals(first, second, StringComparison.OrdinalIgnoreCase);
     }
 }

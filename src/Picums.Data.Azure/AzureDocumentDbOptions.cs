@@ -6,39 +6,39 @@ using Microsoft.Extensions.Configuration;
 
 namespace Picums.Data.Azure
 {
-	public sealed class AzureDocumentDbOptions
-	{
-		public string Endpoint { get; set; }
+    public sealed class AzureDocumentDbOptions
+    {
+        public string Endpoint { get; set; }
 
-		public string AuthKey { get; set; }
+        public string AuthKey { get; set; }
 
-		public IEnumerable<AzureDatabase> Databases { get; set; }
+        public IEnumerable<AzureDatabase> Databases { get; set; }
 
-		public Uri EndpointUri => new Uri(this.Endpoint);
+        public Uri EndpointUri => new Uri(this.Endpoint);
 
-		public SecureString AuthenticationKey
-			=> this.AuthKey
-				.ToCharArray()
-				.Aggregate(
-					new SecureString(),
-					(secureString, character) =>
-					{
-						secureString.AppendChar(character);
-						return secureString;
-					});
+        public SecureString AuthenticationKey
+            => this.AuthKey
+                .ToCharArray()
+                .Aggregate(
+                    new SecureString(),
+                    (secureString, character) =>
+                    {
+                        secureString.AppendChar(character);
+                        return secureString;
+                    });
 
-		public static void FromConfiguration(IConfigurationRoot root, IEnumerable<string> collections,  AzureDocumentDbOptions options)
-		{
-			options.Databases = root
-				.GetSection("ConnectionString:Databases")
-				.GetChildren()
-				.Select(x => new
-				{
-					Name = x["Name"]
-				})
-				.Select(x => new AzureDatabase(x.Name, collections));
-			options.Endpoint = root["ConnectionString:AccountEndpoint"];
-			options.AuthKey = root["ConnectionString:AccountKey"];
-		}
-	}
+        public static void FromConfiguration(IConfigurationRoot root, IEnumerable<string> collections, AzureDocumentDbOptions options)
+        {
+            options.Databases = root
+                .GetSection("ConnectionString:Databases")
+                .GetChildren()
+                .Select(x => new
+                {
+                    Name = x["Name"]
+                })
+                .Select(x => new AzureDatabase(x.Name, collections));
+            options.Endpoint = root["ConnectionString:AccountEndpoint"];
+            options.AuthKey = root["ConnectionString:AccountKey"];
+        }
+    }
 }

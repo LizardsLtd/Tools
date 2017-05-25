@@ -2,7 +2,7 @@
 
 namespace Picums.Data.Claims
 {
-	public interface IUser : IAggregateRoot
-	{
-	}
+    public interface IUser : IAggregateRoot
+    {
+    }
 }

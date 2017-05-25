@@ -1,17 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using TestContext = System.Collections.Generic.Dictionary<string, (object, System.Type)>;
 
 namespace Picums.Tests
 {
-
     public sealed class Test
     {
         private readonly string description;
         private readonly TestContext context;
 
-        private Test(string description) : this(description, new TestContext()) { }
+        private Test(string description) : this(description, new TestContext())
+        {
+        }
+
         private Test(string description, Dictionary<string, (object, Type)> context)
         {
             this.description = description;

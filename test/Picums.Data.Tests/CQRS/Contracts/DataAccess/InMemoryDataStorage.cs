@@ -2,7 +2,7 @@
 
 namespace Picums.Data.Tests.CQRS.Contracts.DataAccess
 {
-	internal sealed class InMemoryDataStorage : Dictionary<string, List<object>>
-	{
-	}
+    internal sealed class InMemoryDataStorage : Dictionary<string, List<object>>
+    {
+    }
 }

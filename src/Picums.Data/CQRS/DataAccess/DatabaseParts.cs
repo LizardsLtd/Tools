@@ -2,7 +2,6 @@
 {
     public sealed class DatabaseParts
     {
-
         public DatabaseParts(string database, string collection)
         {
             this.Database = database;

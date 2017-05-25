@@ -1,8 +1,8 @@
-﻿using Microsoft.Extensions.Logging;
-using Microsoft.Spatial;
-using System.Globalization;
+﻿using System.Globalization;
 using System.Linq;
 using System.Xml.Linq;
+using Microsoft.Extensions.Logging;
+using Microsoft.Spatial;
 
 namespace Picums.GeoCoding
 {

@@ -1,17 +1,17 @@
 ﻿namespace Picums.Data.Types
 {
-	public sealed class AccountNumber
-	{
-		public AccountNumber(string accountNumber)
-		{
-			this.Number = accountNumber;
-		}
+    public sealed class AccountNumber
+    {
+        public AccountNumber(string accountNumber)
+        {
+            this.Number = accountNumber;
+        }
 
-		public string Number { get; }
+        public string Number { get; }
 
-		public static implicit operator AccountNumber(string accountNumber)
-			=> new AccountNumber(accountNumber);
+        public static implicit operator AccountNumber(string accountNumber)
+            => new AccountNumber(accountNumber);
 
-		public override string ToString() => this.Number;
-	}
+        public override string ToString() => this.Number;
+    }
 }

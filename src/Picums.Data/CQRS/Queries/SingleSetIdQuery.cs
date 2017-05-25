@@ -5,7 +5,6 @@
 
 //namespace Picums.Data.CQRS.Queries
 //{
-
 //	public abstract class SingleSetIdQuery<TResult>
 //			: DataContextOperatorBase
 //			, IIdScoped<IAsyncQuery<Maybe<TResult>>>

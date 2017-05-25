@@ -2,8 +2,8 @@
 
 namespace Picums.Data.Domain
 {
-	public interface IHasEmail
-	{
-		Email Email { get; }
-	}
+    public interface IHasEmail
+    {
+        Email Email { get; }
+    }
 }

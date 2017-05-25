@@ -4,20 +4,20 @@ using CSharpVerbalExpressions;
 
 namespace Picums.Data.Types.Services.Poland
 {
-	public sealed class PolishBankDetailsValidator : IBankDetailsValidator
-	{
-		public IEnumerable<ValidationResult> Validate(BankDetails bankDetails)
-			=> new[] {
-				IsValidAccountNumber(bankDetails.AccountNumber.ToString())
-			};
+    public sealed class PolishBankDetailsValidator : IBankDetailsValidator
+    {
+        public IEnumerable<ValidationResult> Validate(BankDetails bankDetails)
+            => new[] {
+                IsValidAccountNumber(bankDetails.AccountNumber.ToString())
+            };
 
-		private ValidationResult IsValidAccountNumber(string accountNumber)
-			=> new VerbalExpressions()
-				.StartOfLine()
-				.Any("0-9")
-				.RepeatPrevious(26)
-				.EndOfLine()
-				.Test(accountNumber)
-				.ToValidationResult("Error.Account.InvalidNumber");
-	}
+        private ValidationResult IsValidAccountNumber(string accountNumber)
+            => new VerbalExpressions()
+                .StartOfLine()
+                .Any("0-9")
+                .RepeatPrevious(26)
+                .EndOfLine()
+                .Test(accountNumber)
+                .ToValidationResult("Error.Account.InvalidNumber");
+    }
 }

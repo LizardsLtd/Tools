@@ -4,81 +4,81 @@ using Xunit;
 
 namespace Picums.Maybe.Tests
 {
-	public sealed class MaybeForCollectionTests
-	{
-		private readonly List<int> exampleCollection;
+    public sealed class MaybeForCollectionTests
+    {
+        private readonly List<int> exampleCollection;
 
-		public MaybeForCollectionTests()
-		{
-			this.exampleCollection = new List<int> { 1, 2, 3, 4, 5, };
-		}
+        public MaybeForCollectionTests()
+        {
+            this.exampleCollection = new List<int> { 1, 2, 3, 4, 5, };
+        }
 
-		[Fact]
-		public void CastToMaybeCollectionWorks()
-		{
-			var collection = this.exampleCollection.ToMaybeList();
+        [Fact]
+        public void CastToMaybeCollectionWorks()
+        {
+            var collection = this.exampleCollection.ToMaybeList();
 
-			Assert.True(collection.All(x => x.IsSome));
-		}
+            Assert.True(collection.All(x => x.IsSome));
+        }
 
-		[Fact]
-		public void SingleOrNothiong()
-		{
-			var collection = new List<int> { 1 };
+        [Fact]
+        public void SingleOrNothiong()
+        {
+            var collection = new List<int> { 1 };
 
-			var result = collection.SingleOrNothing();
+            var result = collection.SingleOrNothing();
 
-			Assert.True(result.IsSome);
-		}
+            Assert.True(result.IsSome);
+        }
 
-		[Fact]
-		public void SingleOrNothingWoithQuery()
-		{
-			var result = this
-				.exampleCollection
-				.SingleOrNothing(x => x == 1);
+        [Fact]
+        public void SingleOrNothingWoithQuery()
+        {
+            var result = this
+                .exampleCollection
+                .SingleOrNothing(x => x == 1);
 
-			Assert.True(result.IsSome);
-		}
+            Assert.True(result.IsSome);
+        }
 
-		[Fact]
-		public void FirstOrNothiong()
-		{
-			var collection = new List<int> { 1 };
+        [Fact]
+        public void FirstOrNothiong()
+        {
+            var collection = new List<int> { 1 };
 
-			var result = collection.FirstOrNothing();
+            var result = collection.FirstOrNothing();
 
-			Assert.True(result.IsSome);
-		}
+            Assert.True(result.IsSome);
+        }
 
-		[Fact]
-		public void FirstOrNothingWoithQuery()
-		{
-			var result = this
-				.exampleCollection
-				.FirstOrNothing(x => x == 1);
+        [Fact]
+        public void FirstOrNothingWoithQuery()
+        {
+            var result = this
+                .exampleCollection
+                .FirstOrNothing(x => x == 1);
 
-			Assert.True(result.IsSome);
-		}
+            Assert.True(result.IsSome);
+        }
 
-		[Fact]
-		public void LastOrNothiong()
-		{
-			var collection = new List<int> { 1 };
+        [Fact]
+        public void LastOrNothiong()
+        {
+            var collection = new List<int> { 1 };
 
-			var result = collection.LastOrNothing();
+            var result = collection.LastOrNothing();
 
-			Assert.True(result.IsSome);
-		}
+            Assert.True(result.IsSome);
+        }
 
-		[Fact]
-		public void LastOrNothingWoithQuery()
-		{
-			var result = this
-				.exampleCollection
-				.LastOrNothing(x => x == 1);
+        [Fact]
+        public void LastOrNothingWoithQuery()
+        {
+            var result = this
+                .exampleCollection
+                .LastOrNothing(x => x == 1);
 
-			Assert.True(result.IsSome);
-		}
-	}
+            Assert.True(result.IsSome);
+        }
+    }
 }

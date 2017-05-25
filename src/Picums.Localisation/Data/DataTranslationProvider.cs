@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
-using Picums.Data.CQRS;
 using System.Linq;
-using Picums.Data.CQRS.DataAccess;
 using Microsoft.Extensions.Logging;
+using Picums.Data.CQRS;
+using Picums.Data.CQRS.DataAccess;
 
 namespace Picums.Localisation.Data.Services
 {

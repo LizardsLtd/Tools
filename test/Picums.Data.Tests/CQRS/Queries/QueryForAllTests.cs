@@ -12,37 +12,37 @@ using Xunit;
 
 namespace Picums.Data.Tests.CQRS.Queries
 {
-	public sealed class QueryForAllTests
-	{
-		private readonly DatabaseParts parts;
-		private readonly TestDataContext context;
-		private readonly Guid id;
+    public sealed class QueryForAllTests
+    {
+        private readonly DatabaseParts parts;
+        private readonly TestDataContext context;
+        private readonly Guid id;
 
-		public QueryForAllTests()
-		{
-			this.parts = new DatabaseParts("test", "test");
-			this.id = Guid.NewGuid();
-			var storage = new InMemoryDataStorage
-			{
-				["SimpleAggregateRoot"] = new List<object>
-				{
-					new SimpleAggregateRoot(id)
-				}
-			};
-			this.context = new TestDataContext(storage);
-		}
+        public QueryForAllTests()
+        {
+            this.parts = new DatabaseParts("test", "test");
+            this.id = Guid.NewGuid();
+            var storage = new InMemoryDataStorage
+            {
+                ["SimpleAggregateRoot"] = new List<object>
+                {
+                    new SimpleAggregateRoot(id)
+                }
+            };
+            this.context = new TestDataContext(storage);
+        }
 
-		[Fact]
-		public async Task QueringForExistingEntity()
-		{
-			var query = new QueryForAll<SimpleAggregateRoot>(
-					this.context
-					, new TestLoggerFactory()
-					, this.parts);
+        [Fact]
+        public async Task QueringForExistingEntity()
+        {
+            var query = new QueryForAll<SimpleAggregateRoot>(
+                    this.context
+                    , new TestLoggerFactory()
+                    , this.parts);
 
-			var result = await query.Execute();
+            var result = await query.Execute();
 
-			result.Count().Should().Be(1);
-		}
-	}
+            result.Count().Should().Be(1);
+        }
+    }
 }

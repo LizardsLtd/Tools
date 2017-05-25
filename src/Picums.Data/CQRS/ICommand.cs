@@ -2,8 +2,8 @@
 
 namespace Picums.Data.CQRS
 {
-	public interface ICommand
-	{
-		Guid CommandId { get; }
-	}
+    public interface ICommand
+    {
+        Guid CommandId { get; }
+    }
 }

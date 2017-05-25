@@ -2,8 +2,8 @@
 
 namespace Picums.Data.Domain
 {
-	public interface IAggregateRoot
-	{
-		Guid Id { get; }
-	}
+    public interface IAggregateRoot
+    {
+        Guid Id { get; }
+    }
 }
