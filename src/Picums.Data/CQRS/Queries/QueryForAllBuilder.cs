@@ -13,6 +13,6 @@ namespace Picums.Data.CQRS.Queries
                 this.dataContext
                 , this.logger
                 , this.parts
-                , x => x.All());
+                , x => x.Collection(t => true));
     }
 }

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Linq.Expressions;
 using System.Threading.Tasks;
 using Microsoft.Azure.Documents.Client;
 using Microsoft.Extensions.Logging;
@@ -28,58 +27,81 @@ namespace Picums.Data.Azure
             this.logger = logger;
         }
 
-        public Task<IEnumerable<T>> All()
+        public Task<IEnumerable<T>> Collection(Func<T, bool> filter)
         {
             this.logger.LogInformation($"AzureDocumentDbDataReader for {typeof(T).Name} All function");
-            return Task.FromResult<IEnumerable<T>>(this.client.CreateDocumentQuery<T>(this.collectionUri).ToArray());
-        }
-
-        public Task<IEnumerable<T>> Where(Expression<Func<T, bool>> predicate)
-        {
-            this.logger.LogInformation($"AzureDocumentDbDataReader for {typeof(T).Name} Where function");
-            var items = this.client
+            var result = this.client
                 .CreateDocumentQuery<T>(this.collectionUri)
-                .Where(predicate.Compile())
+                .Where(filter)
                 .ToArray();
 
-            return Task.FromResult<IEnumerable<T>>(items);
+            return Task.FromResult<IEnumerable<T>>(result);
         }
 
-        public Task<Maybe<T>> SingleOrDefault(Expression<Func<T, bool>> predicate)
+        public Task<Maybe<T>> Single(Func<T, bool> filter, Func<IEnumerable<T>, T> reduce)
         {
-            this.logger.LogInformation($"AzureDocumentDbDataReader for {typeof(T).Name} SingleOrDefault function");
-            var result = this.client
-                .CreateDocumentQuery<T>(this.collectionUri, new FeedOptions { MaxItemCount = 2 })
-                .SingleOrDefault(predicate.Compile());
+            this.logger.LogInformation($"AzureDocumentDbDataReader for {typeof(T).Name} All function");
+            var collection = this.client
+                .CreateDocumentQuery<T>(this.collectionUri)
+                .Where(filter);
+
+            var result = reduce(collection);
 
             return Task.FromResult<Maybe<T>>(result);
         }
 
-        public Task<Maybe<T>> FirstOrDefault(Expression<Func<T, bool>> predicate)
-        {
-            this.logger.LogInformation($"AzureDocumentDbDataReader for {typeof(T).Name} FirstOrDefault function");
-            var result = this.client
-                .CreateDocumentQuery<T>(this.collectionUri, new FeedOptions { MaxItemCount = 1 })
-                .FirstOrDefault(predicate.Compile());
+        //public Task<IEnumerable<T>> All()
+        //{
+        //    this.logger.LogInformation($"AzureDocumentDbDataReader for {typeof(T).Name} All function");
+        //    return Task.FromResult<IEnumerable<T>>(this.client.CreateDocumentQuery<T>(this.collectionUri).ToArray());
+        //}
 
-            return Task.FromResult<Maybe<T>>(result);
-        }
+        //public Task<IEnumerable<T>> Where(Expression<Func<T, bool>> predicate)
+        //{
+        //    this.logger.LogInformation($"AzureDocumentDbDataReader for {typeof(T).Name} Where function");
+        //    var items = this.client
+        //        .CreateDocumentQuery<T>(this.collectionUri)
+        //        .Where(predicate.Compile())
+        //        .ToArray();
 
-        public Task<Maybe<T>> ById(Guid id)
-        {
-            this.logger.LogInformation($"AzureDocumentDbDataReader for {typeof(T).Name} FirstOrDefault function");
+        //    return Task.FromResult<IEnumerable<T>>(items);
+        //}
 
-            var feedOptions = new FeedOptions { MaxItemCount = 1 };
-            var byIdSqlStatement = this.GetSqlToQueryById(id);
+        //public Task<Maybe<T>> SingleOrDefault(Expression<Func<T, bool>> predicate)
+        //{
+        //    this.logger.LogInformation($"AzureDocumentDbDataReader for {typeof(T).Name} SingleOrDefault function");
+        //    var result = this.client
+        //        .CreateDocumentQuery<T>(this.collectionUri, new FeedOptions { MaxItemCount = 2 })
+        //        .SingleOrDefault(predicate.Compile());
 
-            var result = this.client
-                .CreateDocumentQuery<T>(this.collectionUri, byIdSqlStatement, feedOptions)
-                .SingleOrDefault();
+        //    return Task.FromResult<Maybe<T>>(result);
+        //}
 
-            return Task.FromResult<Maybe<T>>(result);
-        }
+        //public Task<Maybe<T>> FirstOrDefault(Expression<Func<T, bool>> predicate)
+        //{
+        //    this.logger.LogInformation($"AzureDocumentDbDataReader for {typeof(T).Name} FirstOrDefault function");
+        //    var result = this.client
+        //        .CreateDocumentQuery<T>(this.collectionUri, new FeedOptions { MaxItemCount = 1 })
+        //        .FirstOrDefault(predicate.Compile());
 
-        private string GetSqlToQueryById(Guid id)
-            => $"SELECT * FROM items WHERE items.id = {id}";
+        //    return Task.FromResult<Maybe<T>>(result);
+        //}
+
+        //public Task<Maybe<T>> ById(Guid id)
+        //{
+        //    this.logger.LogInformation($"AzureDocumentDbDataReader for {typeof(T).Name} FirstOrDefault function");
+
+        //    var feedOptions = new FeedOptions { MaxItemCount = 1 };
+        //    var byIdSqlStatement = this.GetSqlToQueryById(id);
+
+        //    var result = this.client
+        //        .CreateDocumentQuery<T>(this.collectionUri, byIdSqlStatement, feedOptions)
+        //        .SingleOrDefault();
+
+        //    return Task.FromResult<Maybe<T>>(result);
+        //}
+
+        //private string GetSqlToQueryById(Guid id)
+        //    => $"SELECT * FROM items WHERE items.id = {id}";
     }
 }

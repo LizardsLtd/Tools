@@ -23,6 +23,6 @@ namespace Picums.Data.CQRS.Queries
         protected override IWithSpecification<IAsyncQuery<IEnumerable<TPayload>>, TPayload> NextBuildStep() => this;
 
         private async Task<IEnumerable<TPayload>> Execute(IDataReader<TPayload> reader, Expression<Func<TPayload, bool>> specification)
-            => (await reader.Where(specification)).ToArray();
+            => (await reader.Collection(specification.Compile())).ToArray();
     }
 }

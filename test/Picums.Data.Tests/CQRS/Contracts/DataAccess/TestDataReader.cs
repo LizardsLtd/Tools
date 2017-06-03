@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
 using System.Threading.Tasks;
 using Picums.Data.CQRS.DataAccess;
 using Picums.Data.Domain;
@@ -22,33 +20,14 @@ namespace Picums.Data.Tests.CQRS.Contracts.DataAccess
 
         private string NameOfType { get; }
 
-        public Task<IEnumerable<T>> All() => Task.FromResult(CurrentResults());
-
-        public Task<Maybe<T>> ById(Guid id)
+        public Task<IEnumerable<T>> Collection(Func<T, bool> predicate)
         {
             throw new NotImplementedException();
         }
 
-        public Task<Maybe<T>> FirstOrDefault(Expression<Func<T, bool>> predicate)
+        public Task<Maybe<T>> Single(Func<T, bool> predicate, Func<IEnumerable<T>, T> reduce)
         {
             throw new NotImplementedException();
         }
-
-        public Task<TResult> QueryFor<TResult>(Expression<Func<IQueryable<T>, TResult>> predicate)
-            => Task.FromResult(predicate.Compile().Invoke(CurrentResults().AsQueryable()));
-
-        public Task<Maybe<T>> SingleOrDefault(Expression<Func<T, bool>> predicate)
-            => Task.FromResult(CurrentResults().SingleOrNothing(predicate.Compile()));
-
-        public Task<IQueryable<T>> Where(Expression<Func<T, bool>> predicate)
-            => Task.FromResult(CurrentResults().Where(predicate.Compile()).AsQueryable());
-
-        Task<IEnumerable<T>> ICollectionDataReader<T>.Where(Expression<Func<T, bool>> predicate)
-        {
-            throw new NotImplementedException();
-        }
-
-        private IEnumerable<T> CurrentResults()
-                    => this.inMemoryDataStorage[this.NameOfType].Cast<T>();
     }
 }
