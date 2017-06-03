@@ -21,7 +21,7 @@ namespace Picums.Mvc.Configuration
 
         public MvcModelRegistry AddModelBinderProvider(IModelBinderProvider provider)
         {
-            this.models.Add(options => options.ModelBinderProviders.Add(provider));
+            this.models.Add(options => options.ModelBinderProviders.Insert(0, provider));
             return this;
         }
 
