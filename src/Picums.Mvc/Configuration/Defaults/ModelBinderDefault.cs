@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace Picums.Mvc.Configuration.Defaults
 {
-    public sealed class DataTypesDefault<TBindedType, TModelBinder> : IDefault
+    public sealed class ModelBinderDefault<TBindedType, TModelBinder> : IDefault
         where TModelBinder : IModelBinder, new()
     {
         public void Apply(StartupConfigurations host, IEnumerable<object> arguments)
