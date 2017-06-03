@@ -22,7 +22,7 @@ namespace Picums.Data.CQRS.Queries
         protected override IWithId<IAsyncQuery<Maybe<TPayload>>> NextBuildStep() => this;
 
         private Task<Maybe<TPayload>> Execute(IDataReader<TPayload> reader, Guid id)
-            => reader.QueryFor(items => this.SingleOrDefault(items, id));
+            => reader.ById(id);
 
         private Maybe<TPayload> SingleOrDefault(IQueryable<TPayload> items, Guid id)
         {

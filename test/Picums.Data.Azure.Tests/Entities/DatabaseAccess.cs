@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using System.Threading.Tasks;
 using FluentAssertions;
 using Microsoft.Azure.Documents.Client;
@@ -53,8 +52,9 @@ namespace Picums.Data.Azure.Tests.Entities
         }
 
         private async Task<TestItem> LoadItem(Guid id)
-            => await this.context
+            => (await this.context
                 .GetReader<TestItem>(this.parts)
-                .QueryFor(collection => collection.Single(item => item.Id == id));
+                .ById(id))
+                .Value;
     };
 }

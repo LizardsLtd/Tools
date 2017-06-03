@@ -24,6 +24,16 @@ namespace Picums.Data.Tests.CQRS.Contracts.DataAccess
 
         public Task<IEnumerable<T>> All() => Task.FromResult(CurrentResults());
 
+        public Task<Maybe<T>> ById(Guid id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<Maybe<T>> FirstOrDefault(Expression<Func<T, bool>> predicate)
+        {
+            throw new NotImplementedException();
+        }
+
         public Task<TResult> QueryFor<TResult>(Expression<Func<IQueryable<T>, TResult>> predicate)
             => Task.FromResult(predicate.Compile().Invoke(CurrentResults().AsQueryable()));
 
@@ -33,7 +43,12 @@ namespace Picums.Data.Tests.CQRS.Contracts.DataAccess
         public Task<IQueryable<T>> Where(Expression<Func<T, bool>> predicate)
             => Task.FromResult(CurrentResults().Where(predicate.Compile()).AsQueryable());
 
+        Task<IEnumerable<T>> ICollectionDataReader<T>.Where(Expression<Func<T, bool>> predicate)
+        {
+            throw new NotImplementedException();
+        }
+
         private IEnumerable<T> CurrentResults()
-            => this.inMemoryDataStorage[this.NameOfType].Cast<T>();
+                    => this.inMemoryDataStorage[this.NameOfType].Cast<T>();
     }
 }
