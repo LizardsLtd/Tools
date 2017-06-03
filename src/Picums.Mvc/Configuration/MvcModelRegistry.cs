@@ -1,8 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System;
+using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
-using System;
-using System.Collections.Generic;
 using Picums.Mvc.ModelBinder;
 
 namespace Picums.Mvc.Configuration
@@ -32,7 +31,7 @@ namespace Picums.Mvc.Configuration
 
         public MvcModelRegistry AddModelValidator(IModelValidatorProvider validatorFactory)
         {
-            this.models.Add(options => options.ModelValidatorProviders.Add(validatorFactory));
+            this.models.Add(options => options.ModelValidatorProviders.Insert(0, validatorFactory));
             return this;
         }
 
