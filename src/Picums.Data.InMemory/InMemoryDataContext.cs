@@ -6,11 +6,15 @@ namespace Picums.Data.InMemory
 {
     public sealed class InMemoryDataContext : IDataContext
     {
-        private readonly Dictionary<string, object> items;
+        private readonly IDictionary<string, object> items;
 
-        public InMemoryDataContext()
+        public InMemoryDataContext() : this(new Dictionary<string, object>())
         {
-            this.items = new Dictionary<string, object>();
+        }
+
+        public InMemoryDataContext(IDictionary<string, object> data)
+        {
+            this.items = data;
         }
 
         public void Dispose()
@@ -29,7 +33,9 @@ namespace Picums.Data.InMemory
 
             this.CreateCollectionIfKeyNotExist<T>(key);
 
-            return this.items[key] as List<T>;
+            List<T> result = this.items[key] as List<T>;
+
+            return result;
         }
 
         private void CreateCollectionIfKeyNotExist<T>(string key)
@@ -41,6 +47,6 @@ namespace Picums.Data.InMemory
         }
 
         private string CreateKey<T>() where T : IAggregateRoot
-            => nameof(T);
+            => typeof(T).Name;
     }
 }
