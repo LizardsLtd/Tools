@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using Picums.Data.Claims;
 using Picums.Mvc.Authorization;
 
@@ -24,7 +25,7 @@ namespace Picums.Mvc.Configuration.Defaults
             host.MVC.Filters.Add(this.BuildAuthorizeFilter());
         }
 
-        private void ConfigureApp(IApplicationBuilder app, IHostingEnvironment env)
+        private void ConfigureApp(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory lg)
             => app
                 .UseCookieAuthentication(new CookieAuthenticationOptions()
                 {

@@ -31,6 +31,7 @@ namespace Picums.Mvc.Configuration
 
             return this;
         }
+
         public AspNetStartup ConfigureOptions<TOption>(Action<IConfigurationRoot, TOption> configure) where TOption : class
         {
             this.configuration.Services.Configure<TOption>(options => configure(this.ConfigurationRoot, options));
@@ -50,9 +51,9 @@ namespace Picums.Mvc.Configuration
         public void Configure(IApplicationBuilder app, ILoggerFactory loggerFactory)
         {
             this.ConfigureAsp(this.configuration.ASP);
-            this.ConfigureLogging(loggerFactory);
+            //this.ConfigureLogging(loggerFactory);
 
-            this.configuration.ASP.Use(app, Environment);
+            this.configuration.ASP.Use(app, Environment, loggerFactory);
             this.configuration.MVC.Use(app);
             this.ConfigureMiddlewares(app);
         }

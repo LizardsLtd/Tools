@@ -1,17 +1,22 @@
 ﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Logging;
 
 namespace Picums.Mvc.Configuration.Defaults
 {
-    public sealed class DevelopmentSetup : IDefault
+    public sealed class DevelopmentSetup : BasicDefault
     {
-        public void Apply(StartupConfigurations host, IEnumerable<object> arguments)
+        protected override void ConfigureApp(
+            IApplicationBuilder app
+            , IHostingEnvironment env
+            , ILoggerFactory loggerFactory
+            , IEnumerable<object> arguments)
         {
-            if (host.Environment.IsDevelopment())
+            if (env.IsDevelopment())
             {
-                host.ASP.Add((app, env) => app.UseDeveloperExceptionPage());
-                host.ASP.Add((app, env) => app.UseBrowserLink());
+                app.UseDeveloperExceptionPage();
+                app.UseBrowserLink();
             }
         }
     }

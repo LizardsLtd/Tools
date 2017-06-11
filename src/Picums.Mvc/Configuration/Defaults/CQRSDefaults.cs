@@ -1,22 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.DependencyInjection.Extensions;
-using Picums.Data.CQRS;
-using Picums.Data.CQRS.DataAccess;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
+using Microsoft.Extensions.Logging;
+using Picums.Data.CQRS;
+using Picums.Data.CQRS.DataAccess;
 
 namespace Picums.Mvc.Configuration.Defaults
 {
     public sealed class CQRSDefaults : BasicDefault
     {
-        protected override void ConfigureApp(IApplicationBuilder app, IHostingEnvironment env, IEnumerable<object> arguments)
-        {
-            app.ApplicationServices.GetService<IDataContextInitialiser>().Initialise().Wait();
-        }
+        protected override void ConfigureApp(
+                IApplicationBuilder app
+                , IHostingEnvironment env
+                , ILoggerFactory lg
+                , IEnumerable<object> arguments)
+            => app.ApplicationServices.GetService<IDataContextInitialiser>().Initialise().Wait();
 
         protected override void ConfigureServices(IServiceCollection services, IEnumerable<object> arguments)
         {
