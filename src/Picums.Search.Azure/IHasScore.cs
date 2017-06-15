@@ -1,6 +1,6 @@
 ﻿namespace Picums.Search.Azure
 {
-    public interface ISearchResult
+    public interface IHasScore
     {
         double Score { get; }
     }
