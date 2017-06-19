@@ -20,7 +20,7 @@ let ``SearchResults can be empy`` () =
     result.HasResults |> should equal false
 
 [<Fact>]
-let ``SearchResults has sresult when provided with data`` () =
+let ``SearchResults has results when provided with data`` () =
     let result = new SearchResults<TestSearchItem>([new TestSearchItem(); new TestSearchItem()])
     result.HasResults |> should equal true
 
