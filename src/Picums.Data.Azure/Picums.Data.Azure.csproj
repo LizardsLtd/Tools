@@ -4,7 +4,7 @@
     <Copyright>Picums 2016 - 2017</Copyright>
     <AssemblyTitle>Data.Azure</AssemblyTitle>
     <VersionPrefix>0.1.0</VersionPrefix>
-    <Version>0.4.1</Version>
+    <Version>0.4.2</Version>
     <AssemblyName>Picums.Data.Azure</AssemblyName>
     <PackageTags>azure;Picums</PackageTags>
     <RepositoryType>git</RepositoryType>
@@ -28,7 +28,7 @@
     <PackageReference Include="Microsoft.Extensions.Options" Version="1.1.2" />
     <PackageReference Include="Microsoft.Extensions.Logging" Version="1.1.2" />
     <PackageReference Include="Microsoft.NETCore.Portable.Compatibility" Version="1.0.2" />
-    <PackageReference Include="System.ValueTuple" Version="4.4.0-preview1-25305-02" />
+    <PackageReference Include="System.ValueTuple" Version="4.3.1" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
     <DefineConstants>$(DefineConstants);RELEASE</DefineConstants>
