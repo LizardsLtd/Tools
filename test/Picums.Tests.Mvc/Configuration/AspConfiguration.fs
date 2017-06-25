@@ -9,8 +9,6 @@ open Picums.Mvc.Configuration
 open Microsoft.Extensions.Logging
 open FakeItEasy
 
-let mutable testCount = 0
-
 [<Fact>]
 let ``Can add action to AspConfig `` () =
     let configItem =  new AspConfigurator()
