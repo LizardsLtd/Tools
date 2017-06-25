@@ -1,15 +1,10 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System;
 using System.Threading.Tasks;
 
 namespace Picums.Data.CQRS
 {
-    public interface ICommandBus
+    public interface ICommandBus : IDisposable
     {
-        void Dispose();
-
-        Task<IEnumerable<ValidationResult>> Validate(ICommand command);
-
-        Task Execute(ICommand command);
+        Task Execute<TCommand>(TCommand command) where TCommand : ICommand;
     }
 }

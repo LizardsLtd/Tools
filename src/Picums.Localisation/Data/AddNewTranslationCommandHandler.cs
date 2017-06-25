@@ -5,7 +5,7 @@ using Picums.Data.CQRS.DataAccess;
 
 namespace Picums.Localisation.Data
 {
-    public sealed class AddNewTranslationCommandHandler : CommandHandlerBase<AddNewTranslationCommand>
+    public sealed class AddNewTranslationCommandHandler : ICommandHandler<AddNewTranslationCommand>
     {
         private readonly IDataContext storageContext;
         private readonly DatabaseParts parts;
@@ -19,7 +19,11 @@ namespace Picums.Localisation.Data
             this.query = new FindTranslationByKeyQuery(storageContext, loggerFactory, parts);
         }
 
-        protected override async Task Execute(AddNewTranslationCommand command)
+        public void Dispose()
+        {
+        }
+
+        public async Task Handle(AddNewTranslationCommand command)
         {
             var translationItem = await GetTranslationItem(command);
 

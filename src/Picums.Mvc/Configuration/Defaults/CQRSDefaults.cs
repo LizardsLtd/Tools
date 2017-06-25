@@ -46,7 +46,7 @@ namespace Picums.Mvc.Configuration.Defaults
                 .DiscoverImplementation()
                     .ForAssembly(assembly)
                     .IncludeClassesOnly()
-                    .ForTypesImplementingInterface<ICommandHandler>()
+                    .ForTypesImplementingInterface(typeof(ICommandHandler))
                     .AddAsInterface<ICommandHandler>()
                 .DiscoverImplementation()
                     .ForAssembly(assembly)
