@@ -3,7 +3,7 @@
     <Description>ASP.NET Core MVC implementation.</Description>
     <Copyright>Picums 2016 - 2017</Copyright>
     <AssemblyTitle>MVC</AssemblyTitle>
-    <Version>0.24.0</Version>
+    <Version>0.24.1</Version>
     <WarningsAsErrors>true</WarningsAsErrors>
     <AssemblyName>Picums.Mvc</AssemblyName>
     <GenerateAssemblyTitleAttribute>false</GenerateAssemblyTitleAttribute>
@@ -62,7 +62,7 @@
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="1.1.1" />
     <PackageReference Include="Microsoft.Extensions.Options" Version="1.1.2" />
     <PackageReference Include="Microsoft.VisualStudio.Web.BrowserLink.Loader" Version="14.1.0" />
-    <PackageReference Include="Markdig" Version="0.12.1" />
+    <PackageReference Include="Markdig" Version="0.12.3" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
     <DefineConstants>$(DefineConstants);RELEASE</DefineConstants>

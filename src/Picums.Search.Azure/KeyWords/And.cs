@@ -13,6 +13,8 @@ namespace Picums.Search.Azure.KeyWords
         }
 
         public string GetSearchCommmand()
-            => this.searchForParameters.Aggregate(string.Empty, (prev, current) => prev + AndText + current);
+            => string.Join(
+                AndText
+                , this.searchForParameters.Select(x => x.GetSearchCommmand()));
     }
 }
