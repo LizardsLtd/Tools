@@ -1,10 +1,10 @@
 ﻿namespace Picums.Search.Azure.KeyWords
 {
-    public sealed class FazzyMatchKeyword : ISearchForParameter
+    public sealed class FuzzyMatchKeyword : ISearchForParameter
     {
         private readonly string keyword;
 
-        public FazzyMatchKeyword(string keyword)
+        public FuzzyMatchKeyword(string keyword)
         {
             this.keyword = keyword;
         }
