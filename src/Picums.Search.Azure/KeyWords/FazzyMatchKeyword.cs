@@ -10,6 +10,6 @@
         }
 
         public string GetSearchCommmand()
-            => $"*{this.keyword}*";
+            => $"{this.keyword}*";
     }
 }
