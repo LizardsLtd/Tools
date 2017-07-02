@@ -1,11 +1,11 @@
 ﻿namespace Picums.Search.Azure.KeyWords
 {
-    public sealed class LocationSearchParameter : ISearchForParameter
+    public sealed class LocationKeyword : ISearchForParameter
     {
         private readonly double Longitude;
         private readonly double Latitude;
 
-        public LocationSearchParameter(double longitude, double latitude)
+        public LocationKeyword(double longitude, double latitude)
         {
             this.Longitude = longitude;
             this.Latitude = latitude;
