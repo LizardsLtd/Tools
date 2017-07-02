@@ -17,6 +17,9 @@ namespace Picums.Search.Azure
 
         public bool HasResults => this.Results.Any();
 
+        public SearchResults<TResultItem> OrderByScore()
+            => new SearchResults<TResultItem>(this.Results.OrderBy(x => x.Score));
+
         public SearchResults<TResultItem> Merge(SearchResults<TResultItem> searchResults)
             => new SearchResults<TResultItem>(this
                 .Results
