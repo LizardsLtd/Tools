@@ -11,7 +11,7 @@ namespace Picums.Search.Azure.KeyWords
         private readonly double distanceInKilometers;
         private readonly string locationField;
 
-        public LocationKeyword(double longitude, double latitude, string locationField, double distanceInKilometers = 25)
+        public LocationKeyword(double longitude, double latitude, string locationField, int distanceInKilometers = 25)
         {
             this.Longitude = longitude;
             this.Latitude = latitude;
