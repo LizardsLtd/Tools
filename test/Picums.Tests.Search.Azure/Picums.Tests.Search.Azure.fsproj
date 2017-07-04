@@ -9,6 +9,7 @@
   <ItemGroup>
     <Compile Include="AzureSearchService.fs" />
     <Compile Include="Keywords.fs" />
+    <Compile Include="Service.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>
 

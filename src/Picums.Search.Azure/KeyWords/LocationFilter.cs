@@ -2,7 +2,7 @@
 
 namespace Picums.Search.Azure.KeyWords
 {
-    public sealed class LocationKeyword : ISearchForParameter
+    public sealed class LocationFilter : IFilter
     {
         private readonly CultureInfo AzureRedableCulture;
 
@@ -11,7 +11,7 @@ namespace Picums.Search.Azure.KeyWords
         private readonly double distanceInKilometers;
         private readonly string locationField;
 
-        public LocationKeyword(double longitude, double latitude, string locationField, int distanceInKilometers = 25)
+        public LocationFilter(double longitude, double latitude, string locationField, int distanceInKilometers = 25)
         {
             this.Longitude = longitude;
             this.Latitude = latitude;
@@ -29,7 +29,7 @@ namespace Picums.Search.Azure.KeyWords
         private string ConvertLatAndLongToGeographyPoint
             => $" geography'POINT({this.UsFormattedLongitude} {this.UsFormattedLatitude})'";
 
-        public string GetSearchCommmand()
-            => $"$filter=geo.distance({locationField},{this.ConvertLatAndLongToGeographyPoint}) lt {distanceInKilometers}";
+        public string GetFilter()
+            => $"geo.distance({locationField},{this.ConvertLatAndLongToGeographyPoint}) lt {distanceInKilometers}";
     }
 }
