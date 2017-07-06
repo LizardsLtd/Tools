@@ -44,7 +44,7 @@ namespace Picums.Search.Azure.Services
                 , IFilter filter)
             : this(logger, options, searchFor)
         {
-            this.filter = filter;
+            this.filter = Maybe<IFilter>.Some(filter);
         }
 
         private AzureSearchService(ILogger<AzureSearchService<TResultItem, TFactory>> logger, AzureSearchOptions options)

@@ -23,14 +23,16 @@ namespace Picums.Maybe
 
         public T Value { get; }
 
-        public bool IsSome => Value != null;
-
         public bool IsNone => !this.IsSome;
+        public bool IsSome => Value != null;
 
         public static implicit operator Maybe<T>(T value)
             => value == null
                 ? Nothing
                 : new Maybe<T>(value);
+
+        public static Maybe<T> Some(T value)
+            => new Maybe<T>(value);
 
         public int CompareTo(Maybe<T> other)
             => other.IsSome
