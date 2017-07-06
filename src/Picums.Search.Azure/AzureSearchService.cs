@@ -1,6 +1,7 @@
 ﻿using Microsoft.Azure.Search;
 using Microsoft.Azure.Search.Models;
 using Microsoft.Extensions.Logging;
+using Picums.Maybe;
 using Picums.Search.Azure.KeyWords;
 using System;
 using System.Collections.Generic;
@@ -17,7 +18,7 @@ namespace Picums.Search.Azure.Services
         where TFactory : ISearchResultFactory<TResultItem>, new()
     {
         private readonly ISearch searchFor;
-        private readonly IFilter filter;
+        private readonly Maybe<IFilter> filter;
         private readonly AzureSearchOptions options;
         private readonly Lazy<TFactory> factory;
         private readonly ILogger<AzureSearchService<TResultItem, TFactory>> logger;
@@ -79,11 +80,23 @@ namespace Picums.Search.Azure.Services
         }
 
         private SearchParameters BuildSearchParameter()
-            => new SearchParameters()
+        {
+            if (this.filter.IsSome)
             {
-                Select = this.factory.Value.Fields,
-                Filter = this.filter.GetFilter(),
-            };
+                return new SearchParameters()
+                {
+                    Select = this.factory.Value.Fields,
+                    Filter = this.filter.Value.GetFilter()
+                };
+            }
+            else
+            {
+                return new SearchParameters()
+                {
+                    Select = this.factory.Value.Fields,
+                };
+            }
+        }
 
         private IEnumerable<TResultItem> CreateSearchResults(DocumentSearchResult searchResult)
             => searchResult
