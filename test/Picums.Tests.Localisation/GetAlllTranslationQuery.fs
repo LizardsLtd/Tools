@@ -1,4 +1,4 @@
-module Picums.Tests.Localisation
+module Picums.Tests.Localisation.GetAllTranslationQuery
 
     open System
     open Picums.Localisation.Data
@@ -8,13 +8,12 @@ module Picums.Tests.Localisation
     open Should.Fluent
     open Xunit
 
-    module GetAllTranslationQuery =
-        let context = InMemoryDataContext()
-        let logger = TestLoggerFactory()
+    let context = InMemoryDataContext()
+    let logger = TestLoggerFactory()
 
-        [<Fact>]
-        let ``GetAllTranslationsQuery returns QueryForAll`` () =
-            let query = new GetAllTranslationsQuery(context,logger)
-            let result = query.GetQuery(DatabaseParts("test", "test"))
+    [<Fact>]
+    let ``GetAllTranslationsQuery returns QueryForAll`` () =
+        let query = new GetAllTranslationsQuery(context,logger)
+        let result = query.GetQuery(DatabaseParts("test", "test"))
 
-            result.Should().Not.Be.Null()
+        result.Should().Not.Be.Null()

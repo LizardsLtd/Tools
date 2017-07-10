@@ -1,10 +1,10 @@
-﻿open System
-open Picums.Localisation.Data
-open Picums.Tests
-open Should.Fluent
-open Xunit
+﻿module Picums.Tests.Localisation.TranslationSet
 
-module TranslationSet =
+    open System
+    open Picums.Localisation.Data
+    open Picums.Tests
+    open Should.Fluent
+    open Xunit
 
     [<Fact>]
     let ``Translation item are matching`` () =

@@ -9,6 +9,7 @@
   <ItemGroup>
     <Compile Include="GetAlllTranslationQuery.fs" />
     <Compile Include="TranslationSet.fs" />
+    <Compile Include="Program.fs" />
   </ItemGroup>
 
   <ItemGroup>
