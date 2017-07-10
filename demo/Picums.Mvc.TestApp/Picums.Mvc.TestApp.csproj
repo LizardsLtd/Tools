@@ -3,6 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp1.1</TargetFramework>
     <PackageTargetFallback Condition=" '$(TargetFramework)' == 'netcoreapp1.1' ">$(PackageTargetFallback);portable-net45+win8+wpa81</PackageTargetFallback>
+    <DebugType>full</DebugType>
   </PropertyGroup>
 
   <PropertyGroup>

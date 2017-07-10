@@ -24,6 +24,7 @@ namespace Picums.Maybe
         public T Value { get; }
 
         public bool IsNone => !this.IsSome;
+
         public bool IsSome => Value != null;
 
         public static implicit operator Maybe<T>(T value)

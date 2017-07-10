@@ -17,6 +17,7 @@
     <TargetFramework>netstandard1.4</TargetFramework>
     <WarningsAsErrors>true</WarningsAsErrors>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <DebugType>full</DebugType>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
     <DefineConstants>$(DefineConstants);RELEASE</DefineConstants>
