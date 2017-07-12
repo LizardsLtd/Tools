@@ -13,7 +13,7 @@ namespace Picums.GeoCoding.Tests.Entities
         {
             var embededResources = new EmbeddedContentLoader("Picums.GeoCoding.Tests");
             this.exampleFile = embededResources
-                .LoadTextFileAsync("Picums.GeoCoding.Tests.Resources.GoogleServiceResluts.xml")
+                .LoadTextFileAsync("Picums.Tests.GeoCoding.Resources.GoogleServiceResluts.xml")
                 .GetAwaiter()
                 .GetResult();
             this.emptyLogger = new TestLoggerFactory().CreateLogger("null");
