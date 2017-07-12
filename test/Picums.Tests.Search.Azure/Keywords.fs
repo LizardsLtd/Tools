@@ -14,4 +14,4 @@ open Picums.Search.Azure.KeyWords
 let ``Location keyword can work with locale using comma to separate double`` () =
     let keyword = new LocationFilter(10.0, 10.0, "Location", 25)
     let result = keyword.GetFilter()
-    result |> should equal "$filter=geo.distance(Location, geography'POINT(10 10)') lt 25"
+    result |> should equal "geo.distance(Location, geography'POINT(10 10)') lt 25"
