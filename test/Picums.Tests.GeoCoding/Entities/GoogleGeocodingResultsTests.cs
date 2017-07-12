@@ -11,9 +11,9 @@ namespace Picums.GeoCoding.Tests.Entities
 
         public GoogleGeocodingResultsTests()
         {
-            var embededResources = new EmbeddedContentLoader("Picums.GeoCoding.Tests");
+            var embededResources = new EmbeddedContentLoader("Picums.Tests.GeoCoding");
             this.exampleFile = embededResources
-                .LoadTextFileAsync("Picums.Tests.GeoCoding.Resources.GoogleServiceResluts.xml")
+                .LoadTextFileAsync("Resources.GoogleServiceResluts.xml")
                 .GetAwaiter()
                 .GetResult();
             this.emptyLogger = new TestLoggerFactory().CreateLogger("null");
