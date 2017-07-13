@@ -1,6 +1,6 @@
-﻿using System.Linq;
-using Microsoft.Azure.Search;
+﻿using Microsoft.Azure.Search;
 using Microsoft.Extensions.Configuration;
+using System.Linq;
 
 namespace Picums.Search.Azure
 {
@@ -38,5 +38,7 @@ namespace Picums.Search.Azure
             options.SearchParameters
                 = root.GetSection("search:search-parameter").GetChildren().Select(x => x.Value).ToArray();
         }
+
+        public ISearchIndexClient GetSearchIndexClient() => new SearchIndexClient(this.ServiceName, this.IndexName, this.ApiKey);
     }
 }

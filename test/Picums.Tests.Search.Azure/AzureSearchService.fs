@@ -37,6 +37,12 @@ let ``Merge between two SearchResults works`` () =
     merged.Results.Count() |> should equal 4
 
 [<Fact>]
+let ``Merge with nothing does not yeald error`` () =
+    let first = new SearchResults<TestSearchItem>([new TestSearchItem(1.0); new TestSearchItem(2.0)])
+    let merged = first.Merge( SearchResults.Empty)
+    merged.Results.Count() |> should equal 2
+
+[<Fact>]
 let ``Search reslt could be sorted`` () =
     let results = new SearchResults<TestSearchItem>([new TestSearchItem(3.0); new TestSearchItem(2.0)])
     let orderedResults = results.OrderByScore()

@@ -64,7 +64,7 @@ namespace Picums.Search.Azure.Services
         {
             try
             {
-                var indexClient = new SearchIndexClient(this.options.ServiceName, this.options.IndexName, this.options.ApiKey);
+                var indexClient = this.options.GetSearchIndexClient();
                 var parameters = this.BuildSearchParameter();
 
                 var documentResults = await indexClient.Documents.SearchAsync(this.searchFor.GetSearchText(), parameters);

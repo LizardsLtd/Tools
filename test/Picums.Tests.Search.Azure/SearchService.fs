@@ -1,4 +1,4 @@
-﻿module Picums.Tests.Search.Service
+﻿module Picums.Tests.Search.SearchService
 
 open System
 open System.Linq
