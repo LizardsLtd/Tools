@@ -3,7 +3,6 @@ using System.Diagnostics.Contracts;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Options;
 using Picums.Data.Claims;
@@ -34,14 +33,16 @@ namespace Picums.Mvc.Authorization
 
         public async Task<ClaimsPrincipal> CreateAsync(TUser user)
         {
-            var claimsIdentity = new ClaimsIdentity(
-                this.Options.Cookies.ApplicationCookieAuthenticationScheme
-                , this.Options.ClaimsIdentity.UserNameClaimType
-                , this.Options.ClaimsIdentity.RoleClaimType);
+            //var claimsIdentity = new ClaimsIdentity(
+            //    this.Options.Cookies.ApplicationCookieAuthenticationScheme
+            //    , this.Options.ClaimsIdentity.UserNameClaimType
+            //    , this.Options.ClaimsIdentity.RoleClaimType);
 
-            claimsIdentity.AddClaim(await GetUserIdClaim(user));
-            claimsIdentity.AddClaim(await GetUserNameClaim(user));
-            claimsIdentity.AddClaims(await GetUserClaims(user));
+            //claimsIdentity.AddClaim(await GetUserIdClaim(user));
+            //claimsIdentity.AddClaim(await GetUserNameClaim(user));
+            //claimsIdentity.AddClaims(await GetUserClaims(user));
+
+            var claimsIdentity = new ClaimsIdentity(this.YieldClaims(user));
 
             return new ClaimsPrincipal(claimsIdentity);
         }
@@ -49,8 +50,18 @@ namespace Picums.Mvc.Authorization
         public Task<List<Claim>> GetUserClaims(IClaimsProvider user)
             => Task.Run(() => user.Claims.ToList());
 
+        private IEnumerable<Claim> YieldClaims(TUser user)
+        {
+            yield return GetUserNameClaim(user).Result;
+            yield return GetUserIdClaim(user).Result;
+            foreach (var userClaim in GetUserClaims(user).Result)
+            {
+                yield return userClaim;
+            }
+        }
+
         private async Task<Claim> GetUserIdClaim(TUser user)
-                    => new Claim(
+            => new Claim(
                 this.Options.ClaimsIdentity.UserIdClaimType
                 , await this.UserManager.GetUserIdAsync(user));
 

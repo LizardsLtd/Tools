@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -26,27 +27,43 @@ namespace Picums.Mvc.Configuration.Defaults
         }
 
         private void ConfigureApp(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory lg)
-            => app
-                .UseCookieAuthentication(new CookieAuthenticationOptions()
-                {
-                    LoginPath = new PathString("/login/login"),
-                    AccessDeniedPath = new PathString("/login/login"),
-                    LogoutPath = new PathString("/login/logout"),
-                    AuthenticationScheme = "Cookies",
-                    AutomaticAuthenticate = true,
-                    AutomaticChallenge = true,
-                    CookieSecure = CookieSecurePolicy.Always,
-                    ExpireTimeSpan = TimeSpan.FromMinutes(5),
-                    SlidingExpiration = true,
-                })
-                .UseIdentity();
+            => app.UseAuthentication();
 
         private void ConfigureServices(IServiceCollection services)
-            => services
+        {
+            services
                 .AddScoped<IUserStore<TUser>, TUserStore>()
                 .AddScoped<IUserClaimsPrincipalFactory<TUser>, ClaimsPrincipalFactory<TUser>>()
                 .AddScoped<IUserStore<TUser>, TUserStore>()
                 .AddIdentity<TUser, string>();
+            services
+                .AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                    .AddCookie(o =>
+                    {
+                        o.LoginPath = new PathString("/login/login");
+                        o.AccessDeniedPath = new PathString("/login/login");
+                        o.LogoutPath = new PathString("/login/logout");
+                        //o.AuthenticationScheme = "Cookies";
+                        //o.AutomaticAuthenticate = true;
+                        //o.AutomaticChallenge = true;
+                        o.CookieSecure = CookieSecurePolicy.Always;
+                        o.ExpireTimeSpan = TimeSpan.FromMinutes(5);
+                        o.SlidingExpiration = true;
+                    });
+
+            //.UseCookieAuthentication(new CookieAuthenticationOptions
+            //{
+            //    LoginPath = new PathString("/login/login"),
+            //    AccessDeniedPath = new PathString("/login/login"),
+            //    LogoutPath = new PathString("/login/logout"),
+            //    AuthenticationScheme = "Cookies",
+            //    AutomaticAuthenticate = true,
+            //    AutomaticChallenge = true,
+            //    CookieSecure = CookieSecurePolicy.Always,
+            //    ExpireTimeSpan = TimeSpan.FromMinutes(5),
+            //    SlidingExpiration = true,
+            //})
+        }
 
         private AuthorizeFilter BuildAuthorizeFilter()
             => new AuthorizeFilter(
