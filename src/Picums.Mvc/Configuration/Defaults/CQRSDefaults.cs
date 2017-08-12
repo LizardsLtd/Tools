@@ -4,10 +4,10 @@ using System.Reflection;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Logging;
 using Picums.Data.CQRS;
 using Picums.Data.CQRS.DataAccess;
+using Picums.Data.Events;
 
 namespace Picums.Mvc.Configuration.Defaults
 {
@@ -27,8 +27,6 @@ namespace Picums.Mvc.Configuration.Defaults
                 .Select(assemblyName => Assembly.Load(new AssemblyName(assemblyName)))
                 .ToList()
                 .ForEach(assembly => AutomaticDetection(services, assembly));
-
-            services.TryAddSingleton<ICommandBus, CommandBus>();
         }
 
         private void AutomaticDetection(IServiceCollection services, Assembly assembly)
@@ -53,6 +51,11 @@ namespace Picums.Mvc.Configuration.Defaults
                     .IncludeClassesOnly()
                     .ForTypesImplementingInterface<IsQuery>()
                     .AsSelf()
+                .DiscoverImplementation()
+                    .ForAssembly(assembly)
+                    .IncludeClassesOnly()
+                    .ForTypesImplementingInterface(typeof(IEventHandler))
+                    .AddAsInterface<IEventHandler>()
                 .DiscoverImplementation()
                     .ForAssembly(assembly)
                     .IncludeClassesOnly()

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26621.2
+VisualStudioVersion = 15.0.26730.3
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{ED1E5032-AA42-45AC-96C3-F21666FD4245}"
 EndProject
@@ -42,6 +42,8 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "demo", "demo", "{82F213C1-01F8-4C2F-8B2C-E1BE7DAD3094}"
 EndProject
 Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "Picums.Tests.Search.Azure", "test\Picums.Tests.Search.Azure\Picums.Tests.Search.Azure.fsproj", "{E67A61AA-5C20-47A0-A27F-B9AFD6A896F8}"
+EndProject
+Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "Picums.Tests.Data-fs", "test\Picums.Tests.Data-fs\Picums.Tests.Data-fs.fsproj", "{B68EC84C-5623-4106-BB64-785691AD41E3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -221,6 +223,18 @@ Global
 		{E67A61AA-5C20-47A0-A27F-B9AFD6A896F8}.Release|x64.Build.0 = Release|Any CPU
 		{E67A61AA-5C20-47A0-A27F-B9AFD6A896F8}.Release|x86.ActiveCfg = Release|Any CPU
 		{E67A61AA-5C20-47A0-A27F-B9AFD6A896F8}.Release|x86.Build.0 = Release|Any CPU
+		{B68EC84C-5623-4106-BB64-785691AD41E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B68EC84C-5623-4106-BB64-785691AD41E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B68EC84C-5623-4106-BB64-785691AD41E3}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{B68EC84C-5623-4106-BB64-785691AD41E3}.Debug|x64.Build.0 = Debug|Any CPU
+		{B68EC84C-5623-4106-BB64-785691AD41E3}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{B68EC84C-5623-4106-BB64-785691AD41E3}.Debug|x86.Build.0 = Debug|Any CPU
+		{B68EC84C-5623-4106-BB64-785691AD41E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B68EC84C-5623-4106-BB64-785691AD41E3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B68EC84C-5623-4106-BB64-785691AD41E3}.Release|x64.ActiveCfg = Release|Any CPU
+		{B68EC84C-5623-4106-BB64-785691AD41E3}.Release|x64.Build.0 = Release|Any CPU
+		{B68EC84C-5623-4106-BB64-785691AD41E3}.Release|x86.ActiveCfg = Release|Any CPU
+		{B68EC84C-5623-4106-BB64-785691AD41E3}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -240,6 +254,7 @@ Global
 		{06A4261A-DF41-4537-8E45-A8C1C9B71BB2} = {ED1E5032-AA42-45AC-96C3-F21666FD4245}
 		{92B98A50-FF40-4EA9-860E-88171F9D64DD} = {ED1E5032-AA42-45AC-96C3-F21666FD4245}
 		{E67A61AA-5C20-47A0-A27F-B9AFD6A896F8} = {ED1E5032-AA42-45AC-96C3-F21666FD4245}
+		{B68EC84C-5623-4106-BB64-785691AD41E3} = {ED1E5032-AA42-45AC-96C3-F21666FD4245}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {1ED67F7D-1272-45A2-A550-68A214A3899C}
