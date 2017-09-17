@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Picums.Data.CQRS
@@ -15,27 +16,18 @@ namespace Picums.Data.CQRS
         }
 
         public async Task Execute<TCommand>(TCommand command)
-            where TCommand : ICommand
-        {
-            foreach (var handler in GetCommandsHandlers<TCommand>(command))
-            {
-                await handler.Handle(command);
-            }
-        }
+                where TCommand : ICommand
+            => Parallel.ForEach(
+                GetHandlersForCommand<TCommand>(command)
+                , handler => handler.Handle(command));
 
         public void Dispose() => Dispose(true);
 
-        private IEnumerable<ICommandHandler<TCommand>> GetCommandsHandlers<TCommand>(ICommand command)
-            where TCommand : ICommand
-        {
-            foreach (var handler in this.commandHandlers)
-            {
-                if (this.CanHandle<TCommand>(handler))
-                {
-                    yield return (ICommandHandler<TCommand>)handler;
-                }
-            }
-        }
+        private IEnumerable<ICommandHandler<TCommand>> GetHandlersForCommand<TCommand>(ICommand command)
+                where TCommand : ICommand
+            => this.commandHandlers
+                .Where(handler => this.CanHandle<TCommand>(handler))
+                .Cast<ICommandHandler<TCommand>>();
 
         private bool CanHandle<TCommand>(ICommandHandler handler)
                 where TCommand : ICommand

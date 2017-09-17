@@ -13,6 +13,11 @@ namespace Picums.Data.Events
             this.handlers = handlers;
         }
 
+        public void Dispose()
+        {
+            throw new System.NotImplementedException();
+        }
+
         public Task Publish<TEvent>(TEvent @event) where TEvent : IEvent
             => Task.Factory.StartNew(()
                 => ExecuteHandlers(@event));
@@ -20,8 +25,8 @@ namespace Picums.Data.Events
         private ParallelLoopResult ExecuteHandlers<TEvent>(TEvent @event)
                 where TEvent : IEvent
             => Parallel.ForEach(
-                this.GetHandlesForEvent<TEvent>(),
-                handler => handler.Handle(@event));
+                this.GetHandlesForEvent<TEvent>()
+                , handler => handler.Handle(@event));
 
         private IEnumerable<IEventHandler<TEvent>> GetHandlesForEvent<TEvent>()
                 where TEvent : IEvent

@@ -5,16 +5,30 @@ module Picums.Tests.Data.EventBusCanSelectHandler
     open Picums.Tests
     open Should.Fluent
     open Xunit
+    open FakeItEasy
 
-    let logger = TestLoggerFactory()
-    let handlers =  List.empty<IEventHandler>
-    let eventBus  = new EventBus(handlers)
-
-    type TestEvent(id: Guid) =
+    type TestEventAlpha(id: Guid) =
         interface IEvent with
             member this.EventId = id
 
+    type TestEventBeta(id: Guid) =
+        interface IEvent with
+            member this.EventId = id
+
+    let logger = TestLoggerFactory()
+    let alphaHandler : IEventHandler<TestEventAlpha> = A.Fake<IEventHandler<TestEventAlpha>>()
+    let betaHandler : IEventHandler<TestEventBeta>= A.Fake<IEventHandler<TestEventBeta>>()
+    let handlers : seq<IEventHandler> =  [alphaHandler :> IEventHandler; betaHandler :> IEventHandler] :> seq<IEventHandler>
+    let eventBus  = new EventBus(handlers)
+
     [<Fact>]
     let ``EventBus can execute the Event`` () =
-        let event = new TestEvent(Guid.NewGuid())
+        let event = new TestEventAlpha(Guid.NewGuid())
         eventBus.Publish(event)
+
+    [<Fact>]
+    let ``EventBus can select between two handlers`` () =
+        let event = new TestEventAlpha(Guid.NewGuid())
+        eventBus.Publish(event)
+        //A.CallTo(fun () -> alphaHandler.Handle(event)).MustHaveHappened()
+        //A.CallTo(fun _ -> betaHandler.Handle(event)).MustNotHaveHappened()
