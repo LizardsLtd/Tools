@@ -6,20 +6,20 @@
     open Xunit
     open FsUnit.Xunit
 
-    //[<Fact>]
-    //let ``MaybeIsNeverNull`` () =
-    //    let mutable possibleMaybe : Maybe<string> = Unchecked.defaultof<Maybe<string>>
-    //    possibleMaybe |> should not' be null
+    [<Fact>]
+    let ``MaybeIsNeverNull`` () =
+       let possibleMaybe: Maybe<string>  = Unchecked.defaultof<Maybe<string>>
+       possibleMaybe |> should not' (be Null)
 
-    //[<Fact>]
-    //let ``NullCastedMaybeIsNone`` () =
-    //    Maybe<string> maybe = null;
-    //    maybe.IsNone.Should().Be.True();
+    [<Fact>]
+    let ``NullCastedMaybeIsNone`` () =
+       let maybe: Maybe<string>  = Unchecked.defaultof<Maybe<string>>
+       maybe.IsNone |> should be True
 
-    //[<Fact>]
-    //let ``NullCastedMaybeIsNotSome`` () =
-    //    Maybe<string> maybe = null;
-    //    maybe.IsSome.Should().Be.False();
+    [<Fact>]
+    let ``NullCastedMaybeIsNotSome`` () =
+       let maybe: Maybe<string>  = Unchecked.defaultof<Maybe<string>>
+       maybe.IsSome |> should be False
 
     [<Fact>]
     let ``ValueCastedMaybeIsNotNone`` () =
