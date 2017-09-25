@@ -5,7 +5,7 @@ module Picums.Tests.Localisation.GetAllTranslationQuery
     open Picums.Data.InMemory
     open Picums.Data.CQRS.DataAccess
     open Picums.Tests
-    open Should.Fluent
+    open FsUnit.Xunit
     open Xunit
 
     let context = InMemoryDataContext()
@@ -16,4 +16,4 @@ module Picums.Tests.Localisation.GetAllTranslationQuery
         let query = new GetAllTranslationsQuery(context,logger)
         let result = query.GetQuery(DatabaseParts("test", "test"))
 
-        result.Should().Not.Be.Null()
+        result |> should not' (be Null)

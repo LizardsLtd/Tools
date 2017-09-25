@@ -15,34 +15,34 @@
         collection.All(fun x -> x.IsSome) |> should be True
 
     [<Fact>]
-    let ``SingleOrNothionglet `` () =
+    let ``SingleOrNothiong`` () =
         let collection = [1;]
         let result = collection.SingleOrNothing();
         result.IsSome |> should be True
 
     [<Fact>]
-    let ``SingleOrNothingWoithQuerylet `` () =
+    let ``SingleOrNothingWoithQuery`` () =
         let result = exampleCollection.SingleOrNothing(fun x -> x = 1);
         result.IsSome |> should be True
 
     [<Fact>]
-    let ``FirstOrNothionglet `` () =
+    let ``FirstOrNothiong`` () =
         let collection = [1;]
         let result = collection.FirstOrNothing();
         result.IsSome |> should be True
 
     [<Fact>]
-    let ``FirstOrNothingWoithQuerylet `` () =
+    let ``FirstOrNothing with query`` () =
         let result = exampleCollection.FirstOrNothing(fun x -> x = 1);
         result.IsSome |> should be True
 
     [<Fact>]
-    let ``LastOrNothionglet `` ()=
+    let ``LastOrNothiong`` ()=
         let collection = [1;]
         let result = collection.LastOrNothing();
         result.IsSome |> should be True
 
     [<Fact>]
-    let ``LastOrNothingWoithQuerylet `` () =
+    let ``LastOrNothing with query`` () =
         let result = exampleCollection.LastOrNothing(fun x -> x = 1);
         result.IsSome |> should be True

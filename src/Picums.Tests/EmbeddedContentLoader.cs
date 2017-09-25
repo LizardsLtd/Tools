@@ -16,7 +16,8 @@ namespace Picums.Tests
         public async Task<string> LoadTextFileAsync(string resourceHandle)
         {
             string fullResourceHandle = CreateFullyQualifiedResourceName(resourceHandle);
-            using (var reader = new StreamReader(assembly.GetManifestResourceStream(fullResourceHandle)))
+            var resourceStream = assembly.GetManifestResourceStream(fullResourceHandle);
+            using (var reader = new StreamReader(resourceStream))
             {
                 return await reader.ReadToEndAsync();
             }
