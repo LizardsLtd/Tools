@@ -15,10 +15,11 @@
     <PackageReference Include="FakeItEasy" Version="4.0.0" />
     <PackageReference Include="Microsoft.NETCore.Portable.Compatibility" Version="1.0.2" />
     <PackageReference Include="FluentAssertions" Version="4.19.4" />
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.3.0" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.5.0-preview-20170923-02" />
     <PackageReference Include="ShouldFluent" Version="1.1.19" />
-    <PackageReference Include="xunit" Version="2.3.0-beta3-build3699" />
-    <PackageReference Include="xunit.runner.visualstudio" Version="2.3.0-beta3-build1319" />
+    <PackageReference Include="xunit" Version="2.3.0-rc1-build3809" />
+    <PackageReference Include="xunit.core" Version="2.3.0-rc1-build3809" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.3.0-rc1-build3809" />
   </ItemGroup>
   <ItemGroup>
     <DotNetCliToolReference Include="dotnet-xunit" Version="2.3.0-beta2-build3683" />

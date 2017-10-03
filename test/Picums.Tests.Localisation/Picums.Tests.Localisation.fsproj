@@ -15,10 +15,11 @@
   <ItemGroup>
     <PackageReference Include="FSharp.Core" Version="4.2.3" />
     <PackageReference Include="FSharp.NET.Sdk" Version="1.0.5" PrivateAssets="All" />
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.3.0" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.5.0-preview-20170923-02" />
     <PackageReference Include="FsUnit.xUnit" Version="3.0.0" />
-    <PackageReference Include="xunit" Version="2.3.0-beta3-build3699" />
-    <PackageReference Include="xunit.runner.visualstudio" Version="2.3.0-beta3-build1319" />
+    <PackageReference Include="xunit" Version="2.3.0-rc1-build3809" />
+    <PackageReference Include="xunit.core" Version="2.3.0-rc1-build3809" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.3.0-rc1-build3809" />
   </ItemGroup>
 
   <ItemGroup>
