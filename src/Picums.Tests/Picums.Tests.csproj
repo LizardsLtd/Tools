@@ -2,14 +2,9 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard1.6</TargetFramework>
-    <PackageTargetFallback Condition=" '$(TargetFramework)' == 'netstandard1.6' ">$(PackageTargetFallback);portable-net45+win8+wpa81</PackageTargetFallback>
-    <Version>1.0.1</Version>
+    <Version>1.0.2</Version>
     <DebugType>full</DebugType>
   </PropertyGroup>
-
-  <ItemGroup>
-    <None Include="TestLoggerFactory.cs" />
-  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="1.1.2" />

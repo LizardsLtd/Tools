@@ -13,7 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="FSharp.Core" Version="4.2.2" />
+    <PackageReference Include="FSharp.Core" Version="4.2.3" />
     <PackageReference Include="FSharp.NET.Sdk" Version="1.0.5" PrivateAssets="All" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.3.0" />
     <PackageReference Include="FsUnit.xUnit" Version="3.0.0" />
@@ -27,7 +27,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\src\Picums.Localisation\Picums.Localisation.csproj" />
-    <ProjectReference Include="..\..\src\Picums.Tests\Picums.Tests.csproj" />
     <ProjectReference Include="..\..\src\Picums.Data.InMemory\Picums.Data.InMemory.csproj" />
+    <ProjectReference Include="..\..\src\Picums.Tests\Picums.Tests.csproj" />
   </ItemGroup>
 </Project>
