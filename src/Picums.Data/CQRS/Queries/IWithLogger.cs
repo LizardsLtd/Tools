@@ -1,9 +1,9 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using NLog;
 
 namespace Picums.Data.CQRS.Queries
 {
     public interface IWithLogger<TResult>
     {
-        TResult WithLogger(ILoggerFactory loggerFactory);
+        TResult WithLogger(ILogger logger);
     }
 }

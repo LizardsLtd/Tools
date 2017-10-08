@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 
 namespace Picums.Data.CQRS
 {
+
     public sealed class CommandBus : ICommandBus
     {
         private readonly IEnumerable<ICommandHandler> commandHandlers;

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
-using Microsoft.Extensions.Logging;
+using NLog;
 using Picums.Data.CQRS.DataAccess;
 using Picums.Data.Domain;
 
@@ -12,14 +12,18 @@ namespace Picums.Data.CQRS.Queries
         where TPayload : IAggregateRoot
     {
         private readonly IDataContext dataContext;
-        private readonly ILoggerFactory loggerFactory;
+        private readonly ILogger logger;
         private readonly DatabaseParts parts;
         private readonly Expression<Func<TPayload, bool>> specification;
 
-        public QueryBySpecification(IDataContext dataContext, ILoggerFactory loggerFactory, DatabaseParts parts, Expression<Func<TPayload, bool>> specification)
+        public QueryBySpecification(
+            IDataContext dataContext,
+            ILogger logger,
+            DatabaseParts parts,
+            Expression<Func<TPayload, bool>> specification)
         {
             this.dataContext = dataContext;
-            this.loggerFactory = loggerFactory;
+            this.logger = logger;
             this.parts = parts;
             this.specification = specification;
         }
@@ -27,7 +31,7 @@ namespace Picums.Data.CQRS.Queries
         public Task<IEnumerable<TPayload>> Execute()
             => new QueryBySpecificationBuilder<TPayload>()
                 .WithDataContext(this.dataContext)
-                .WithLogger(this.loggerFactory)
+                .WithLogger(this.logger)
                 .WithDatabaseParts(this.parts)
                 .WithSpecification(specification)
                 .Execute();

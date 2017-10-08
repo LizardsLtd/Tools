@@ -1,4 +1,4 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using NLog;
 using Picums.Data.CQRS.DataAccess;
 
 namespace Picums.Data.CQRS.Queries
@@ -20,9 +20,6 @@ namespace Picums.Data.CQRS.Queries
             this.dataContext = dataContext;
             return this;
         }
-
-        public IWithDatabaseParts<TResult> WithLogger(ILoggerFactory loggerFactory)
-            => WithLogger(loggerFactory.CreateLogger("query"));
 
         public IWithDatabaseParts<TResult> WithLogger(ILogger logger)
         {

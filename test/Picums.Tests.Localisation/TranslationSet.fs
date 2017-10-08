@@ -1,7 +1,8 @@
 ﻿module Picums.Tests.Localisation.TranslationSet
 
     open System
-    open Picums.Localisation.Data
+    open Picums.Mvc.Localisation
+    open Picums.Mvc.Localisation.Data
     open Picums.Tests
     open FsUnit.Xunit
     open Xunit

@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
-using Microsoft.Extensions.Logging;
+using NLog;
 using Picums.Data.CQRS.DataAccess;
 using Picums.Data.Domain;
 using Picums.Maybe;
@@ -11,14 +11,14 @@ namespace Picums.Data.CQRS.Queries
         where TPayload : IAggregateRoot
     {
         private readonly IDataContext dataContext;
-        private readonly ILoggerFactory loggerFactory;
+        private readonly ILogger logger;
         private readonly DatabaseParts parts;
         private readonly Guid id;
 
-        public QueryById(IDataContext dataContext, ILoggerFactory loggerFactory, DatabaseParts parts, Guid id)
+        public QueryById(IDataContext dataContext, ILogger logger, DatabaseParts parts, Guid id)
         {
             this.dataContext = dataContext;
-            this.loggerFactory = loggerFactory;
+            this.logger = logger;
             this.parts = parts;
             this.id = id;
         }
@@ -26,7 +26,7 @@ namespace Picums.Data.CQRS.Queries
         public Task<Maybe<TPayload>> Execute()
             => new QueryByIdBuilder<TPayload>()
                 .WithDataContext(this.dataContext)
-                .WithLogger(this.loggerFactory)
+                .WithLogger(this.logger)
                 .WithDatabaseParts(this.parts)
                 .WithId(this.id)
                 .Execute();

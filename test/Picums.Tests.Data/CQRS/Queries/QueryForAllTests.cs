@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using FluentAssertions;
+using NLog;
 using Picums.Data.CQRS.DataAccess;
 using Picums.Data.CQRS.Queries;
 using Picums.Data.InMemory;
 using Picums.Data.Tests.Mocks;
-using Picums.Tests;
 using Xunit;
 
 namespace Picums.Data.Tests.CQRS.Queries
@@ -26,8 +26,8 @@ namespace Picums.Data.Tests.CQRS.Queries
             {
                 ["SimpleAggregateRoot"] = new List<SimpleAggregateRoot>
                 {
-                    new SimpleAggregateRoot(id)
-                }
+                    new SimpleAggregateRoot(id),
+                },
             };
             this.context = new InMemoryDataContext(storage);
         }
@@ -36,9 +36,9 @@ namespace Picums.Data.Tests.CQRS.Queries
         public async Task QueringForExistingEntity()
         {
             var query = new QueryForAll<SimpleAggregateRoot>(
-                    this.context
-                    , new TestLoggerFactory()
-                    , this.parts);
+                    this.context,
+                    LogManager.GetCurrentClassLogger(),
+                    this.parts);
 
             var result = await query.Execute();
 

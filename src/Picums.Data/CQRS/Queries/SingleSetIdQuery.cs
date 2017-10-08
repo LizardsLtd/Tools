@@ -14,8 +14,8 @@
 //		private readonly ILogger logger;
 //		private readonly string collectionType;
 
-//		public SingleSetIdQuery(IDataContext storageContext, ILoggerFactory loggerFactory, string collectionType)
-//			: this(storageContext, loggerFactory.CreateLogger<FindCategoryGroupById>(), collectionType)
+//		public SingleSetIdQuery(IDataContext storageContext, ILogger logger, string collectionType)
+//			: this(storageContext, logger.CreateLogger<FindCategoryGroupById>(), collectionType)
 //		{
 //		}
 

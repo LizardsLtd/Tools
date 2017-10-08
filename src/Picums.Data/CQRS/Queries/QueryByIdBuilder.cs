@@ -8,8 +8,8 @@ using Picums.Maybe;
 namespace Picums.Data.CQRS.Queries
 {
     public sealed class QueryByIdBuilder<TPayload>
-        : QueryBuilder<IWithId<IAsyncQuery<Maybe<TPayload>>>>
-        , IWithId<IAsyncQuery<Maybe<TPayload>>>
+        : QueryBuilder<IWithId<IAsyncQuery<Maybe<TPayload>>>>,
+        IWithId<IAsyncQuery<Maybe<TPayload>>>
             where TPayload : IAggregateRoot
     {
         public IAsyncQuery<Maybe<TPayload>> WithId(Guid id)

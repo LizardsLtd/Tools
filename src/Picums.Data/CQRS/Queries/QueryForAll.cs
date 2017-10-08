@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using Microsoft.Extensions.Logging;
+using NLog;
 using Picums.Data.CQRS.DataAccess;
 using Picums.Data.Domain;
 
@@ -12,26 +12,26 @@ namespace Picums.Data.CQRS.Queries
             where TPayload : IAggregateRoot
     {
         private readonly IDataContext dataContext;
-        private readonly ILoggerFactory loggerFactory;
+        private readonly ILogger logger;
         private readonly DatabaseParts parts;
 
-        public QueryForAll(IDataContext dataContext, ILoggerFactory loggerFactory, DatabaseParts parts)
+        public QueryForAll(IDataContext dataContext, ILogger logger, DatabaseParts parts)
         {
             this.dataContext = dataContext;
-            this.loggerFactory = loggerFactory;
+            this.logger = logger;
             this.parts = parts;
         }
 
         public IAsyncQuery<IEnumerable<TPayload>> WithDatabaseParts(DatabaseParts parts)
             => new QueryForAll<TPayload>(
-                this.dataContext
-                , this.loggerFactory
-                , parts);
+                this.dataContext,
+                this.logger,
+                parts);
 
         public Task<IEnumerable<TPayload>> Execute()
             => new QueryForAllBuilder<TPayload>()
                 .WithDataContext(this.dataContext)
-                .WithLogger(this.loggerFactory)
+                .WithLogger(this.logger)
                 .WithDatabaseParts(this.parts)
                 .Execute();
     }

@@ -1,9 +1,7 @@
 module Picums.Tests.Localisation.GetAllTranslationQuery
 
     open System
-    open Picums.Localisation.Data
-    open Picums.Data.InMemory
-    open Picums.Data.CQRS.DataAccess
+    open Picums.Mvc.Localisation.DataStorage
     open Picums.Tests
     open FsUnit.Xunit
     open Xunit
