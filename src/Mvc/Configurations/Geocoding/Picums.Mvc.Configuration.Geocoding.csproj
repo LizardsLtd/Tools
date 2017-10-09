@@ -4,6 +4,7 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <RootNamespace>Picums.Mvc.Configuration.Geocoding</RootNamespace>
     <AssemblyName>Picums.Mvc.Configuration.Geocoding</AssemblyName>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
 
   <ItemGroup>
