@@ -17,7 +17,7 @@ namespace Picums.Mvc.Configuration.Defaults
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseBrowserLink();
+                //app.UseBrowserLink(); - requires the Microsoft.VisualStudio.Web.BrowserLink.Loader
             }
         }
     }
