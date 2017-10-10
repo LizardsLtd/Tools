@@ -35,6 +35,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Configurations", "Configura
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Picums.Mvc.Configuration.Geocoding", "src\Mvc\Configurations\Geocoding\Picums.Mvc.Configuration.Geocoding.csproj", "{DCE8356C-32D9-4414-AD4A-4103C2BEF422}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{36D4F041-A871-48E0-89FC-9B47E9A71383}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
