@@ -2,8 +2,6 @@
 
     open System
     open Picums.Mvc.Localisation
-    open Picums.Mvc.Localisation.Data
-    open Picums.Tests
     open FsUnit.Xunit
     open Xunit
 
