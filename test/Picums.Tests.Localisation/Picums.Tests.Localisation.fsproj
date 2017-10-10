@@ -18,6 +18,7 @@
     <PackageReference Include="Microsoft.CodeCoverage" Version="1.0.3" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.5.0-preview-20170923-02" />
     <PackageReference Include="FsUnit.xUnit" Version="3.0.0" />
+    <PackageReference Include="NLog" Version="4.4.12" />
     <PackageReference Include="xunit" Version="2.3.0" />
     <PackageReference Include="xunit.core" Version="2.3.0" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.3.0" />
@@ -30,6 +31,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\src\Mvc\Localisation\Picums.Mvc.Localisation.csproj" />
     <ProjectReference Include="..\..\src\Picums.Data.InMemory\Picums.Data.InMemory.csproj" />
+    <ProjectReference Include="..\..\src\Picums.Data\Picums.Data.csproj" />
     <ProjectReference Include="..\..\src\Picums.Tests\Picums.Tests.csproj" />
   </ItemGroup>
 </Project>

@@ -14,8 +14,8 @@ namespace Picums.Mvc.Localisation
             this.translationData = translationData;
         }
 
-        private Dictionary<string, string> CurrentTranslationSet
-            => this.translationData.GetTranslationSet(CultureInfo.CurrentCulture);
+        //private Dictionary<string, string> CurrentTranslationSet
+        //    => this.translationData.GetTranslationSet(CultureInfo.CurrentCulture);
 
         public LocalizedString this[string name, params object[] arguments]
             => GetString(name, arguments);
@@ -33,7 +33,7 @@ namespace Picums.Mvc.Localisation
             => this.CurrentTranslationSet.Select(x => new LocalizedString(x.Key, x.Value));
 
         public IStringLocalizer WithCulture(CultureInfo culture)
-            => new CachedLocalizer(this.translationData, culture);
+            => new CachedLocalizer(this.translationData);
 
         private string GetTranslatedString(string name)
             => GetTranslatedString(name, new object[0]);

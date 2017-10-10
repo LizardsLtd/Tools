@@ -2,7 +2,6 @@
 using System.Globalization;
 using System.Linq;
 using Microsoft.Extensions.Localization;
-using Picums.Localisation;
 
 namespace Picums.Mvc.Localisation
 {

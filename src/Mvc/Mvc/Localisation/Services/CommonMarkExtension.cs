@@ -1,4 +1,6 @@
-﻿namespace Microsoft.AspNetCore.Mvc.Localization
+﻿using Markdig;
+
+namespace Microsoft.AspNetCore.Mvc.Localization
 {
     public static class CommonMarkExtension
     {

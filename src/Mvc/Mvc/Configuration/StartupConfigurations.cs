@@ -34,7 +34,7 @@ namespace Picums.Mvc.Configuration
 
         public IConfigurationRoot ConfigurationRoot { get; }
 
-        internal void Apply<TDefault>(params object[] arguments) where TDefault : IDefault, new()
+        public void Apply<TDefault>(params object[] arguments) where TDefault : IDefault, new()
             => this.Apply(new TDefault(), arguments);
 
         internal void Apply(IDefault @default, params object[] arguments) => @default.Apply(this, arguments);

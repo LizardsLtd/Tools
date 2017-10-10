@@ -2,9 +2,15 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Localization;
+using Microsoft.AspNetCore.Mvc.Localization;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Localization;
+using Microsoft.Extensions.Logging;
 using Picums.Mvc.Localisation;
 using Picums.Mvc.Middleware;
 
@@ -14,7 +20,7 @@ namespace Picums.Mvc.Configuration.Defaults
     {
         public void Apply(StartupConfigurations host, IEnumerable<object> arguments)
         {
-            var cultureStore = GetCultureStore(host.ConfigurationRoot);
+            var cultureStore = this.GetCultureStore(host.ConfigurationRoot);
 
             host.Services.Add(x => x
                 .AddSingleton(cultureStore)
@@ -53,9 +59,9 @@ namespace Picums.Mvc.Configuration.Defaults
                    {
                        RequestCultureProviders = new List<IRequestCultureProvider>
                        {
-                            new AcceptLanguageHeaderRequestCultureProvider()
-                            , new QueryStringRequestCultureProvider()
-                            , new CookieRequestCultureProvider()
+                            new AcceptLanguageHeaderRequestCultureProvider(),
+                            new QueryStringRequestCultureProvider(),
+                            new CookieRequestCultureProvider(),
                        },
                        SupportedCultures = availableLanguages,
                        SupportedUICultures = availableLanguages,

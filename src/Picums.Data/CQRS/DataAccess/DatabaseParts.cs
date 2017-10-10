@@ -11,7 +11,5 @@
         public string Database { get; }
 
         public string Collection { get; }
-
-        public DatabaseParts WithCollection(string collection) => new DatabaseParts(this.Database, collection);
     }
 }

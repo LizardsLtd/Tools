@@ -8,6 +8,7 @@ namespace Picums.Mvc.Localisation.Services
     internal sealed class JsonTranslationProvider
     {
         private readonly IConfigurationSection configuration;
+        private readonly CultureInfo defaultCulture;
 
         public JsonTranslationProvider(IConfigurationSection configuration)
         {
@@ -15,23 +16,23 @@ namespace Picums.Mvc.Localisation.Services
         }
 
         public TranslationSet GetTranslationSet()
-            => new TranslationSet(ConvertToTransationData(this.configuration), this.defaultCulture);
+            => new TranslationSet(this.ConvertToTransationData(this.configuration), this.defaultCulture);
 
         public IEnumerable<TranslactionItem> ConvertToTransationData(IConfigurationSection configuration)
             => configuration
                 .GetChildren()
-                .SelectMany(x => ConverToFlatDictionary(x.GetChildren()));
+                .SelectMany(x => this.ConverToFlatDictionary(x.GetChildren()));
 
         private IEnumerable<TranslactionItem> ConverToFlatDictionary(IEnumerable<IConfigurationSection> itemsToProcess)
             => itemsToProcess
                 .Aggregate(
                     Enumerable.Empty<IConfigurationSection>(),
-                    (seed, item) => seed.Union(GetAlldescendantsAndSelf(item)))
+                    (seed, item) => seed.Union(this.GetAlldescendantsAndSelf(item)))
                 .Where(x => x.Value != null)
                 .Select(x => new
                 {
-                    Culture = ExtractCulture(x.Path),
-                    Key = ExtractKey(x.Path),
+                    Culture = this.ExtractCulture(x.Path),
+                    Key = this.ExtractKey(x.Path),
                     Value = x.Value,
                 })
                 .Select(x => new
@@ -52,7 +53,7 @@ namespace Picums.Mvc.Localisation.Services
 
             foreach (var test in section.GetChildren())
             {
-                result = result.Union(GetAlldescendantsAndSelf(test));
+                result = result.Union(this.GetAlldescendantsAndSelf(test));
             }
 
             return result;
