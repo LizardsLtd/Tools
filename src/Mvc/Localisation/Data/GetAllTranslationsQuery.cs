@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using NLog;
 using Picums.Data.CQRS;
 using Picums.Data.CQRS.DataAccess;
@@ -17,7 +18,10 @@ namespace Picums.Mvc.Localisation.DataStorage
             this.logger = logger;
         }
 
-        public IAsyncQuery<IEnumerable<TranslationItem>> GetQuery(DatabaseParts parts)
+        public async Task<IEnumerable<TranslationItem>> Execute(DatabaseParts parts)
+            => await this.GetQuery(parts).Execute();
+
+        private IAsyncQuery<IEnumerable<TranslationItem>> GetQuery(DatabaseParts parts)
             => new QueryForAll<TranslationItem>(this.dataContext, this.logger, parts);
     }
 }
