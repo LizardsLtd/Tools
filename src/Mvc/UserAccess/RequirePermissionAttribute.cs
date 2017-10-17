@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Picums.Mvc.Authorization
+namespace Picums.Mvc.UserAccess
 {
     public sealed class RequirePermissionAttribute : Attribute
     {

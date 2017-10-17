@@ -7,9 +7,10 @@ using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Picums.Data.Claims;
-using Picums.Mvc.Authorization;
+using Picums.Mvc.Configuration;
+using Picums.Mvc.Configuration.Defaults;
 
-namespace Picums.Mvc.Configuration.Defaults
+namespace Picums.Mvc.UserAccess.Configuration
 {
     public sealed class AuthenticationDefault<TUser, TUserStore> : IDefault
         where TUser : class, IClaimsProvider, IUser
@@ -23,9 +24,7 @@ namespace Picums.Mvc.Configuration.Defaults
         }
 
         private void ConfigureApp(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory lg)
-        //=> app.UseAuthentication();{
-        {
-        }
+            => app.UseAuthentication();
 
         private void ConfigureServices(IServiceCollection services)
         {

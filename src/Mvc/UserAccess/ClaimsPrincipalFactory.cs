@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Options;
 using Picums.Data.Claims;
 
-namespace Picums.Mvc.Authorization
+namespace Picums.Mvc.UserAccess
 {
     internal sealed class ClaimsPrincipalFactory<TUser> : IUserClaimsPrincipalFactory<TUser>
          where TUser : class, IClaimsProvider

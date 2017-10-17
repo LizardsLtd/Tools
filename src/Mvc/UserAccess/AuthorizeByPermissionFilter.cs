@@ -5,13 +5,14 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.AspNetCore.Mvc.Filters;
 
-namespace Picums.Mvc.Authorization
+namespace Picums.Mvc.UserAccess
 {
     public sealed class AuthorizeByPermissionFilter : AuthorizeFilter
     {
         private readonly RedirectToActionResult redirectOnFailureAction;
 
-        public AuthorizeByPermissionFilter(string controller, string action) : base(GetPolicy())
+        public AuthorizeByPermissionFilter(string controller, string action)
+            : base(GetPolicy())
         {
             this.redirectOnFailureAction = new RedirectToActionResult(action, controller, new object[0]);
         }
@@ -30,9 +31,9 @@ namespace Picums.Mvc.Authorization
 
         private static AuthorizationPolicy GetPolicy()
             => new AuthorizationPolicyBuilder()
-                    .RequireAuthenticatedUser()
-                    .AddRequirements(new PermissionRequirement())
-                    .Build();
+                .RequireAuthenticatedUser()
+                .AddRequirements(new PermissionRequirement())
+                .Build();
 
         private bool IsUnAuthorizeAccess(AuthorizationFilterContext context)
             => context.HttpContext.User.Identity.IsAuthenticated

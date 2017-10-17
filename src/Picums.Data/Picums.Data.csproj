@@ -20,6 +20,7 @@
     <TargetFramework>netstandard1.6</TargetFramework>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <DebugType>full</DebugType>
+    <Authors>Picums</Authors>
   </PropertyGroup>
   <ItemGroup>
     <None Remove="stylecop.json" />

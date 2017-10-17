@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.Controllers;
 using Picums.Data.Claims;
 using MvcAuthorizationContext = Microsoft.AspNetCore.Mvc.Filters.AuthorizationFilterContext;
 
-namespace Picums.Mvc.Authorization
+namespace Picums.Mvc.UserAccess
 {
     internal sealed class PermissionRequirement : AuthorizationHandler<PermissionRequirement>, IAuthorizationRequirement
     {
