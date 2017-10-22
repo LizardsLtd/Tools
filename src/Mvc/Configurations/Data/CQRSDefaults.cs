@@ -18,7 +18,11 @@ namespace Picums.Mvc.Configuration.Defaults
                 , IHostingEnvironment env
                 , ILoggerFactory lg
                 , IEnumerable<object> arguments)
-            => app.ApplicationServices.GetService<IDataContextInitialiser>().Initialise().Wait();
+            => app
+                .ApplicationServices
+                .GetService<IDataContextInitialiser>()
+                .Initialise()
+                .Wait();
 
         protected override void ConfigureServices(IServiceCollection services, IEnumerable<object> arguments)
         {
@@ -26,7 +30,7 @@ namespace Picums.Mvc.Configuration.Defaults
                 .Cast<string>()
                 .Select(assemblyName => Assembly.Load(new AssemblyName(assemblyName)))
                 .ToList()
-                .ForEach(assembly => AutomaticDetection(services, assembly));
+                .ForEach(assembly => this.AutomaticDetection(services, assembly));
         }
 
         private void AutomaticDetection(IServiceCollection services, Assembly assembly)

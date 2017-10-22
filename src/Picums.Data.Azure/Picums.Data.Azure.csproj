@@ -4,7 +4,7 @@
     <Copyright>Picums 2016 - 2017</Copyright>
     <AssemblyTitle>Data.Azure</AssemblyTitle>
     <VersionPrefix>0.1.0</VersionPrefix>
-    <Version>0.5.2</Version>
+    <Version>0.5.3</Version>
     <AssemblyName>Picums.Data.Azure</AssemblyName>
     <PackageTags>azure;Picums</PackageTags>
     <RepositoryType>git</RepositoryType>
@@ -19,6 +19,11 @@
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <DebugType>full</DebugType>
   </PropertyGroup>
+  <ItemGroup>
+    <AdditionalFiles Include="..\..\stylecop.json" Link="stylecop.json">
+      <CopyToOutputDirectory></CopyToOutputDirectory>
+    </AdditionalFiles>
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Picums.Data\Picums.Data.csproj" />
     <ProjectReference Include="..\Picums.Maybe\Picums.Maybe.csproj" />

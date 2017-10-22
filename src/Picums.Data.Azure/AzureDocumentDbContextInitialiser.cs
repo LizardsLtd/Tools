@@ -29,7 +29,7 @@ namespace Picums.Data.Azure
         {
             this.logger.LogInformation("AzureDocumentDb: Disposing");
 
-            Dispose(true);
+            this.Dispose(true);
         }
 
         public Task Initialise()
@@ -41,18 +41,18 @@ namespace Picums.Data.Azure
 
         private void Dispose(bool disposing)
         {
-            if (!disposedValue)
+            if (!this.disposedValue)
             {
                 lock (this.client)
                 {
-                    if (!disposedValue)
+                    if (!this.disposedValue)
                     {
                         if (disposing)
                         {
                             this.client.Dispose();
                         }
 
-                        disposedValue = true;
+                        this.disposedValue = true;
                     }
                 }
             }
