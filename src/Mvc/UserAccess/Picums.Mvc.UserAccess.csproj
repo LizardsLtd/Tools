@@ -8,7 +8,7 @@
     <AssemblyName>Picums.Mvc.Configuration.Authentication</AssemblyName>
     <RootNamespace>Picums.Mvc.Configuration.Authentication</RootNamespace>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>0.2.0</Version>
+    <Version>0.3.0</Version>
     <AssemblyVersion>0.1.1.0</AssemblyVersion>
     <FileVersion>0.1.1.0</FileVersion>
     <Authors>Picums</Authors>

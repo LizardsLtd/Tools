@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -36,6 +37,9 @@ namespace Picums.Mvc.UserAccess.Configuration
             services
                 .AddIdentity<TUser, string>()
                 .AddDefaultTokenProviders();
+            services
+                .AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                .AddCookie();
             //services
             //    .AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
             //        .AddCookie(o =>
