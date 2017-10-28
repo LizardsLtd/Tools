@@ -1,15 +1,11 @@
-﻿using Microsoft.Azure.Search;
+﻿using System.Linq;
+using Microsoft.Azure.Search;
 using Microsoft.Extensions.Configuration;
-using System.Linq;
 
 namespace Picums.Search.Azure
 {
     public sealed class AzureSearchOptions
     {
-        public AzureSearchOptions()
-        {
-        }
-
         public AzureSearchOptions(
             string apiKey
             , string serviceName

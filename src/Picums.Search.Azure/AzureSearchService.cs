@@ -1,12 +1,13 @@
-﻿using Microsoft.Azure.Search;
-using Microsoft.Azure.Search.Models;
-using Microsoft.Extensions.Logging;
-using Picums.Maybe;
-using Picums.Search.Azure.KeyWords;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.Azure.Search;
+using Microsoft.Azure.Search.Models;
+using Microsoft.Extensions.Logging;
+using NLog;
+using Picums.Maybe;
+using Picums.Search.Azure.KeyWords;
 
 namespace Picums.Search.Azure.Services
 {
@@ -23,7 +24,7 @@ namespace Picums.Search.Azure.Services
         private readonly Lazy<TFactory> factory;
         private readonly ILogger<AzureSearchService<TResultItem, TFactory>> logger;
 
-        public AzureSearchService(ILoggerFactory loggerFactory, AzureSearchOptions options)
+        public AzureSearchService(LogManager loggerFactory, AzureSearchOptions options)
             : this(loggerFactory.CreateLogger<AzureSearchService<TResultItem, TFactory>>(), options)
         {
         }

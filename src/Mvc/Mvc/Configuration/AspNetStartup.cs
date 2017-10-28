@@ -41,7 +41,6 @@ namespace Picums.Mvc.Configuration
 
         public void ConfigureServices(IServiceCollection services)
         {
-            this.AddServices(services);
             this.AddMvcService(this.configuration.MVC);
             this.configuration.MVC.AddMvc(services);
             this.configuration.Razor.Use(services);
@@ -50,12 +49,8 @@ namespace Picums.Mvc.Configuration
 
         public void Configure(IApplicationBuilder app, ILoggerFactory loggerFactory)
         {
-            this.ConfigureAsp(this.configuration.ASP);
-            //this.ConfigureLogging(loggerFactory);
-
             this.configuration.ASP.Use(app, Environment, loggerFactory);
             this.configuration.MVC.Use(app);
-            this.ConfigureMiddlewares(app);
         }
 
         public void ApplyDefault<TDefault>(params object[] arguments) where TDefault : IDefault, new()
@@ -66,23 +61,11 @@ namespace Picums.Mvc.Configuration
             this.configuration.Apply(@default, arguments);
         }
 
-        protected virtual void ConfigureMiddlewares(IApplicationBuilder app)
-        {
-        }
-
         protected virtual void AddConfigurationBuilderDetails(ConfigurationBuilder provider)
         {
         }
 
-        protected virtual void AddServices(IServiceCollection services)
-        {
-        }
-
         protected virtual void AddMvcService(MvcConfigurator config)
-        {
-        }
-
-        protected virtual void ConfigureAsp(AspConfigurator config)
         {
         }
 

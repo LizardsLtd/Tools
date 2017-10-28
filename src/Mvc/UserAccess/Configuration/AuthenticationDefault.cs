@@ -29,10 +29,13 @@ namespace Picums.Mvc.UserAccess.Configuration
         private void ConfigureServices(IServiceCollection services)
         {
             services
+                .AddScoped<SignInManager<TUser>>()
                 .AddScoped<IUserStore<TUser>, TUserStore>()
                 .AddScoped<IUserClaimsPrincipalFactory<TUser>, ClaimsPrincipalFactory<TUser>>()
                 .AddScoped<IUserStore<TUser>, TUserStore>();
-            //.AddIdentity<TUser, string>();
+            services
+                .AddIdentity<TUser, string>()
+                .AddDefaultTokenProviders();
             //services
             //    .AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
             //        .AddCookie(o =>
