@@ -5,8 +5,8 @@
     <TargetFramework>netcoreapp2.0</TargetFramework>
     <ApplicationIcon />
     <StartupObject />
-    <AssemblyName>Picums.Mvc.Configuration.Authentication</AssemblyName>
-    <RootNamespace>Picums.Mvc.Configuration.Authentication</RootNamespace>
+    <AssemblyName>Picums.Mvc.UserAccess</AssemblyName>
+    <RootNamespace>Picums.Mvc.UserAccess</RootNamespace>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Version>0.3.1</Version>
     <AssemblyVersion>0.1.1.0</AssemblyVersion>
@@ -14,6 +14,7 @@
     <Authors>Picums</Authors>
     <Company>Picums</Company>
     <Product>Picums</Product>
+    <PackageId>Picums.Mvc.UserAccess</PackageId>
   </PropertyGroup>
 
   <ItemGroup>
