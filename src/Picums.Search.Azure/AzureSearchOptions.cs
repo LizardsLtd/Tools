@@ -6,6 +6,10 @@ namespace Picums.Search.Azure
 {
     public sealed class AzureSearchOptions
     {
+        public AzureSearchOptions()
+        {
+        }
+
         public AzureSearchOptions(
             string apiKey
             , string serviceName
