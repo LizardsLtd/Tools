@@ -1,8 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.Extensions.DependencyInjection;
@@ -30,27 +32,21 @@ namespace Picums.Mvc.UserAccess.Configuration
         private void ConfigureServices(IServiceCollection services)
         {
             services
-                .AddScoped<IUserStore<TUser>, TUserStore>()
                 .AddScoped<IUserClaimsPrincipalFactory<TUser>, ClaimsPrincipalFactory<TUser>>()
-                .AddScoped<IUserStore<TUser>, TUserStore>();
+                .AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                .AddCookie(options =>
+                {
+                    options.LoginPath = new PathString("/login/login");
+                    options.AccessDeniedPath = new PathString("/login/login");
+                    options.LogoutPath = new PathString("/login/logout");
+                    options.ExpireTimeSpan = TimeSpan.FromMinutes(5);
+                    options.SlidingExpiration = true;
+                });
             services
                 .AddIdentity<TUser, string>()
                 .AddSignInManager<SignInManager<TUser>>()
-                .AddDefaultTokenProviders();
-            services
-                .AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-                .AddCookie();
-            //services
-            //    .AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-            //        .AddCookie(o =>
-            //        {
-            //            o.LoginPath = new PathString("/login/login");
-            //            o.AccessDeniedPath = new PathString("/login/login");
-            //            o.LogoutPath = new PathString("/login/logout");
-            //            o.CookieSecure = CookieSecurePolicy.Always;
-            //            o.ExpireTimeSpan = TimeSpan.FromMinutes(5);
-            //            o.SlidingExpiration = true;
-            //        });
+                .AddDefaultTokenProviders()
+                .AddUserStore<TUserStore>();
         }
 
         private AuthorizeFilter BuildAuthorizeFilter()
