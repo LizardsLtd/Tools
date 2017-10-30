@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using NLog;
 using Picums.Data.CQRS.DataAccess;
@@ -28,8 +29,11 @@ namespace Picums.Data.CQRS.Queries
                 this.logger,
                 parts);
 
-        public Task<IEnumerable<TPayload>> Execute()
-            => new QueryForAllBuilder<TPayload>()
+        public async Task<IEnumerable<TPayload>> Execute()
+            => (await this.ExecuteQuery()).ToArray();
+
+        private async Task<IQueryable<TPayload>> ExecuteQuery()
+            => await new QueryForAllBuilder<TPayload>()
                 .WithDataContext(this.dataContext)
                 .WithLogger(this.logger)
                 .WithDatabaseParts(this.parts)

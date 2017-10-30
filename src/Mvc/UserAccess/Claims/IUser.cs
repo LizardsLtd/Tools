@@ -1,6 +1,6 @@
 ﻿using Picums.Data.Domain;
 
-namespace Picums.Data.Claims
+namespace Picums.Mvc.UserAccess.Claims
 {
     public interface IUser : IAggregateRoot
     {

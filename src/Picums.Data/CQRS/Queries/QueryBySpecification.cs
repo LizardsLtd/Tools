@@ -33,7 +33,7 @@ namespace Picums.Data.CQRS.Queries
                 .WithDataContext(this.dataContext)
                 .WithLogger(this.logger)
                 .WithDatabaseParts(this.parts)
-                .WithSpecification(specification)
+                .WithSpecification(this.specification)
                 .Execute();
     }
 }

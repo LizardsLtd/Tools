@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using Microsoft.AspNetCore.Authentication.Cookies;
+﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.Extensions.DependencyInjection;
@@ -31,22 +28,43 @@ namespace Picums.Mvc.UserAccess.Configuration
 
         private void ConfigureServices(IServiceCollection services)
         {
-            services
-                .AddScoped<IUserClaimsPrincipalFactory<TUser>, ClaimsPrincipalFactory<TUser>>()
-                .AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-                .AddCookie(options =>
-                {
-                    options.LoginPath = new PathString("/login/login");
-                    options.AccessDeniedPath = new PathString("/login/login");
-                    options.LogoutPath = new PathString("/login/logout");
-                    options.ExpireTimeSpan = TimeSpan.FromMinutes(5);
-                    options.SlidingExpiration = true;
-                });
+            //services
+            //    .AddScoped<IUserClaimsPrincipalFactory<TUser>, ClaimsPrincipalFactory<TUser>>()
+            //    .AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+            //    .AddCookie(options =>
+            //    {
+            //        options.LoginPath = new PathString("/login/login");
+            //        options.AccessDeniedPath = new PathString("/login/login");
+            //        options.LogoutPath = new PathString("/login/logout");
+            //        options.ExpireTimeSpan = TimeSpan.FromMinutes(5);
+            //        options.SlidingExpiration = true;
+            //    });
+            //services
+            //    .AddScoped<SignInManager<TUser>>()
+            //    .AddScoped<IUserStore<TUser>, TUserStore>()
+            //    .AddScoped<IUserClaimsPrincipalFactory<TUser>, ClaimsPrincipalFactory<TUser>>()
+            //    .AddScoped<IUserStore<TUser>, TUserStore>();
+            //services
+            //    .AddIdentity<TUser, string>()
+            //    .AddDefaultTokenProviders();
+            //services
+            //    .AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+            //    .AddCookie();
+            //services
+            //    .AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+            //        .AddCookie(o =>
+            //        {
+            //            o.LoginPath = new PathString("/login/login");
+            //            o.AccessDeniedPath = new PathString("/login/login");
+            //            o.LogoutPath = new PathString("/login/logout");
+            //            o.CookieSecure = CookieSecurePolicy.Always;
+            //            o.ExpireTimeSpan = TimeSpan.FromMinutes(5);
+            //            o.SlidingExpiration = true;
+            //        });
             services
                 .AddIdentity<TUser, string>()
-                .AddSignInManager<SignInManager<TUser>>()
-                .AddDefaultTokenProviders()
-                .AddUserStore<TUserStore>();
+                //.AddEntityFrameworkStores<ApplicationDbContext>()
+                .AddDefaultTokenProviders();
         }
 
         private AuthorizeFilter BuildAuthorizeFilter()

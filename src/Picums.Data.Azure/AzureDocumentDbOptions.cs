@@ -34,10 +34,10 @@ namespace Picums.Data.Azure
                 .GetChildren()
                 .Select(x => new
                 {
-                    Name = x["Name"]
+                    Name = x["Name"],
                 })
                 .Select(x => new AzureDatabase(x.Name, collections));
-            options.Endpoint = root["ConnectionString:AccountEndpoint"];
+            options.Endpoint = root["ConnectionString:AddIdentity"];
             options.AuthKey = root["ConnectionString:AccountKey"];
         }
     }

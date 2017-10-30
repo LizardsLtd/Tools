@@ -8,7 +8,7 @@
     <AssemblyName>Picums.Mvc.UserAccess</AssemblyName>
     <RootNamespace>Picums.Mvc.UserAccess</RootNamespace>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>0.3.3</Version>
+    <Version>0.4.0</Version>
     <AssemblyVersion>0.1.1.0</AssemblyVersion>
     <FileVersion>0.1.1.0</FileVersion>
     <Authors>Picums</Authors>
@@ -23,6 +23,7 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.Identity.Core" Version="2.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Identity.Stores" Version="2.0.0" />
   </ItemGroup>
 
   <ItemGroup>
