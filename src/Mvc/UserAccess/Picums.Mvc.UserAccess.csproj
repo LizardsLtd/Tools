@@ -18,6 +18,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Stores\FindUserByIdQuery.cs" />
+    <Compile Remove="Stores\FindUserByNameQuery.cs" />
+    <Compile Remove="Stores\UserExistsQuery.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <AdditionalFiles Include="..\..\..\stylecop.json" Link="stylecop.json" />
   </ItemGroup>
 

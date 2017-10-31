@@ -4,7 +4,7 @@ using System.Reflection;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Controllers;
-using Picums.Data.Claims;
+using Picums.Mvc.UserAccess.Claims;
 using MvcAuthorizationContext = Microsoft.AspNetCore.Mvc.Filters.AuthorizationFilterContext;
 
 namespace Picums.Mvc.UserAccess
@@ -17,7 +17,7 @@ namespace Picums.Mvc.UserAccess
         }
 
         protected override Task HandleRequirementAsync(AuthorizationHandlerContext context, PermissionRequirement requirement)
-                    => Task.Run(() => ExecutePermissionEvaluation(context, requirement));
+            => Task.Run(() => ExecutePermissionEvaluation(context, requirement));
 
         private void ExecutePermissionEvaluation(
            AuthorizationHandlerContext context
@@ -39,9 +39,7 @@ namespace Picums.Mvc.UserAccess
             }
         }
 
-        private bool CheckForPermissions(
-            AuthorizationHandlerContext context
-            , IEnumerable<CustomAttributeData> attributtes)
+        private bool CheckForPermissions(AuthorizationHandlerContext context, IEnumerable<CustomAttributeData> attributtes)
             => attributtes
                 .Where(x => x.AttributeType == typeof(RequirePermissionAttribute))
                 .ToList()

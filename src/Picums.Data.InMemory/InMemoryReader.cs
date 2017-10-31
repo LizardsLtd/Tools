@@ -8,7 +8,8 @@ using Picums.Maybe;
 
 namespace Picums.Data.InMemory
 {
-    public sealed class InMemoryReader<T> : IDataReader<T> where T : IAggregateRoot
+    public sealed class InMemoryReader<T> : IDataReader<T>
+        where T : IAggregateRoot
     {
         private List<T> list;
 
@@ -17,8 +18,8 @@ namespace Picums.Data.InMemory
             this.list = list;
         }
 
-        public Task<IEnumerable<T>> Collection(Func<T, bool> predicate)
-            => Task.FromResult(this.list.Where(predicate));
+        public Task<IQueryable<T>> Collection(Func<T, bool> predicate)
+            => Task.FromResult((IQueryable<T>)this.list.Where(predicate));
 
         public Task<Maybe<T>> Single(Func<T, bool> predicate, Func<IEnumerable<T>, T> reduce)
             => Task.FromResult<Maybe<T>>(reduce(this.list.Where(predicate)));

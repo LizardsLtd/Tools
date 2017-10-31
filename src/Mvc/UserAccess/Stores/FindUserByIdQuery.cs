@@ -1,11 +1,11 @@
 ﻿using System;
 using Microsoft.AspNetCore.Identity;
 using NLog;
-using Picums.Data.Claims;
 using Picums.Data.CQRS;
 using Picums.Data.CQRS.DataAccess;
 using Picums.Data.CQRS.Queries;
 using Picums.Maybe;
+using Picums.Mvc.UserAccess.Claims;
 
 namespace Picums.Mvc.UserAccess.Stores
 {

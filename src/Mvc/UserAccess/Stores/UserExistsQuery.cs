@@ -3,10 +3,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using NLog;
-using Picums.Data.Claims;
 using Picums.Data.CQRS;
 using Picums.Data.CQRS.DataAccess;
 using Picums.Data.Types;
+using Picums.Mvc.UserAccess.Claims;
 
 namespace Picums.Mvc.UserAccess.Stores
 {
