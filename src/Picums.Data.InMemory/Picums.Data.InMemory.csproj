@@ -25,6 +25,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <AdditionalFiles Include="..\..\stylecop.json" Link="stylecop.json" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="System.Collections" Version="4.3.0" />
   </ItemGroup>
 
