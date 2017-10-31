@@ -11,7 +11,9 @@ using Picums.Mvc.UserAccess.Claims;
 
 namespace Picums.Mvc.UserAccess.Stores
 {
-    public sealed class UserStore<TUser> : UserStoreBase<TUser, Guid, IdentityUserClaim<Guid>, IdentityUserLogin<Guid>, IdentityUserToken<Guid>>
+    public sealed class UserStore<TUser>
+            : UserStoreBase<TUser, Guid, IdentityUserClaim<Guid>, IdentityUserLogin<Guid>, IdentityUserToken<Guid>>, 
+            IUserStore<TUser>
         where TUser : IdentityUser<Guid>, IUser
     {
         private readonly ILogger logger;
