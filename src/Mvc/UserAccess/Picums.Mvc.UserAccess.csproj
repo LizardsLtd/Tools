@@ -1,14 +1,12 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <OutputType>Library</OutputType>
-    <TargetFramework>netcoreapp2.0</TargetFramework>
-    <ApplicationIcon />
-    <StartupObject />
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <AssemblyName>Picums.Mvc.UserAccess</AssemblyName>
     <RootNamespace>Picums.Mvc.UserAccess</RootNamespace>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>0.4.0</Version>
+    <Version>0.4.1</Version>
     <AssemblyVersion>0.1.1.0</AssemblyVersion>
     <FileVersion>0.1.1.0</FileVersion>
     <Authors>Picums</Authors>
@@ -36,5 +34,4 @@
     <ProjectReference Include="..\..\Picums.Data\Picums.Data.csproj" />
     <ProjectReference Include="..\Mvc\Picums.Mvc.csproj" />
   </ItemGroup>
-
 </Project>
