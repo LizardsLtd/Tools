@@ -10,7 +10,6 @@ using Microsoft.AspNetCore.Mvc.Localization;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Localization;
-using Microsoft.Extensions.Logging;
 using Picums.Mvc.Localisation;
 using Picums.Mvc.Middleware;
 
@@ -49,12 +48,12 @@ namespace Picums.Mvc.Configuration.Defaults
                 .Select(x => new CultureInfo(x))
                 .ToList();
 
-        private Action<IApplicationBuilder, IHostingEnvironment, ILoggerFactory> ConfigureRequestLocalisation(CultureStore cultureStore)
+        private Action<IApplicationBuilder, IHostingEnvironment> ConfigureRequestLocalisation(CultureStore cultureStore)
         {
             var defaultLanguage = new RequestCulture(cultureStore.DefaultCulture);
             var availableLanguages = cultureStore.AvailableCultures.ToList();
 
-            return (app, env, lg) => app.UseRequestLocalization(
+            return (app, env) => app.UseRequestLocalization(
                    new RequestLocalizationOptions
                    {
                        RequestCultureProviders = new List<IRequestCultureProvider>
@@ -67,13 +66,6 @@ namespace Picums.Mvc.Configuration.Defaults
                        SupportedUICultures = availableLanguages,
                        DefaultRequestCulture = defaultLanguage,
                    });
-
-            //        UseMiddlewareCultureRecognition(
-            //defaultLanguage
-            //,
-            //, new CookieRequestCultureProvider()
-            //, new QueryStringRequestCultureProvider()
-            //, new AcceptLanguageHeaderRequestCultureProvider());
         }
     }
 }
