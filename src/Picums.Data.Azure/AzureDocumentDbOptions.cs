@@ -37,7 +37,7 @@ namespace Picums.Data.Azure
                     Name = x["Name"],
                 })
                 .Select(x => new AzureDatabase(x.Name, collections));
-            options.Endpoint = config["ConnectionString:AddIdentity"];
+            options.Endpoint = config["ConnectionString:AccountEndpoint"];
             options.AuthKey = config["ConnectionString:AccountKey"];
         }
     }
