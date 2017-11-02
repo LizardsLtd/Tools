@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
 using Picums.Mvc.Configuration.Defaults;
 
 namespace Picums.Mvc.Configuration
@@ -15,7 +14,6 @@ namespace Picums.Mvc.Configuration
         protected AspNetStartup(IHostingEnvironment env)
         {
             var configurationBuilder = new ConfigurationBuilder();
-            //configurationBuilder.SetBasePath(env.ContentRootPath);
             this.AddConfigurationBuilderDetails(configurationBuilder);
 
             this.configuration = new StartupConfigurations(env, configurationBuilder.Build());
@@ -47,9 +45,9 @@ namespace Picums.Mvc.Configuration
             this.configuration.Services.Use(services);
         }
 
-        public void Configure(IApplicationBuilder app, ILoggerFactory loggerFactory)
+        public void Configure(IApplicationBuilder app)
         {
-            this.configuration.ASP.Use(app, Environment, loggerFactory);
+            this.configuration.ASP.Use(app, this.Environment);
             this.configuration.MVC.Use(app);
         }
 
@@ -66,10 +64,6 @@ namespace Picums.Mvc.Configuration
         }
 
         protected virtual void AddMvcService(MvcConfigurator config)
-        {
-        }
-
-        protected virtual void ConfigureLogging(ILoggerFactory loggerFactory)
         {
         }
     }

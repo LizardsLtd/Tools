@@ -1,12 +1,10 @@
 ﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Logging;
 using ASPConfigAction
     = System.Action
         <Microsoft.AspNetCore.Builder.IApplicationBuilder
-        , Microsoft.AspNetCore.Hosting.IHostingEnvironment
-        , Microsoft.Extensions.Logging.ILoggerFactory>;
+        , Microsoft.AspNetCore.Hosting.IHostingEnvironment>;
 
 namespace Picums.Mvc.Configuration
 {
@@ -22,9 +20,9 @@ namespace Picums.Mvc.Configuration
         public void Add(ASPConfigAction action)
             => this.actions.Add(action);
 
-        internal void Use(IApplicationBuilder app, IHostingEnvironment environment, ILoggerFactory loggerFactory)
+        internal void Use(IApplicationBuilder app, IHostingEnvironment environment)
         {
-            this.actions.ForEach(x => x(app, environment, loggerFactory));
+            this.actions.ForEach(x => x(app, environment));
         }
     }
 }

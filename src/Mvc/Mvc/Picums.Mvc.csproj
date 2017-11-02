@@ -3,7 +3,7 @@
     <Description>ASP.NET Core MVC implementation.</Description>
     <Copyright>Picums 2016 - 2017</Copyright>
     <AssemblyTitle>MVC</AssemblyTitle>
-    <Version>0.27.4</Version>
+    <Version>0.27.5</Version>
     <WarningsAsErrors>true</WarningsAsErrors>
     <AssemblyName>Picums.Mvc</AssemblyName>
   </PropertyGroup>
@@ -37,6 +37,7 @@
     <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="2.0.0" />
     <PackageReference Include="Microsoft.Extensions.Identity.Core" Version="2.0.0" />
     <PackageReference Include="Microsoft.Extensions.Localization.Abstractions" Version="2.0.0" />
+    <PackageReference Include="NLog" Version="4.5.0-beta07" />
    </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Picums.Data\Picums.Data.csproj" />
