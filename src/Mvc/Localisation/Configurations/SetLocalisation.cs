@@ -19,7 +19,7 @@ namespace Picums.Mvc.Configuration.Defaults
     {
         public void Apply(StartupConfigurations host, IEnumerable<object> arguments)
         {
-            var cultureStore = this.GetCultureStore(host.ConfigurationRoot);
+            var cultureStore = this.GetCultureStore(host.Configuration);
 
             host.Services.Add(x => x
                 .AddSingleton(cultureStore)
@@ -32,16 +32,16 @@ namespace Picums.Mvc.Configuration.Defaults
             host.Apply<MiddlewareDefault<CultureCookieSetterMiddleware>>();
         }
 
-        private CultureStore GetCultureStore(IConfigurationRoot configurationRoot)
+        private CultureStore GetCultureStore(IConfiguration configuration)
             => new CultureStore(
-                this.GetDefaultLanguage(configurationRoot, $"Culture:Default")
-                , this.GetAvailableLanguages(configurationRoot, $"Culture:Available"));
+                this.GetDefaultLanguage(configuration, $"Culture:Default")
+                , this.GetAvailableLanguages(configuration, $"Culture:Available"));
 
-        private CultureInfo GetDefaultLanguage(IConfigurationRoot configurationRoot, string selector)
-            => new CultureInfo(configurationRoot[selector]);
+        private CultureInfo GetDefaultLanguage(IConfiguration configuration, string selector)
+            => new CultureInfo(configuration[selector]);
 
-        private IEnumerable<CultureInfo> GetAvailableLanguages(IConfigurationRoot configurationRoot, string selector)
-            => configurationRoot
+        private IEnumerable<CultureInfo> GetAvailableLanguages(IConfiguration configuration, string selector)
+            => configuration
                 .GetSection(selector)
                 .GetChildren()
                 .Select(x => x.Value)

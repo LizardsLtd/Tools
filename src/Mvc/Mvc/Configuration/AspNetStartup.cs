@@ -11,17 +11,14 @@ namespace Picums.Mvc.Configuration
     {
         private readonly StartupConfigurations configuration;
 
-        protected AspNetStartup(IHostingEnvironment env)
+        protected AspNetStartup(IHostingEnvironment env, IConfiguration configuration)
         {
-            var configurationBuilder = new ConfigurationBuilder();
-            this.AddConfigurationBuilderDetails(configurationBuilder);
-
-            this.configuration = new StartupConfigurations(env, configurationBuilder.Build());
+            this.configuration = new StartupConfigurations(env, configuration);
         }
 
-        public IHostingEnvironment Environment => this.configuration.Environment;
+        public IConfiguration Configuration => this.configuration.Configuration;
 
-        public IConfigurationRoot ConfigurationRoot => this.configuration.ConfigurationRoot;
+        public IHostingEnvironment Environment => this.configuration.Environment;
 
         public AspNetStartup ConfigureOptions<TOption>(Action<TOption> configure) where TOption : class
         {
@@ -30,9 +27,10 @@ namespace Picums.Mvc.Configuration
             return this;
         }
 
-        public AspNetStartup ConfigureOptions<TOption>(Action<IConfigurationRoot, TOption> configure) where TOption : class
+        public AspNetStartup ConfigureOptions<TOption>(Action<IConfiguration, TOption> configure)
+            where TOption : class
         {
-            this.configuration.Services.Configure<TOption>(options => configure(this.ConfigurationRoot, options));
+            this.configuration.Services.Configure<TOption>(options => configure(this.Configuration, options));
 
             return this;
         }
@@ -51,7 +49,8 @@ namespace Picums.Mvc.Configuration
             this.configuration.MVC.Use(app);
         }
 
-        public void ApplyDefault<TDefault>(params object[] arguments) where TDefault : IDefault, new()
+        public void ApplyDefault<TDefault>(params object[] arguments)
+                where TDefault : IDefault, new()
             => this.ApplyDefault(new TDefault(), arguments);
 
         public void ApplyDefault(IDefault @default, params object[] arguments)

@@ -11,15 +11,15 @@ namespace Picums.Mvc.Configuration
         /// <param name="aSP"><see cref="ASP"/></param>
         /// <param name="razor"><see cref="Razor"/></param>
         /// <param name="environment"><see cref="Environment"/></param>
-        /// <param name="configurationRoot"><see cref="ConfigurationRoot"/></param>
-        public StartupConfigurations(IHostingEnvironment environment, IConfigurationRoot configurationRoot)
+        /// <param name="configurationRoot"><see cref="Configuration"/></param>
+        public StartupConfigurations(IHostingEnvironment environment, IConfiguration configuration)
         {
             this.MVC = new MvcConfigurator();
             this.ASP = new AspConfigurator();
             this.Razor = new RazorOptions();
             this.Services = new ServicesConfigurator();
             this.Environment = environment;
-            this.ConfigurationRoot = configurationRoot;
+            this.Configuration = configuration;
         }
 
         public MvcConfigurator MVC { get; }
@@ -32,7 +32,7 @@ namespace Picums.Mvc.Configuration
 
         public IHostingEnvironment Environment { get; }
 
-        public IConfigurationRoot ConfigurationRoot { get; }
+        public IConfiguration Configuration { get; }
 
         public void Apply<TDefault>(params object[] arguments) where TDefault : IDefault, new()
             => this.Apply(new TDefault(), arguments);

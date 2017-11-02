@@ -12,6 +12,6 @@ namespace Picums.Mvc.Localisation.Configuration.Defaults
         }
 
         private ITranslationSetProvider GetTranslationSetProvider()
-            => new JsonTransaltionProvider(this.ConfigurationRoot.GetSection("Translations"));
+            => new JsonTransaltionProvider(this.Configuration.GetSection("Translations"));
     }
 }

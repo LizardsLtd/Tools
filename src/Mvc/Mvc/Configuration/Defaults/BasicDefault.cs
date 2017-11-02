@@ -8,11 +8,11 @@ namespace Picums.Mvc.Configuration.Defaults
 {
     public abstract class BasicDefault : IDefault
     {
-        protected IConfigurationRoot ConfigurationRoot { get; private set; }
+        protected IConfiguration Configuration { get; private set; }
 
         public void Apply(StartupConfigurations host, IEnumerable<object> arguments)
         {
-            this.ConfigurationRoot = host.ConfigurationRoot;
+            this.Configuration = host.Configuration;
             host.ASP.Add((app, env) => this.ConfigureApp(app, env, arguments));
             host.Services.Add(services => this.ConfigureServices(services, arguments));
         }
