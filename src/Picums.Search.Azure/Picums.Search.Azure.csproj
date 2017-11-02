@@ -3,7 +3,7 @@
     <Description>Azure provider for Search services.</Description>
     <Copyright>Picums 2016 - 2017</Copyright>
     <AssemblyTitle>Search Azure</AssemblyTitle>
-    <Version>0.6.14</Version>
+    <Version>0.7.0</Version>
     <AssemblyName>Picums.Search.Azure</AssemblyName>
     <PackageTags>search;azure;Picums</PackageTags>
     <RepositoryType>git</RepositoryType>
