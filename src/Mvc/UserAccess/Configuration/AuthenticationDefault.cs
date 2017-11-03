@@ -32,6 +32,7 @@ namespace Picums.Mvc.UserAccess.Configuration
                 .AddIdentity<TUser, string>()
                 .AddDefaultTokenProviders();
             services
+                .AddScoped<GetAllUsersDynamicQuery<TUser>>()
                 .AddScoped<IUserStore<TUser>, UserStore<TUser>>();
         }
 
