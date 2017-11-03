@@ -27,10 +27,13 @@ namespace Picums.Mvc.UserAccess.Configuration
             => app.UseAuthentication();
 
         private void ConfigureServices(IServiceCollection services)
-            => services
-                .AddScoped<IUserStore<TUser>, UserStore<TUser>>()
+        {
+            services
                 .AddIdentity<TUser, string>()
                 .AddDefaultTokenProviders();
+            services
+                .AddScoped<IUserStore<TUser>, UserStore<TUser>>();
+        }
 
         private AuthorizeFilter BuildAuthorizeFilter()
             => new AuthorizeFilter(
