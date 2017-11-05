@@ -12,14 +12,14 @@ namespace Picums.Data.CQRS.Queries
     {
         private readonly IDataContext dataContext;
         private readonly ILogger logger;
-        private readonly DatabaseParts parts;
+        private readonly IDatabaseConfiguration configuration;
         private readonly Guid id;
 
-        public QueryById(IDataContext dataContext, ILogger logger, DatabaseParts parts, Guid id)
+        public QueryById(IDataContext dataContext, ILogger logger, IDatabaseConfiguration configuration, Guid id)
         {
             this.dataContext = dataContext;
             this.logger = logger;
-            this.parts = parts;
+            this.configuration = configuration;
             this.id = id;
         }
 
@@ -27,7 +27,6 @@ namespace Picums.Data.CQRS.Queries
             => new QueryByIdBuilder<TPayload>()
                 .WithDataContext(this.dataContext)
                 .WithLogger(this.logger)
-                .WithDatabaseParts(this.parts)
                 .WithId(this.id)
                 .Execute();
     }

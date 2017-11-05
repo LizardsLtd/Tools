@@ -22,7 +22,6 @@
     <PackageReference Include="FsUnit.xUnit" Version="3.0.0" />
     <PackageReference Include="xunit.core" Version="2.3.0" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.3.0" />
-    <PackageReference Include="ShouldFluent" Version="1.1.19" />
   </ItemGroup>
 
   <ItemGroup>

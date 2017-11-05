@@ -13,18 +13,15 @@ namespace Picums.Data.CQRS.Queries
     {
         private readonly IDataContext dataContext;
         private readonly ILogger logger;
-        private readonly DatabaseParts parts;
         private readonly Expression<Func<TPayload, bool>> specification;
 
         public QueryBySpecification(
             IDataContext dataContext,
             ILogger logger,
-            DatabaseParts parts,
             Expression<Func<TPayload, bool>> specification)
         {
             this.dataContext = dataContext;
             this.logger = logger;
-            this.parts = parts;
             this.specification = specification;
         }
 
@@ -32,7 +29,6 @@ namespace Picums.Data.CQRS.Queries
             => new QueryBySpecificationBuilder<TPayload>()
                 .WithDataContext(this.dataContext)
                 .WithLogger(this.logger)
-                .WithDatabaseParts(this.parts)
                 .WithSpecification(this.specification)
                 .Execute();
     }

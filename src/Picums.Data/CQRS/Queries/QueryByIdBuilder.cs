@@ -14,10 +14,9 @@ namespace Picums.Data.CQRS.Queries
     {
         public IAsyncQuery<Maybe<TPayload>> WithId(Guid id)
             => new Query<TPayload, Maybe<TPayload>>(
-                this.dataContext
-                , this.logger
-                , this.parts
-                , reader => this.Execute(reader, id));
+                this.dataContext,
+                this.logger,
+                reader => this.Execute(reader, id));
 
         protected override IWithId<IAsyncQuery<Maybe<TPayload>>> NextBuildStep() => this;
 

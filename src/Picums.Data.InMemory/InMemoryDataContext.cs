@@ -21,13 +21,16 @@ namespace Picums.Data.InMemory
         {
         }
 
-        public IDataReader<T> GetReader<T>(params object[] attributes) where T : IAggregateRoot
+        public IDataReader<T> GetReader<T>()
+                where T : IAggregateRoot
             => new InMemoryReader<T>(this.GetItemsCollection<T>());
 
-        public IDataWriter<T> GetWriter<T>(params object[] attributes) where T : IAggregateRoot
+        public IDataWriter<T> GetWriter<T>()
+                where T : IAggregateRoot
             => new InMemoryWriter<T>(this.GetItemsCollection<T>());
 
-        public List<T> GetItemsCollection<T>() where T : IAggregateRoot
+        public List<T> GetItemsCollection<T>()
+            where T : IAggregateRoot
         {
             var key = this.CreateKey<T>();
 
@@ -46,7 +49,8 @@ namespace Picums.Data.InMemory
             }
         }
 
-        private string CreateKey<T>() where T : IAggregateRoot
+        private string CreateKey<T>()
+                where T : IAggregateRoot
             => typeof(T).Name;
     }
 }

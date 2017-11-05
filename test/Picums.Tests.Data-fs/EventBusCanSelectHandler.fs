@@ -3,7 +3,6 @@ module Picums.Tests.Data.EventBusCanSelectHandler
     open System
     open Picums.Data.Events
     open Picums.Tests
-    open Should.Fluent
     open Xunit
     open FakeItEasy
 

@@ -13,13 +13,19 @@ namespace Picums.Data.Tests.CQRS.Queries
 {
     public sealed class QueryByIdTests
     {
-        private readonly DatabaseParts parts;
+        private readonly IDatabaseConfiguration configuration;
         private readonly IDataContext context;
         private readonly Guid id;
 
         public QueryByIdTests()
         {
-            this.parts = new DatabaseParts("test", "test");
+            this.configuration
+                = new InMemoryDbConfiguration(
+                    "test",
+                    new Dictionary<string, string>
+                    {
+                        {"SimpleAggregateRoot",  "test" },
+                    });
             this.id = Guid.NewGuid();
             var storage = new Dictionary<string, object>
             {
@@ -37,13 +43,13 @@ namespace Picums.Data.Tests.CQRS.Queries
             var query = new QueryById<SimpleAggregateRoot>(
                     this.context,
                     LogManager.GetCurrentClassLogger(),
-                    this.parts,
-                    id);
+                    this.configuration,
+                    this.id);
 
             var result = await query.Execute();
 
             result.IsSome.Should().Be(true);
-            result.Value.Id.Should().Be(id);
+            result.Value.Id.Should().Be(this.id);
         }
     }
 }

@@ -11,18 +11,15 @@ namespace Picums.Data.CQRS.Queries
     {
         private readonly IDataContext storageContext;
         private readonly ILogger logger;
-        private readonly DatabaseParts parts;
         private readonly Func<IDataReader<TPayload>, Task<TResult>> execute;
 
         public Query(
             IDataContext storageContext,
             ILogger logger,
-            DatabaseParts parts,
             Func<IDataReader<TPayload>, Task<TResult>> execute)
         {
             this.storageContext = storageContext;
             this.logger = logger;
-            this.parts = parts;
             this.execute = execute;
         }
 
@@ -30,6 +27,6 @@ namespace Picums.Data.CQRS.Queries
             => this.execute(this.Read());
 
         private IDataReader<TPayload> Read()
-            => this.storageContext.GetReader<TPayload>(this.parts);
+            => this.storageContext.GetReader<TPayload>();
     }
 }

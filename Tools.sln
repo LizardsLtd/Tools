@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26730.16
+VisualStudioVersion = 15.0.27004.2006
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{A6878F19-D808-40A3-AEB5-DEC78FA47D5C}"
 	ProjectSection(SolutionItems) = preProject
@@ -53,7 +53,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Picums.Mvc.Configuration.Da
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Picums.Mvc.UserAccess", "src\Mvc\UserAccess\Picums.Mvc.UserAccess.csproj", "{5362F5DF-2860-4F16-853B-1CC491774FC5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Picums.StyleCop", "src\Picums.StyleCop\Picums.StyleCop.csproj", "{DCC0A4CF-4AC0-4764-9698-59D4AA9786B7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Picums.StyleCop", "src\Picums.StyleCop\Picums.StyleCop.csproj", "{DCC0A4CF-4AC0-4764-9698-59D4AA9786B7}"
+EndProject
+Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "Picums.Tests.Data.Azure", "test\Picums.Tests.Data.Azure\Picums.Tests.Data.Azure.fsproj", "{EEB88385-E027-405D-9D25-9BB758605BCC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -293,6 +295,18 @@ Global
 		{DCC0A4CF-4AC0-4764-9698-59D4AA9786B7}.Release|x64.Build.0 = Release|Any CPU
 		{DCC0A4CF-4AC0-4764-9698-59D4AA9786B7}.Release|x86.ActiveCfg = Release|Any CPU
 		{DCC0A4CF-4AC0-4764-9698-59D4AA9786B7}.Release|x86.Build.0 = Release|Any CPU
+		{EEB88385-E027-405D-9D25-9BB758605BCC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EEB88385-E027-405D-9D25-9BB758605BCC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EEB88385-E027-405D-9D25-9BB758605BCC}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{EEB88385-E027-405D-9D25-9BB758605BCC}.Debug|x64.Build.0 = Debug|Any CPU
+		{EEB88385-E027-405D-9D25-9BB758605BCC}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{EEB88385-E027-405D-9D25-9BB758605BCC}.Debug|x86.Build.0 = Debug|Any CPU
+		{EEB88385-E027-405D-9D25-9BB758605BCC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EEB88385-E027-405D-9D25-9BB758605BCC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EEB88385-E027-405D-9D25-9BB758605BCC}.Release|x64.ActiveCfg = Release|Any CPU
+		{EEB88385-E027-405D-9D25-9BB758605BCC}.Release|x64.Build.0 = Release|Any CPU
+		{EEB88385-E027-405D-9D25-9BB758605BCC}.Release|x86.ActiveCfg = Release|Any CPU
+		{EEB88385-E027-405D-9D25-9BB758605BCC}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -319,6 +333,7 @@ Global
 		{FF6660E9-7930-4982-A879-92FA93B02DAA} = {86480E06-8AE8-443E-A9F4-894DA8CD556C}
 		{5362F5DF-2860-4F16-853B-1CC491774FC5} = {15353BE6-48B6-4208-A8F9-5548917EF551}
 		{DCC0A4CF-4AC0-4764-9698-59D4AA9786B7} = {893DD448-96BF-4115-94D6-E85E6466F614}
+		{EEB88385-E027-405D-9D25-9BB758605BCC} = {36D4F041-A871-48E0-89FC-9B47E9A71383}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {1ED67F7D-1272-45A2-A550-68A214A3899C}

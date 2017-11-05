@@ -8,26 +8,26 @@ using Picums.Data.Domain;
 namespace Picums.Data.CQRS.Queries
 {
     public sealed class QueryForAll<TPayload>
-        : IWithDatabaseParts<IAsyncQuery<IEnumerable<TPayload>>>
+        : IWithConfiguration<IAsyncQuery<IEnumerable<TPayload>>>
         , IAsyncQuery<IEnumerable<TPayload>>
             where TPayload : IAggregateRoot
     {
         private readonly IDataContext dataContext;
         private readonly ILogger logger;
-        private readonly DatabaseParts parts;
+        private readonly IDatabaseConfiguration configuration;
 
-        public QueryForAll(IDataContext dataContext, ILogger logger, DatabaseParts parts)
+        public QueryForAll(IDataContext dataContext, ILogger logger, IDatabaseConfiguration configuration)
         {
             this.dataContext = dataContext;
             this.logger = logger;
-            this.parts = parts;
+            this.configuration = configuration;
         }
 
-        public IAsyncQuery<IEnumerable<TPayload>> WithDatabaseParts(DatabaseParts parts)
+        public IAsyncQuery<IEnumerable<TPayload>> WithConfiguration(IDatabaseConfiguration configuration)
             => new QueryForAll<TPayload>(
                 this.dataContext,
                 this.logger,
-                parts);
+                configuration);
 
         public async Task<IEnumerable<TPayload>> Execute()
             => (await this.ExecuteQuery()).ToArray();
@@ -36,7 +36,6 @@ namespace Picums.Data.CQRS.Queries
             => await new QueryForAllBuilder<TPayload>()
                 .WithDataContext(this.dataContext)
                 .WithLogger(this.logger)
-                .WithDatabaseParts(this.parts)
                 .Execute();
     }
 }

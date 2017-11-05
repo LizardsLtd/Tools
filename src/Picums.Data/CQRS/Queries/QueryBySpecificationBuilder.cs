@@ -15,10 +15,9 @@ namespace Picums.Data.CQRS.Queries
     {
         public IAsyncQuery<IEnumerable<TPayload>> WithSpecification(Expression<Func<TPayload, bool>> specification)
             => new Query<TPayload, IEnumerable<TPayload>>(
-                this.dataContext
-                , this.logger
-                , this.parts
-                , reader => this.Execute(reader, specification));
+                this.dataContext,
+                this.logger,
+                reader => this.Execute(reader, specification));
 
         protected override IWithSpecification<IAsyncQuery<IEnumerable<TPayload>>, TPayload> NextBuildStep() => this;
 

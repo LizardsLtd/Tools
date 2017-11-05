@@ -22,7 +22,7 @@ namespace Picums.Mvc.Configuration
 
         public AspNetStartup ConfigureOptions<TOption>(Action<TOption> configure) where TOption : class
         {
-            this.configuration.Services.Configure<TOption>(configure);
+            this.configuration.Services.Configure(configure);
 
             return this;
         }

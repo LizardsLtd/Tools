@@ -9,64 +9,56 @@ namespace Picums.Data.Azure
 {
     public sealed class AzureDocumentDbContext : IDataContext
     {
+        private readonly AzureDocumentDbOptions options;
         private readonly Lazy<DocumentClient> client;
         private readonly ILogger logger;
         private bool disposedValue;
 
-        public AzureDocumentDbContext(
-            IOptions<AzureDocumentDbOptions> options
-            , ILoggerFactory loggerFactory)
+        public AzureDocumentDbContext(IOptions<AzureDocumentDbOptions> options, ILoggerFactory loggerFactory)
         {
-            this.client = new Lazy<DocumentClient>(
-                () => new DocumentClient(new Uri(options.Value.Endpoint), options.Value.AuthKey));
+            this.options = options.Value;
+            this.client = new Lazy<DocumentClient>(this.options.GetDocumentClient);
             this.logger = loggerFactory.CreateLogger<AzureDocumentDbContext>();
         }
 
         private bool IsClientCreated => this.client?.IsValueCreated ?? false;
 
-        public IDataReader<T> GetReader<T>(params object[] attributes)
-            where T : IAggregateRoot
+        public IDataReader<T> GetReader<T>()
+                    where T : IAggregateRoot
         {
-            (var databaseId, var collectionId) = UnwrapDatabaseParts(attributes);
+            (var databaseId, var collectionId) = this.options.GetDatabaseConfig<T>();
 
-            var collectionUri = GetCollectionUri(databaseId, collectionId);
+            var collectionUri = this.GetCollectionUri(databaseId, collectionId);
 
             this.logger.LogInformation(
                 $"AzureDocumentDb: Reader for {typeof(T).Name} and collection {collectionUri}");
 
             return new AzureDocumentDbDataReader<T>(
-                this.client.Value
-                , collectionUri
-                , this.logger);
+                this.client.Value,
+                collectionUri,
+                this.logger);
         }
 
-        public IDataWriter<T> GetWriter<T>(params object[] attributes)
+        public IDataWriter<T> GetWriter<T>()
             where T : IAggregateRoot
         {
-            (var databaseId, var collectionId) = UnwrapDatabaseParts(attributes);
+            (var databaseId, var collectionId) = this.options.GetDatabaseConfig<T>();
 
             this.logger.LogInformation(
                 $"AzureDocumentDb: Writer for {typeof(T).Name} and collection {collectionId}");
 
             return new AzureDocumentDbDataWriter<T>(
-                this.client.Value
-                , databaseId
-                , collectionId
-                , this.logger);
+                this.client.Value,
+                databaseId,
+                collectionId,
+                this.logger);
         }
 
         public void Dispose()
         {
             this.logger.LogInformation("AzureDocumentDb: Disposing");
 
-            Dispose(true);
-        }
-
-        private (string, string) UnwrapDatabaseParts(object[] attributes)
-        {
-            var parts = attributes[0] as DatabaseParts;
-
-            return (parts.Database, parts.Collection);
+            this.Dispose(true);
         }
 
         private Uri GetCollectionUri(string databaseId, string collectionId)
@@ -74,18 +66,18 @@ namespace Picums.Data.Azure
 
         private void Dispose(bool disposing)
         {
-            if (!disposedValue && IsClientCreated)
+            if (!this.disposedValue && this.IsClientCreated)
             {
                 lock (this.client)
                 {
-                    if (!disposedValue && IsClientCreated)
+                    if (!this.disposedValue && this.IsClientCreated)
                     {
                         if (disposing)
                         {
                             this.client.Value.Dispose();
                         }
 
-                        disposedValue = true;
+                        this.disposedValue = true;
                     }
                 }
             }

@@ -7,24 +7,17 @@ namespace Picums.Data.CQRS.Queries
     {
         protected IDataContext dataContext;
         protected ILogger logger;
-        protected DatabaseParts parts;
 
-        public TResult WithDatabaseParts(DatabaseParts parts)
-        {
-            this.parts = parts;
-            return this.NextBuildStep();
-        }
-
-        public IWithLogger<IWithDatabaseParts<TResult>> WithDataContext(IDataContext dataContext)
+        public IWithLogger<TResult> WithDataContext(IDataContext dataContext)
         {
             this.dataContext = dataContext;
             return this;
         }
 
-        public IWithDatabaseParts<TResult> WithLogger(ILogger logger)
+        public TResult WithLogger(ILogger logger)
         {
             this.logger = logger;
-            return this;
+            return this.NextBuildStep();
         }
 
         protected abstract TResult NextBuildStep();

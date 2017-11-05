@@ -13,16 +13,15 @@ namespace Picums.Mvc.UserAccess.Stores
     public sealed class GetAllUsersDynamicQuery<TUser> : QueryProvider<IQueryable<TUser>>, IsQuery
         where TUser : IdentityUser<Guid>, IUser
     {
-        public GetAllUsersDynamicQuery(IDataContext dataContext, ILogger logger, DatabaseParts parts)
-            : base(dataContext, logger, parts)
+        public GetAllUsersDynamicQuery(IDataContext dataContext, ILogger logger)
+            : base(dataContext, logger)
         {
         }
 
         public async Task<IQueryable<TUser>> Execute()
             => await new QueryForAllBuilder<TUser>()
-                .WithDataContext(this.dataContext)
-                .WithLogger(this.logger)
-                .WithDatabaseParts(this.parts)
+                .WithDataContext(this.DataContext)
+                .WithLogger(this.Logger)
                 .Execute();
     }
 }

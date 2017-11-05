@@ -12,7 +12,6 @@ namespace Picums.Data.CQRS.Queries
             => new Query<TPayload, IQueryable<TPayload>>(
                 this.dataContext,
                 this.logger,
-                this.parts,
                 x => x.Collection(t => true));
     }
 }

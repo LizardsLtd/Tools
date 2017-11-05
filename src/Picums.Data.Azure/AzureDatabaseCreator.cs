@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.Azure.Documents;
@@ -29,21 +28,18 @@ namespace Picums.Data.Azure
             return this;
         }
 
-        internal void EnsureCollectionExists(IEnumerable<string> collections)
+        internal void EnsureCollectionExists(string collection)
         {
             var databaseLink = UriFactory.CreateDatabaseUri(this.database.Id);
 
-            foreach (var collection in collections)
+            var documentCollection = new DocumentCollection
             {
-                var documentCollection = new DocumentCollection
-                {
-                    Id = collection
-                };
+                Id = collection,
+            };
 
-                if (this.DoesCollectionHasToBeCreated(databaseLink, documentCollection))
-                {
-                    this.CreateCollection(databaseLink, documentCollection).Wait();
-                }
+            if (this.DoesCollectionHasToBeCreated(databaseLink, documentCollection))
+            {
+                this.CreateCollection(databaseLink, documentCollection).Wait();
             }
         }
 

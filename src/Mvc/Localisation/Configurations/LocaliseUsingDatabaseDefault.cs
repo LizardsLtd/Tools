@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using Microsoft.Extensions.DependencyInjection;
 using NLog;
 using Picums.Data.CQRS;
@@ -14,26 +13,27 @@ namespace Picums.Mvc.Localisation.Configuration.Defaults
     {
         protected override void ConfigureServices(IServiceCollection services, IEnumerable<object> arguments)
         {
-            var databasePartsForTranslation = this.GetParts(arguments);
             services
-                .AddTransient(serviceProvider => this.GetNewTranslationCommandHandler(serviceProvider, databasePartsForTranslation))
-                .AddTransient(serviceProvider => this.GetTranslationSetProvider(serviceProvider, databasePartsForTranslation));
+                .AddTransient(serviceProvider => this.GetNewTranslationCommandHandler(serviceProvider))
+                .AddTransient(serviceProvider => this.GetTranslationSetProvider(serviceProvider));
         }
 
-        private ICommandHandler GetNewTranslationCommandHandler(IServiceProvider serviceProvider, DatabaseParts databasePartsForTranslation)
+        private ICommandHandler GetNewTranslationCommandHandler(IServiceProvider serviceProvider)
             => new AddNewTranslationCommandHandler(
                 serviceProvider.GetService<IDataContext>(),
-                serviceProvider.GetService<ILogger>(),
-                databasePartsForTranslation);
+                serviceProvider.GetService<ILogger>());
 
-        private ITranslationSetProvider GetTranslationSetProvider(IServiceProvider serviceProvider, DatabaseParts parts)
-            => new DataTranslationProvider(this.GetTranslationQuery(serviceProvider), parts, this.GetLoggerFactory(serviceProvider));
+        private ITranslationSetProvider GetTranslationSetProvider(IServiceProvider serviceProvider)
+            => new DataTranslationProvider(
+                this.GetTranslationQuery(serviceProvider),
+                this.GetLogger(serviceProvider));
 
         private GetAllTranslationsQuery GetTranslationQuery(IServiceProvider serviceProvider)
-            => new GetAllTranslationsQuery(serviceProvider.GetService<IDataContext>(), serviceProvider.GetService<ILogger>());
+            => new GetAllTranslationsQuery(
+                serviceProvider.GetService<IDataContext>(),
+                this.GetLogger(serviceProvider),
+                serviceProvider.GetService<IDatabaseConfiguration>());
 
-        private DatabaseParts GetParts(IEnumerable<object> arguments) => arguments.ElementAt(0) as DatabaseParts;
-
-        private ILogger GetLoggerFactory(IServiceProvider serviceProvider) => serviceProvider.GetRequiredService<ILogger>();
+        private ILogger GetLogger(IServiceProvider serviceProvider) => serviceProvider.GetRequiredService<ILogger>();
     }
 }

@@ -1,8 +1,5 @@
 ﻿namespace Picums.Data.CQRS.Queries
 {
-    public interface IQueryBuilder<TResult>
-        : IWithDataContext<IWithLogger<IWithDatabaseParts<TResult>>>
-        , IWithLogger<IWithDatabaseParts<TResult>>
-        , IWithDatabaseParts<TResult>
+    public interface IQueryBuilder<TResult> : IWithDataContext<IWithLogger<TResult>>, IWithLogger<TResult>
     { }
 }

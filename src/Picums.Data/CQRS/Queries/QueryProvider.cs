@@ -5,15 +5,14 @@ namespace Picums.Data.CQRS.Queries
 {
     public abstract class QueryProvider<TResult>
     {
-        protected readonly IDataContext dataContext;
-        protected readonly ILogger logger;
-        protected readonly DatabaseParts parts;
-
-        public QueryProvider(IDataContext dataContext, ILogger logger, DatabaseParts parts)
+        public QueryProvider(IDataContext dataContext, ILogger logger)
         {
-            this.dataContext = dataContext;
-            this.logger = logger;
-            this.parts = parts;
+            this.DataContext = dataContext;
+            this.Logger = logger;
         }
+
+        public ILogger Logger { get; }
+
+        protected IDataContext DataContext { get; }
     }
 }

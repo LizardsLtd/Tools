@@ -8,27 +8,26 @@ namespace Picums.Mvc.Localisation.DataStorage
     public sealed class AddNewTranslationCommandHandler : ICommandHandler<AddNewTranslationCommand>
     {
         private readonly IDataContext storageContext;
-        private readonly DatabaseParts parts;
+        private readonly IDatabaseConfiguration configuration;
         private readonly FindTranslationByKeyQuery query;
 
-        public AddNewTranslationCommandHandler(IDataContext storageContext, ILogger logger, DatabaseParts parts)
+        public AddNewTranslationCommandHandler(IDataContext storageContext, ILogger logger)
         {
             this.storageContext = storageContext;
-            this.parts = parts;
-
-            this.query = new FindTranslationByKeyQuery(storageContext, logger, parts);
+            this.query = new FindTranslationByKeyQuery(storageContext, logger);
         }
 
         public void Dispose()
         {
+            throw new System.NotImplementedException();
         }
 
         public async Task Handle(AddNewTranslationCommand command)
         {
-            var translationItem = await GetTranslationItem(command);
+            var translationItem = await this.GetTranslationItem(command);
 
             await this.storageContext
-                .GetWriter<TranslationItem>(this.parts)
+                .GetWriter<TranslationItem>()
                 .InsertNew(translationItem);
         }
 
