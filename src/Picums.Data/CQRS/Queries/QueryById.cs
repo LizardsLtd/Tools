@@ -12,14 +12,12 @@ namespace Picums.Data.CQRS.Queries
     {
         private readonly IDataContext dataContext;
         private readonly ILogger logger;
-        private readonly IDatabaseConfiguration configuration;
         private readonly Guid id;
 
-        public QueryById(IDataContext dataContext, ILogger logger, IDatabaseConfiguration configuration, Guid id)
+        public QueryById(IDataContext dataContext, ILogger logger,  Guid id)
         {
             this.dataContext = dataContext;
             this.logger = logger;
-            this.configuration = configuration;
             this.id = id;
         }
 

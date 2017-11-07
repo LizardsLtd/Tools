@@ -10,13 +10,11 @@ namespace Picums.Mvc.Localisation.DataStorage
     {
         private readonly IDataContext dataContext;
         private readonly ILogger logger;
-        private readonly IDatabaseConfiguration configuration;
 
-        public GetAllTranslationsQuery(IDataContext dataContext, ILogger logger, IDatabaseConfiguration configuration)
+        public GetAllTranslationsQuery(IDataContext dataContext, ILogger logger)
         {
             this.dataContext = dataContext;
             this.logger = logger;
-            this.configuration = configuration;
         }
 
         public async Task<IEnumerable<TranslationItem>> Execute()

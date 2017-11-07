@@ -14,19 +14,11 @@ namespace Picums.Data.Tests.CQRS.Queries
 {
     public sealed class QueryForAllTests
     {
-        private readonly IDatabaseConfiguration configuration;
         private readonly IDataContext context;
         private readonly Guid id;
 
         public QueryForAllTests()
         {
-            this.configuration
-                = new InMemoryDbConfiguration(
-                    "test",
-                    new Dictionary<string, string>
-                    {
-                        {"SimpleAggregateRoot",  "test" },
-                    });
             this.id = Guid.NewGuid();
             var storage = new Dictionary<string, object>
             {
@@ -43,8 +35,7 @@ namespace Picums.Data.Tests.CQRS.Queries
         {
             var query = new QueryForAll<SimpleAggregateRoot>(
                     this.context,
-                    LogManager.GetCurrentClassLogger(),
-                    this.configuration);
+                    LogManager.GetCurrentClassLogger());
 
             var result = await query.Execute();
 

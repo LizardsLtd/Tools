@@ -31,8 +31,7 @@ namespace Picums.Mvc.Localisation.Configuration.Defaults
         private GetAllTranslationsQuery GetTranslationQuery(IServiceProvider serviceProvider)
             => new GetAllTranslationsQuery(
                 serviceProvider.GetService<IDataContext>(),
-                this.GetLogger(serviceProvider),
-                serviceProvider.GetService<IDatabaseConfiguration>());
+                this.GetLogger(serviceProvider));
 
         private ILogger GetLogger(IServiceProvider serviceProvider) => serviceProvider.GetRequiredService<ILogger>();
     }

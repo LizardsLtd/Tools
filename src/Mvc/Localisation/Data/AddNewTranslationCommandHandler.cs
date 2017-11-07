@@ -8,7 +8,6 @@ namespace Picums.Mvc.Localisation.DataStorage
     public sealed class AddNewTranslationCommandHandler : ICommandHandler<AddNewTranslationCommand>
     {
         private readonly IDataContext storageContext;
-        private readonly IDatabaseConfiguration configuration;
         private readonly FindTranslationByKeyQuery query;
 
         public AddNewTranslationCommandHandler(IDataContext storageContext, ILogger logger)
