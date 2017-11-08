@@ -1,4 +1,6 @@
-﻿namespace Picums.Mvc.Localisation.DataStorage
+﻿using Picums.Data.CQRS;
+
+namespace Picums.Mvc.Localisation.DataStorage
 {
     public sealed class AddNewTranslationCommand : CommandBase, ICommand
     {
