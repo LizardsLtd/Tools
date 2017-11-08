@@ -24,7 +24,7 @@ namespace Picums.Data.Azure
         private bool IsClientCreated => this.client?.IsValueCreated ?? false;
 
         public IDataReader<T> GetReader<T>()
-                    where T : IAggregateRoot
+            where T : IAggregateRoot
         {
             (var databaseId, var collectionId) = this.options.GetDatabaseConfig<T>();
 
