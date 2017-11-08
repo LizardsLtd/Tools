@@ -26,7 +26,7 @@
     <AdditionalFiles Include="..\..\..\stylecop.json" Link="stylecop.json" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Markdig" Version="0.13.3" />
+    <PackageReference Include="Markdig" Version="0.14.3" />
     <PackageReference Include="Microsoft.Extensions.Configuration" Version="2.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics" Version="2.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.0.0" />
@@ -37,7 +37,7 @@
     <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="2.0.0" />
     <PackageReference Include="Microsoft.Extensions.Identity.Core" Version="2.0.0" />
     <PackageReference Include="Microsoft.Extensions.Localization.Abstractions" Version="2.0.0" />
-    <PackageReference Include="NLog" Version="4.5.0-beta07" />
+    <PackageReference Include="NLog" Version="5.0.0-beta11" />
    </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Picums.Data\Picums.Data.csproj" />
