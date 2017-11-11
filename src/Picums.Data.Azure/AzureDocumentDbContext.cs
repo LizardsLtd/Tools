@@ -26,6 +26,8 @@ namespace Picums.Data.Azure
         public IDataReader<T> GetReader<T>()
             where T : IAggregateRoot
         {
+            this.logger.LogDebug($"AzudeDocumentDB: TypeOfArgumnet: ${typeof(T).Name}");
+
             (var databaseId, var collectionId) = this.options.GetDatabaseConfig<T>();
             this.logger.LogDebug($"AzudeDocumentDB: Datebase: ${databaseId}");
             this.logger.LogDebug($"AzudeDocumentDB: CollectionId: ${collectionId}");
