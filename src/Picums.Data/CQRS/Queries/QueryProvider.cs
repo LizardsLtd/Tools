@@ -11,7 +11,7 @@ namespace Picums.Data.CQRS.Queries
             this.Logger = logger;
         }
 
-        public ILogger Logger { get; }
+        protected ILogger Logger { get; }
 
         protected IDataContext DataContext { get; }
     }
