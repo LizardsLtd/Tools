@@ -4,17 +4,25 @@ using System.Linq;
 using System.Security;
 using Microsoft.Azure.Documents.Client;
 using Microsoft.Extensions.Configuration;
+using NLog;
 using Picums.Data.Domain;
 
 namespace Picums.Data.Azure
 {
     public sealed class AzureDocumentDbOptions
     {
+        private readonly Logger logger;
+
         private string endpoint;
 
         private string authKey;
 
         private IEnumerable<AzureDatabaseCollection> databases;
+
+        public AzureDocumentDbOptions()
+        {
+            this.logger = LogManager.GetCurrentClassLogger();
+        }
 
         private Uri EndpointUri => new Uri(this.endpoint);
 

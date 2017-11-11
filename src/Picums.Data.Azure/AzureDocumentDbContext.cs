@@ -27,6 +27,8 @@ namespace Picums.Data.Azure
             where T : IAggregateRoot
         {
             (var databaseId, var collectionId) = this.options.GetDatabaseConfig<T>();
+            this.logger.LogDebug($"AzudeDocumentDB: Datebase: ${databaseId}");
+            this.logger.LogDebug($"AzudeDocumentDB: CollectionId: ${collectionId}");
 
             var collectionUri = this.GetCollectionUri(databaseId, collectionId);
 
@@ -43,6 +45,8 @@ namespace Picums.Data.Azure
             where T : IAggregateRoot
         {
             (var databaseId, var collectionId) = this.options.GetDatabaseConfig<T>();
+            this.logger.LogDebug($"AzudeDocumentDB: Datebase: ${databaseId}");
+            this.logger.LogDebug($"AzudeDocumentDB: CollectionId: ${collectionId}");
 
             this.logger.LogInformation(
                 $"AzureDocumentDb: Writer for {typeof(T).Name} and collection {collectionId}");
