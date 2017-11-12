@@ -10,6 +10,6 @@ namespace Picums.Mvc.Configuration
             => options.AddFilterMetadata(new TFilterMetadata());
 
         public static Configurator<MvcOptions> AddFilterMetadata(this Configurator<MvcOptions> options, IFilterMetadata filter)
-            => options.Add(option => option.Filters.Add(filter));
+            => options.Add(option => option.Filters.Insert(0, filter));
     }
 }

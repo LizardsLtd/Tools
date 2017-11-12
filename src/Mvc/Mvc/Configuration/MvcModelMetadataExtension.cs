@@ -10,6 +10,6 @@ namespace Picums.Mvc.Configuration
             => options.AddMetadataProvider(new TMetadata());
 
         public static Configurator<MvcOptions> AddMetadataProvider(this Configurator<MvcOptions> options, IMetadataDetailsProvider provider)
-            => options.Add(option => option.ModelMetadataDetailsProviders.Add(provider));
+            => options.Add(option => option.ModelMetadataDetailsProviders.Insert(0, provider));
     }
 }

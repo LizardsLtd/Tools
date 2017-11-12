@@ -11,7 +11,7 @@ namespace Picums.Mvc.Configuration
             => options.AddApplicationConvention(new T());
 
         public static Configurator<MvcOptions> AddApplicationConvention(this Configurator<MvcOptions> options, IApplicationModelConvention convention)
-            => options.Add(option => option.Conventions.Add(convention));
+            => options.Add(option => option.Conventions.Insert(0, convention));
 
         public static Configurator<MvcOptions> AddControllerConvention<T>(this Configurator<MvcOptions> options)
                 where T : IControllerModelConvention, new()
