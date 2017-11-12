@@ -50,7 +50,7 @@ namespace Picums.Mvc.Configuration.Defaults
             services
                 .AddSingleton(this.cultureStore)
                 .AddSingleton<IdentityErrorDescriber, LocalisedIdentityErrorDescriber>()
-                .AddSingleton<IStringLocalizer, ConfigurableStringLocalizer>()
+                .AddScoped<IStringLocalizer, ConfigurableStringLocalizer>()
                 .AddScoped<IHtmlLocalizer, HtmlLocalizer>();
         }
     }
