@@ -1,5 +1,4 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc.ModelBinding.Metadata;
 using Microsoft.Extensions.Localization;
@@ -21,12 +20,9 @@ namespace Picums.Mvc.Localisation.Services
                 ?.Where(attribute => attribute is DisplayAttribute)
                 .Cast<DisplayAttribute>()
                 .ToList()
-                .ForEach(x => x.Name = Translate(x, context));
+                .ForEach(x => x.Name = this.Translate(x, context));
 
-        private string Translate
-        (
-            DisplayAttribute attribute,
-            DisplayMetadataProviderContext context)
+        private string Translate(DisplayAttribute attribute, DisplayMetadataProviderContext context)
         {
             var name = attribute.Name ?? $"{context.Key.ContainerType.Name}.{context.Key.Name}";
 

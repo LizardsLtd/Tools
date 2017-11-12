@@ -14,19 +14,19 @@ namespace Picums.Mvc.Configuration
         /// <param name="configurationRoot"><see cref="Configuration"/></param>
         public StartupConfigurations(IHostingEnvironment environment, IConfiguration configuration)
         {
-            this.MVC = new MvcConfigurator();
+            this.MVC = new MvcConfig();
             this.ASP = new AspConfigurator();
-            this.Razor = new RazorOptions();
+            this.Razor = new RazorConfig();
             this.Services = new ServicesConfigurator();
             this.Environment = environment;
             this.Configuration = configuration;
         }
 
-        public MvcConfigurator MVC { get; }
+        public MvcConfig MVC { get; }
 
         public AspConfigurator ASP { get; }
 
-        public RazorOptions Razor { get; }
+        public RazorConfig Razor { get; }
 
         public ServicesConfigurator Services { get; }
 

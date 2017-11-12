@@ -23,7 +23,7 @@ namespace Picums.Mvc.UserAccess.Configuration
         {
             host.Services.Add(this.ConfigureServices);
             host.ASP.Add(this.ConfigureApp);
-            host.MVC.Filters.Add(this.BuildAuthorizeFilter());
+            host.MVC.Options.AddFilterMetadata(this.BuildAuthorizeFilter());
         }
 
         /// <summary>

@@ -9,7 +9,7 @@ namespace Picums.Mvc.Configuration.Data
     {
         public void Apply(StartupConfigurations host, IEnumerable<object> arguments)
         {
-            host.MVC.Models
+            host.MVC.Options
                 .AddModelBinderProvider<Address, AddressModelBinder>()
                 .AddModelBinderProvider<BankDetails, BankDetailsModelBinder>()
                 .AddModelBinderProvider<Email, EmailModelBinder>();

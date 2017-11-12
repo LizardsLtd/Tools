@@ -1,59 +1,30 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
+﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc.Localization;
-using Microsoft.Extensions.Configuration;
+using Microsoft.AspNetCore.Mvc.ModelBinding.Metadata;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Localization;
 using Picums.Mvc.Localisation;
+using Picums.Mvc.Localisation.Services;
 using Picums.Mvc.Middleware;
 
 namespace Picums.Mvc.Configuration.Defaults
 {
-    public sealed class SetLocalisation : IDefault
+    public sealed class SetLocalisation : BasicDefault
     {
-        public void Apply(StartupConfigurations host, IEnumerable<object> arguments)
+        private CultureStore cultureStore;
+
+        protected override void Configure()
         {
-            var cultureStore = this.GetCultureStore(host.Configuration);
-
-            host.Services.Add(x => x
-                .AddSingleton(cultureStore)
-                .AddSingleton<IdentityErrorDescriber, LocalisedIdentityErrorDescriber>()
-                .AddScoped<IStringLocalizer, ConfigurableStringLocalizer>()
-                .AddScoped<IHtmlLocalizer, HtmlLocalizer>());
-
-            host.ASP.Add(this.ConfigureRequestLocalisation(cultureStore));
-
-            host.Apply<MiddlewareDefault<CultureCookieSetterMiddleware>>();
+            this.cultureStore = new CultureStore(this.Configuration);
         }
 
-        private CultureStore GetCultureStore(IConfiguration configuration)
-            => new CultureStore(
-                this.GetDefaultLanguage(configuration, $"Culture:Default")
-                , this.GetAvailableLanguages(configuration, $"Culture:Available"));
-
-        private CultureInfo GetDefaultLanguage(IConfiguration configuration, string selector)
-            => new CultureInfo(configuration[selector]);
-
-        private IEnumerable<CultureInfo> GetAvailableLanguages(IConfiguration configuration, string selector)
-            => configuration
-                .GetSection(selector)
-                .GetChildren()
-                .Select(x => x.Value)
-                .Select(x => new CultureInfo(x))
-                .ToList();
-
-        private Action<IApplicationBuilder, IHostingEnvironment> ConfigureRequestLocalisation(CultureStore cultureStore)
+        protected override void ConfigureApp(IApplicationBuilder app, IHostingEnvironment env, IEnumerable<object> arguments)
         {
-            var defaultLanguage = new RequestCulture(cultureStore.DefaultCulture);
-            var availableLanguages = cultureStore.AvailableCultures.ToList();
-
-            return (app, env) => app.UseRequestLocalization(
+            app.UseRequestLocalization(
                    new RequestLocalizationOptions
                    {
                        RequestCultureProviders = new List<IRequestCultureProvider>
@@ -62,10 +33,23 @@ namespace Picums.Mvc.Configuration.Defaults
                             new QueryStringRequestCultureProvider(),
                             new CookieRequestCultureProvider(),
                        },
-                       SupportedCultures = availableLanguages,
-                       SupportedUICultures = availableLanguages,
-                       DefaultRequestCulture = defaultLanguage,
+                       SupportedCultures = this.cultureStore.AvailableCultures,
+                       SupportedUICultures = this.cultureStore.AvailableCultures,
+                       DefaultRequestCulture = this.cultureStore.RequestCulture,
                    });
+            app.UseMiddleware<CultureCookieSetterMiddleware>();
+        }
+
+        protected override void ConfigureServices(IServiceCollection services, IEnumerable<object> arguments)
+        {
+            services
+                .AddSingleton(this.cultureStore)
+                .AddSingleton<IdentityErrorDescriber, LocalisedIdentityErrorDescriber>()
+                .AddSingleton<IStringLocalizer, ConfigurableStringLocalizer>()
+                .AddScoped<IHtmlLocalizer, HtmlLocalizer>()
+                .AddScoped<IDisplayMetadataProvider, DisplayAttributeLocalisationProvider>()
+                .AddScoped<IDisplayMetadataProvider, RequiredValueAttributeLocalisationProvider>()
+                .AddScoped<IValidationMetadataProvider, ValidationAttributeLocalisationProvider>();
         }
     }
 }

@@ -7,7 +7,7 @@ namespace Picums.Mvc.Configuration.Defaults
     {
         public void Apply(StartupConfigurations host, IEnumerable<object> arguments)
         {
-            host.MVC.Conventions.AddControllerConvention<FeatureConvention>();
+            host.MVC.Options.AddControllerConvention<FeatureConvention>();
 
             host.Razor.Options(options
                 => new ViewLocationFormatsUpdater(options)

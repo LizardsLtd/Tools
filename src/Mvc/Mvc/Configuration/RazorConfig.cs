@@ -5,11 +5,11 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace Picums.Mvc.Configuration
 {
-    public sealed class RazorOptions
+    public sealed class RazorConfig
     {
         private readonly List<Action<RazorViewEngineOptions>> actions;
 
-        internal RazorOptions()
+        internal RazorConfig()
             => this.actions = new List<Action<RazorViewEngineOptions>>();
 
         internal void Options(Action<RazorViewEngineOptions> options)

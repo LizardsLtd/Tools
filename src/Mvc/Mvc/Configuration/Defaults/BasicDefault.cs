@@ -10,11 +10,20 @@ namespace Picums.Mvc.Configuration.Defaults
     {
         protected IConfiguration Configuration { get; private set; }
 
+        protected StartupConfigurations Host { get; private set; }
+
         public void Apply(StartupConfigurations host, IEnumerable<object> arguments)
         {
             this.Configuration = host.Configuration;
+            this.Host = host;
+
+            this.Configure();
             host.ASP.Add((app, env) => this.ConfigureApp(app, env, arguments));
             host.Services.Add(services => this.ConfigureServices(services, arguments));
+        }
+
+        protected virtual void Configure()
+        {
         }
 
         protected virtual void ConfigureApp(

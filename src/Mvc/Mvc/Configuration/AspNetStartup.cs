@@ -7,7 +7,7 @@ using Picums.Mvc.Configuration.Defaults;
 
 namespace Picums.Mvc.Configuration
 {
-    public abstract partial class AspNetStartup
+    public abstract class AspNetStartup
     {
         private readonly StartupConfigurations configuration;
 
@@ -20,7 +20,8 @@ namespace Picums.Mvc.Configuration
 
         public IHostingEnvironment Environment => this.configuration.Environment;
 
-        public AspNetStartup ConfigureOptions<TOption>(Action<TOption> configure) where TOption : class
+        public AspNetStartup ConfigureOptions<TOption>(Action<TOption> configure)
+            where TOption : class
         {
             this.configuration.Services.Configure(configure);
 
@@ -37,7 +38,6 @@ namespace Picums.Mvc.Configuration
 
         public void ConfigureServices(IServiceCollection services)
         {
-            this.AddMvcService(this.configuration.MVC);
             this.configuration.MVC.AddMvc(services);
             this.configuration.Razor.Use(services);
             this.configuration.Services.Use(services);
@@ -59,10 +59,6 @@ namespace Picums.Mvc.Configuration
         }
 
         protected virtual void AddConfigurationBuilderDetails(ConfigurationBuilder provider)
-        {
-        }
-
-        protected virtual void AddMvcService(MvcConfigurator config)
         {
         }
     }

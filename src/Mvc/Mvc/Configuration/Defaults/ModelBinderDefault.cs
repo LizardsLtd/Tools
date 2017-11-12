@@ -7,6 +7,6 @@ namespace Picums.Mvc.Configuration.Defaults
         where TModelBinder : IModelBinder, new()
     {
         public void Apply(StartupConfigurations host, IEnumerable<object> arguments)
-            => host.MVC.Models.AddModelBinderProvider<TBindedType, TModelBinder>();
+            => host.MVC.Options.AddModelBinderProvider<TBindedType, TModelBinder>();
     }
 }
