@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc.Localization;
-using Microsoft.AspNetCore.Mvc.ModelBinding.Metadata;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Localization;
 using Picums.Mvc.Localisation;
@@ -38,6 +37,12 @@ namespace Picums.Mvc.Configuration.Defaults
                        DefaultRequestCulture = this.cultureStore.RequestCulture,
                    });
             app.UseMiddleware<CultureCookieSetterMiddleware>();
+
+            var localisator = app.ApplicationServices.GetRequiredService<IStringLocalizer>();
+
+            this.Host.MVC.Options.AddMetadataProvider(new DisplayAttributeLocalisationProvider(localisator));
+            this.Host.MVC.Options.AddMetadataProvider(new RequiredValueAttributeLocalisationProvider(localisator));
+            this.Host.MVC.Options.AddMetadataProvider(new ValidationAttributeLocalisationProvider(localisator));
         }
 
         protected override void ConfigureServices(IServiceCollection services, IEnumerable<object> arguments)
@@ -46,10 +51,7 @@ namespace Picums.Mvc.Configuration.Defaults
                 .AddSingleton(this.cultureStore)
                 .AddSingleton<IdentityErrorDescriber, LocalisedIdentityErrorDescriber>()
                 .AddSingleton<IStringLocalizer, ConfigurableStringLocalizer>()
-                .AddScoped<IHtmlLocalizer, HtmlLocalizer>()
-                .AddScoped<IDisplayMetadataProvider, DisplayAttributeLocalisationProvider>()
-                .AddScoped<IDisplayMetadataProvider, RequiredValueAttributeLocalisationProvider>()
-                .AddScoped<IValidationMetadataProvider, ValidationAttributeLocalisationProvider>();
+                .AddScoped<IHtmlLocalizer, HtmlLocalizer>();
         }
     }
 }
