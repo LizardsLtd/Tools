@@ -28,9 +28,9 @@ namespace Picums.Mvc.Configuration.Defaults
                    {
                        RequestCultureProviders = new List<IRequestCultureProvider>
                        {
-                            new AcceptLanguageHeaderRequestCultureProvider(),
                             new QueryStringRequestCultureProvider(),
                             new CookieRequestCultureProvider(),
+                            new AcceptLanguageHeaderRequestCultureProvider(),
                        },
                        SupportedCultures = this.cultureStore.AvailableCultures,
                        SupportedUICultures = this.cultureStore.AvailableCultures,

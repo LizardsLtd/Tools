@@ -32,7 +32,7 @@ namespace Picums.Mvc.Middleware
                 , cookieValue
                 , new CookieOptions
                 {
-                    Expires = DateTimeOffset.Now.AddDays(30).DateTime
+                    Expires = DateTimeOffset.Now.AddDays(30).DateTime,
                 });
         }
     }
