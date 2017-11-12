@@ -10,15 +10,10 @@ namespace Picums.Mvc.Localisation
         private readonly CultureInfo culture;
         private readonly TranslationSet translationData;
 
-        public ConfigurableStringLocalizer(IEnumerable<ITranslationSetProvider> translationData, CultureStore culture)
-            : this(translationData, culture.CurrentCulture) { }
-
-        public ConfigurableStringLocalizer(IEnumerable<ITranslationSetProvider> translationData, CultureInfo culture)
+        public ConfigurableStringLocalizer(IEnumerable<ITranslationSetProvider> translationData)
             : this(
-                  translationData
-                    .Select(x => x.GetTranslationSet())
-                    .Aggregate((prev, next) => prev.Merge(next)),
-                  culture)
+                  translationData.Select(x => x.GetTranslationSet()).Aggregate((prev, next) => prev.Merge(next)),
+                  null)
         { }
 
         private ConfigurableStringLocalizer(TranslationSet translationData, CultureInfo culture)
@@ -27,6 +22,8 @@ namespace Picums.Mvc.Localisation
             this.culture = culture;
         }
 
+        private CultureInfo Culture => this.culture ?? CultureInfo.CurrentUICulture;
+
         public LocalizedString this[string name]
             => new LocalizedString(name, this.GetTranslatedString(name));
 
@@ -34,12 +31,12 @@ namespace Picums.Mvc.Localisation
             => new LocalizedString(name, this.GetTranslatedString(name, arguments));
 
         public IEnumerable<LocalizedString> GetAllStrings(bool includeParentCultures)
-            => this.translationData.GetAll(this.culture).Select(x => new LocalizedString(x.Item1, x.Item2));
+            => this.translationData.GetAll(this.Culture).Select(x => new LocalizedString(x.Item1, x.Item2));
 
         public IStringLocalizer WithCulture(CultureInfo culture)
             => new ConfigurableStringLocalizer(this.translationData, culture);
 
         private string GetTranslatedString(string name, params object[] arguments)
-            => string.Format(this.translationData.GetTranslation(this.culture, name), arguments);
+            => string.Format(this.translationData.GetTranslation(this.Culture, name), arguments);
     }
 }
