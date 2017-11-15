@@ -40,18 +40,16 @@ namespace Picums.Mvc.Configuration.Defaults
 
             var localisator = app.ApplicationServices.GetRequiredService<IStringLocalizer>();
 
-            this.Host.MVC.Options.AddMetadataProvider(new DisplayAttributeLocalisationProvider(localisator));
-            this.Host.MVC.Options.AddMetadataProvider(new RequiredValueAttributeLocalisationProvider(localisator));
-            this.Host.MVC.Options.AddMetadataProvider(new ValidationAttributeLocalisationProvider(localisator));
+            this.Mvc.Options.AddMetadataProvider(new DisplayAttributeLocalisationProvider(localisator));
+            this.Mvc.Options.AddMetadataProvider(new RequiredValueAttributeLocalisationProvider(localisator));
+            this.Mvc.Options.AddMetadataProvider(new ValidationAttributeLocalisationProvider(localisator));
         }
 
         protected override void ConfigureServices(IServiceCollection services, IEnumerable<object> arguments)
-        {
-            services
+            => services
                 .AddSingleton(this.cultureStore)
                 .AddSingleton<IdentityErrorDescriber, LocalisedIdentityErrorDescriber>()
-                .AddScoped<IStringLocalizer, ConfigurableStringLocalizer>()
-                .AddScoped<IHtmlLocalizer, HtmlLocalizer>();
-        }
+                .AddSingleton<IStringLocalizer, ConfigurableStringLocalizer>()
+                .AddSingleton<IHtmlLocalizer, HtmlLocalizer>();
     }
 }
