@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
+using Picums.Data.CQRS;
 using Picums.Mvc.Configuration;
 using Picums.Mvc.Configuration.Defaults;
 using Picums.Mvc.UserAccess.Claims;
@@ -77,6 +78,8 @@ namespace Picums.Mvc.UserAccess.Configuration
             services.TryAddScoped<IUserClaimsPrincipalFactory<TUser>, UserClaimsPrincipalFactory<TUser>>();
             services.TryAddScoped<UserManager<TUser>, AspNetUserManager<TUser>>();
             services.TryAddScoped<SignInManager<TUser>, SignInManager<TUser>>();
+
+            services.AddTransient<ICommandHandler, CreateUserCommandHandler<TUser>>();
 
             return new IdentityBuilder(typeof(TUser), services);
         }

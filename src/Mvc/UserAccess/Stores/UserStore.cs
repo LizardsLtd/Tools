@@ -12,7 +12,7 @@ using Picums.Mvc.UserAccess.Claims;
 namespace Picums.Mvc.UserAccess.Stores
 {
     public sealed class UserStore<TUser>
-            : UserStoreBase<TUser, Guid, IdentityUserClaim<Guid>, IdentityUserLogin<Guid>, IdentityUserToken<Guid>>,
+            : UserStoreBase<TUser, Guid, AggregateUserClaim, AggregateUserLogin, AggregateUserToken>,
             IUserStore<TUser>
         where TUser : IdentityUser<Guid>, IUser
     {
@@ -32,7 +32,7 @@ namespace Picums.Mvc.UserAccess.Stores
             this.commandBus = commandBus;
         }
 
-        public override IQueryable<TUser> Users => this.userQuery.Execute().Result;
+        public override IQueryable<TUser> Users => throw new NotImplementedException();
 
         public override Task AddClaimsAsync(TUser user, IEnumerable<Claim> claims, CancellationToken cancellationToken = default(CancellationToken))
         {
@@ -44,9 +44,11 @@ namespace Picums.Mvc.UserAccess.Stores
             throw new NotImplementedException();
         }
 
-        public override Task<IdentityResult> CreateAsync(TUser user, CancellationToken cancellationToken = default(CancellationToken))
+        public async override Task<IdentityResult> CreateAsync(TUser user, CancellationToken cancellationToken = default(CancellationToken))
         {
-            throw new NotImplementedException();
+            var command = new CreateUserCommand<TUser>(user);
+
+            await this.commandBus.Execute(command);
         }
 
         public override Task<IdentityResult> DeleteAsync(TUser user, CancellationToken cancellationToken = default(CancellationToken))
@@ -101,12 +103,12 @@ namespace Picums.Mvc.UserAccess.Stores
             throw new NotImplementedException();
         }
 
-        protected override Task AddUserTokenAsync(IdentityUserToken<Guid> token)
+        protected override Task AddUserTokenAsync(AggregateUserToken token)
         {
             throw new NotImplementedException();
         }
 
-        protected override Task<IdentityUserToken<Guid>> FindTokenAsync(TUser user, string loginProvider, string name, CancellationToken cancellationToken)
+        protected override Task<AggregateUserToken> FindTokenAsync(TUser user, string loginProvider, string name, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
         }
@@ -116,24 +118,17 @@ namespace Picums.Mvc.UserAccess.Stores
             throw new NotImplementedException();
         }
 
-        protected override Task<IdentityUserLogin<Guid>> FindUserLoginAsync(Guid userId, string loginProvider, string providerKey, CancellationToken cancellationToken)
-            => Task.FromResult(this.Users
-                .Where(user => user.Id == userId)
-                .Select(user => new IdentityUserLogin<Guid>
-                {
-                    LoginProvider = loginProvider,
-                    ProviderDisplayName = providerKey,
-                    ProviderKey = providerKey,
-                    UserId = userId,
-                })
-                .FirstOrDefault());
-
-        protected override Task<IdentityUserLogin<Guid>> FindUserLoginAsync(string loginProvider, string providerKey, CancellationToken cancellationToken)
+        protected override Task<AggregateUserLogin> FindUserLoginAsync(Guid userId, string loginProvider, string providerKey, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
         }
 
-        protected override Task RemoveUserTokenAsync(IdentityUserToken<Guid> token)
+        protected override Task<AggregateUserLogin> FindUserLoginAsync(string loginProvider, string providerKey, CancellationToken cancellationToken)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected override Task RemoveUserTokenAsync(AggregateUserToken token)
         {
             throw new NotImplementedException();
         }
