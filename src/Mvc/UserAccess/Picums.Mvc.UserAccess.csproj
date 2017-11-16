@@ -6,7 +6,7 @@
     <AssemblyName>Picums.Mvc.UserAccess</AssemblyName>
     <RootNamespace>Picums.Mvc.UserAccess</RootNamespace>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>0.4.10</Version>
+    <Version>0.5.0</Version>
     <AssemblyVersion>0.1.1.0</AssemblyVersion>
     <FileVersion>0.1.1.0</FileVersion>
     <Authors>Picums</Authors>

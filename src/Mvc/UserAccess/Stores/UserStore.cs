@@ -49,6 +49,8 @@ namespace Picums.Mvc.UserAccess.Stores
             var command = new CreateUserCommand<TUser>(user);
 
             await this.commandBus.Execute(command);
+
+            return null;
         }
 
         public override Task<IdentityResult> DeleteAsync(TUser user, CancellationToken cancellationToken = default(CancellationToken))
