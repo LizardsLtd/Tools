@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using NLog;
 using Picums.Data.CQRS;
+using Picums.Data.Events;
 using Picums.Mvc.UserAccess.Claims;
 
 namespace Picums.Mvc.UserAccess.Stores
@@ -19,17 +20,20 @@ namespace Picums.Mvc.UserAccess.Stores
         private readonly ILogger logger;
         private readonly GetAllUsersDynamicQuery<TUser> userQuery;
         private readonly ICommandBus commandBus;
+        private readonly IEventBus eventBus;
 
         public UserStore(
                 IdentityErrorDescriber describer,
                 ILogger logger,
                 GetAllUsersDynamicQuery<TUser> userQuery,
-                ICommandBus commandBus)
+                ICommandBus commandBus,
+                IEventBus eventBus)
             : base(describer)
         {
             this.logger = logger;
             this.userQuery = userQuery;
             this.commandBus = commandBus;
+            this.eventBus = eventBus;
         }
 
         public override IQueryable<TUser> Users => throw new NotImplementedException();
@@ -47,10 +51,13 @@ namespace Picums.Mvc.UserAccess.Stores
         public async override Task<IdentityResult> CreateAsync(TUser user, CancellationToken cancellationToken = default(CancellationToken))
         {
             var command = new CreateUserCommand<TUser>(user);
+            var eventBusReciever = EventBusSynchronusConverter<UserCreationProcessFinishedEvent>.Setup(this.eventBus);
 
             await this.commandBus.Execute(command);
 
-            return null;
+            var response = await eventBusReciever.GetResult();
+
+            return response.IdentityResult;
         }
 
         public override Task<IdentityResult> DeleteAsync(TUser user, CancellationToken cancellationToken = default(CancellationToken))

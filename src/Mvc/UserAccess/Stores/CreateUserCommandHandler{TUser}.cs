@@ -38,12 +38,12 @@ namespace Picums.Mvc.UserAccess.Stores
                     .GetWriter<TUser>()
                     .InsertNew(command.User);
 
-                await this.eventBus.Publish(new UserCreationProcessFinishedEvent(command.User.UserName, true));
+                await this.eventBus.Publish(new UserCreationProcessFinishedEvent());
             }
             catch (Exception exp)
             {
                 await this.eventBus.Publish(new ExceptionEvent(exp, "Could not create new user"));
-                await this.eventBus.Publish(new UserCreationProcessFinishedEvent(command.User.UserName, false));
+                await this.eventBus.Publish(new UserCreationProcessFinishedEvent(new IdentityError()));
             }
         }
 

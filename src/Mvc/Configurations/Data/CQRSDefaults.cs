@@ -6,7 +6,6 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Picums.Data.CQRS;
 using Picums.Data.CQRS.DataAccess;
-using Picums.Data.Events;
 
 namespace Picums.Mvc.Configuration.Defaults
 {
@@ -53,11 +52,6 @@ namespace Picums.Mvc.Configuration.Defaults
                     .IncludeClassesOnly()
                     .ForTypesImplementingInterface<IsQuery>()
                     .AsSelf()
-                .DiscoverImplementation()
-                    .ForAssembly(assembly)
-                    .IncludeClassesOnly()
-                    .ForTypesImplementingInterface(typeof(IEventHandler))
-                    .AddAsInterface<IEventHandler>()
                 .DiscoverImplementation()
                     .ForAssembly(assembly)
                     .IncludeClassesOnly()

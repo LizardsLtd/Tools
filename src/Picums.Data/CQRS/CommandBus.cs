@@ -4,7 +4,6 @@ using System.Threading.Tasks;
 
 namespace Picums.Data.CQRS
 {
-
     public sealed class CommandBus : ICommandBus
     {
         private readonly IEnumerable<ICommandHandler> commandHandlers;
@@ -19,8 +18,8 @@ namespace Picums.Data.CQRS
         public async Task Execute<TCommand>(TCommand command)
                 where TCommand : ICommand
             => Parallel.ForEach(
-                GetHandlersForCommand<TCommand>(command)
-                , handler => handler.Handle(command));
+                this.GetHandlersForCommand<TCommand>(command),
+                handler => handler.Handle(command));
 
         public void Dispose() => Dispose(true);
 
@@ -36,17 +35,17 @@ namespace Picums.Data.CQRS
 
         private void Dispose(bool disposing)
         {
-            if (!disposedValue)
+            if (!this.disposedValue)
             {
                 if (disposing)
                 {
-                    foreach (var handler in commandHandlers)
+                    foreach (var handler in this.commandHandlers)
                     {
                         handler.Dispose();
                     }
                 }
 
-                disposedValue = true;
+                this.disposedValue = true;
             }
         }
     }

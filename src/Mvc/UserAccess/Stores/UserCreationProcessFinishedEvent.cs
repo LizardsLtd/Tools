@@ -1,17 +1,17 @@
-﻿using Picums.Data.Events;
+﻿using Microsoft.AspNetCore.Identity;
+using Picums.Data.Events;
 
 namespace Picums.Mvc.UserAccess.Stores
 {
     public sealed class UserCreationProcessFinishedEvent : EventBase
     {
-        public UserCreationProcessFinishedEvent(string username, bool isSucessful)
+        public UserCreationProcessFinishedEvent(params IdentityError[] errors)
         {
-            this.Username = username;
-            this.IsSucessful = isSucessful;
+            this.IdentityResult = errors.Length == 0
+                ? IdentityResult.Success
+                : IdentityResult.Failed(errors);
         }
 
-        public string Username { get; }
-
-        public bool IsSucessful { get; }
+        public IdentityResult IdentityResult { get; }
     }
 }
