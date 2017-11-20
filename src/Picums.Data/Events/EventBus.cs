@@ -1,19 +1,39 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Picums.Data.Events
 {
-
     public sealed class EventBus : IEventBus
     {
-        public Task Publish<T>(T @event) where T : IEvent
+        private readonly List<(Type, object)> subscribers;
+
+        public EventBus()
         {
-            throw new NotImplementedException();
+            this.subscribers = new List<(Type, object)>();
         }
 
-        public Task Subscribe<T>(Action<T> subscriber) where T : IEvent
+        public Task Publish<T>(T @event)
+            where T : IEvent
         {
-            throw new NotImplementedException();
+            var type = typeof(T);
+            this.subscribers
+                .Where(x => x.Item1 == type)
+                .Select(x => x.Item2)
+                .Cast<Action<T>>()
+                .ToList()
+                .ForEach(action => action(@event));
+
+            return Task.CompletedTask;
+        }
+
+        public Task Subscribe<T>(Action<T> subscriber)
+            where T : IEvent
+
+        {
+            this.subscribers.Add((typeof(T), subscriber));
+            return Task.CompletedTask;
         }
     }
 }
