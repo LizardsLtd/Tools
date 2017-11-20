@@ -1,8 +1,8 @@
 ﻿using System.Globalization;
 using System.Linq;
 using System.Xml.Linq;
-using Microsoft.Extensions.Logging;
 using Microsoft.Spatial;
+using NLog;
 
 namespace Picums.GeoCoding
 {
@@ -59,11 +59,11 @@ namespace Picums.GeoCoding
                 .First()
                 .Value;
 
-            this.logger.LogDebug($"{key}: {latitudeAsString}");
+            this.logger.Debug($"{key}: {latitudeAsString}");
 
             var value = double.Parse(latitudeAsString, CultureInfo.InvariantCulture);
 
-            this.logger.LogDebug($"Parsed value: {value}");
+            this.logger.Debug($"Parsed value: {value}");
 
             return value;
         }
