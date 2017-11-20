@@ -4,7 +4,7 @@
     {
         public const string Permission = "Picums:Functional:PermissionClaim";
 
-        public const string FirstName = "Picums:Person:FirstName";
+        public const string UserName = "Picums:User:UserName";
 
         public const string LastName = "Picums:Person:LastName";
     }

@@ -3,8 +3,8 @@ using System.Security.Claims;
 
 namespace Picums.Mvc.UserAccess.Claims
 {
-    public interface IClaimsProvider
+    public interface IClaimProvider
     {
-        IEnumerable<Claim> Claims { get; }
+        IEnumerable<Claim> GetClaims(IUser user);
     }
 }

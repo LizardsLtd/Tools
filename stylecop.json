@@ -10,7 +10,10 @@
     "documentationRules": {
       "companyName": "Picums",
       "documentExposedElements": false,
-      "documentInternalElements": false
+      "documentInternalElements": false,
+      "documentInterfaces": false,
+      "documentPrivateElements": false,
+      "documentPrivateFields": false,
     },
     "layoutRules": {
     },

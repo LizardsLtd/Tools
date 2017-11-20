@@ -21,19 +21,22 @@ namespace Picums.Mvc.UserAccess.Stores
         private readonly GetAllUsersDynamicQuery<TUser> userQuery;
         private readonly ICommandBus commandBus;
         private readonly IEventBus eventBus;
+        private readonly IEnumerable<IClaimProvider> claimProviders;
 
         public UserStore(
                 IdentityErrorDescriber describer,
                 ILogger logger,
                 GetAllUsersDynamicQuery<TUser> userQuery,
                 ICommandBus commandBus,
-                IEventBus eventBus)
+                IEventBus eventBus,
+                IEnumerable<IClaimProvider> claimProviders)
             : base(describer)
         {
             this.logger = logger;
             this.userQuery = userQuery;
             this.commandBus = commandBus;
             this.eventBus = eventBus;
+            this.claimProviders = claimProviders.ToList();
         }
 
         public override IQueryable<TUser> Users => throw new NotImplementedException();
@@ -78,9 +81,10 @@ namespace Picums.Mvc.UserAccess.Stores
                 .FirstOrDefault(user => string.Equals(user.NormalizedUserName, normalizedUserName, StringComparison.OrdinalIgnoreCase));
 
         public override Task<IList<Claim>> GetClaimsAsync(TUser user, CancellationToken cancellationToken = default(CancellationToken))
-        {
-            throw new NotImplementedException();
-        }
+            => Task.FromResult<IList<Claim>>(
+                this.claimProviders
+                    .SelectMany(provider => provider.GetClaims(user))
+                    .ToList());
 
         public override Task<IList<UserLoginInfo>> GetLoginsAsync(TUser user, CancellationToken cancellationToken = default(CancellationToken))
         {

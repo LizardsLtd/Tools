@@ -79,7 +79,10 @@ namespace Picums.Mvc.UserAccess.Configuration
             services.TryAddScoped<UserManager<TUser>, AspNetUserManager<TUser>>();
             services.TryAddScoped<SignInManager<TUser>, SignInManager<TUser>>();
 
-            services.AddTransient<ICommandHandler, CreateUserCommandHandler<TUser>>();
+            services
+                .AddTransient<ICommandHandler, CreateUserCommandHandler<TUser>>()
+                .AddSingleton<IClaimProvider, NameClaimProvider>()
+                .AddSingleton<IClaimProvider, PermissionClaimProvider>();
 
             return new IdentityBuilder(typeof(TUser), services);
         }

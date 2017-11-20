@@ -2,7 +2,7 @@
 
 namespace Picums.Mvc.UserAccess.Claims
 {
-    public interface IUser : IAggregateRoot
+    public interface IUser : IAggregateRoot, IPermissionContainer, IIdentityUser
     {
     }
 }
