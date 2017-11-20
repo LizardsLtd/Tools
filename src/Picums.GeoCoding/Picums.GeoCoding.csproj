@@ -26,7 +26,7 @@
     <PackageReference Include="Microsoft.Extensions.Logging" Version="1.1.2" />
     <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="1.1.2" />
     <PackageReference Include="Microsoft.NETCore.Portable.Compatibility" Version="1.0.2" />
-    <PackageReference Include="Microsoft.Spatial" Version="7.3.1" />
+    <PackageReference Include="Microsoft.Spatial" Version="7.4.0-beta" />
     <PackageReference Include="NLog" Version="4.5.0-beta07" />
     <PackageReference Include="System.Xml.XPath" Version="4.3.0" />
     <PackageReference Include="System.Xml.XPath.XDocument" Version="4.3.0" />
