@@ -4,7 +4,7 @@
     <Copyright>Picums 2016 - 2017</Copyright>
     <AssemblyTitle>Data.Azure</AssemblyTitle>
     <VersionPrefix>0.1.0</VersionPrefix>
-    <Version>0.14.2</Version>
+    <Version>0.15.0</Version>
     <AssemblyName>Picums.Data.Azure</AssemblyName>
     <PackageTags>azure;Picums</PackageTags>
     <RepositoryType>git</RepositoryType>
@@ -14,7 +14,7 @@
     <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
   </PropertyGroup>
   <PropertyGroup>
-    <TargetFramework>netstandard1.6</TargetFramework>
+    <TargetFramework>netstandard2.0</TargetFramework>
     <PackageTargetFallback>$(PackageTargetFallback);portable-net45+win8+wpa81</PackageTargetFallback>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <DebugType>full</DebugType>
@@ -30,8 +30,8 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.Azure.DocumentDB.Core" Version="1.7.1" />
-    <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="1.1.2" />
-    <PackageReference Include="Microsoft.Extensions.Options" Version="1.1.2" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="2.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Options" Version="2.0.0" />
     <PackageReference Include="NLog" Version="4.5.0-beta07" />
     <PackageReference Include="System.ValueTuple" Version="4.4.0" />
   </ItemGroup>
