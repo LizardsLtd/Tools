@@ -11,6 +11,7 @@ namespace Picums.Mvc.Localisation.Configuration.Defaults
         protected override void ConfigureServices(IServiceCollection services, IEnumerable<object> arguments)
             => services
                 .AddTransient<ICommandHandler, AddNewTranslationCommandHandler>()
+                .AddTransient<GetAllTranslationsQuery>()
                 .AddTransient<ITranslationSetProvider, DataTranslationProvider>();
     }
 }
