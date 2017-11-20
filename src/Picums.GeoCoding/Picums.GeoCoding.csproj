@@ -4,7 +4,7 @@
     <Copyright>Picums 2016 - 2017</Copyright>
     <AssemblyTitle>Picums.GeoCoding</AssemblyTitle>
     <VersionPrefix>0.1.0</VersionPrefix>
-    <Version>0.3.4</Version>
+    <Version>0.4.0</Version>
     <AssemblyName>Picums.GeoCoding</AssemblyName>
     <PackageTags>GeoCoding;Picums</PackageTags>
     <RepositoryType>git</RepositoryType>
@@ -23,8 +23,6 @@
     <AdditionalFiles Include="..\..\stylecop.json" Link="stylecop.json" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.Extensions.Logging" Version="1.1.2" />
-    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="1.1.2" />
     <PackageReference Include="Microsoft.NETCore.Portable.Compatibility" Version="1.0.2" />
     <PackageReference Include="Microsoft.Spatial" Version="7.4.0-beta" />
     <PackageReference Include="NLog" Version="4.5.0-beta07" />

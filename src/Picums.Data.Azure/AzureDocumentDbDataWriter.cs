@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using Microsoft.Azure.Documents;
 using Microsoft.Azure.Documents.Client;
-using Microsoft.Extensions.Logging;
+using NLog;
 using Picums.Data.CQRS.DataAccess;
 using Picums.Data.Domain;
 
@@ -65,7 +65,7 @@ namespace Picums.Data.Azure
             }
             catch (DocumentClientException exp)
             {
-                this.logger.LogError(exp.Message);
+                this.logger.Error(exp.Message);
             }
         }
     }

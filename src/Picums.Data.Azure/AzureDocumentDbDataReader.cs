@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.Azure.Documents.Client;
-using Microsoft.Extensions.Logging;
+using NLog;
 using Picums.Data.CQRS.DataAccess;
 using Picums.Data.Domain;
 using Picums.Maybe;
@@ -26,7 +26,7 @@ namespace Picums.Data.Azure
 
         public Task<IQueryable<T>> Collection(Func<T, bool> filter)
         {
-            this.logger.LogInformation($"AzureDocumentDbDataReader for {typeof(T).Name} All function");
+            this.logger.Info($"AzureDocumentDbDataReader for {typeof(T).Name} All function");
             var result = this.client
                 .CreateDocumentQuery<T>(this.collectionUri)
                 .Where(filter)
@@ -37,7 +37,7 @@ namespace Picums.Data.Azure
 
         public Task<Maybe<T>> Single(Func<T, bool> filter, Func<IEnumerable<T>, T> reduce)
         {
-            this.logger.LogInformation($"AzureDocumentDbDataReader for {typeof(T).Name} All function");
+            this.logger.Info($"AzureDocumentDbDataReader for {typeof(T).Name} All function");
             var collection = this.client
                 .CreateDocumentQuery<T>(this.collectionUri)
                 .Where(filter);

@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.Azure.Documents.Client;
-using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using NLog;
 using Picums.Data.CQRS.DataAccess;
 using Picums.Data.Domain;
 
@@ -14,11 +14,11 @@ namespace Picums.Data.Azure
         private readonly ILogger logger;
         private bool disposedValue;
 
-        public AzureDocumentDbContext(IOptions<AzureDocumentDbOptions> options, ILoggerFactory loggerFactory)
+        public AzureDocumentDbContext(IOptions<AzureDocumentDbOptions> options, ILogger logger)
         {
             this.options = options.Value;
             this.client = new Lazy<DocumentClient>(this.options.GetDocumentClient);
-            this.logger = loggerFactory.CreateLogger<AzureDocumentDbContext>();
+            this.logger = logger;
         }
 
         private bool IsClientCreated => this.client?.IsValueCreated ?? false;
@@ -26,15 +26,15 @@ namespace Picums.Data.Azure
         public IDataReader<T> GetReader<T>()
             where T : IAggregateRoot
         {
-            this.logger.LogDebug($"AzudeDocumentDB: TypeOfArgumnet: ${typeof(T).Name}");
+            this.logger.Debug($"AzudeDocumentDB: TypeOfArgumnet: ${typeof(T).Name}");
 
             (var databaseId, var collectionId) = this.options.GetDatabaseConfig<T>();
-            this.logger.LogDebug($"AzudeDocumentDB: Datebase: ${databaseId}");
-            this.logger.LogDebug($"AzudeDocumentDB: CollectionId: ${collectionId}");
+            this.logger.Debug($"AzudeDocumentDB: Datebase: ${databaseId}");
+            this.logger.Debug($"AzudeDocumentDB: CollectionId: ${collectionId}");
 
             var collectionUri = this.GetCollectionUri(databaseId, collectionId);
 
-            this.logger.LogInformation(
+            this.logger.Info(
                 $"AzureDocumentDb: Reader for {typeof(T).Name} and collection {collectionUri}");
 
             return new AzureDocumentDbDataReader<T>(
@@ -47,10 +47,10 @@ namespace Picums.Data.Azure
             where T : IAggregateRoot
         {
             (var databaseId, var collectionId) = this.options.GetDatabaseConfig<T>();
-            this.logger.LogDebug($"AzudeDocumentDB: Datebase: ${databaseId}");
-            this.logger.LogDebug($"AzudeDocumentDB: CollectionId: ${collectionId}");
+            this.logger.Debug($"AzudeDocumentDB: Datebase: ${databaseId}");
+            this.logger.Debug($"AzudeDocumentDB: CollectionId: ${collectionId}");
 
-            this.logger.LogInformation(
+            this.logger.Info(
                 $"AzureDocumentDb: Writer for {typeof(T).Name} and collection {collectionId}");
 
             return new AzureDocumentDbDataWriter<T>(
@@ -62,7 +62,7 @@ namespace Picums.Data.Azure
 
         public void Dispose()
         {
-            this.logger.LogInformation("AzureDocumentDb: Disposing");
+            this.logger.Info("AzureDocumentDb: Disposing");
 
             this.Dispose(true);
         }

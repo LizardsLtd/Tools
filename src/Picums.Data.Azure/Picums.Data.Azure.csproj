@@ -32,7 +32,6 @@
     <PackageReference Include="Microsoft.Azure.DocumentDB.Core" Version="1.7.1" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="1.1.2" />
     <PackageReference Include="Microsoft.Extensions.Options" Version="1.1.2" />
-    <PackageReference Include="Microsoft.Extensions.Logging" Version="1.1.2" />
     <PackageReference Include="NLog" Version="4.5.0-beta07" />
     <PackageReference Include="System.ValueTuple" Version="4.4.0" />
   </ItemGroup>

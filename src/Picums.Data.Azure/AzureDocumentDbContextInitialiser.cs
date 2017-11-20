@@ -2,8 +2,8 @@
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.Azure.Documents.Client;
-using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using NLog;
 using Picums.Data.CQRS.DataAccess;
 
 namespace Picums.Data.Azure
@@ -11,20 +11,20 @@ namespace Picums.Data.Azure
     public sealed class AzureDocumentDbContextInitialiser : IDataContextInitialiser
     {
         private readonly DocumentClient client;
-        private readonly ILogger<AzureDocumentDbContextInitialiser> logger;
+        private readonly ILogger logger;
         private readonly IEnumerable<AzureDatabaseCollection> databases;
         private bool disposedValue;
 
-        public AzureDocumentDbContextInitialiser(IOptions<AzureDocumentDbOptions> options, ILoggerFactory loggerFactory)
+        public AzureDocumentDbContextInitialiser(IOptions<AzureDocumentDbOptions> options, ILogger logger)
         {
             this.client = options.Value.GetDocumentClient();
             this.databases = options.Value.GetDatabasesCollections();
-            this.logger = loggerFactory.CreateLogger<AzureDocumentDbContextInitialiser>();
+            this.logger = logger;
         }
 
         public void Dispose()
         {
-            this.logger.LogInformation("AzureDocumentDb: Disposing");
+            this.logger.Info("AzureDocumentDb: Disposing");
 
             this.Dispose(true);
         }
