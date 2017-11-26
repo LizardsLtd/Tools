@@ -30,7 +30,6 @@ namespace Picums.Data.Events
 
         public Task Subscribe<T>(Action<T> subscriber)
             where T : IEvent
-
         {
             this.subscribers.Add((typeof(T), subscriber));
             return Task.CompletedTask;
