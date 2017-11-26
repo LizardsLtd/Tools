@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Threading.Tasks;
 using Microsoft.Azure.Documents.Client;
 using Microsoft.Extensions.Options;
 using NLog;
 using Picums.Data.CQRS.DataAccess;
 using Picums.Data.Domain;
+using Picums.Data.Events;
 
 namespace Picums.Data.Azure
 {
@@ -11,13 +13,15 @@ namespace Picums.Data.Azure
     {
         private readonly AzureDocumentDbOptions options;
         private readonly Lazy<DocumentClient> client;
+        private readonly IEventBus eventBus;
         private readonly ILogger logger;
         private bool disposedValue;
 
-        public AzureDocumentDbContext(IOptions<AzureDocumentDbOptions> options, ILogger logger)
+        public AzureDocumentDbContext(IOptions<AzureDocumentDbOptions> options, IEventBus bus, ILogger logger)
         {
             this.options = options.Value;
             this.client = new Lazy<DocumentClient>(this.options.GetDocumentClient);
+            this.eventBus = bus;
             this.logger = logger;
         }
 
@@ -26,16 +30,9 @@ namespace Picums.Data.Azure
         public IDataReader<T> GetReader<T>()
             where T : IAggregateRoot
         {
-            this.logger.Debug($"AzudeDocumentDB: TypeOfArgumnet: ${typeof(T).Name}");
-
-            (var databaseId, var collectionId) = this.options.GetDatabaseConfig<T>();
-            this.logger.Debug($"AzudeDocumentDB: Datebase: ${databaseId}");
-            this.logger.Debug($"AzudeDocumentDB: CollectionId: ${collectionId}");
+            (var databaseId, var collectionId) = this.GetConfig<T>().Result;
 
             var collectionUri = this.GetCollectionUri(databaseId, collectionId);
-
-            this.logger.Info(
-                $"AzureDocumentDb: Reader for {typeof(T).Name} and collection {collectionUri}");
 
             return new AzureDocumentDbDataReader<T>(
                 this.client.Value,
@@ -46,12 +43,7 @@ namespace Picums.Data.Azure
         public IDataWriter<T> GetWriter<T>()
             where T : IAggregateRoot
         {
-            (var databaseId, var collectionId) = this.options.GetDatabaseConfig<T>();
-            this.logger.Debug($"AzudeDocumentDB: Datebase: ${databaseId}");
-            this.logger.Debug($"AzudeDocumentDB: CollectionId: ${collectionId}");
-
-            this.logger.Info(
-                $"AzureDocumentDb: Writer for {typeof(T).Name} and collection {collectionId}");
+            (var databaseId, var collectionId) = this.GetConfig<T>().Result;
 
             return new AzureDocumentDbDataWriter<T>(
                 this.client.Value,
@@ -65,6 +57,30 @@ namespace Picums.Data.Azure
             this.logger.Info("AzureDocumentDb: Disposing");
 
             this.Dispose(true);
+        }
+
+        private async Task<(string, string)> GetConfig<T>()
+            where T : IAggregateRoot
+        {
+            var databaseConfiguration = this.options.GetDatabaseConfig<T>();
+
+            await this.PublishExceptionWhenMissingArgument(databaseConfiguration.Item1, "DatabaseId");
+            await this.PublishExceptionWhenMissingArgument(databaseConfiguration.Item2, "CollectionId");
+
+            this.logger.Debug($"AzudeDocumentDB: Datebase: ${databaseConfiguration.Item1}");
+            this.logger.Debug($"AzudeDocumentDB: CollectionId: ${databaseConfiguration.Item2}");
+
+            return databaseConfiguration;
+        }
+
+        private async Task PublishExceptionWhenMissingArgument(string argument, string name)
+        {
+            if (string.IsNullOrEmpty(argument))
+            {
+                await this.eventBus.Publish(
+                    new ExceptionEvent(
+                        new ArgumentNullException("name is missing")));
+            }
         }
 
         private Uri GetCollectionUri(string databaseId, string collectionId)
