@@ -7,9 +7,9 @@ namespace Picums.Data.Types
     {
         private const string parsingExpression = @"^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$";
 
-        public Email(string emailAddress)
+        public Email(string address)
         {
-            this.Address = emailAddress;
+            this.Address = address;
 
             if (!this.IsValid())
             {
