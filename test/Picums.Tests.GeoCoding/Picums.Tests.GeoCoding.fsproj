@@ -31,6 +31,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\src\Picums.GeoCoding\Picums.GeoCoding.csproj" />
     <ProjectReference Include="..\..\src\Picums.Tests\Picums.Tests.csproj" />
+    <ProjectReference Include="..\..\src\Picums.Virtuals\Picums.Virtuals.fsproj" />
   </ItemGroup>
 
 </Project>

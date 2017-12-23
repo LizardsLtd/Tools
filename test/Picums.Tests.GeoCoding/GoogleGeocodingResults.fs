@@ -6,13 +6,15 @@
     open Xunit
     open Microsoft.Extensions.Logging
     open Picums.GeoCoding
+    open Picums.Virtuals.Interfaces
+    open Picums.Virtuals.Embeded
     
     let logger = 
         let factory: TestLoggerFactory = new TestLoggerFactory()
         factory.CreateLogger("null")
 
     let exampleFile = 
-        let embededResources = new EmbeddedContentLoader("Picums.Tests.GeoCoding");
+        let embededResources: IContentRequest = EmbeddedContentLoader("Picums.Tests.GeoCoding") :> IContentRequest
         embededResources.LoadTextFileAsync("GoogleServiceResults") 
             |> Async.AwaitTask
             |> Async.RunSynchronously
