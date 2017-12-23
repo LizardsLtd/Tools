@@ -19,9 +19,6 @@ namespace Picums.Data.Types
 
         public string Address { get; }
 
-        //public static Email Parse(string emailAddress)
-        //    => new Email(emailAddress);
-
         public static implicit operator Email(string emailAddres)
             => new Email(emailAddres);
 
