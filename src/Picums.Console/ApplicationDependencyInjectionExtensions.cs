@@ -29,7 +29,7 @@ namespace Picums.Console
             return app;
         }
 
-        public static Application<TApplication> AddTransient<TApplication, TService, TImplementation(
+        public static Application<TApplication> AddTransient<TApplication, TService, TImplementation>(
                 this Application<TApplication> app,
                 TImplementation implementation)
             where TApplication : class, IRunnable
