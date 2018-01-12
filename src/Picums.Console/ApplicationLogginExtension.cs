@@ -1,22 +1,31 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using System;
 
 namespace Picums.Console
 {
     public static class ApplicationLogginExtension
     {
-        public static Application<TApplication> AddConsoleLogging<TApplication>(this Application<TApplication> app)
-            where TApplication : class, IRunnable
+        public static Application<TApplication> EnableLoggerFActory<TApplication>(this Application<TApplication> app)
+         where TApplication : class, IRunnable
         {
-            app.ServiceCollection.AddSingleton(GetLoggerFactory());
             app.ServiceCollection.AddLogging();
 
             return app;
         }
 
-        private static object GetLoggerFactory()
-            => new LoggerFactory()
-                .AddConsole()
-                .AddDebug();
+        public static Application<TApplication> ConfigureLoggerFactory<TApplication>(
+                this Application<TApplication> app,
+                Func<ILoggerFactory, ILoggerFactory> configurationFactory)
+            where TApplication : class, IRunnable
+        {
+            app.ServiceCollection.AddSingleton(
+                configurationFactory(GetLoggerFactory()));
+
+            return app;
+        }
+
+        private static LoggerFactory GetLoggerFactory()
+            => new LoggerFactory();
     }
 }
