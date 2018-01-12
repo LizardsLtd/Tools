@@ -6,7 +6,7 @@ namespace Picums.Console
 {
     public static class ApplicationLogginExtension
     {
-        public static Application<TApplication> EnableLoggerFActory<TApplication>(this Application<TApplication> app)
+        public static Application<TApplication> EnableLoggerFactory<TApplication>(this Application<TApplication> app)
          where TApplication : class, IRunnable
         {
             app.ServiceCollection.AddLogging();
