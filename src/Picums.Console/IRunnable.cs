@@ -1,9 +1,7 @@
-﻿using System.Threading.Tasks;
-
-namespace Picums.Console
+﻿namespace Picums.Console
 {
     public interface IRunnable
     {
-        Task Run();
+        void Run();
     }
 }

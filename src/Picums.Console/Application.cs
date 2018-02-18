@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -28,11 +29,18 @@ namespace Picums.Console
 
         public ServiceCollection ServiceCollection { get; }
 
-        public Task Run()
+        public void Run()
+        {
+            var serviceProvider = this.ServiceCollection.BuildServiceProvider();
+            serviceProvider.GetService<IRunnable>().Run();
+        }
+
+        public Task RunAsync()
             => Task.Run(() =>
             {
                 var serviceProvider = this.ServiceCollection.BuildServiceProvider();
-                serviceProvider.GetService<IRunnable>().Run();
+                var cancelationToken = new CancellationTokenSource();
+                serviceProvider.GetService<IAsyncRunnable>().Run(cancelationToken.Token);
             });
     }
 }
