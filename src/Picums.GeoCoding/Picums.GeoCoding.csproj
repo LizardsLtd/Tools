@@ -24,8 +24,8 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.NETCore.Portable.Compatibility" Version="1.0.2" />
-    <PackageReference Include="Microsoft.Spatial" Version="7.4.0-beta" />
-    <PackageReference Include="NLog" Version="4.5.0-beta07" />
+    <PackageReference Include="Microsoft.Spatial" Version="7.4.1" />
+    <PackageReference Include="NLog" Version="4.5.0-rc06" />
     <PackageReference Include="System.Xml.XPath" Version="4.3.0" />
     <PackageReference Include="System.Xml.XPath.XDocument" Version="4.3.0" />
   </ItemGroup>

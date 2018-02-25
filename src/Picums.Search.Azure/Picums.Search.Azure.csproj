@@ -19,11 +19,11 @@
     <AdditionalFiles Include="..\..\stylecop.json" Link="stylecop.json" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.Azure.Search" Version="4.0.1-preview" />
+    <PackageReference Include="Microsoft.Azure.Search" Version="4.0.2-preview" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="2.0.0" />
     <PackageReference Include="Microsoft.NETCore.Portable.Compatibility" Version="1.0.2" />
-    <PackageReference Include="Newtonsoft.Json" Version="10.0.3" />
-    <PackageReference Include="NLog" Version="4.5.0-beta07" />
+    <PackageReference Include="Newtonsoft.Json" Version="11.0.1" />
+    <PackageReference Include="NLog" Version="4.5.0-rc06" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Picums.Maybe\Picums.Maybe.csproj" />
