@@ -1,6 +1,7 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using System;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using System;
 
 namespace Picums.Console
 {
@@ -16,11 +17,11 @@ namespace Picums.Console
 
         public static Application<TApplication> ConfigureLoggerFactory<TApplication>(
                 this Application<TApplication> app,
-                Func<ILoggerFactory, ILoggerFactory> configurationFactory)
+                Func<ILoggerFactory, IConfigurationRoot, ILoggerFactory> configurationFactory)
             where TApplication : class, IRunnable
         {
             app.ServiceCollection.AddSingleton(
-                configurationFactory(GetLoggerFactory()));
+                configurationFactory(GetLoggerFactory(), app.ConfigurationRoot.Value));
 
             return app;
         }
