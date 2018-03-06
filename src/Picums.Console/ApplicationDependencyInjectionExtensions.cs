@@ -6,6 +6,41 @@ namespace Picums.Console
 {
     public static class ApplicationDependencyInjectionExtensions
     {
+         public static Application<TApplication> AddSingleton<TApplication, TService, TImplementation>(
+                this Application<TApplication> app)
+            where TApplication : class, IRunnable
+            where TService : class
+            where TImplementation : class, TService
+        {
+            app.ServiceCollection.AddSingleton<TService, TImplementation>();
+
+            return app;
+        }
+
+        public static Application<TApplication> AddSingleton<TApplication, TService, TImplementation>(
+                this Application<TApplication> app,
+                Func<IServiceProvider, TImplementation> implementationFactory)
+            where TApplication : class, IRunnable
+            where TService : class
+            where TImplementation : class, TService
+        {
+            app.ServiceCollection.AddSingleton<TService>(services => implementationFactory(services));
+
+            return app;
+        }
+
+        public static Application<TApplication> AddSingleton<TApplication, TService, TImplementation>(
+                this Application<TApplication> app,
+                TImplementation implementation)
+            where TApplication : class, IRunnable
+            where TService : class
+            where TImplementation : class, TService
+        {
+            app.ServiceCollection.AddSingleton<TService>(services => implementation);
+
+            return app;
+        }   
+        
         public static Application<TApplication> AddTransient<TApplication, TService, TImplementation>(
                 this Application<TApplication> app)
             where TApplication : class, IRunnable
