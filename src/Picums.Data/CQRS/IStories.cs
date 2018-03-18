@@ -4,13 +4,13 @@ using System.Threading.Tasks;
 
 namespace Picums.Data.CQRS
 {
-	public interface IStory<T> : IStory
-	{
-		Task Execute(T payload);
-	}
+    public interface IStory<T> : IStory
+    {
+        Task Execute(T payload);
+    }
 
-	public interface IStory
-	{
-		IEnumerable<ValidationResult> Validate(ICommand command);
-	}
+    public interface IStory
+    {
+        IEnumerable<ValidationResult> Validate(ICommand command);
+    }
 }

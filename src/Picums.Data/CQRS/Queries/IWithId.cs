@@ -2,8 +2,8 @@
 
 namespace Picums.Data.CQRS.Queries
 {
-	public interface IWithId<TResult>
-	{
-		TResult WithId(Guid id);
-	}
+    public interface IWithId<TResult>
+    {
+        TResult WithId(Guid id);
+    }
 }

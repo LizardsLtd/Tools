@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <RootNamespace>Picums.Mvc.Configuration.Geocoding</RootNamespace>
+    <AssemblyName>Picums.Mvc.Configuration.Geocoding</AssemblyName>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Version>0.30.0</Version>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <AdditionalFiles Include="..\..\..\..\stylecop.json" Link="stylecop.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="2.0.0" />
+    <PackageReference Include="NLog" Version="4.5.0-rc06" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Picums.GeoCoding\Picums.GeoCoding.csproj" />
+    <ProjectReference Include="..\..\Mvc\Picums.Mvc.csproj" />
+  </ItemGroup>
+
+</Project>

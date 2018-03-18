@@ -2,8 +2,8 @@
 
 namespace Picums.Data.CQRS.Queries
 {
-	public interface IWithDataContext<TResult>
-	{
-		TResult WithDataContext(IDataContext dataContext);
-	}
+    public interface IWithDataContext<TResult>
+    {
+        TResult WithDataContext(IDataContext dataContext);
+    }
 }

@@ -1,0 +1,36 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <Description>ASP.NET Core MVC implementation.</Description>
+    <Copyright>Picums 2016 - 2017</Copyright>
+    <AssemblyTitle>MVC</AssemblyTitle>
+    <Version>0.31.0</Version>
+    <WarningsAsErrors>true</WarningsAsErrors>
+    <AssemblyName>Picums.Mvc</AssemblyName>
+  </PropertyGroup>
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <RootNamespace>Picums.Mvc</RootNamespace>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+  </PropertyGroup>
+  <ItemGroup>
+    <AdditionalFiles Include="..\..\..\stylecop.json" Link="stylecop.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Markdig" Version="0.14.9" />
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="2.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Diagnostics" Version="2.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.0.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.0.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Localization" Version="2.0.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor" Version="2.0.2" />
+    <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="2.0.1" />
+    <PackageReference Include="Microsoft.Extensions.Identity.Core" Version="2.0.1" />
+    <PackageReference Include="Microsoft.Extensions.Localization.Abstractions" Version="2.0.1" />
+    <PackageReference Include="NLog" Version="4.5.0-rc06" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Picums.Data\Picums.Data.csproj" />
+    <ProjectReference Include="..\..\Picums.Maybe\Picums.Maybe.csproj" />
+  </ItemGroup>
+</Project>

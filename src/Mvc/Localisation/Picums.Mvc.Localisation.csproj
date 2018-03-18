@@ -1,0 +1,47 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <Description>Translation of the text.</Description>
+    <Copyright>Picums 2017</Copyright>
+    <AssemblyTitle>Picums.Localisation</AssemblyTitle>
+    <VersionPrefix>0.1.0</VersionPrefix>
+    <Version>0.30.1</Version>
+    <AssemblyName>Picums.Mvc.Localisation</AssemblyName>
+    <PackageTags>I18N;Localisation;Picums</PackageTags>
+    <RepositoryType>git</RepositoryType>
+    <RepositoryUrl>https://github.com/Picums/tools</RepositoryUrl>
+    <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
+    <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
+    <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <DebugType>full</DebugType>
+    <RootNamespace>Picums.Mvc.Localisation</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="ReloadTranslationsCommand.cs" />
+    <Compile Remove="ReloadTranslationsCommandHandler.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <AdditionalFiles Include="..\..\..\stylecop.json" Link="stylecop.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="11.0.1" />
+    <PackageReference Include="NLog" Version="4.5.0-rc06" />
+    <PackageReference Include="System.Threading.Thread" Version="4.3.0" />
+    <PackageReference Include="System.ValueTuple" Version="4.4.0" />
+    <PackageReference Include="Microsoft.Extensions.Localization.Abstractions" Version="2.0.1" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="2.0.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="2.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Picums.Data\Picums.Data.csproj" />
+    <ProjectReference Include="..\Mvc\Picums.Mvc.csproj" />
+  </ItemGroup>
+</Project>

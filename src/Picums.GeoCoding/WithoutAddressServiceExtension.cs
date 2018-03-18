@@ -1,6 +1,6 @@
-﻿using Microsoft.Spatial;
+﻿using System.Threading.Tasks;
+using Microsoft.Spatial;
 using Picums.Maybe;
-using System.Threading.Tasks;
 
 namespace Picums.GeoCoding
 {

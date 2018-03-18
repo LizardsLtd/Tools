@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+    <metadata>
+        <!-- Required elements-->
+        <id>Picums.StyleCop</id>
+        <version>0.1.0</version>
+        <description>A StyleCop rules to allow easy edition of ll rule in any files</description>
+        <authors>Szymon M Sasin</authors>
+
+        <!-- Optional elements -->
+        <!-- ... -->
+    </metadata>
+    <!-- Optional 'files' node -->
+    <file src="stylecop.json" target="stylecop.json" buildAction="C# analyzer additional file" />
+</package>

@@ -30,13 +30,18 @@ namespace Picums.Search.Azure
 
         public string[] SearchParameters { get; set; }
 
-        public static void FromConfiguration(IConfigurationRoot root, AzureSearchOptions options)
+        public static void FromConfiguration(IConfiguration config, AzureSearchOptions options)
         {
-            options.ApiKey = new SearchCredentials(root["search:apikey"]);
-            options.ServiceName = root["search:service"];
-            options.IndexName = root["search:index"];
+            options.ApiKey = new SearchCredentials(config["search:apikey"]);
+            options.ServiceName = config["search:service"];
+            options.IndexName = config["search:index"];
             options.SearchParameters
-                = root.GetSection("search:search-parameter").GetChildren().Select(x => x.Value).ToArray();
+                = config
+                    .GetSection("search:search-parameter")
+                    .GetChildren()
+                    .Select(x => x.Value).ToArray();
         }
+
+        public ISearchIndexClient GetSearchIndexClient() => new SearchIndexClient(this.ServiceName, this.IndexName, this.ApiKey);
     }
 }

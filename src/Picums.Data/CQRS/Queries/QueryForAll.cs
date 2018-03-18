@@ -1,38 +1,31 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.Extensions.Logging;
+using NLog;
 using Picums.Data.CQRS.DataAccess;
 using Picums.Data.Domain;
 
 namespace Picums.Data.CQRS.Queries
 {
-	public sealed class QueryForAll<TPayload>
-		: IWithDatabaseParts<IAsyncQuery<IEnumerable<TPayload>>>
-		, IAsyncQuery<IEnumerable<TPayload>>
-			where TPayload : IAggregateRoot
-	{
-		private readonly IDataContext dataContext;
-		private readonly ILoggerFactory loggerFactory;
-		private readonly DatabaseParts parts;
+    public sealed class QueryForAll<TPayload> : IAsyncQuery<IEnumerable<TPayload>>
+            where TPayload : IAggregateRoot
+    {
+        private readonly IDataContext dataContext;
+        private readonly ILogger logger;
 
-		public QueryForAll(IDataContext dataContext, ILoggerFactory loggerFactory, DatabaseParts parts)
-		{
-			this.dataContext = dataContext;
-			this.loggerFactory = loggerFactory;
-			this.parts = parts;
-		}
+        public QueryForAll(IDataContext dataContext, ILogger logger)
+        {
+            this.dataContext = dataContext;
+            this.logger = logger;
+        }
 
-		public IAsyncQuery<IEnumerable<TPayload>> WithDatabaseParts(DatabaseParts parts)
-			=> new QueryForAll<TPayload>(
-				this.dataContext
-				, this.loggerFactory
-				, parts);
+        public async Task<IEnumerable<TPayload>> Execute()
+            => (await this.ExecuteQuery()).ToArray();
 
-		public Task<IEnumerable<TPayload>> Execute()
-			=> new QueryForAllBuilder<TPayload>()
-				.WithDataContext(this.dataContext)
-				.WithLogger(this.loggerFactory)
-				.WithDatabaseParts(this.parts)
-				.Execute();
-	}
+        private async Task<IQueryable<TPayload>> ExecuteQuery()
+            => await new QueryForAllBuilder<TPayload>()
+                .WithDataContext(this.dataContext)
+                .WithLogger(this.logger)
+                .Execute();
+    }
 }

@@ -1,31 +1,56 @@
-﻿using Picums.Data.CQRS.DataAccess;
+﻿using System.Collections.Generic;
+using Picums.Data.CQRS.DataAccess;
 using Picums.Data.Domain;
-using System;
-using System.Collections.Generic;
 
 namespace Picums.Data.InMemory
 {
     public sealed class InMemoryDataContext : IDataContext
     {
-        private readonly Dictionary<string, List<object>> items;
+        private readonly IDictionary<string, object> items;
 
-        public InMemoryDataContext()
+        public InMemoryDataContext() : this(new Dictionary<string, object>())
         {
-            this.items = new Dictionary<string, List<object>>();
+        }
+
+        public InMemoryDataContext(IDictionary<string, object> data)
+        {
+            this.items = data;
         }
 
         public void Dispose()
         {
         }
 
-        public IDataReader<T> GetReader<T>(params object[] attributes) where T : IAggregateRoot
+        public IDataReader<T> GetReader<T>()
+                where T : IAggregateRoot
+            => new InMemoryReader<T>(this.GetItemsCollection<T>());
+
+        public IDataWriter<T> GetWriter<T>()
+                where T : IAggregateRoot
+            => new InMemoryWriter<T>(this.GetItemsCollection<T>());
+
+        public List<T> GetItemsCollection<T>()
+            where T : IAggregateRoot
         {
-            throw new NotImplementedException();
+            var key = this.CreateKey<T>();
+
+            this.CreateCollectionIfKeyNotExist<T>(key);
+
+            List<T> result = this.items[key] as List<T>;
+
+            return result;
         }
 
-        public IDataWriter<T> GetWriter<T>(params object[] attributes) where T : IAggregateRoot
+        private void CreateCollectionIfKeyNotExist<T>(string key)
         {
-            throw new NotImplementedException();
+            if (!this.items.ContainsKey(key))
+            {
+                this.items[key] = new List<T>();
+            }
         }
+
+        private string CreateKey<T>()
+                where T : IAggregateRoot
+            => typeof(T).Name;
     }
 }

@@ -1,4 +1,4 @@
-[![Build status](https://ci.appveyor.com/api/projects/status/5nlhons4m2b6ay5i/branch/master?svg=true)](https://ci.appveyor.com/project/SzymonSasin/tools/branch/master)
+[![Build status](https://ci.appveyor.com/api/projects/status/5iwj4hiij3fjpyue?svg=true)](https://ci.appveyor.com/project/SzymonSasin/tools)
 
 # Mvc
 a set of building block to make bulding ASP.NET CORE MVC app easier

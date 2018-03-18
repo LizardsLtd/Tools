@@ -8,21 +8,20 @@ using Picums.Maybe;
 namespace Picums.Data.CQRS.Queries
 {
     public sealed class QueryByIdBuilder<TPayload>
-        : QueryBuilder<IWithId<IAsyncQuery<Maybe<TPayload>>>>
-        , IWithId<IAsyncQuery<Maybe<TPayload>>>
+        : QueryBuilder<IWithId<IAsyncQuery<Maybe<TPayload>>>>,
+        IWithId<IAsyncQuery<Maybe<TPayload>>>
             where TPayload : IAggregateRoot
     {
         public IAsyncQuery<Maybe<TPayload>> WithId(Guid id)
             => new Query<TPayload, Maybe<TPayload>>(
-                this.dataContext
-                , this.logger
-                , this.parts
-                , reader => this.Execute(reader, id));
+                this.dataContext,
+                this.logger,
+                reader => this.Execute(reader, id));
 
         protected override IWithId<IAsyncQuery<Maybe<TPayload>>> NextBuildStep() => this;
 
         private Task<Maybe<TPayload>> Execute(IDataReader<TPayload> reader, Guid id)
-            => reader.QueryFor(items => this.SingleOrDefault(items, id));
+            => reader.Single(x => x.Id.Equals(id), items => items.SingleOrDefault());
 
         private Maybe<TPayload> SingleOrDefault(IQueryable<TPayload> items, Guid id)
         {

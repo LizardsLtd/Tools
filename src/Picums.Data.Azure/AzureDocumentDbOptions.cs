@@ -2,48 +2,67 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Security;
+using Microsoft.Azure.Documents.Client;
 using Microsoft.Extensions.Configuration;
+using NLog;
+using Picums.Data.Domain;
 
 namespace Picums.Data.Azure
 {
-	public sealed class AzureDocumentDbOptions
-	{
-		public string Endpoint { get; set; }
+    public sealed class AzureDocumentDbOptions
+    {
+        private readonly Logger logger;
 
-		public string AuthKey { get; set; }
+        private string endpoint;
 
-		public IEnumerable<AzureDatabase> Databases { get; set; }
+        private string authKey;
 
-		public Uri EndpointUri => new Uri(this.Endpoint);
+        private IEnumerable<AzureDatabaseCollection> databases;
 
-		public SecureString AuthenticationKey
-			=> this.AuthKey
-				.ToCharArray()
-				.Aggregate(
-					new SecureString(),
-					(secureString, character) =>
-					{
-						secureString.AppendChar(character);
-						return secureString;
-					});
+        public AzureDocumentDbOptions()
+        {
+            this.logger = LogManager.GetCurrentClassLogger();
+        }
 
-		public static void FromConfiguration(IConfigurationRoot root, AzureDocumentDbOptions options)
-		{
-			options.Databases = root
-				.GetSection("ConnectionString:Databases")
-				.GetChildren()
-				.Select(x => new
-				{
-					Name = x["Name"],
-					Collections
-						= x
-							.GetSection("Collections")
-							.GetChildren()
-							.Select(col => col.Value)
-				})
-				.Select(x => new AzureDatabase(x.Name, x.Collections));
-			options.Endpoint = root["ConnectionString:AccountEndpoint"];
-			options.AuthKey = root["ConnectionString:AccountKey"];
-		}
-	}
+        private Uri EndpointUri => new Uri(this.endpoint);
+
+        private SecureString AuthenticationKey
+            => this.authKey
+                .ToCharArray()
+                .Aggregate(
+                    new SecureString(),
+                    (secureString, character) =>
+                    {
+                        secureString.AppendChar(character);
+                        return secureString;
+                    });
+
+        public static void FromConfiguration(IConfiguration config, AzureDocumentDbOptions options)
+        {
+            options.databases = config
+                .GetSection("Databases")
+                .GetChildren()
+                .Select(x => new
+                {
+                    Name = x["Name"],
+                    AggregateRoot = x["Type"],
+                    Collection = x["Collection"],
+                })
+                .Select(x => new AzureDatabaseCollection(x.Name, x.AggregateRoot, x.Collection))
+                .ToArray();
+            options.endpoint = config["ConnectionString:AccountEndpoint"];
+            options.authKey = config["ConnectionString:AccountKey"];
+        }
+
+        internal (string, string) GetDatabaseConfig<T>()
+            where T : IAggregateRoot
+            => this.databases
+                .Where(x => x.IsMatchForType<T>())
+                .Select(x => (x.DatabaseId, x.Collection))
+                .FirstOrDefault();
+
+        internal IEnumerable<AzureDatabaseCollection> GetDatabasesCollections() => this.databases;
+
+        internal DocumentClient GetDocumentClient() => new DocumentClient(this.EndpointUri, this.authKey);
+    }
 }

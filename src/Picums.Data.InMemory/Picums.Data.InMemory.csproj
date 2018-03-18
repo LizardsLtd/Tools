@@ -4,7 +4,7 @@
     <Copyright>Picums 2016 - 2017</Copyright>
     <AssemblyTitle>Data.InMemory</AssemblyTitle>
     <VersionPrefix>0.1.0</VersionPrefix>
-    <Version>0.1.0</Version>
+    <Version>0.3.6</Version>
     <AssemblyName>Picums.Data.InMemory</AssemblyName>
     <PackageTags>data;Picums</PackageTags>
     <RepositoryType>git</RepositoryType>
@@ -18,11 +18,18 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp1.1</TargetFramework>
+    <TargetFramework>netstandard1.6</TargetFramework>
+    <PackageTargetFallback>$(PackageTargetFallback);portable-net45+win8+wpa81</PackageTargetFallback>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <DebugType>full</DebugType>
   </PropertyGroup>
 
   <ItemGroup>
+    <AdditionalFiles Include="..\..\stylecop.json" Link="stylecop.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="NLog" Version="4.5.0-rc06" />
     <PackageReference Include="System.Collections" Version="4.3.0" />
   </ItemGroup>
 

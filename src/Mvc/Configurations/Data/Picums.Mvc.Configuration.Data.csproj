@@ -1,0 +1,28 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Version>0.30.0</Version>
+    <Authors>Picums</Authors>
+    <Company>Picums</Company>
+    <Product>Picums</Product>
+    <Description />
+    <PackageId>Picums.Mvc.Configuration.Data</PackageId>
+    <AssemblyName>Picums.Mvc.Configuration.Data</AssemblyName>
+    <RootNamespace>Picums.Mvc.Configuration.Data</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <AdditionalFiles Include="..\..\..\..\stylecop.json" Link="stylecop.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="NLog" Version="4.5.0-rc06" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Picums.Data\Picums.Data.csproj" />
+    <ProjectReference Include="..\..\Mvc\Picums.Mvc.csproj" />
+  </ItemGroup>
+</Project>

@@ -4,7 +4,7 @@
     <Copyright>Picums 2016 - 2017</Copyright>
     <AssemblyTitle>Data.Azure</AssemblyTitle>
     <VersionPrefix>0.1.0</VersionPrefix>
-    <Version>0.1.15</Version>
+    <Version>0.16.0</Version>
     <AssemblyName>Picums.Data.Azure</AssemblyName>
     <PackageTags>azure;Picums</PackageTags>
     <RepositoryType>git</RepositoryType>
@@ -14,21 +14,25 @@
     <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
   </PropertyGroup>
   <PropertyGroup>
-    <TargetFramework>netstandard1.6</TargetFramework>
-    <PackageTargetFallback Condition=" '$(TargetFramework)' == 'netstandard1.6' ">$(PackageTargetFallback);portable-net45+win8+wpa81</PackageTargetFallback>
+    <TargetFramework>netstandard2.0</TargetFramework>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <DebugType>full</DebugType>
   </PropertyGroup>
+  <ItemGroup>
+    <AdditionalFiles Include="..\..\stylecop.json" Link="stylecop.json">
+      <CopyToOutputDirectory></CopyToOutputDirectory>
+    </AdditionalFiles>
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Picums.Data\Picums.Data.csproj" />
     <ProjectReference Include="..\Picums.Maybe\Picums.Maybe.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.Azure.DocumentDB.Core" Version="1.1.2" />
-    <PackageReference Include="Microsoft.Azure.Search" Version="3.0.2" />
-    <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="1.1.1" />
-    <PackageReference Include="Microsoft.Extensions.Options" Version="1.1.1" />
-    <PackageReference Include="Microsoft.NETCore.Portable.Compatibility" Version="1.0.2" />
-    <PackageReference Include="Microsoft.Extensions.Logging" Version="1.1.1" />
+    <PackageReference Include="Microsoft.Azure.DocumentDB.Core" Version="1.8.2" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="2.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Options" Version="2.0.0" />
+    <PackageReference Include="NLog" Version="4.5.0-rc06" />
+    <PackageReference Include="System.ValueTuple" Version="4.4.0" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
     <DefineConstants>$(DefineConstants);RELEASE</DefineConstants>

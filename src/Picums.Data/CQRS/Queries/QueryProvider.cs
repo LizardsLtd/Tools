@@ -1,19 +1,18 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using NLog;
 using Picums.Data.CQRS.DataAccess;
 
 namespace Picums.Data.CQRS.Queries
 {
     public abstract class QueryProvider<TResult>
     {
-        protected readonly IDataContext dataContext;
-        protected readonly ILoggerFactory loggerFactory;
-        protected readonly DatabaseParts parts;
-
-        public QueryProvider(IDataContext dataContext, ILoggerFactory loggerFactory, DatabaseParts parts)
+        public QueryProvider(IDataContext dataContext, ILogger logger)
         {
-            this.dataContext = dataContext;
-            this.loggerFactory = loggerFactory;
-            this.parts = parts;
+            this.DataContext = dataContext;
+            this.Logger = logger;
         }
+
+        protected ILogger Logger { get; }
+
+        protected IDataContext DataContext { get; }
     }
 }

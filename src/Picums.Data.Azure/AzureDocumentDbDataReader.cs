@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Linq.Expressions;
 using System.Threading.Tasks;
 using Microsoft.Azure.Documents.Client;
-using Microsoft.Extensions.Logging;
+using NLog;
 using Picums.Data.CQRS.DataAccess;
 using Picums.Data.Domain;
 using Picums.Maybe;
@@ -18,43 +17,34 @@ namespace Picums.Data.Azure
         private readonly Uri collectionUri;
         private readonly ILogger logger;
 
-        public AzureDocumentDbDataReader(
-            DocumentClient client
-            , Uri collectionUri
-            , ILogger logger)
+        public AzureDocumentDbDataReader(DocumentClient client, Uri collectionUri, ILogger logger)
         {
             this.client = client;
             this.collectionUri = collectionUri;
             this.logger = logger;
         }
 
-        public Task<IEnumerable<T>> All()
+        public Task<IQueryable<T>> Collection(Func<T, bool> filter)
         {
-            this.logger.LogInformation($"AzureDocumentDbDataReader for {typeof(T).Name} All function");
-            return Task.FromResult<IEnumerable<T>>(this.QueryDocumentDb().ToArray());
+            this.logger.Info($"AzureDocumentDbDataReader for {typeof(T).Name} All function");
+            var result = this.client
+                .CreateDocumentQuery<T>(this.collectionUri)
+                .Where(filter)
+                .AsQueryable();
+
+            return Task.FromResult(result);
         }
 
-        public Task<TResult> QueryFor<TResult>(Expression<Func<IQueryable<T>, TResult>> predicate)
+        public Task<Maybe<T>> Single(Func<T, bool> filter, Func<IEnumerable<T>, T> reduce)
         {
-            this.logger.LogInformation($"AzureDocumentDbDataReader for {typeof(T).Name} QueryFor function");
-            var results = predicate.Compile().Invoke(this.QueryDocumentDb());
-            return Task.FromResult(results);
-        }
+            this.logger.Info($"AzureDocumentDbDataReader for {typeof(T).Name} All function");
+            var collection = this.client
+                .CreateDocumentQuery<T>(this.collectionUri)
+                .Where(filter);
 
-        public Task<Maybe<T>> SingleOrDefault(Expression<Func<T, bool>> predicate)
-        {
-            this.logger.LogInformation($"AzureDocumentDbDataReader for {typeof(T).Name} Where function");
-            var result = this.QueryDocumentDb().Where(predicate.Compile()).ToArray();
-            return Task.FromResult((Maybe<T>)result.FirstOrDefault());
-        }
+            var result = reduce(collection);
 
-        public Task<IQueryable<T>> Where(Expression<Func<T, bool>> predicate)
-        {
-            this.logger.LogInformation($"AzureDocumentDbDataReader for {typeof(T).Name} Where function");
-            return Task.FromResult(this.QueryDocumentDb().Where(predicate.Compile()).AsQueryable());
+            return Task.FromResult<Maybe<T>>(result);
         }
-
-        private IOrderedQueryable<T> QueryDocumentDb()
-            => client.CreateDocumentQuery<T>(collectionUri);
     }
 }

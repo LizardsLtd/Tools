@@ -1,0 +1,39 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <AssemblyName>Picums.Mvc.UserAccess</AssemblyName>
+    <RootNamespace>Picums.Mvc.UserAccess</RootNamespace>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Version>0.31.1</Version>
+    <AssemblyVersion>0.1.1.0</AssemblyVersion>
+    <FileVersion>0.1.1.0</FileVersion>
+    <Authors>Picums</Authors>
+    <Company>Picums</Company>
+    <Product>Picums</Product>
+    <PackageId>Picums.Mvc.UserAccess</PackageId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Stores\FindUserByIdQuery.cs" />
+    <Compile Remove="Stores\FindUserByNameQuery.cs" />
+    <Compile Remove="Stores\UserExistsQuery.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <AdditionalFiles Include="..\..\..\stylecop.json" Link="stylecop.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Http" Version="2.0.1" />
+    <PackageReference Include="Microsoft.Extensions.Identity.Core" Version="2.0.1" />
+    <PackageReference Include="Microsoft.Extensions.Identity.Stores" Version="2.0.1" />
+    <PackageReference Include="NLog" Version="4.5.0-rc06" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Picums.Data\Picums.Data.csproj" />
+    <ProjectReference Include="..\Mvc\Picums.Mvc.csproj" />
+  </ItemGroup>
+</Project>

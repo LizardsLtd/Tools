@@ -1,16 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Threading.Tasks;
 
 namespace Picums.Data.CQRS
 {
-	public interface ICommandHandler : IDisposable
-	{
-		bool CanHandle(ICommand command);
+    public interface ICommandHandler : IDisposable { }
 
-		Task<IEnumerable<ValidationResult>> Validate(ICommand command);
-
-		Task Execute(ICommand command);
-	}
+    public interface ICommandHandler<TCommand> : ICommandHandler
+        where TCommand : ICommand
+    {
+        Task Handle(TCommand command);
+    }
 }
